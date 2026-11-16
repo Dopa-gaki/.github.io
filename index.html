@@ -31,6 +31,7 @@
   document.documentElement.lang=chosen;
 })();
 </script>
+<!-- PNmap 2026-11-16: host image optics / source persistence / displayed cutout links -->
 <style>
 :root{color-scheme:dark;--bg:#080d18;--surface:#101d30;--panel:#142239;--text:#ecf3ff;--muted:#aebed1;--border:#304563;--accent:#72bafa}*{box-sizing:border-box}
 body{background:var(--bg);margin:0;color:var(--text);font:14px/1.55 system-ui,-apple-system,"Noto Sans JP",sans-serif}
@@ -220,7 +221,7 @@ aside{background:transparent;border:0;padding:0;gap:12px}
 /* Hover framing preview. It is a schematic, not a nebula photograph. */
 .pixel-table tbody tr{cursor:crosshair}
 .pixel-table tbody tr:hover,.pixel-table tbody tr:focus-visible{background:rgba(65,133,190,.18);outline:none}
-#fovTooltip{position:fixed;z-index:99999;max-width:310px;width:min(310px,calc(100vw - 24px));pointer-events:none;padding:12px 13px;background:#0c1c31;border:1px solid #68afd6;box-shadow:0 10px 38px #000b;border-radius:9px;color:#edf8ff;font:12px/1.5 system-ui,-apple-system,sans-serif}
+#fovTooltip{text-align:left;position:fixed;z-index:99999;max-width:310px;width:min(310px,calc(100vw - 24px));pointer-events:none;padding:12px 13px;background:#0c1c31;border:1px solid #68afd6;box-shadow:0 10px 38px #000b;border-radius:9px;color:#edf8ff;font:12px/1.5 system-ui,-apple-system,sans-serif}
 #fovTooltip[hidden]{display:none!important}
 .fov-name{font-size:13px;font-weight:750;margin-bottom:5px}
 .fov-diagram{display:flex;justify-content:center;align-items:center;background:radial-gradient(ellipse at center,#122942,#09111f);padding:8px 4px;border-radius:4px;margin:5px 0}
@@ -752,6 +753,26 @@ html[lang="ja"] .pn-legend-en,html[lang="en"] .pn-legend-ja{display:none!importa
  body[data-pn-layout="mobile"] aside#pnMobilePanels.dso-active #dsoConditionsScroll{display:block!important;height:auto!important;overflow:visible!important;margin-top:11px;min-height:0;width:100%}
 }
 
+.dso-photo-caution{font-size:10px;line-height:1.45;color:#a7bfd1;margin:1px 0 4px}
+.dso-photo-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.dso-photo-actions .dso-image-link{display:none!important}
+.dso-size-side-by-side th,.dso-size-side-by-side td{width:37%;text-align:left!important;vertical-align:top}
+.dso-size-side-by-side th:first-child,.dso-size-side-by-side td:first-child{width:26%}
+.dso-size-side-by-side td{font-variant-numeric:tabular-nums}
+.dso-size-side-by-side .dso-table-scale{white-space:normal;line-height:1.5}
+
+/* DSO and selected PN are compared graphically in the framing popup. */
+#fovTooltip.dso-comparison-tooltip{max-width:min(650px,calc(100vw - 16px));width:min(650px,calc(100vw - 16px));max-height:calc(100vh - 16px);overflow-y:auto;box-sizing:border-box}
+.dso-framing-comparison{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:9px 0}
+.dso-framing-panel{min-width:0;text-align:left;border:1px solid #35506b;border-radius:7px;padding:8px 5px;background:#10243b}
+.dso-framing-heading{font-size:12px;font-weight:750;color:#f1f8ff;text-align:left}
+.dso-framing-object{font-size:10px;color:#b5d3e6;overflow-wrap:anywhere;margin:0 0 5px;text-align:left}
+.dso-framing-panel .fov-diagram{min-height:100px;padding:5px 2px}
+.dso-framing-panel .fov-diagram svg{width:100%;max-height:175px;max-width:205px}
+.dso-framing-panel .fov-figure-note{font-variant-numeric:tabular-nums;text-align:left}
+.dso-framing-diameter{font-size:12px;line-height:1.5;color:#edf8ff;margin:0;text-align:left}
+@media(max-width:430px){.dso-framing-comparison{gap:5px}.dso-framing-panel{padding:6px 3px}.dso-framing-panel .fov-diagram{min-height:95px}}
+
 /* Minimal publication UI: one unobtrusive share button and a compact consent choice. */
 .pnmap-share{position:relative;flex-shrink:0}
 #pnmapShareButton{font-size:12px;background:#1b324b;padding:6px 10px;min-height:37px;border:1px solid #50738f}
@@ -766,6 +787,7 @@ html[lang="ja"] .pn-legend-en,html[lang="en"] .pn-legend-ja{display:none!importa
 .pnmap-consent .actions{display:flex;gap:7px;justify-content:flex-end}
 .pnmap-consent button{font-size:12px;padding:5px 10px}
 @media(max-width:700px){.pnmap-share{margin-left:0}}
+
 </style><!-- PNmap integration 2026-11-10: +33 NGC 891 photometric candidates, from Chat C; B,D audit only. A pending. -->
 <!-- PNmap 2026-11-10 Chat A integration: +91 NGC 3608 PN.S candidate rows, uncertain host membership retained. -->
 <style id="dso-saved-list-styles">
@@ -786,6 +808,11 @@ html[lang="ja"] .pn-legend-en,html[lang="en"] .pn-legend-ja{display:none!importa
 <!-- PNmap 2026-11-10 ChatA 435 integration: 4 new host DSOs, legacy M94 alias audit, saved DSO list. -->
 <!-- Research metadata updated from ChatA_followup_audit_20261110; original 5434 PN and DSO list parity preserved. -->
 
+<style id="pnmap-astrobin-button-row-20261116">
+/* The host and selected-PN links share the same appearance and action row.
+   Do not show the selected-PN link when no individually located PN is selected. */
+#dsoDetails .photo-primary-actions #dsoSelectedPNAstrobin[hidden]{display:none!important}
+</style>
 <style id="dso-parity-image-actions-20261110">
 /* Share the existing PN inspector action geometry; DSO uses precisely the same classes. */
 #dsoDetails .photo-primary-actions{display:flex;align-items:center;flex-wrap:wrap;column-gap:12px;row-gap:8px;margin:10px 0 6px}
@@ -868,6 +895,7 @@ html[lang="ja"] .pn-legend-en,html[lang="en"] .pn-legend-ja{display:none!importa
 .rank-selected-filtered[hidden]{display:none!important}
 .rank-selected-filtered strong{display:block;color:#eef9ff;font-size:13px}
 .pn-list-panel .ranked-measure{line-height:1.55;white-space:normal}
+#rankHoverHelp,#mapOperationHelp{display:none!important}
 </style></head><body>
 <header><div class="headline"><h1 data-i18n="title">惑星状星雲3Dマップ</h1>
 <div class="pn-device-toggle" role="group" aria-label="画面レイアウト / Display layout">
@@ -893,7 +921,13 @@ html[lang="ja"] .pn-legend-en,html[lang="en"] .pn-legend-ja{display:none!importa
 <script src="assets/pnmap-dsoIndividualEmbedded-04.js"></script>
 <script src="assets/pnmap-dsoIndividualEmbedded-05.js"></script>
 <script src="assets/pnmap-dsoIndividualEmbedded-06.js"></script>
-<script src="assets/pnmap-dsoIndividualEmbedded-07.js"></script><script id="dsoNotesEmbedded" type="application/json"></script>
+<script src="assets/pnmap-dsoIndividualEmbedded-07.js"></script>
+<script src="assets/pnmap-dsoIndividualEmbedded-08.js"></script>
+<script src="assets/pnmap-dsoIndividualEmbedded-09.js"></script>
+<script src="assets/pnmap-dsoIndividualEmbedded-10.js"></script>
+<script src="assets/pnmap-dsoIndividualEmbedded-11.js"></script>
+<script src="assets/pnmap-dsoIndividualEmbedded-12.js"></script>
+<script src="assets/pnmap-dsoIndividualEmbedded-13.js"></script><script id="dsoNotesEmbedded" type="application/json"></script>
 <script src="assets/pnmap-dsoNotesEmbedded-01.js"></script><script id="dsoMapEmbedded" type="application/json"></script>
 <script src="assets/pnmap-dsoMapEmbedded-01.js"></script><script id="dsoEmbedded" type="application/json"></script>
 <script src="assets/pnmap-dsoEmbedded-01.js"></script>
@@ -928,7 +962,7 @@ html[lang="ja"] .pn-legend-en,html[lang="en"] .pn-legend-ja{display:none!importa
   <button id="dsoFoldButton" type="button" class="dso-fold-button" aria-expanded="false">▼ <span data-i18n="dsoShowList">天体一覧を開く</span></button><div id="dsoRows" class="dso-rows" aria-live="polite" hidden></div><p id="dsoMapCoverage" class="dso-coverage"></p>
 </div>
 <div id="pnListPanel" class="pn-list-panel" role="region" aria-label="惑星状星雲の全件一覧" hidden>
-<div class="largest pn-list-largest"><div class="rank-head"><select id="rankSort" aria-label="惑星状星雲の並べ替え"><option value="diameter" data-i18n="rankDiameter">視直径が大きい順</option><option value="brightness" data-i18n="rankBrightness">Hβ表面輝度が高い順</option><option value="altitude" data-i18n="rankAltitude">南中高度が高い順</option><option value="newmoon" data-i18n="rankNewmoon">次の新月期が近い順</option></select><button type="button" id="rankRecommend" aria-pressed="false">おすすめ</button></div><p class="rank-hover-help" id="rankHoverHelp">Shift＋ホバー：右側に天体情報を表示 ／ クリック：選択</p><div class="rank-window-nav" id="rankWindowNav" hidden><button type="button" id="rankPrevious">前の36件</button><button type="button" id="rankFirst">先頭へ</button><span class="rank-window-label" id="rankWindowLabel"></span></div><div id="rankSelectedFiltered" class="rank-selected-filtered" role="status" hidden></div><div id="ranked" class="pn-list-rows" aria-live="polite"></div><div id="rankLoadStatus" class="pn-rank-load" role="status" aria-live="polite"></div></div>
+<div class="largest pn-list-largest"><div class="rank-head"><select id="rankSort" aria-label="惑星状星雲の並べ替え"><option value="diameter" data-i18n="rankDiameter">視直径が大きい順</option><option value="brightness" data-i18n="rankBrightness">Hβ表面輝度が高い順</option><option value="altitude" data-i18n="rankAltitude">南中高度が高い順</option><option value="newmoon" data-i18n="rankNewmoon">次の新月期が近い順</option></select><button type="button" id="rankRecommend" aria-pressed="false">おすすめ</button></div><p class="rank-hover-help" id="rankHoverHelp" hidden></p><div class="rank-window-nav" id="rankWindowNav" hidden><button type="button" id="rankPrevious">前の36件</button><button type="button" id="rankFirst">先頭へ</button><span class="rank-window-label" id="rankWindowLabel"></span></div><div id="rankSelectedFiltered" class="rank-selected-filtered" role="status" hidden></div><div id="ranked" class="pn-list-rows" aria-live="polite"></div><div id="rankLoadStatus" class="pn-rank-load" role="status" aria-live="polite"></div></div>
 </div>
 <details id="galaxyControls" class="galaxy-control-panel" open><summary id="galaxyControlLabel" aria-label="銀河系の表示操作 / Galactic controls"><span class="sr-only">銀河系の操作</span><span aria-hidden="true" class="galaxy-summary-icon">表示設定</span></summary><div class="galaxy-control-body"><div class="options"><button data-i18n="zoomClose" id="close" type="button">太陽系中心から ±0.5 kpc</button><button data-i18n="zoomNear" id="near" type="button">太陽系中心から ±4 kpc</button><button data-i18n="zoomWide" id="wide" type="button">銀河中心を含む ±12 kpc</button></div>
 <div class="options"><button data-i18n="view3D" id="iso">3D視点</button><button data-i18n="viewTop" id="top">銀河面を上から</button><button data-i18n="viewSide" id="side">銀河面を横から</button></div>
@@ -943,7 +977,7 @@ html[lang="ja"] .pn-legend-en,html[lang="en"] .pn-legend-ja{display:none!importa
  <label><input id="hashT" type="checkbox" checked> <span class="dot true"></span><span data-i18n="hashTrueLabel">True（確定）</span> <b>3,358</b></label>
  <label><input id="hashL" type="checkbox" checked> <span class="dot likely"></span><span data-i18n="hashLikelyLabel">Likely（有力）</span> <b>459</b></label>
  <label><input id="hashP" type="checkbox" checked> <span class="dot possible"></span><span data-i18n="hashPossibleLabel">Possible（候補）</span> <b>875</b></label>
-</div></section><div id="galacticFocusMessage" class="galactic-focus-note" role="status"></div><div id="mapOperationHelp" class="map-operation-help" data-i18n="dragHelp" role="note">ドラッグ：回転 ／ ホイール：拡大 ／ クリック：選択 ／ Shift＋ホバー：選択</div></div>
+</div></section><div id="galacticFocusMessage" class="galactic-focus-note" role="status"></div><div id="mapOperationHelp" class="map-operation-help" hidden></div></div>
 <aside id="pnMobilePanels" data-mobile-panel="conditions">
 <nav id="pnMobileTabs" class="pn-mobile-tabs" role="tablist" aria-label="表示パネルの切替 / Select information panel">
 <button type="button" id="pnMobileInfo" role="tab" aria-controls="pnInspectorScroll" aria-selected="false" tabindex="-1">天体情報</button>
@@ -980,15 +1014,15 @@ html[lang="ja"] .pn-legend-en,html[lang="en"] .pn-legend-ja{display:none!importa
 <a href="https://lightpollutionmap.app/?lat=43.0621&amp;lng=141.3544&amp;zoom=10" id="obsLightLink" rel="noopener noreferrer" target="_blank">光害マップ ↗</a>
 </div>
 <div aria-live="polite" class="obs-result" id="obsResult"><p class="muted" data-i18n="obsSelect">PNを選択すると，観測に適した新月期が表示されます．</p></div>
-<p class="obs-disclaimer" data-i18n="obsNote">赤経・赤緯による幾何学的な計算値です．新月期は近似計算で，天候・薄明・月の高度は観測時に再確認してください．</p>
+
 </section></section>
 <section class="pn-pixels" hidden="" id="pnPixels">
 <h3 data-i18n="pixelTitle">登録機材での大きさ</h3>
-<p class="equipment-hover-hint" data-i18n="framingHover">機材の行にカーソルを重ねると画角とPNの大きさが表示されます．</p>
+
 <div id="pnPixelResults"></div>
 </section>
 <details class="equipment-editor" id="equipmentEditor"><summary data-i18n="equipmentManager">撮影機材の登録・編集</summary>
-<p class="controls-note" data-i18n="equipmentNote">鏡筒＋カメラの組合せごとに焦点距離と画素サイズを指定します．ブラウザ内に保存されます．</p>
+
 <div id="equipmentRows"></div>
 <div class="equipment-actions"><button data-i18n="addEquipment" id="addEquipment" type="button">＋機材を追加</button><button data-i18n="resetEquipment" id="resetEquipment" type="button">初期設定に戻す</button><button data-i18n="exportEquipment" id="exportEquipment" type="button">設定を保存</button><button data-i18n="importEquipment" id="importEquipment" type="button">設定を読み込む</button><input accept=".json,application/json" hidden="" id="importEquipmentFile" type="file"/></div>
 </details>
@@ -1018,6 +1052,7 @@ html[lang="ja"] .pn-legend-en,html[lang="en"] .pn-legend-ja{display:none!importa
 <input aria-label="平均Hβ表面輝度の上限" id="sbHigh" max="-10" min="-18" step="0.1" type="range" value="-10"/>
 </div>
 <div class="filter-dual-info"><strong id="sbRangeText">−18.0 ～ −10.0</strong><span data-i18n="sbHint">大きい値（−12など）ほど明るい．V等級ではありません．</span></div>
+<label for="pnConstellationFilter">星座 / Constellation</label><select id="pnConstellationFilter"><option value="">すべての星座</option></select>
 <label data-i18n="altFilterTitle">南中高度（下限～上限）</label>
 <div aria-label="南中高度の範囲" class="dual-range" role="group">
 <div class="slider-track"></div><div class="slider-fill" id="altFill"></div>
@@ -1030,8 +1065,8 @@ html[lang="ja"] .pn-legend-en,html[lang="en"] .pn-legend-ja{display:none!importa
 <div class="slider-track"></div><div class="slider-fill" id="moonFill"></div>
 <input aria-label="新月期の下限（月）" id="moonLow" max="14" min="0" step="1" type="range" value="0"/>
 <input aria-label="新月期の上限（月）" id="moonHigh" max="14" min="0" step="1" type="range" value="14"/>
-</div><div class="filter-dual-info"><strong id="moonRangeText">0 ～ 14か月後</strong><span data-i18n="moonFilterHint">全天体を表示するには0～14か月に設定</span></div>
-<label data-i18n="catalogTitle">カタログで絞り込み</label><p class="controls-note"><span class="note-ja">カタログ名にカーソルを重ねると，簡単な解説が表示されます．</span><span class="note-en">Hover over a catalogue to see a short explanation.</span></p>
+</div><div class="filter-dual-info"><strong id="moonRangeText">0 ～ 14か月後</strong></div>
+<label data-i18n="catalogTitle">カタログで絞り込み</label>
 <div class="catalog-mode"><span data-i18n="catalogModeLabel">選択方法</span><div aria-label="Catalogue selection mode" class="catalog-mode-options" role="group"><button aria-pressed="false" data-i18n="catalogSingle" id="catalogSingle" type="button">単一選択</button><button aria-pressed="true" class="active" data-i18n="catalogMulti" id="catalogMulti" type="button">複数選択</button></div></div>
 <div class="catalog-actions"><button aria-pressed="true" class="active" data-i18n="catAll" id="catAll" type="button">すべて表示</button><button data-i18n="catClear" id="catClear" type="button">選択解除</button></div>
 <div aria-label="Catalogue filters" class="catalog-buttons" role="group">
@@ -1060,7 +1095,7 @@ html[lang="ja"] .pn-legend-en,html[lang="en"] .pn-legend-ja{display:none!importa
 
 <section aria-label="My planetary nebulae list" class="saved-pn-section" id="myPNList">
 <h3><span data-i18n="myListTitle">選択したPNのリスト</span> <span id="savedCount">0</span></h3>
-<p class="controls-note" data-i18n="myListHint">選択したPNを追加・削除できます．リストはこのブラウザに保存されます．</p>
+
 <div class="saved-items" id="savedItems"></div>
 <label data-i18n="savedExportTitle" for="savedExportFormat">このリストを出力</label>
 <div class="export-actions"><select aria-label="Saved list export format" id="savedExportFormat"><option data-i18n="exportSol" value="sol">Stellarium観測リスト（.sol）</option><option data-i18n="exportCSV" value="csv">Excel用CSV（.csv）</option><option data-i18n="exportXLSX" value="xlsx">Excelブック（.xlsx）</option></select><button data-i18n="exportButton" id="savedExportBtn" type="button">出力</button></div>
@@ -1108,7 +1143,8 @@ html[lang="ja"] .pn-legend-en,html[lang="en"] .pn-legend-ja{display:none!importa
   <input type="range" id="dsoMoonHigh" min="0" max="14" step="1" value="14" aria-label="新月期までの月数の上限" />
  </div>
  <div class="filter-dual-info"><strong id="dsoMoonRange">0 ～ 14か月後</strong><span data-dso-l10n="moonHint">0～14か月で新月期の条件を解除．</span></div>
- <details id="dsoAdditionalFilters" class="dso-extra-filters"><summary data-dso-l10n="extraFilters">その他の条件</summary> <label for="dsoFilterCategory" data-dso-l10n="kindTitle">DSOの種類</label>
+ <label for="dsoFilterConstellation" data-dso-l10n="constellationTitle">星座</label><select id="dsoFilterConstellation"><option value="">すべての星座</option></select>
+<details id="dsoAdditionalFilters" class="dso-extra-filters"><summary data-dso-l10n="extraFilters">その他の条件</summary> <label for="dsoFilterCategory" data-dso-l10n="kindTitle">DSOの種類</label>
  <select id="dsoFilterCategory">
   <option value="" data-dso-l10n="kindAll">すべての種類</option>
   <option value="銀河系内の星団" data-dso-l10n="kindMW">銀河系内の星団</option>
@@ -1133,7 +1169,7 @@ html[lang="ja"] .pn-legend-en,html[lang="en"] .pn-legend-ja{display:none!importa
  <input type="search" id="dsoFilterSearch" placeholder="例：M31 / NGC 891 / Fornax" autocomplete="off" />
  <section class="saved-pn-section dso-saved-section" id="myDSOList" aria-label="My selected DSO list">
  <h3><span data-dso-saved-l10n="title">選択した銀河・星団のリスト</span> <span id="dsoSavedCount">0</span></h3>
- <p class="controls-note dso-saved-help" data-dso-saved-l10n="help">選択したDSOを追加・削除できます．リストはこのブラウザに保存されます．</p>
+ 
  <div id="dsoSavedItems" class="saved-items" aria-live="polite"></div>
  <label data-dso-saved-l10n="exportTitle" for="dsoSavedExportFormat">このリストを出力</label>
  <div class="export-actions"><select aria-label="Saved DSO list export format" id="dsoSavedExportFormat">
@@ -1168,6 +1204,7 @@ html[lang="ja"] .pn-legend-en,html[lang="en"] .pn-legend-ja{display:none!importa
 <script src="assets/pnmap-embedded-01.js"></script>
 <script id="hashEmbedded" type="application/json"></script>
 <script src="assets/pnmap-hashEmbedded-01.js"></script>
+<script src="assets/pnmap-hashEmbedded-02.js"></script>
 <script src="assets/pnmap-app.js"></script><div hidden="" id="fovTooltip" role="tooltip"></div><div hidden="" id="newMoonTooltip" role="tooltip" aria-live="off"></div><script id="pnmap-publication-controls">
 (function(){
  'use strict';
@@ -1271,4 +1308,5 @@ html[lang="ja"] .pn-legend-en,html[lang="en"] .pn-legend-ja{display:none!importa
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();
-</script></body></html>
+</script>
+</body></html>
