@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="ja"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="dark" name="color-scheme"/><title>Cometmap v65 | 彗星マップ・観測支援 / Comet Observing Atlas</title>
+<html lang="ja"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="dark" name="color-scheme"/><title>Cometmap v68 | 彗星マップ・観測支援 / Comet Observing Atlas</title>
 <style>
 :root{color-scheme:dark;--bg:#080e18;--s:#101e30;--sub:#14263d;--text:#ebf4ff;--muted:#aabed2;--line:#37536c;--hi:#7bcaff;--green:#69d9b5}
 *{box-sizing:border-box}body{background:var(--bg);color:var(--text);font:13px/1.5 system-ui,-apple-system,'Noto Sans JP',sans-serif;margin:0}header{max-width:1780px;margin:auto;padding:13px 20px 7px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}h1{font-size:25px;line-height:1.3;margin:0 0 3px}header small{color:#9bc4e4;font-weight:700;letter-spacing:.12em}header p{margin:0;color:var(--muted)}.topactions{display:flex;gap:6px;flex-wrap:wrap}main{max-width:1780px;margin:auto;padding:8px 14px 18px;display:grid;grid-template-columns:minmax(480px,1fr) minmax(380px,510px);gap:12px;min-height:80vh}.panel{border:1px solid var(--line);border-radius:12px;background:var(--s);min-width:0}#view{position:relative;background:radial-gradient(ellipse at 45% 40%,#0a1d32,#07101e 70%);overflow:hidden}canvas{display:block;width:100%;height:min(81vh,850px);min-height:540px;cursor:grab;touch-action:none}canvas:active{cursor:grabbing}.maptop{position:absolute;top:12px;left:12px;display:flex;gap:5px;flex-wrap:wrap;max-width:calc(100% - 24px);z-index:3}.mapbottom{position:absolute;left:10px;bottom:12px;right:10px;display:flex;gap:7px;align-items:end;justify-content:space-between;pointer-events:none}.mapbottom>*{pointer-events:auto}.ribbon{background:#10263ee8;border:1px solid #4e7191;border-radius:9px;padding:6px 9px;color:#c6dfed;font-size:11px;max-width:67%}.mapbadge{background:#10263ee8;border:1px solid #4e7191;border-radius:9px;padding:6px 9px;font-size:11px;white-space:nowrap}aside{display:flex;flex-direction:column;gap:10px;max-height:calc(100vh - 112px);min-height:680px}.tabs{display:flex;gap:5px;margin:10px 10px 0}.tab{flex:1}.scroll{overflow-y:auto;min-height:0;padding:11px 13px;scrollbar-color:#43617e #101e30}.scroll.settings{flex:0 0 44%;border-bottom:1px solid var(--line)}.scroll.details{flex:1}button,input,select{font:inherit}button{background:#254867;color:#f5fbff;border:1px solid #5781a1;border-radius:7px;padding:7px 10px;cursor:pointer;line-height:1.35}button:hover{background:#32638b}button.active{background:#126d9e;border-color:#a4e0ff;font-weight:750}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid #8de2ff;outline-offset:2px}button:disabled{opacity:.5;cursor:default}.tiny{padding:6px 8px;font-size:11px}.mini{font-size:11px;color:var(--muted)}.notice{font-size:11px;color:#b9d6e8;margin:5px 0}.status{border:1px solid #355a73;border-radius:8px;background:#10273b;padding:7px 9px;line-height:1.5;min-height:34px;margin-bottom:9px}.statrow{display:flex;gap:5px;margin:8px 0}.stat{flex:1;background:#192c43;border:1px solid #36536f;border-radius:7px;padding:6px 7px;min-width:0}.stat strong{display:block;font-size:20px;line-height:1.2}.stat span{color:var(--muted);font-size:10px}label{display:block;font-weight:650;font-size:12px;margin:10px 0 4px}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.grid2 label,.grid3 label{margin:5px 0 3px}input:not([type=checkbox]):not([type=file]),select{width:100%;min-width:0;border:1px solid #4e6a86;border-radius:6px;padding:7px;background:#0b192c;color:var(--text)}input[type=file]{max-width:100%;font-size:11px}.flex{display:flex;flex-wrap:wrap;gap:5px;align-items:center}.flex>*{min-width:0}a{color:#99d9ff}.sect{border-top:1px solid #314c66;margin:12px 0;padding-top:10px}h2{font-size:15px;margin:4px 0 8px}h3{font-size:13px;margin:8px 0 4px}.obj-list{max-height:195px;overflow:auto;border:1px solid #334b66;border-radius:8px;margin-top:7px}.obj{width:100%;border:0;border-bottom:1px solid #253d54;border-radius:0;background:transparent;padding:7px 9px;display:flex;justify-content:space-between;text-align:left;gap:9px}.obj.active{background:#204b69}.obj small{font-weight:400;color:#aec6d9}.obj .mag{white-space:nowrap;color:#b9e4fe;text-align:right}.line{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px solid #253d54}.line>span:first-child{color:var(--muted)}.line strong{font-weight:650;text-align:right;font-variant-numeric:tabular-nums}.detail-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}.detail-head h2{font-size:19px;margin:0}.chip{font-size:10px;border:1px solid #537b97;border-radius:10px;padding:2px 7px;color:#d9efff;white-space:nowrap}.good{color:#7ae1c3}.warn{color:#ffce8b}.equiprow{display:grid;grid-template-columns:minmax(0,1fr) 66px 60px 60px 60px 22px;gap:5px;margin:5px 0}.equiprow input{padding:4px!important;font-size:11px}.equiprow button{padding:4px}.imgwrap{margin:9px 0;background:#071222;border:1px solid #36516a;border-radius:8px;min-height:120px;display:grid;place-items:center;overflow:hidden}.imgwrap img{max-height:200px;max-width:100%;object-fit:contain}footer{font-size:11px;color:var(--muted);max-width:1760px;margin:auto;padding:0 16px 12px}.pill{border:1px solid #4e8097;border-radius:12px;padding:1px 7px}.hidden{display:none!important}.mobiletabs{display:none}.footbar{display:flex;gap:5px;flex-wrap:wrap}.placeholder{color:var(--muted);border:1px dashed #34536c;border-radius:8px;padding:16px;text-align:center}.check{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:400;margin:0}.check input{accent-color:#73c8eb}.tight{margin-top:4px}details>summary{cursor:pointer;color:#bfe6ff;font-weight:650;padding:6px 0}details{border-top:1px solid #2d465f;margin-top:9px}table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid #30485e;padding:5px;text-align:left;font-size:11px}th{color:#accee8}.tool{font-size:10px;color:#94bad6;margin-top:4px}.muted{color:var(--muted)}@media(max-width:1050px){main{grid-template-columns:minmax(0,1fr)}aside{max-height:none;min-height:0}.scroll.settings{flex:none}.scroll.details{max-height:550px}canvas{min-height:450px;height:63vh}}@media(max-width:650px){header{padding:13px}h1{font-size:22px}main{padding:6px 8px;gap:8px}canvas{height:58vh;min-height:370px}.maptop{top:8px;left:8px}.maptop button{font-size:10px;padding:6px 7px}.ribbon{max-width:75%;font-size:10px}.scroll{padding:9px}.mobiletabs{display:flex}.scroll.settings,.scroll.details{max-height:none;flex:none;min-height:0}.scroll.settings{display:block}.scroll.details{display:none}aside[data-tab=details] .scroll.settings{display:none}aside[data-tab=details] .scroll.details{display:block}aside{max-height:63vh;overflow:hidden}aside .scroll{overflow-y:auto;max-height:calc(63vh - 48px)!important}.equiprow{grid-template-columns:minmax(0,1fr) 46px 47px 47px 47px 22px}.equiprow input{font-size:10px!important}}
@@ -339,7 +339,7 @@ body[data-comet-layout='desktop'] #canvas{height:min(83vh,885px)!important;min-h
 #sourceProvenance a{color:#93d3ff;overflow-wrap:anywhere}
 </style></head><body>
 <header><div class="headline"><h1 data-t="title">彗星マップ</h1><div aria-label="画面レイアウト / Display layout" class="pn-device-toggle" role="group"><button aria-pressed="true" class="active" data-en="Desktop" data-ja="PC版" id="cometLayoutDesktop" type="button">PC版</button><button aria-pressed="false" data-en="Mobile" data-ja="スマホ版" id="cometLayoutMobile" type="button">スマホ版</button></div><div aria-label="Language" class="lang-buttons" role="group"><button aria-pressed="true" class="active" id="langJa" type="button">日本語</button><button aria-pressed="false" id="langEn" type="button">English</button></div><div aria-label="Share Cometmap" class="pnmap-share" role="group"><button aria-controls="cometShareMenu" aria-expanded="false" aria-haspopup="true" data-en="Share" data-ja="共有" id="cometShareButton" type="button">共有</button><div aria-label="Share Cometmap" hidden="" id="cometShareMenu"><button data-share="x" type="button">X</button><button data-share="facebook" type="button">Facebook</button><button data-share="line" type="button">LINE</button><button data-share="bluesky" type="button">Bluesky</button><button data-en="Other apps…" data-ja="その他のアプリ…" data-share="native" type="button">その他のアプリ…</button><button data-en="Copy URL" data-ja="URLをコピー" data-share="copy" type="button">URLをコピー</button></div><span aria-live="polite" id="cometShareStatus" role="status"></span></div></div><button aria-hidden="true" hidden="" id="lang" tabindex="-1" type="button">English</button></header>
-<main><section class="panel" id="view"><div class="projection-toggle"><button aria-pressed="true" class="active" data-mode="sky" data-t="sky" type="button">天球モード</button><button aria-pressed="false" data-mode="horizon" data-t="horizon" type="button">地平モード</button><button aria-pressed="false" data-mode="solar" data-t="solar" type="button">太陽系モード</button><button aria-pressed="false" data-en="List view" data-ja="一覧モード" id="modeList" type="button">一覧モード</button></div><button class="map-reset" data-t="center" id="reset" type="button">中心に戻す</button><canvas aria-label="Comet sky map" id="canvas"></canvas>
+<main><section class="panel" id="view"><div class="projection-toggle"><button aria-pressed="true" class="active" data-mode="sky" data-t="sky" type="button">天球モード</button><button aria-pressed="false" data-mode="horizon" data-t="horizon" type="button">地平モード</button><button aria-pressed="false" data-mode="solar" data-t="solar" type="button">太陽系モード</button><button aria-pressed="false" data-en="List view" data-ja="一覧モード" id="modeList" type="button">一覧モード</button></div><div class="point-style-panel" id="pointStylePanel" role="group" aria-label="点の明度・サイズ / Point brightness and size"><label for="pointStyle" data-ja="点の明度・サイズ" data-en="Point brightness and size">点の明度・サイズ</label><select id="pointStyle" aria-label="Point brightness and size"><option value="mag" data-ja="推定光度" data-en="Estimated magnitude">推定光度</option><option value="score" data-ja="撮影適性" data-en="Imaging suitability">撮影適性</option><option value="alt" data-ja="高度" data-en="Altitude">高度</option><option value="elong" data-ja="太陽離角" data-en="Solar elongation">太陽離角</option><option value="uniform" data-ja="一律" data-en="Uniform">一律</option></select><div id="pointStyleLegend" class="point-style-note" aria-live="polite"></div></div><button class="map-reset" data-t="center" id="reset" type="button">中心に戻す</button><canvas aria-label="Comet sky map" id="canvas"></canvas>
 <div aria-label="Celestial sphere viewpoint" class="sky-view-panel" id="skyViewPanel" role="group">
 <button aria-pressed="true" class="active" data-en="Outside" data-ja="外側から" id="skyViewOutside" type="button">外側から</button>
 <button aria-pressed="false" data-en="Inside" data-ja="内側から" id="skyViewInside" type="button">内側から</button>
@@ -364,7 +364,7 @@ body[data-comet-layout='desktop'] #canvas{height:min(83vh,885px)!important;min-h
 <div class="flex tight"><button class="tiny" data-t="now" id="now">現在日時</button><button class="tiny" id="back">−1 d</button><button class="tiny" id="forward">+1 d</button><button class="tiny" data-t="night" id="nextDark">今夜22時</button></div>
 <div class="grid2"><div><label data-t="search" for="query">彗星を検索</label><input id="query" placeholder="C/2026, Encke, 29P…" type="search"/></div><div><label data-t="sort" for="sort">並べ替え</label><select id="sort"><option data-t="sortRank" value="rank">観測適性</option><option data-t="sortMag" value="mag">推定光度</option><option data-t="sortAlt" value="alt">現在の高度</option><option data-t="sortElong" value="elong">太陽離角</option><option data-t="sortPeri" value="peri">近日点日時</option><option data-t="sortName" value="name">名前</option></select></div></div>
 <div class="flex tight"><label class="check"><input checked="" id="brightOnly" type="checkbox"/><span data-t="onlyBright">COBSに光度がある彗星</span></label><label class="check"><input id="aboveOnly" type="checkbox"/><span data-t="onlyAbove">最低高度以上のみ</span></label></div>
-<div class="mini" id="filterHint"></div><button data-en="Export filtered comets CSV" data-ja="表示中の彗星CSV" id="export" type="button">表示中の彗星CSV</button><div class="obj-list" id="list"><div class="placeholder" data-t="load">データ取得後に表示します。</div></div>
+<div class="grid2 comet-visual-filters"><div><label for="magLimit" data-ja="推定光度（上限）" data-en="Estimated magnitude limit">推定光度（上限）</label><select id="magLimit"><option value="99" data-ja="制限なし" data-en="No limit">制限なし</option><option value="6">6 mag</option><option value="8">8 mag</option><option value="10">10 mag</option><option value="12">12 mag</option><option value="15">15 mag</option><option value="18">18 mag</option><option value="22">22 mag</option></select></div><div><label for="minElong" data-ja="太陽離角（下限）" data-en="Solar elongation (min)">太陽離角（下限）</label><select id="minElong"><option value="0" data-ja="制限なし" data-en="No limit">制限なし</option><option value="20">20°</option><option value="30">30°</option><option value="45">45°</option><option value="60">60°</option><option value="90">90°</option></select></div></div><div class="mini" id="magFilterNote" data-ja="光度はCOBS予測値，またはMPC光度モデルによる推定値です．実測値ではありません．" data-en="Magnitudes are COBS forecasts or MPC model estimates, not measured values.">光度はCOBS予測値，またはMPC光度モデルによる推定値です．実測値ではありません．</div><details class="comet-filter-presets" id="cometFilterPresets"><summary data-ja="表示条件を保存・読み込み" data-en="Save / load display filters">表示条件を保存・読み込み</summary><div class="flex"><input id="filterPresetName" type="text" maxlength="40" placeholder="名前を入力" data-placeholder-ja="名前を入力" data-placeholder-en="Preset name" aria-label="Display filter preset name"/><button type="button" id="filterPresetSave" data-ja="保存" data-en="Save">保存</button></div><div class="flex"><select id="filterPresetSelect" aria-label="Saved display filters"></select><button type="button" id="filterPresetApply" data-ja="適用" data-en="Apply">適用</button><button type="button" id="filterPresetDelete" data-ja="削除" data-en="Delete">削除</button></div><div class="mini" id="filterPresetStatus" aria-live="polite"></div></details><div class="mini" id="filterHint"></div><button data-en="Export filtered comets CSV" data-ja="表示中の彗星CSV" id="export" type="button">表示中の彗星CSV</button><div class="obj-list" id="list"><div class="placeholder" data-t="load">データ取得後に表示します。</div></div>
 <div class="sect" id="savedListPanel"><h2 id="savedListTitle">観測リスト・お気に入り</h2><div class="flex"><button class="tiny" data-en="Export list CSV" data-ja="CSV出力" id="saveListExport" type="button">CSV出力</button><button class="tiny" data-en="Saved-list altitude chart" data-ja="リストの高度曲線" id="listAltitudeButton" type="button">リストの高度曲線</button><button class="tiny" data-en="Clear list" data-ja="リストを空にする" id="saveListClear" type="button">リストを空にする</button></div><div class="obj-list" id="savedListObjects"></div></div>
 <div class="sect"><h2 data-t="data">オンラインデータの取得状況</h2><div class="mini tight" id="timestamps"></div><div class="mini tight" id="freshnessWarning" role="status" style="color:#edc990">取得元の更新時刻が明記されない場合，最新性を保証できません。</div><details id="dataDiagnostics"><summary data-en="Connection details" data-ja="接続の詳細" id="diagnosticTitle">接続の詳細</summary><div class="flex"><button class="tiny" data-en="Retry connection" data-ja="接続を再確認" id="diagnose">接続を再確認</button><button class="tiny" id="auditExport" type="button">品質レポートJSON</button></div><pre id="connectionLog" style="font:11px/1.5 ui-monospace,monospace;white-space:pre-wrap;overflow-wrap:anywhere;color:#bbd9ee;max-height:210px;overflow:auto;margin:7px 0"></pre></details><details aria-label="Data provenance / データ出典" class="sect" id="sourceProvenance"><summary data-en="Data sources and magnitude types" data-ja="データの出典と光度の扱い">データの出典と光度の扱い</summary><p class="source-note" data-en="Orbital elements: MPC public orbit data preferred. Cached data are explicitly identified when live access fails." data-ja="軌道要素：MPCの公開軌道データを優先．取得できない場合は保存済みデータを表示し，最新データとは区別します．">軌道要素：MPCの公開軌道データを優先．取得できない場合は保存済みデータを表示し，最新データとは区別します． <a href="https://docs.minorplanetcenter.net/tutorials/notebooks/mpc_tutorial_api_orbits/" rel="noopener noreferrer" target="_blank">MPC Orbits API</a></p><p class="source-note" data-en="Brightness: COBS estimated magnitudes are model predictions, not individual measured magnitudes." data-ja="光度：COBSの推定光度はモデルによる予測値であり，個別の観測等級とは異なります．">光度：COBSの推定光度はモデルによる予測値であり，個別の観測等級とは異なります． <a href="https://cobs.si/help/cobs_api/planner_api/" rel="noopener noreferrer" target="_blank">COBS Planner API</a></p><p class="source-note" data-en="For measured brightness, consult the individual observations in COBS." data-ja="実測光度を確認する場合は，COBSの観測記録を参照してください．">実測光度を確認する場合は，COBSの観測記録を参照してください． <a href="https://cobs.si/help/cobs_api/observation_list_api/" rel="noopener noreferrer" target="_blank">COBS Observation List API</a></p></details><div class="notice" id="dataMethod">データは定期的に更新されます。取得できない場合は保存済みデータを使用し，取得日時を表示します。光度は予測値であり，実測値ではありません。</div><div class="mini"><a href="https://www.minorplanetcenter.net/iau/MPCORB/CometEls.txt" rel="noopener" target="_blank">MPC CometEls</a> · <a href="https://ssd-api.jpl.nasa.gov/doc/sbdb_query.html" rel="noopener" target="_blank">JPL SBDB</a> · <a href="https://cobs.si/help/cobs_api/comet_list_api/" rel="noopener" target="_blank">COBS API</a> · <a href="https://ssd.jpl.nasa.gov/horizons/" rel="noopener" target="_blank">JPL Horizons</a></div><div class="tool" data-t="notice">表示位置は概算です。精密な位置や追尾にはJPL Horizonsをご利用ください。</div></div>
 </div></aside></main>
@@ -386,6 +386,25 @@ body[data-comet-layout='desktop'] #canvas{height:min(83vh,885px)!important;min-h
 <svg aria-label="Sensor field of view" id="framingSvg" role="img" viewbox="0 0 520 300"></svg>
 <div class="float-meta" id="framingNote"></div><label class="check float-toggle"><input id="frameOnMap" type="checkbox"/><span data-en="Show FOV on sky/horizon map" data-ja="天球・地平図に画角枠を表示">天球・地平図に画角枠を表示</span></label></div>
 </div>
+<style id="cometmap-v66-style">
+#view .point-style-panel{position:absolute;left:12px;top:14px;z-index:12;width:190px;max-width:calc(100% - 150px);padding:7px 9px;border:1px solid #4e7899;border-radius:9px;background:#102840e8;color:#deedff;box-shadow:0 4px 14px #0004}
+#view .point-style-panel label{display:block;margin:0 0 4px;font-size:11px;font-weight:720}
+#view .point-style-panel select{font-size:12px;width:100%;background:#0b1a2c;border:1px solid #567991;border-radius:5px;color:#f0faff;padding:5px}
+#view .point-style-note{font-size:10px;color:#b1cbe1;line-height:1.3;margin-top:5px}
+.comet-visual-filters{margin:8px 0 5px}
+.comet-visual-filters label{font-size:11px!important}
+#magFilterNote{margin:4px 0 9px;line-height:1.5}
+.comet-reject-photo{display:block;font-size:10px!important;margin:4px auto 7px;padding:3px 7px!important;background:transparent!important;border:1px solid #45647d!important;color:#b4cede!important;min-height:25px!important}
+.comet-reject-photo:hover{background:#254863!important;color:white!important}
+.comet-photo-source{display:block;text-align:center;font-size:10px;margin:3px auto 1px;color:#86d2ff}
+.comet-filter-presets{margin:11px 0;padding:10px 0;border:0;border-top:1px solid #304563;border-radius:0}
+.comet-filter-presets summary{font-weight:650;font-size:12px;cursor:pointer;color:#d5eaff}
+.comet-filter-presets .flex{margin:7px 0;gap:5px}
+.comet-filter-presets input,.comet-filter-presets select{min-width:100px;flex:1;font-size:12px!important}
+.comet-filter-presets button{padding:5px 8px;min-height:32px}
+
+@media(max-width:550px){#view .point-style-panel{top:65px;left:8px;width:143px;max-width:calc(100% - 136px);padding:5px 6px}#view .point-style-panel label{font-size:10px}#view .point-style-panel select{font-size:11px;padding:4px}#view .point-style-note{font-size:9px}#view .map-reset{top:73px!important;right:8px!important;font-size:10px!important}}
+</style>
 <script>
 'use strict';
 // Live-first: no bundled catalog; persist last successful online responses for use ONLY when navigator.onLine is false.
@@ -396,7 +415,7 @@ const DEF=[{name:'MAK127 + EOS RP',focal:1500,pixel:5.76,width:6240,height:4160}
 const LS={settings:'cometmap_settings_v2',equip:'cometmap_equipment_v2',select:'cometmap_select_v2',lang:'cometmap_language',offlineMPC:'cometmap_offline_mpc_v10',offlineCOBS:'cometmap_offline_cobs_v10'};
 function load(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}}
 function save(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}
-let settings=Object.assign({lat:43.04528,lon:141.35244,utc:9,minAlt:25,mode:'sky',query:'',sort:'rank',brightOnly:false,aboveOnly:false},load(LS.settings)||{});
+let settings=Object.assign({lat:43.04528,lon:141.35244,utc:9,minAlt:25,mode:'sky',query:'',sort:'rank',brightOnly:false,aboveOnly:false,pointStyle:'mag',magLimit:99,minElong:0},load(LS.settings)||{});
 const CM_SITE_DEFAULT={lat:43.04528,lon:141.35244,utc:9};
 const isLegacyDefaultSite=(lat,lon)=>Math.abs(Number(lat)-43.0621)<0.00001&&Math.abs(Number(lon)-141.3544)<0.00001;
 if(isLegacyDefaultSite(settings.lat,settings.lon)){settings.lat=CM_SITE_DEFAULT.lat;settings.lon=CM_SITE_DEFAULT.lon;save(LS.settings,settings)}
@@ -524,6 +543,7 @@ function setupControls(){
  $('closeFramingPopup').onclick=()=>{$('framingPopup').hidden=true};
  $('frameOnMap').onchange=()=>drawMap();
  setupFloatingPopups();
+for(const id of ['pointStyle','magLimit','minElong']){const el=$(id);el.value=String(settings[id]??(id==='pointStyle'?'mag':id==='magLimit'?99:0));el.addEventListener('change',()=>{settings[id]=id==='pointStyle'?el.value:Number(el.value);save(LS.settings,settings);updatePointStyleLegend();if(id==='pointStyle')drawMap();else render()})}updatePointStyleLegend();
 for(const id of ['showConstLines','showConstBounds','showConstNames','showTrail']){$(id).checked=load('cometmap_'+id)??true;$(id).addEventListener('change',()=>{save('cometmap_'+id,$(id).checked);drawMap()})}for(const id of ['lat','lon','utc','minAlt','query','sort','brightOnly','aboveOnly']){let el=$(id);if(el.type==='checkbox')el.checked=!!settings[id];else el.value=settings[id];el.addEventListener(el.type==='checkbox'?'change':'input',()=>{settings[id]=el.type==='checkbox'?el.checked:el.value;save(LS.settings,settings);render()})}
  $('date').value=dtLocal(Date.now());$('date').addEventListener('change',()=>{syncTimeline(true);render()});
  /* UTC event registered by observing site v39; instant-preserving. */
@@ -545,7 +565,7 @@ for(const id of ['showConstLines','showConstBounds','showConstNames','showTrail'
  try{selectedEquipment=Number(localStorage.getItem('cometmap_eq_choice'))||0}catch(e){}
  drawEquipmentRows();applyLang();setupTimeline();}
 function switchTab(z){$('side').dataset.tab=z;$('conditionsTab').classList.toggle('active',z==='conditions');$('detailsTab').classList.toggle('active',z==='details')}
-function applyLang(){document.documentElement.lang=lang;for(const e of document.querySelectorAll('[data-t]')){if(LANG[lang][e.dataset.t])e.textContent=t(e.dataset.t)}$('lang').textContent=lang==='ja'?'English':'日本語';$('auditExport').textContent=lang==='ja'?'品質レポートJSON':'Quality report JSON';if($('dataMethod'))$('dataMethod').textContent=lang==='ja'?'データは定期的に更新されます。取得できない場合は保存済みデータを使用し，取得日時を表示します。光度は予測値であり，実測値ではありません。':'Data updates periodically. If a source is unavailable, saved data may be used with its retrieval time shown. Magnitudes are estimates, not measurements.';for(const e of document.querySelectorAll('[data-ja][data-en]')){if(e.closest('#sourceProvenance')&&e.firstChild?.nodeType===3){e.firstChild.textContent=e.dataset[lang];}else{e.textContent=e.dataset[lang];}}drawEquipmentRows();updateStamp();updateClockReadout()}
+function applyLang(){document.documentElement.lang=lang;updatePointStyleLegend();for(const e of document.querySelectorAll('[data-t]')){if(LANG[lang][e.dataset.t])e.textContent=t(e.dataset.t)}$('lang').textContent=lang==='ja'?'English':'日本語';$('auditExport').textContent=lang==='ja'?'品質レポートJSON':'Quality report JSON';if($('dataMethod'))$('dataMethod').textContent=lang==='ja'?'データは定期的に更新されます。取得できない場合は保存済みデータを使用し，取得日時を表示します。光度は予測値であり，実測値ではありません。':'Data updates periodically. If a source is unavailable, saved data may be used with its retrieval time shown. Magnitudes are estimates, not measurements.';for(const e of document.querySelectorAll('[data-ja][data-en]')){if(e.closest('#sourceProvenance')&&e.firstChild?.nodeType===3){e.firstChild.textContent=e.dataset[lang];}else{e.textContent=e.dataset[lang];}}drawEquipmentRows();updateStamp();updateClockReadout()}
 function drawEquipmentRows(){const c=$('equipment'),prev=selectedEquipment;c.textContent='';equipments.forEach((e,i)=>{const opt=document.createElement('option');opt.value=i;opt.textContent=e.name;c.append(opt)});selectedEquipment=Math.min(prev,equipments.length-1);c.value=selectedEquipment;
  const p=$('equipmentRows');p.textContent='';equipments.forEach((e,i)=>{const div=document.createElement('div');div.className='equiprow';for(let [field,type] of [['name','text'],['focal','number'],['pixel','number'],['width','number'],['height','number']]){const input=document.createElement('input');input.type=type;input.value=e[field];input.title=field;input.setAttribute('aria-label',field);input.onchange=()=>{if(field!=='name'&&(!Number.isFinite(Number(input.value))||Number(input.value)<=0))return;equipments[i][field]=field==='name'?input.value:Number(input.value);save(LS.equip,equipments);renderOptics();renderDetails();drawEquipmentRows();refreshFramingChart()};div.append(input)}const b=document.createElement('button');b.textContent='×';b.title='Remove';b.onclick=()=>{if(equipments.length<2)return;equipments.splice(i,1);selectedEquipment=0;save(LS.equip,equipments);drawEquipmentRows();renderDetails()};div.append(b);p.append(div)});renderOptics()}
 function equipment(){return equipments[selectedEquipment]||equipments[0]}
@@ -560,7 +580,7 @@ function updateStamp(){const fmt=n=>n?new Date(n).toLocaleString(lang==='ja'?'ja
  document.body.dataset.dataMode=offlineCacheActive?'offline-cache':(catalog.length?'live':'unavailable');
 }
 function render(){renderSavedList();let ms=msDate(),text=$('query').value.trim().toLowerCase(), minAlt=Number($('minAlt').value);all=catalog.map(c=>active(c,ms)).filter(Boolean);
- shown=all.filter(v=>(!$('brightOnly').checked||v.mag!==null)&&(!$('aboveOnly').checked||v.alt>=minAlt)&&(!text||v.o.name.toLowerCase().includes(text)||v.o.pdes.toLowerCase().includes(text)));
+ shown=all.filter(v=>(!$('brightOnly').checked||v.mag!==null)&&(!$('aboveOnly').checked||v.alt>=minAlt)&&(Number($('magLimit').value)>=90||(cometPointMagnitude(v)!==null&&cometPointMagnitude(v)<=Number($('magLimit').value)))&&(v.elong>=Number($('minElong').value||0))&&(!text||v.o.name.toLowerCase().includes(text)||v.o.pdes.toLowerCase().includes(text)));
  if(catalog.length&&(!defaultSelectionDone||!selectedId||!byId.has(String(selectedId)))){const pick=bestInitialComet(shown.length?shown:all,ms);selectedId=pick?.o.id||null;defaultSelectionDone=true;if(selectedId){save(LS.select,selectedId);focusSelectedAtTime(ms)}}
  const sort=$('sort').value;shown.sort((a,b)=>{switch(sort){case'mag':return (a.mag??99)-(b.mag??99)||b.score-a.score;case'alt':return b.alt-a.alt;case'elong':return b.elong-a.elong;case'peri':return Math.abs(a.o.tp-jd(ms))-Math.abs(b.o.tp-jd(ms));case'name':return a.o.name.localeCompare(b.o.name);default:return b.score-a.score||(a.mag??99)-(b.mag??99)}});
  updateClockReadout();$('visible').textContent=shown.length.toLocaleString();$('mapcount').textContent=shown.length.toLocaleString()+' '+(lang==='ja'?'件':'comets');
@@ -589,7 +609,7 @@ function updateCometListView(){
  $('cometListSort').value=$('sort').value;
  $('cometListSortLabel').textContent=lang==='ja'?'並べ替え':'Sort by';setupPhotoToolbar();
  const help=document.getElementById('photoListHelp')||document.createElement('span');help.id='photoListHelp';help.className='photo-help';
- help.textContent=lang==='ja'?'彗星の実写をBAA・Southern Comets・COBS・NASA・Wikimediaから照合します。画像がない場合に背景星野へ置き換えません。':'Real comet photographs are checked across BAA, COBS, NASA and Wikimedia; sky-survey backgrounds are never substituted.';
+ help.textContent=lang==='ja'?'彗星名と画像の題名を照合します．一致を確認できない画像は表示しません．':'Photo filenames and titles must match the comet; unrelated results are excluded.';
  $('cometListToolbar').append(help);
  cometPhotoObserver=new IntersectionObserver(entries=>{
   for(const e of entries){if(!e.isIntersecting)continue;cometPhotoObserver.unobserve(e.target);
@@ -685,6 +705,32 @@ function beginSkyGlobe(){const r=sphereRadius();ctx.save();ctx.beginPath();ctx.a
 }
 function endSkyGlobe(){const r=sphereRadius();ctx.restore();ctx.beginPath();ctx.strokeStyle='#85bbec';ctx.lineWidth=1.5;ctx.arc(CW/2,CH/2,r,0,Math.PI*2);ctx.stroke()}
 
+
+function cometPointMagnitude(s){return Number.isFinite(s?.mag)?s.mag:Number.isFinite(s?.model)?s.model:null}
+function cometPointAppearance(s,isSelected=false,isHover=false){
+ const style=$('pointStyle')?.value||'mag';
+ let value=null,radius=3.2,shade='#85bed8',opacity=0.87;
+ if(style==='mag'){
+  value=cometPointMagnitude(s);
+  if(value!==null){radius=clamp(8.2-.40*(value+1),2.05,7.4);shade=Number.isFinite(s.mag)?'#86dafa':'#93b5d5';opacity=clamp(.48+(18-value)*.028,.50,1)}
+  else{radius=2.1;shade='#8295a8';opacity=.51}
+ }else if(style==='score'){
+  value=Number.isFinite(s.score)?s.score:0;radius=2+5.6*clamp(value/100,0,1);shade=value>=70?'#8bdeca':value>=40?'#9bc4ec':'#8394b1';opacity=.55+.45*clamp(value/100,0,1);
+ }else if(style==='alt'){
+  value=Number.isFinite(s.alt)?s.alt:-20;radius=2+5.3*clamp(value/90,0,1);shade=value>=45?'#9ddfcc':value>=0?'#8dbbdc':'#9298a8';opacity=value<0?.4:.87;
+ }else if(style==='elong'){
+  value=Number.isFinite(s.elong)?s.elong:0;radius=2+5.3*clamp(value/180,0,1);shade=value>=90?'#89d8d4':value>=40?'#a3c3e5':'#9e96a3';opacity=.50+.45*clamp(value/180,0,1);
+ }else{radius=3.8;shade='#8ac5e2'}
+ if(isSelected){radius=Math.max(6.6,radius+1.0);shade='#ffd178';opacity=1}
+ else if(isHover){radius=Math.max(5.3,radius+1);shade='#cceefb';opacity=1}
+ return {radius,shade,opacity,value};
+}
+function updatePointStyleLegend(){
+ const e=$('pointStyleLegend');if(!e)return;
+ const m={mag:['明るい予測ほど大きく表示 · 灰色は光度不明','Brighter forecasts are larger · grey = unknown'],score:['撮影適性が高いほど大きく表示','Larger points = better imaging score'],alt:['高度が高いほど大きく表示','Higher altitude = larger point'],elong:['太陽離角が大きいほど大きく表示','Larger point = farther from Sun'],uniform:['全彗星を同じ大きさで表示','All comets have equal size']};
+ const v=m[$('pointStyle')?.value]||m.mag;e.textContent=lang==='ja'?v[0]:v[1];
+}
+
 function drawMap(){sizeCanvas();ctx.clearRect(0,0,CW,CH);ctx.fillStyle='#06111f';ctx.fillRect(0,0,CW,CH);hits=[];
  const when=msDate(),dateJ=jd(when),sel=all.find(v=>v.o.id===selectedId);for(const b of document.querySelectorAll('[data-mode]'))b.classList.toggle('active',b.dataset.mode===mode);
  if(mode==='sky')beginSkyGlobe();
@@ -706,7 +752,7 @@ function drawMap(){sizeCanvas();ctx.clearRect(0,0,CW,CH);ctx.fillStyle='#06111f'
   }
  }
  if(sel&&mode!=='solar'&&$('showTrail').checked){const pts=[],time=when;for(let h=-48;h<=48;h+=2){const ms=time+h*3600000,g=geo(sel.o,jd(ms));if(!g){pts.push(null);continue}if(mode==='sky')pts.push(Psky(g.ra,g.dec));else{const aa=altaz(g.ra,g.dec,ms);pts.push(Phor(aa.az,aa.alt))}}path(pts,'#f1b66b',1.6,[4,3]);const a=mode==='sky'?Psky(sel.ra,sel.dec):Phor(sel.az,sel.alt);if(a)textLabel('±48 h',a[0]+12,a[1]+22,'#efc486',10)}
- let dots=mode==='solar'?shown.slice(0,220):shown.slice(0,1200);if(sel&&!dots.some(x=>x.o.id===sel.o.id))dots.push(sel);for(const s of dots){const isSel=s.o.id===selectedId,isHover=s.o.id===hoverId;const p=mode==='sky'?Psky(s.ra,s.dec):mode==='horizon'?Phor(s.az,s.alt,isSel):Psolar(s.point);if(!p||p[0]<-14||p[0]>CW+14||p[1]<-14||p[1]>CH+14)continue;const r=isSel?5.7:isHover?4.5:s.mag!==null?3:2.2;ctx.beginPath();ctx.arc(p[0],p[1],r,0,2*Math.PI);ctx.fillStyle=isSel&&mode==='horizon'&&s.alt<0?'#d4a383':isSel?'#ffd178':s.mag!==null?'#80d4ee':'#89a8c5';ctx.fill();if(isSel){ctx.strokeStyle='#ffe4a5';ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(p[0],p[1],11,0,2*Math.PI);ctx.stroke();textLabel(s.o.name+(mode==='horizon'&&s.alt<0?(lang==='ja'?'（地平線下）':' (below horizon)'):''),p[0]+12,p[1]-9,'#ffe8ad',12)}hits.push({id:s.o.id,x:p[0],y:p[1]})}
+ let dots=mode==='solar'?shown.slice(0,220):shown.slice(0,1200);if(sel&&!dots.some(x=>x.o.id===sel.o.id))dots.push(sel);for(const s of dots){const isSel=s.o.id===selectedId,isHover=s.o.id===hoverId;const p=mode==='sky'?Psky(s.ra,s.dec):mode==='horizon'?Phor(s.az,s.alt,isSel):Psolar(s.point);if(!p||p[0]<-14||p[0]>CW+14||p[1]<-14||p[1]>CH+14)continue;const v=cometPointAppearance(s,isSel,isHover);ctx.save();ctx.globalAlpha=v.opacity;ctx.beginPath();ctx.arc(p[0],p[1],v.radius,0,2*Math.PI);ctx.fillStyle=isSel&&mode==='horizon'&&s.alt<0?'#d4a383':v.shade;ctx.fill();ctx.restore();if(isSel){ctx.strokeStyle='#ffe4a5';ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(p[0],p[1],11,0,2*Math.PI);ctx.stroke();textLabel(s.o.name+(mode==='horizon'&&s.alt<0?(lang==='ja'?'（地平線下）':' (below horizon)'):''),p[0]+12,p[1]-9,'#ffe8ad',12)}hits.push({id:s.o.id,x:p[0],y:p[1]})}
  if(mode==='sky'&&document.getElementById('frameOnMap')?.checked)drawSelectedFOV();
  if(mode==='sky')endSkyGlobe();
  if(mode==='horizon'&&document.getElementById('frameOnMap')?.checked)drawSelectedFOV();
@@ -724,8 +770,20 @@ function moonIllumination(ms){const syn=29.530588853,phase=mod(jd(ms)-2451550.09
 // Lists and inspector share provider selection, image validity checks and a bounded persistent success cache.
 const CM_PHOTO_SRC_KEY='cometmap_photo_source_v44';
 const CM_PHOTO_OPTIONS=[['auto','自動','Auto'],['baa','BAA','BAA'],['southern','Southern Comets','Southern Comets'],['cobs','COBS','COBS'],['nasa','NASA','NASA'],['commons','Wikimedia','Wikimedia']];
-const CM_PHOTO_RESULT_KEY='cometmap_verified_photos_v55';
+const CM_PHOTO_RESULT_KEY='cometmap_verified_photos_v66';
 const CM_PHOTO_CACHE_MS=10*86400000;
+const CM_PHOTO_REJECT_KEY='cometmap_rejected_wrong_photos_v67';
+const rejectedPhotoForComet=(()=>{try{const j=JSON.parse(localStorage.getItem(CM_PHOTO_REJECT_KEY)||'{}');return j&&typeof j==='object'&&!Array.isArray(j)?j:{}}catch(_){return {}}})();
+function rejectPhotoForComet(o,src){
+ const designation=cometDesignation(o).toUpperCase();if(!src)return;
+ const old=rejectedPhotoForComet[designation]||[];
+ rejectedPhotoForComet[designation]=[...new Set([...old,src])].slice(-30);
+ try{localStorage.setItem(CM_PHOTO_REJECT_KEY,JSON.stringify(rejectedPhotoForComet))}catch(_){}
+ invalidPhotoURLs.add(src);
+ const key=photoCacheKey(o);cometPhotoCache.delete(key);clearVerifiedPhoto(key);
+ retryCometPhoto(o);
+}
+
 let cometPhotoSource='auto';
 try{const p=localStorage.getItem(CM_PHOTO_SRC_KEY);if(CM_PHOTO_OPTIONS.some(a=>a[0]===p))cometPhotoSource=p}catch(e){}
 let storedCometPhotos={};
@@ -791,6 +849,46 @@ function cometPhotoTerms(o,designation){
  return [...new Set(terms.filter(Boolean))].slice(0,3);
 }
 function validPhotoURL(url){return typeof url==='string'&&/^https:\/\//i.test(url)&&!/(logo|avatar|icon|placeholder|banner|sprite|blank\.gif)/i.test(url)&&!invalidPhotoURLs.has(url)}
+// Prevent keyword-only matches (e.g. photos of astronomers discussing a comet).
+// A successfully loaded image is not proof that it depicts the requested comet.
+const CM_PERSON_IMAGE=/\b(?:portrait|headshot|selfie|face|faces|person|people|astronomer|scientist|photographer|interview|press.conference|speaker|lecturer|telescope.operator|comet.hunter|artist.s.impression|rendering|infographic|poster|logo|flag|lecture|conference|team|group.photo)\b/i;
+function cometPhotoFileTitle(photo){
+ const name=String(photo?.title||'').replace(/^File:/i,'');
+ return name.replace(/\.(?:jpe?g|png|gif|webp)$/i,'').replace(/[_]+/g,' ');
+}
+function verifiedCometPhotoIdentity(photo,designation,o){
+ if(!photo||!validPhotoURL(photo.src))return false;
+ if((rejectedPhotoForComet[String(designation||'').toUpperCase()]||[]).includes(photo.src))return false;
+ const title=cometPhotoFileTitle(photo);
+ // The user-facing title is intentionally checked separately from free-form metadata.
+ if(CM_PERSON_IMAGE.test(title))return false;
+ const src=String(photo.src||'');
+ if(photo.provider==='commons'){
+  // Wikimedia descriptions can mention a comet while the image shows its discoverer.
+  // Require the *actual Commons filename* to identify the comet, not just its description.
+  const file=String(photo.commonsFile||title);
+  if(CM_PERSON_IMAGE.test(file)||!cometPhotoTitleMatches(file,designation,o))return false;
+  return true;
+ }
+ if(photo.provider==='nasa'){
+  // NASA captions/keywords can describe a discovery while depicting a person.
+  if(!cometPhotoTitleMatches(title,designation,o))return false;
+  if(!/(?:\bcomet\b|彗星|\b[123]I\b|\b\d{1,4}P\b|\b[CPIA]\/\d{4})/i.test(title))return false;
+  return true;
+ }
+ if(photo.provider==='baa'||photo.provider==='southern'){
+  const slug=baaSlug(designation);
+  let pathname='';try{pathname=decodeURIComponent(new URL(src).pathname).toLowerCase()}catch(_){return false}
+  const filename=pathname.split('/').pop()||'';
+  return !!slug&&filename.startsWith(slug+'_')&&/(?:19|20)\d{6}/.test(filename);
+ }
+ if(photo.provider==='cobs'){
+  // COBS images require direct proof of their identity in the filename, not just the gallery page.
+  let filename='';try{filename=decodeURIComponent(new URL(src).pathname.split('/').pop()||'')}catch(_){return false}
+  return cometPhotoTitleMatches(filename,designation,o)&&!CM_PERSON_IMAGE.test(filename);
+ }
+ return false;
+}
 function photoCandidate(photo,provider){return photo&&validPhotoURL(photo.src)?{...photo,provider}:null}
 async function findNASACometPhotos(o,designation){
  const found=[];const terms=cometPhotoTerms(o,designation);
@@ -799,10 +897,10 @@ async function findNASACometPhotos(o,designation){
    const data=JSON.parse(await getText(url,6000));
    for(const item of data.collection?.items||[]){
     const d=item.data?.[0]||{},label=[d.title,d.description,(d.keywords||[]).join(' ')].join(' ');
-    if(!cometMatch(label,designation))continue;
+    if(!cometPhotoTitleMatches(String(d.title||''),designation,o)||CM_PERSON_IMAGE.test(String(d.title||'')))continue;
     const thumb=(item.links||[]).find(l=>l.rel==='preview'&&validPhotoURL(l.href))||(item.links||[]).find(l=>validPhotoURL(l.href));
     const photo=photoCandidate(thumb&&{src:thumb.href,url:d.nasa_id?'https://images.nasa.gov/details-'+encodeURIComponent(d.nasa_id):thumb.href,credit:'NASA Image Library',date:d.date_created||'',title:d.title||designation},'nasa');
-    if(photo&&!found.some(p=>p.src===photo.src))found.push(photo);
+    if(photo&&verifiedCometPhotoIdentity(photo,designation,o)&&!found.some(p=>p.src===photo.src))found.push(photo);
     if(found.length>=5)return found;
    }
   }catch(e){}
@@ -937,9 +1035,9 @@ async function findCommonsCometPhotos(designation,o){
     const im=p.imageinfo?.[0];if(!im||!/^image\/(?:jpeg|png|webp|gif)$/i.test(im.mime||''))continue;
     const metadata=im.extmetadata||{};
     const description=String(metadata.ImageDescription?.value||'').replace(/<[^>]*>/g,' ').slice(0,700);
-    if(!cometPhotoTitleMatches(p.title+' '+description,designation,o))continue;
-    const photo=photoCandidate({src:im.thumburl||im.url,url:im.descriptionurl||im.url,credit:'Wikimedia Commons',title:p.title,date:''},'commons');
-    if(photo&&!res.some(x=>x.src===photo.src))res.push(photo);
+    if(!cometPhotoTitleMatches(p.title,designation,o)||CM_PERSON_IMAGE.test(p.title))continue;
+    const photo=photoCandidate({src:im.thumburl||im.url,url:im.descriptionurl||im.url,credit:'Wikimedia Commons',title:p.title,date:'',commonsFile:p.title},'commons');
+    if(photo&&verifiedCometPhotoIdentity(photo,designation,o)&&!res.some(x=>x.src===photo.src))res.push(photo);
     if(res.length>=8)return res;
    }
   }catch(e){}
@@ -964,7 +1062,7 @@ async function chooseVerifiedCometPhoto(o,designation,route){
  return await new Promise(resolve=>{
   let remaining=order.length,finished=false;
   for(const name of order){Promise.resolve().then(providers[name]).then(async photos=>{
-   for(const p of (photos||[]).slice(0,20))if(p&&await checkPhotoLoads(p.src))return p;
+   for(const p of (photos||[]).slice(0,20))if(verifiedCometPhotoIdentity(p,designation,o)&&await checkPhotoLoads(p.src))return p;
    return null;
   }).catch(()=>null).then(photo=>{
    if(photo&&!finished){finished=true;resolve(photo)}
@@ -978,13 +1076,13 @@ function findCometPhoto(o){
  const route=cometPhotoSource;
  const task=queuePhotoTask(async()=>{
   const previous=storedCometPhotos[key];
-  if(previous&&Date.now()-previous.time<CM_PHOTO_CACHE_MS&&validPhotoURL(previous.photo?.src)){
+  if(previous&&Date.now()-previous.time<CM_PHOTO_CACHE_MS&&verifiedCometPhotoIdentity(previous.photo,designation,o)){
    if(await checkPhotoLoads(previous.photo.src))return previous.photo;
    clearVerifiedPhoto(key);
   }
   const result=await chooseVerifiedCometPhoto(o,designation,route);
-  if(result)saveVerifiedPhoto(key,result);
-  return result;
+  if(result&&verifiedCometPhotoIdentity(result,designation,o))saveVerifiedPhoto(key,result);
+  return result&&verifiedCometPhotoIdentity(result,designation,o)?result:null;
  });
  cometPhotoCache.set(key,task);
  // A temporary negative result expires, instead of permanently hiding a recoverable image.
@@ -1021,6 +1119,12 @@ async function loadCometPhotograph(o,container){
  };
  frame.append(img);container.insertBefore(frame,status);status.remove();
  const credit=document.createElement('span');credit.className='photo-credit';credit.textContent=photo.credit+(photo.date?' · '+photo.date.slice(0,10):'');container.append(credit);
+ if(/^https:\/\//i.test(String(photo.url||''))){const source=document.createElement('a');source.className='comet-photo-source';source.href=photo.url;source.target='_blank';source.rel='noopener noreferrer';source.textContent=lang==='ja'?'観測画像の提供元':'Photo source';container.append(source);}
+
+ const reject=document.createElement('button');reject.type='button';reject.className='comet-reject-photo';reject.textContent=lang==='ja'?'誤画像を除外':'Reject incorrect photo';
+ reject.title=lang==='ja'?'この写真を除外して別の画像を探します':'Exclude this image and search for another';
+ reject.onclick=()=>rejectPhotoForComet(o,photo.src);
+ container.append(reject);
 }
 async function loadCOBSObservations(o,container){
  const heading=document.createElement('h3');heading.textContent=lang==='ja'?'COBS個別観測記録（実測）':'COBS individual observations (measured)';container.append(heading);
@@ -1989,5 +2093,26 @@ setInterval(()=>{if(!fetching&&needRevalidate())invalidateIfOld()},5*60000);
  document.getElementById('langJa')?.addEventListener('click',sync);
  document.getElementById('langEn')?.addEventListener('click',sync);
  sync();
+})();
+// v68: simple PNmap-style display filter presets, kept locally (never uploaded).
+(function initCometFilterPresets(){
+ const KEY='cometmap_display_filter_presets_v68';
+ const fields=['query','sort','brightOnly','aboveOnly','minAlt','magLimit','minElong','pointStyle'];
+ const layerFields=['showConstLines','showConstBounds','showConstNames','showTrail'];
+ const $f=id=>document.getElementById(id),select=$f('filterPresetSelect'),status=$f('filterPresetStatus');
+ let entries=[];try{const v=JSON.parse(localStorage.getItem(KEY)||'[]');if(Array.isArray(v))entries=v.filter(e=>e&&typeof e.name==='string'&&e.config).slice(0,30)}catch(_){}
+ const msg=(ja,en)=>status.textContent=lang==='ja'?ja:en;
+ const persist=()=>{try{localStorage.setItem(KEY,JSON.stringify(entries))}catch(_){msg('保存に失敗しました','Unable to save locally')}};
+ function refresh(){const old=select.value;select.replaceChildren();for(const e of entries){const opt=document.createElement('option');opt.value=e.name;opt.textContent=e.name;select.append(opt)}if(entries.some(e=>e.name===old))select.value=old;select.disabled=!entries.length;$f('filterPresetApply').disabled=!entries.length;$f('filterPresetDelete').disabled=!entries.length}
+ function configNow(){const c={};for(const id of fields){const el=$f(id);if(!el)continue;c[id]=el.type==='checkbox'?el.checked:el.value;}for(const id of layerFields)c[id]=$f(id).checked;return c}
+ $f('filterPresetSave').onclick=()=>{const input=$f('filterPresetName'),name=input.value.trim()||new Date().toLocaleDateString(lang==='ja'?'ja-JP':'en-US')+' '+new Date().toLocaleTimeString(lang==='ja'?'ja-JP':'en-US',{hour:'2-digit',minute:'2-digit'});
+  entries=entries.filter(e=>e.name!==name).slice(-29);entries.push({name,config:configNow()});persist();refresh();select.value=name;msg('表示条件を保存しました','Display filters saved')};
+ $f('filterPresetApply').onclick=()=>{const v=entries.find(e=>e.name===select.value);if(!v)return;for(const id of fields){const el=$f(id),value=v.config[id];if(!el||value===undefined)continue;if(el.type==='checkbox'){el.checked=!!value;settings[id]=el.checked;}else{if(el.tagName==='SELECT'&&!Array.from(el.options).some(o=>o.value===String(value)))continue;el.value=String(value);settings[id]=['minAlt','minElong','magLimit'].includes(id)?Number(value):String(value)}}for(const id of layerFields){if(typeof v.config[id]==='boolean'){$f(id).checked=v.config[id];save('cometmap_'+id,v.config[id]);}}save(LS.settings,settings);updatePointStyleLegend();render();msg('表示条件を適用しました','Display filters applied')};
+ $f('filterPresetDelete').onclick=()=>{const n=select.value;if(!n)return;entries=entries.filter(e=>e.name!==n);persist();refresh();msg('保存した条件を削除しました','Saved filter deleted')};
+ // `applyLang` already translates all data-ja/data-en text nodes; only input placeholder is special.
+ $f('langJa')?.addEventListener('click',()=>{$f('filterPresetName').placeholder='名前を入力'});
+ $f('langEn')?.addEventListener('click',()=>{$f('filterPresetName').placeholder='Preset name'});
+ $f('filterPresetName').placeholder=lang==='ja'?'名前を入力':'Preset name';
+ refresh();
 })();
 </script></body></html>
