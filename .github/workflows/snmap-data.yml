@@ -1,38 +1,24 @@
-name: SNmap public data refresh
+name: SNmap data validation (manual only)
+# No scheduled or push-triggered execution.
+# This workflow never commits or deploys; output is a private workflow artifact.
 on:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/snmap-data.yml'
-      - 'snmap/scripts/**'
-      - 'snmap/index.html'
-  schedule:
-    - cron: '23 */2 * * *'
   workflow_dispatch:
 permissions:
-  contents: write
-concurrency:
-  group: snmap-feed-main
-  cancel-in-progress: false
+  contents: read
 jobs:
-  fetch:
+  validate:
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
-        with:
-          persist-credentials: true
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Retrieve current public astronomy data
+      - name: Retrieve data for review (no publication)
         run: python3 snmap/scripts/update_feed.py
-      - name: Publish only SNmap JSON
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add snmap/data/snmap-live.json
-          if ! git diff --cached --quiet; then
-            git commit -m 'Update SNmap public transient data'
-            git push origin HEAD:main
-          fi
+      - name: Save proposed JSON as workflow artifact only
+        uses: actions/upload-artifact@v4
+        with:
+          name: snmap-data-review
+          path: snmap/data/snmap-live.json
+          retention-days: 7
