@@ -1010,6 +1010,12 @@ body[data-pn-layout="mobile"] #chartpanel .projection-toggle button{
 #pnAltPanel #pnAltExportPNG{min-height:32px}
 @media(max-width:395px){#pnAltPanel .alt-head{gap:5px}#pnAltPanel .alt-head button{padding:5px 7px}}
 </style>
+<style id="pnmap-dso-alt-toggle-style">
+/* Match the saved-PN comparison control for saved DSOs on every layout. */
+#myDSOList #dsoAltToggle{display:block;width:100%;min-height:37px;margin:0 0 11px;padding:8px 14px;white-space:normal;text-align:center;font:600 12px system-ui;color:#eaf7ff;background:#21547b;border:1px solid #4383ae;border-radius:8px;cursor:pointer}
+#myDSOList #dsoAltToggle:hover,#myDSOList #dsoAltToggle:focus-visible{background:#34759c;outline:2px solid #83d5fc;outline-offset:2px}
+@media(max-width:550px){#myDSOList #dsoAltToggle{position:static!important;min-width:0;padding:9px 8px}}
+</style>
 </head><body>
 <style id="pnmap-share-style">
 /* Share menu restored from the GitHub layout, without publication-only analytics. */
@@ -1374,7 +1380,7 @@ border:0;border-radius:6px;padding:6px 11px;background:#2473ad;color:#fff
 <script id="hashEmbedded" type="application/json"></script>
 <script src="assets/pnmap-hashEmbedded-01.js"></script>
 <script src="assets/pnmap-hashEmbedded-02.js"></script>
-<script src="assets/pnmap-app-20261119.js"></script><div hidden="" id="fovTooltip" role="tooltip"></div><div hidden="" id="newMoonTooltip" role="tooltip" aria-live="off"></div><script id="pnmap-share-controls">
+<script src="assets/pnmap-app-20261119-dso-alt.js"></script><div hidden="" id="fovTooltip" role="tooltip"></div><div hidden="" id="newMoonTooltip" role="tooltip" aria-live="off"></div><script id="pnmap-share-controls">
 (function(){
  'use strict';
  // Always share the live site, rather than a file:// URL of this working HTML.
