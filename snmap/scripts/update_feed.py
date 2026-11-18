@@ -22,6 +22,11 @@ JOBS = [
 ]
 MAX_ROWS = 25000
 MAX_DOWNLOAD = 21_000_000
+# Retain fields used by SNmap; omit long auxiliary metadata to keep snapshots under 25 MB.
+RETAIN = frozenset("source source_id survey object_id id tns_name tns_designation name_prefix display_name name class_bucket bucket sn_type tns_type type classification class_label fink_class ra ra_deg dec dec_deg is_sso candidate tnsVerified last_mag latest_mag mag last_band last_filter band filter last_mjd latest_mjd last_night last_date last_observed last_detection peak_mag peak max_mag first_mjd first_night first_detection discovery discovery_date discovered_night tns_discovery_date host tns_host host_name host_galaxy tns_redshift tns_host_redshift z z_host redshift".split())
+
+def compact_row(row):
+    return {k:v for k,v in row.items() if k in RETAIN and v is not None}
 
 
 def retrieve(url):
@@ -102,7 +107,7 @@ def build():
             key=key_for(row)
             if not key or key in seen:continue
             seen.add(key)
-            if len(records)<MAX_ROWS:records.append(row)
+            if len(records)<MAX_ROWS:records.append(compact_row(row))
             else:partial=True
     if not records:
         raise RuntimeError('All sources failed or provided no verifiable coordinates; keep old published feed')
