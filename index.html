@@ -8,12 +8,12 @@
 <link rel="canonical" href="https://dopa-gaki.github.io/.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="PNmap">
-<meta property="og:title" content="PNmap | Planetary Nebula Sky Map &amp; 3D Galactic Atlas">
-<meta property="og:description" content="Explore planetary nebulae in a 3D Galactic atlas and sky map. Observing tools, images and catalogues. Available in English and Japanese.">
+<meta property="og:title" content="PNmap｜惑星状星雲マップ / Planetary Nebula Atlas">
+<meta property="og:description" content="惑星状星雲の天球・銀河系マップと観測支援ツール。Planetary nebula maps and observing tools.">
 <meta property="og:url" content="https://dopa-gaki.github.io/.github.io/">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PNmap | Planetary Nebula Atlas">
-<meta name="twitter:description" content="Interactive planetary nebula map with a 3D Galactic view and observing tools.">
+<meta name="twitter:title" content="PNmap｜惑星状星雲マップ">
+<meta name="twitter:description" content="天球・銀河系マップと観測支援ツール / Planetary nebula atlas and observing tools">
 <script id="pnmap-language-preference">
 // Select language locally; no country lookup or redirect.
 (function(){
@@ -239,6 +239,12 @@ aside{background:transparent;border:0;padding:0;gap:12px}
 #saveSelectionStatus{display:block;font-size:11px;color:#a6cfeb;margin-top:4px}
 .saved-pn-section{margin-top:20px;padding-top:14px;border-top:1px solid #34506b}
 .saved-pn-section h3{font-size:14px;margin:0 0 6px}
+.saved-list-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;min-width:0}
+.saved-list-heading h3{margin:0!important;min-width:0}
+.saved-list-clear{flex:0 0 auto;padding:5px 9px;min-height:32px;line-height:1.3;font-size:12px;background:#17283b;border:1px solid #46627d;color:#d9e7f6}
+.saved-list-clear:hover:not(:disabled){background:#29465f}
+.saved-list-clear:disabled{opacity:.38;cursor:default}
+.saved-list-clear:focus-visible{outline:2px solid #9bd8ff;outline-offset:2px}
 .saved-items{max-height:180px;overflow-y:auto;margin:8px 0 12px}
 .saved-row{display:flex;align-items:center;justify-content:space-between;gap:6px;border-bottom:1px solid #2b435d;padding:6px 0}
 .saved-row .saved-target{border:0;background:none;text-align:left;padding:3px 2px;font-size:12px;min-width:0;overflow-wrap:anywhere}
@@ -372,9 +378,10 @@ header h1{font-size:24px;line-height:1.25;margin:0;font-weight:760}
 body[data-pn-layout="mobile"]{max-width:720px;min-width:0;width:100%;margin:0 auto;overflow-x:hidden}
 body[data-pn-layout="mobile"] header{padding:11px 12px 8px}
 body[data-pn-layout="mobile"] header h1{font-size:20px}
-body[data-pn-layout="mobile"] .headline{display:flex;gap:7px;align-items:center}
-body[data-pn-layout="mobile"] .pn-device-toggle{margin-left:0}
-body[data-pn-layout="mobile"] .lang-buttons{margin-left:auto}
+body[data-pn-layout="mobile"] .headline{display:grid;grid-template-columns:minmax(0,1fr) auto auto;column-gap:8px;row-gap:8px;align-items:center;justify-content:end}
+body[data-pn-layout="mobile"] .headline h1{grid-column:1 / -1}
+body[data-pn-layout="mobile"] .pn-device-toggle{grid-column:2;justify-self:end;margin-left:0}
+body[data-pn-layout="mobile"] .lang-buttons{grid-column:3;justify-self:start;margin-left:0}
 body[data-pn-layout="mobile"] main{display:block!important;padding:5px 8px 14px;max-width:none}
 body[data-pn-layout="mobile"] #chartpanel{width:100%;border-radius:10px;min-width:0}
 body[data-pn-layout="mobile"] #plot{width:100%;height:52svh;min-height:340px;max-height:510px;display:block;touch-action:none}
@@ -397,9 +404,10 @@ body[data-pn-layout="mobile"] .obs-inputs input{font-size:16px;min-height:44px}
 body[data-pn-layout="mobile"] .pn-device-toggle button,body[data-pn-layout="mobile"] .lang-buttons button{min-height:40px}
 body[data-pn-layout="mobile"] .photo-primary-actions{gap:8px}
 @media(max-width:600px){
-  body[data-pn-layout="mobile"] .headline h1{flex:1 1 100%;font-size:20px}
-  body[data-pn-layout="mobile"] .pn-device-toggle{order:1}
-  body[data-pn-layout="mobile"] .lang-buttons{order:2;margin-left:auto}
+  body[data-pn-layout="mobile"] .headline{grid-template-columns:minmax(0,1fr) auto auto;column-gap:6px;row-gap:8px;justify-content:end}
+  body[data-pn-layout="mobile"] .headline h1{grid-column:1 / -1;font-size:20px}
+  body[data-pn-layout="mobile"] .pn-device-toggle{grid-column:2;justify-self:end;margin-left:0}
+  body[data-pn-layout="mobile"] .lang-buttons{grid-column:3;justify-self:start;margin-left:0}
 }
 /* Explicit desktop mode retains a wide PC layout on narrow screens; toggle stays reachable. */
 @media(max-width:950px){
@@ -773,20 +781,6 @@ html[lang="ja"] .pn-legend-en,html[lang="en"] .pn-legend-ja{display:none!importa
 .dso-framing-diameter{font-size:12px;line-height:1.5;color:#edf8ff;margin:0;text-align:left}
 @media(max-width:430px){.dso-framing-comparison{gap:5px}.dso-framing-panel{padding:6px 3px}.dso-framing-panel .fov-diagram{min-height:95px}}
 
-/* Minimal publication UI: one unobtrusive share button and a compact consent choice. */
-.pnmap-share{position:relative;flex-shrink:0}
-#pnmapShareButton{font-size:12px;background:#1b324b;padding:6px 10px;min-height:37px;border:1px solid #50738f}
-#pnmapShareMenu{position:absolute;top:calc(100% + 5px);right:0;z-index:140;min-width:145px;background:#14263b;border:1px solid #496d8a;border-radius:8px;padding:5px;box-shadow:0 8px 22px #0008}
-#pnmapShareMenu[hidden]{display:none!important}
-#pnmapShareMenu button{display:block;width:100%;background:none;border:0;text-align:left;padding:7px 9px;font-size:12px}
-#pnmapShareMenu button:hover,#pnmapShareMenu button:focus-visible{background:#2a4b69}
-#pnmapShareStatus{position:absolute;top:calc(100% + 8px);right:0;font-size:11px;white-space:nowrap;color:#cfeaff;pointer-events:none;z-index:141}
-#pnmapShareStatus:empty{display:none}
-.pnmap-consent{position:fixed;bottom:12px;right:12px;z-index:150;background:#14263b;color:#eef8ff;padding:10px 12px;max-width:calc(100vw - 24px);border:1px solid #517f9e;border-radius:8px;box-shadow:0 6px 20px #0009;font-size:12px}
-.pnmap-consent p{margin:0 0 8px;font-size:12px}
-.pnmap-consent .actions{display:flex;gap:7px;justify-content:flex-end}
-.pnmap-consent button{font-size:12px;padding:5px 10px}
-@media(max-width:700px){.pnmap-share{margin-left:0}}
 
 </style><!-- PNmap integration 2026-11-10: +33 NGC 891 photometric candidates, from Chat C; B,D audit only. A pending. -->
 <!-- PNmap 2026-11-10 Chat A integration: +91 NGC 3608 PN.S candidate rows, uncertain host membership retained. -->
@@ -896,7 +890,128 @@ html[lang="ja"] .pn-legend-en,html[lang="en"] .pn-legend-ja{display:none!importa
 .rank-selected-filtered strong{display:block;color:#eef9ff;font-size:13px}
 .pn-list-panel .ranked-measure{line-height:1.55;white-space:normal}
 #rankHoverHelp,#mapOperationHelp{display:none!important}
-</style><style id="pnmap-share-style">
+</style>
+<style id="pnmap-multi-altitude-20261117">
+/* Compact observing-night comparison, integrated into the existing map. */
+#pnAltToggle{padding:8px 14px;border:1px solid #4383ae;border-radius:8px;background:#21547b;color:#eaf7ff;cursor:pointer;white-space:nowrap;font:600 12px system-ui}
+#pnAltToggle:hover,#pnAltToggle:focus-visible{background:#34759c;outline:2px solid #83d5fc;outline-offset:2px}
+#myPNList #pnAltToggle{margin:0 0 11px;display:block;width:100%;white-space:normal;text-align:center;min-height:37px}
+#pnAltPanel{box-sizing:border-box;position:fixed;left:50%;top:50%;bottom:auto;transform:translate(-50%,-50%);z-index:1200;width:min(710px,calc(100vw - 32px));max-height:min(78vh,740px);overflow:auto;background:#101f33;border:1px solid #51718e;border-radius:12px;box-shadow:0 15px 55px #000b;color:#e8f2ff;padding:14px 15px;font-family:system-ui,sans-serif}
+#pnAltPanel[hidden]{display:none!important}
+#pnAltPanel *{box-sizing:border-box}
+#pnAltPanel h2{font-size:16px;font-weight:700;margin:0;color:#eaf5ff}
+#pnAltPanel button{cursor:pointer}
+#pnAltPanel .alt-head{display:flex;align-items:center;gap:10px;cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;min-height:36px}
+#pnAltPanel .alt-head.dragging{cursor:grabbing}
+#pnAltPanel.alt-minimized>:not(.alt-head){display:none!important}
+#pnAltPanel.alt-minimized{max-height:none;overflow:hidden}
+#pnAltPanel.alt-minimized .alt-head{min-height:36px}
+#pnAltPanel .alt-head h2{flex:1;min-width:0}
+#pnAltPanel .alt-grip{color:#91b6d3;font-size:19px;line-height:1;flex-shrink:0}
+#pnAltPanel .alt-head button{cursor:pointer;touch-action:manipulation}
+#pnAltPanel .alt-head button{border:1px solid #567fa0;background:#1d3b58;color:#eaf7ff;border-radius:7px;padding:5px 10px;min-height:32px}
+#pnAltPanel .alt-controls{display:flex;align-items:center;flex-wrap:wrap;gap:9px;margin:10px 0 6px;font-size:12px}
+#pnAltPanel .alt-controls label{display:inline-flex;align-items:center;gap:8px;color:#c6e0f2}
+#pnAltPanel .alt-controls input{border:1px solid #466988;border-radius:5px;color:#fff;background:#0a182a;padding:6px;font-size:13px;color-scheme:dark}
+
+#pnAltPanel .alt-plot{width:100%;max-height:310px;overflow:auto;background:#071425;border:1px solid #344f69;border-radius:7px}
+#pnAltPanel svg{width:100%;height:auto;min-width:530px;display:block;touch-action:pan-y}
+#pnAltPanel .alt-legend{display:flex;gap:7px 13px;flex-wrap:wrap;margin:10px 0 0}
+#pnAltPanel .alt-item{display:inline-flex;align-items:center;gap:6px;font-size:12px;max-width:100%}
+#pnAltPanel .alt-item .alt-swatch{width:17px;height:3px;flex-shrink:0;border-radius:3px}
+#pnAltPanel .alt-item button{padding:1px 5px;border:1px solid #476684;border-radius:4px;background:#182f46;color:#d9edfb;font-size:13px}
+#pnAltPanel .alt-readout{font-variant-numeric:tabular-nums;line-height:1.5;font-size:12px;min-height:1.5em;margin:9px 0 0;overflow-wrap:anywhere}
+#pnAltPanel .alt-hint{font-size:11px;color:#9cbbd2;line-height:1.45;margin:4px 0 0}
+#pnAltPanel .alt-empty{font-size:12px;color:#b9d5e9;padding:20px 5px}
+@media(max-width:550px){#pnAltPanel{width:calc(100vw - 16px);padding:10px;max-height:68vh}#myPNList #pnAltToggle{position:static!important;min-width:0;padding:9px 8px}#pnAltPanel .alt-head h2{font-size:14px}}
+</style>
+<style id="pnmap-mobile-refinement-20261118">
+/* Compact phone layout: controls are in document flow and never occlude the map. */
+body[data-pn-layout="mobile"]{width:100%;max-width:720px;min-width:0;box-sizing:border-box;overflow-x:clip}
+body[data-pn-layout="mobile"] header{padding:10px 10px 6px}
+body[data-pn-layout="mobile"] header .headline{gap:7px 10px;align-items:center}
+body[data-pn-layout="mobile"] header h1{font-size:clamp(17px,4.6vw,21px);line-height:1.3;margin:0 0 3px;max-width:100%}
+body[data-pn-layout="mobile"] .pn-device-toggle,body[data-pn-layout="mobile"] .lang-buttons{gap:3px;padding:3px}
+body[data-pn-layout="mobile"] .pn-device-toggle button,body[data-pn-layout="mobile"] .lang-buttons button{min-height:38px;font-size:clamp(11px,2.8vw,13px);padding:6px 9px;white-space:nowrap}
+body[data-pn-layout="mobile"] main{padding:5px 7px 13px}
+body[data-pn-layout="mobile"] #chartpanel{display:flex!important;flex-direction:column;align-items:stretch;position:relative;overflow:visible;isolation:isolate;min-width:0;height:auto!important}
+body[data-pn-layout="mobile"] #chartpanel .projection-toggle{position:static!important;inset:auto!important;transform:none!important;order:-10;display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;width:auto!important;max-width:none!important;margin:7px 7px 6px;padding:4px;box-sizing:border-box;z-index:10;align-self:stretch}
+body[data-pn-layout="mobile"] #chartpanel .projection-toggle button{min-width:0!important;min-height:40px;padding:6px 2px!important;font-size:clamp(11px,2.7vw,13px)!important;line-height:1.15;white-space:normal;overflow-wrap:anywhere}
+body[data-pn-layout="mobile"] #plot{order:0;position:static;display:block;width:100%!important;height:clamp(325px,50svh,505px)!important;min-height:325px!important;max-height:505px!important;flex:0 0 auto;box-sizing:border-box;touch-action:none}
+body[data-pn-layout="mobile"] #chartpanel .ribbon{display:none!important}
+/* Legend and plot controls are compact, accessible strips below the canvas. */
+body[data-pn-layout="mobile"] #chartpanel #galacticClassLegend,
+body[data-pn-layout="mobile"] #chartpanel #hashStatusPanel,
+body[data-pn-layout="mobile"] #chartpanel #dsoClassLegend{
+ position:static!important;inset:auto!important;top:auto!important;bottom:auto!important;left:auto!important;right:auto!important;
+ order:1;align-self:stretch;width:auto!important;max-width:none!important;height:auto!important;min-height:0!important;max-height:none!important;
+ margin:7px 7px 0;padding:7px 9px;box-sizing:border-box;box-shadow:none;z-index:auto;overflow:visible;
+}
+body[data-pn-layout="mobile"] #chartpanel .hash-status-panel:not([hidden]){display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));align-items:center;gap:3px 9px}
+body[data-pn-layout="mobile"] #chartpanel .hash-status-panel .hash-panel-title{grid-column:1/-1;display:flex;gap:8px;align-items:center;justify-content:space-between;margin:0;font-size:12px}
+body[data-pn-layout="mobile"] #chartpanel .hash-status-panel label{display:flex;min-width:0;gap:4px;align-items:center;font-size:11px;line-height:1.35;margin:0;padding:4px 0;white-space:normal}
+body[data-pn-layout="mobile"] #chartpanel .hash-status-panel label input{flex:0 0 auto;margin:0 2px 0 0}
+body[data-pn-layout="mobile"] #chartpanel .hash-status-panel label b{margin-left:auto;padding-left:3px}
+body[data-pn-layout="mobile"] #chartpanel .point-style-panel{
+ position:static!important;inset:auto!important;top:auto!important;bottom:auto!important;left:auto!important;right:auto!important;
+ order:2;display:grid!important;grid-template-columns:minmax(0,.85fr) minmax(0,1.2fr);gap:8px;align-items:center;
+ width:auto!important;max-width:none!important;min-width:0;height:auto!important;margin:7px 7px 0;padding:8px 9px;box-sizing:border-box;box-shadow:none;z-index:auto;
+}
+body[data-pn-layout="mobile"] #chartpanel .point-style-panel[hidden]{display:none!important}
+body[data-pn-layout="mobile"] #chartpanel .point-style-panel label{margin:0;font-size:12px;line-height:1.3}
+body[data-pn-layout="mobile"] #chartpanel .point-style-panel select{min-width:0;width:100%;min-height:38px;font-size:13px;padding:6px 7px}
+body[data-pn-layout="mobile"] #chartpanel .galaxy-control-panel{
+ position:static!important;inset:auto!important;top:auto!important;bottom:auto!important;left:auto!important;right:auto!important;
+ order:3;align-self:stretch;width:auto!important;max-width:none!important;min-width:0;
+ max-height:min(47svh,345px)!important;height:auto!important;margin:7px 7px 8px;padding:7px 9px;overflow:auto;box-sizing:border-box;box-shadow:none;z-index:auto;
+}
+body[data-pn-layout="mobile"] #chartpanel .galaxy-control-panel summary{font-size:12px;padding:2px 0;min-height:26px;display:list-item}
+body[data-pn-layout="mobile"] #chartpanel .galaxy-control-panel .options{gap:6px;margin:7px 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+body[data-pn-layout="mobile"] #chartpanel .galaxy-control-panel .options button{min-width:0;white-space:normal!important;overflow-wrap:anywhere;font-size:11px;line-height:1.35;min-height:38px;padding:6px 7px}
+body[data-pn-layout="mobile"] #chartpanel .galaxy-control-panel .options button:nth-child(3):last-child{grid-column:1/-1}
+body[data-pn-layout="mobile"] #chartpanel .galaxy-control-panel .check{margin:7px 0 3px}
+body[data-pn-layout="mobile"] #chartpanel .sky-layer-panel{position:static!important;inset:auto!important;order:4;align-self:stretch;width:auto!important;max-width:none!important;margin:7px 7px 8px;z-index:auto}
+body[data-pn-layout="mobile"] #chartpanel .sky-view-panel{position:static!important;inset:auto!important;order:5;align-self:stretch;width:auto!important;max-width:none!important;margin:0 7px 7px;z-index:auto}
+body[data-pn-layout="mobile"] #chartpanel .sky-layer-panel[hidden],body[data-pn-layout="mobile"] #chartpanel .sky-view-panel[hidden]{display:none!important}
+body[data-pn-layout="mobile"] #chartpanel .pn-list-panel{top:60px!important;bottom:auto!important;left:0!important;right:0!important;height:calc(100% - 60px)!important;max-height:none!important;z-index:7}
+body[data-pn-layout="mobile"] #chartpanel.dso-map-active .dso-list-panel{top:60px!important;bottom:auto!important;max-height:calc(100% - 65px)!important}
+body[data-pn-layout="mobile"] .map-operation-help{padding:5px 8px;font-size:11px}
+body[data-pn-layout="mobile"] aside#pnMobilePanels{margin-top:8px}
+body[data-pn-layout="mobile"] .pn-mobile-tabs{padding:5px 0 7px}
+body[data-pn-layout="mobile"] .pn-mobile-tabs button{min-height:42px}
+@media(max-width:385px){
+ body[data-pn-layout="mobile"] header h1{flex:1 1 100%;font-size:18px}
+ body[data-pn-layout="mobile"] .pn-device-toggle button,body[data-pn-layout="mobile"] .lang-buttons button{padding:6px 7px}
+ body[data-pn-layout="mobile"] #plot{height:clamp(310px,47svh,445px)!important;min-height:310px!important}
+ body[data-pn-layout="mobile"] #chartpanel .point-style-panel{grid-template-columns:1fr;gap:5px}
+}
+</style>
+
+<style id="pnmap-alt-visibility-20261118">
+#pnAltPanel .alt-visibility{display:inline-flex;align-items:center;gap:7px;font:inherit;font-size:12px;padding:5px 8px;border:1px solid #476684;border-radius:7px;background:#182f46;color:#e5f3ff;cursor:pointer;max-width:100%;min-height:32px}
+#pnAltPanel .alt-visibility.alt-hidden{opacity:.68}
+#pnAltPanel .alt-visibility.alt-hidden .alt-swatch{background:#7890a6!important}
+#pnAltPanel .alt-visibility:focus-within{outline:2px solid #a4dcff;outline-offset:2px}
+#pnAltPanel .alt-visibility .alt-pn-name{max-width:20ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#pnAltPanel .alt-visibility-choice{display:inline-flex;align-items:center;gap:4px;margin-left:2px;white-space:nowrap;color:#c1daf1}
+#pnAltPanel .alt-visibility-choice input{width:16px;height:16px;margin:0;accent-color:#5dbcf5;cursor:pointer}
+</style>
+<style id="pnmap-compact-nav-20261118">
+body[data-pn-layout="mobile"] #chartpanel .projection-toggle{
+ display:flex!important;align-self:center!important;justify-content:center!important;
+ grid-template-columns:none!important;width:max-content!important;max-width:calc(100% - 14px)!important;
+ margin:7px auto 6px!important;gap:3px!important;padding:4px!important;
+}
+body[data-pn-layout="mobile"] #chartpanel .projection-toggle button{
+ flex:0 1 auto!important;min-width:0!important;white-space:nowrap!important;
+ padding:8px clamp(7px,2.3vw,16px)!important;font-size:clamp(11px,2.7vw,13px)!important;
+}
+#pnAltPanel #pnAltRefresh{font-size:18px;line-height:1;padding:5px 8px}
+#pnAltPanel #pnAltExportPNG{min-height:32px}
+@media(max-width:395px){#pnAltPanel .alt-head{gap:5px}#pnAltPanel .alt-head button{padding:5px 7px}}
+</style>
+</head><body>
+<style id="pnmap-share-style">
 /* Share menu restored from the GitHub layout, without publication-only analytics. */
 .pnmap-share{position:relative;flex:0 0 auto}
 #pnmapShareButton{min-height:37px;padding:6px 10px;font-size:12px;background:#1b324b;border:1px solid #50738f;border-radius:8px;white-space:nowrap}
@@ -920,8 +1035,24 @@ html[lang="ja"] .pn-legend-en,html[lang="en"] .pn-legend-ja{display:none!importa
  body[data-pn-layout="mobile"] .headline{column-gap:3px}
  body[data-pn-layout="mobile"] .pn-device-toggle button,body[data-pn-layout="mobile"] .lang-buttons button{padding:6px 4px;font-size:11px}
 }
+
+.headline>.pn-device-toggle,.headline>.lang-buttons,.headline>.pnmap-share{
+box-sizing:border-box;height:48px;min-height:48px;align-items:center;padding:4px;
+border:1px solid #50738f;border-radius:9px;background:#13263e
+}
+.headline>.pn-device-toggle>button,.headline>.lang-buttons>button,
+.headline>.pnmap-share>#pnmapShareButton,body[data-pn-layout="mobile"] .headline>.pnmap-share>#pnmapShareButton{
+display:inline-flex;align-items:center;justify-content:center;
+box-sizing:border-box;height:38px;min-height:38px;line-height:1.2
+}
+.headline>.pnmap-share{display:flex;align-self:center}
+.headline>.pnmap-share>#pnmapShareButton{
+border:0;border-radius:6px;padding:6px 11px;background:#2473ad;color:#fff
+}
+.pnmap-consent{position:fixed;bottom:12px;right:12px;z-index:160;background:#14263b;color:#eef8ff;padding:10px 12px;max-width:calc(100vw - 24px);border:1px solid #517f9e;border-radius:8px;box-shadow:0 6px 20px #0009;font-size:12px}
+.pnmap-consent p{margin:0 0 7px;line-height:1.5}.pnmap-consent .actions{display:flex;gap:7px;justify-content:flex-end}
+.pnmap-consent button{padding:5px 10px;font-size:12px}
 </style>
-</head><body>
 <header><div class="headline"><h1 data-i18n="title">惑星状星雲3Dマップ</h1>
 <div class="pn-device-toggle" role="group" aria-label="画面レイアウト / Display layout">
 <button type="button" id="pnLayoutDesktop" class="active" aria-pressed="true">PC版</button><button type="button" id="pnLayoutMobile" aria-pressed="false">スマホ版</button></div>
@@ -999,7 +1130,7 @@ html[lang="ja"] .pn-legend-en,html[lang="en"] .pn-legend-ja{display:none!importa
   <button id="dsoFoldButton" type="button" class="dso-fold-button" aria-expanded="false">▼ <span data-i18n="dsoShowList">天体一覧を開く</span></button><div id="dsoRows" class="dso-rows" aria-live="polite" hidden></div><p id="dsoMapCoverage" class="dso-coverage"></p>
 </div>
 <div id="pnListPanel" class="pn-list-panel" role="region" aria-label="惑星状星雲の全件一覧" hidden>
-<div class="largest pn-list-largest"><div class="rank-head"><select id="rankSort" aria-label="惑星状星雲の並べ替え"><option value="diameter" data-i18n="rankDiameter">視直径が大きい順</option><option value="brightness" data-i18n="rankBrightness">Hβ表面輝度が高い順</option><option value="altitude" data-i18n="rankAltitude">南中高度が高い順</option><option value="newmoon" data-i18n="rankNewmoon">次の新月期が近い順</option></select><button type="button" id="rankRecommend" aria-pressed="false">おすすめ</button></div><p class="rank-hover-help" id="rankHoverHelp" hidden></p><div class="rank-window-nav" id="rankWindowNav" hidden><button type="button" id="rankPrevious">前の36件</button><button type="button" id="rankFirst">先頭へ</button><span class="rank-window-label" id="rankWindowLabel"></span></div><div id="rankSelectedFiltered" class="rank-selected-filtered" role="status" hidden></div><div id="ranked" class="pn-list-rows" aria-live="polite"></div><div id="rankLoadStatus" class="pn-rank-load" role="status" aria-live="polite"></div></div>
+<div class="largest pn-list-largest"><div class="rank-head"><select id="rankSort" aria-label="惑星状星雲の並べ替え"><option value="diameter" data-i18n="rankDiameter">視直径が大きい順</option><option value="brightness" data-i18n="rankBrightness">Hβ表面輝度が高い順</option><option value="altitude" data-i18n="rankAltitude">南中高度が高い順</option><option value="newmoon" data-i18n="rankNewmoon">次の新月期が近い順</option><option value="name" data-i18n="rankName">名前順</option></select><button type="button" id="rankRecommend" aria-pressed="false">おすすめ</button></div><p class="rank-hover-help" id="rankHoverHelp" hidden></p><div class="rank-window-nav" id="rankWindowNav" hidden><button type="button" id="rankPrevious">前の36件</button><button type="button" id="rankFirst">先頭へ</button><span class="rank-window-label" id="rankWindowLabel"></span></div><div id="rankSelectedFiltered" class="rank-selected-filtered" role="status" hidden></div><div id="ranked" class="pn-list-rows" aria-live="polite"></div><div id="rankLoadStatus" class="pn-rank-load" role="status" aria-live="polite"></div></div>
 </div>
 <details id="galaxyControls" class="galaxy-control-panel" open><summary id="galaxyControlLabel" aria-label="銀河系の表示操作 / Galactic controls"><span class="sr-only">銀河系の操作</span><span aria-hidden="true" class="galaxy-summary-icon">表示設定</span></summary><div class="galaxy-control-body"><div class="options"><button data-i18n="zoomClose" id="close" type="button">太陽系中心から ±0.5 kpc</button><button data-i18n="zoomNear" id="near" type="button">太陽系中心から ±4 kpc</button><button data-i18n="zoomWide" id="wide" type="button">銀河中心を含む ±12 kpc</button></div>
 <div class="options"><button data-i18n="view3D" id="iso">3D視点</button><button data-i18n="viewTop" id="top">銀河面を上から</button><button data-i18n="viewSide" id="side">銀河面を横から</button></div>
@@ -1041,14 +1172,14 @@ html[lang="ja"] .pn-legend-en,html[lang="en"] .pn-legend-ja{display:none!importa
 <div class="photo-frame"><img alt="選択した惑星状星雲のサーベイ画像" id="photoImage"/><div class="photo-message" data-i18n="photoInstruction" id="photoMessage">点をクリック，またはShiftを押しながらホバーしてください．</div></div>
 <div class="photo-caption"><div data-i18n="choosePN" id="photoTitle">天体を選択してください</div><div data-i18n="photoMethod" id="photoCredit">天体写真，またはDSS2の観測画像を表示します．</div><div class="photo-links"><a data-i18n="photoSource" href="https://archive.stsci.edu/cgi-bin/dss_form" id="photoSource" rel="noopener noreferrer" target="_blank" style="display:none">観測画像の提供元</a></div><div class="photo-primary-actions"><a class="astrobin-link photo-astrobin" href="https://www.astrobin.com/search/" id="photoAstrobin" rel="noopener noreferrer" style="display:none" target="_blank">AstroBinで写真を検索 ↗</a><button data-i18n="addToList" disabled="" id="saveSelectedPN" type="button">＋リストに追加</button></div><span id="saveSelectionStatus" role="status"></span><div class="gpt-consult"><a id="askGPT" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" aria-disabled="true" class="gpt-consult-link disabled">GPTに撮影相談 ↗</a><a id="askGPTScience" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" aria-disabled="true" class="gpt-consult-link disabled">GPTに科学的解説を依頼 ↗</a></div><span id="askGPTStatus" class="gpt-consult-note" role="status"></span></div><div class="pn-info" data-i18n="selectHint" id="focus">地図の点をクリックして，惑星状星雲を選択してください．Shift＋ホバーでも選択できます．</div><section aria-label="Planning observing opportunities" class="pn-observe" id="obsPlanner">
 <h3 data-i18n="obsTitle">観測に適した時期</h3>
-<div class="obs-location-heading"><span data-i18n="obsPlace">観測地点（初期値：札幌）</span><div class="obs-place-actions"><button class="obs-geolocate" id="obsLocate" type="button">現在地を取得</button><button class="obs-reset" data-i18n="obsReset" id="obsReset" type="button">札幌に戻す</button></div></div>
+<div class="obs-location-heading"><span data-i18n="obsPlace">観測地点（初期値：札幌市天文台）</span><div class="obs-place-actions"><button class="obs-geolocate" id="obsLocate" type="button">現在地を取得</button><button class="obs-reset" data-i18n="obsReset" id="obsReset" type="button">天文台に戻す</button></div></div>
 <div class="obs-inputs">
-<label><span data-i18n="obsLat">緯度（北緯＋）</span><input id="obsLat" inputmode="decimal" max="90" min="-90" step="0.0001" type="number" value="43.0621"/></label>
-<label><span data-i18n="obsLon">経度（東経＋）</span><input id="obsLon" inputmode="decimal" max="180" min="-180" step="0.0001" type="number" value="141.3544"/></label>
+<label><span data-i18n="obsLat">緯度（北緯＋）</span><input id="obsLat" inputmode="decimal" max="90" min="-90" step="0.00001" type="number" value="43.04528"/></label>
+<label><span data-i18n="obsLon">経度（東経＋）</span><input id="obsLon" inputmode="decimal" max="180" min="-180" step="0.00001" type="number" value="141.35244"/></label>
 <label><span data-i18n="obsUTC">UTC時差（時間）</span><input id="obsUTC" inputmode="decimal" max="14" min="-12" step="0.5" type="number" value="9"/></label>
 </div><div class="obs-links">
-<a href="https://www.google.com/maps?q=43.0621,141.3544" id="obsGoogleLink" rel="noopener noreferrer" target="_blank">Google マップ ↗</a>
-<a href="https://lightpollutionmap.app/?lat=43.0621&amp;lng=141.3544&amp;zoom=10" id="obsLightLink" rel="noopener noreferrer" target="_blank">光害マップ ↗</a>
+<a href="https://www.google.com/maps?q=43.04528,141.35244" id="obsGoogleLink" rel="noopener noreferrer" target="_blank">Google マップ ↗</a>
+<a href="https://lightpollutionmap.app/?lat=43.04528&amp;lng=141.35244&amp;zoom=10" id="obsLightLink" rel="noopener noreferrer" target="_blank">光害マップ ↗</a>
 </div>
 <div aria-live="polite" class="obs-result" id="obsResult"><p class="muted" data-i18n="obsSelect">PNを選択すると，観測に適した新月期が表示されます．</p></div>
 
@@ -1089,7 +1220,7 @@ html[lang="ja"] .pn-legend-en,html[lang="en"] .pn-legend-ja{display:none!importa
 <input aria-label="平均Hβ表面輝度の上限" id="sbHigh" max="-10" min="-18" step="0.1" type="range" value="-10"/>
 </div>
 <div class="filter-dual-info"><strong id="sbRangeText">−18.0 ～ −10.0</strong><span data-i18n="sbHint">大きい値（−12など）ほど明るい．V等級ではありません．</span></div>
-<label for="pnConstellationFilter">星座 / Constellation</label><select id="pnConstellationFilter"><option value="">すべての星座</option></select>
+
 <label data-i18n="altFilterTitle">南中高度（下限～上限）</label>
 <div aria-label="南中高度の範囲" class="dual-range" role="group">
 <div class="slider-track"></div><div class="slider-fill" id="altFill"></div>
@@ -1103,6 +1234,7 @@ html[lang="ja"] .pn-legend-en,html[lang="en"] .pn-legend-ja{display:none!importa
 <input aria-label="新月期の下限（月）" id="moonLow" max="14" min="0" step="1" type="range" value="0"/>
 <input aria-label="新月期の上限（月）" id="moonHigh" max="14" min="0" step="1" type="range" value="14"/>
 </div><div class="filter-dual-info"><strong id="moonRangeText">0 ～ 14か月後</strong></div>
+<label for="pnConstellationFilter">星座 / Constellation</label><select id="pnConstellationFilter"><option value="">すべての星座</option></select>
 <label data-i18n="catalogTitle">カタログで絞り込み</label>
 <div class="catalog-mode"><span data-i18n="catalogModeLabel">選択方法</span><div aria-label="Catalogue selection mode" class="catalog-mode-options" role="group"><button aria-pressed="false" data-i18n="catalogSingle" id="catalogSingle" type="button">単一選択</button><button aria-pressed="true" class="active" data-i18n="catalogMulti" id="catalogMulti" type="button">複数選択</button></div></div>
 <div class="catalog-actions"><button aria-pressed="true" class="active" data-i18n="catAll" id="catAll" type="button">すべて表示</button><button data-i18n="catClear" id="catClear" type="button">選択解除</button></div>
@@ -1131,7 +1263,7 @@ html[lang="ja"] .pn-legend-en,html[lang="en"] .pn-legend-ja{display:none!importa
 
 
 <section aria-label="My planetary nebulae list" class="saved-pn-section" id="myPNList">
-<h3><span data-i18n="myListTitle">選択したPNのリスト</span> <span id="savedCount">0</span></h3>
+<div class="saved-list-heading"><h3><span data-i18n="myListTitle">選択したPNのリスト</span> <span id="savedCount">0</span></h3><button id="pnSavedClear" class="saved-list-clear" type="button" disabled>クリア</button></div>
 
 <div class="saved-items" id="savedItems"></div>
 <label data-i18n="savedExportTitle" for="savedExportFormat">このリストを出力</label>
@@ -1205,7 +1337,7 @@ html[lang="ja"] .pn-legend-en,html[lang="en"] .pn-legend-ja{display:none!importa
  <label for="dsoFilterSearch" data-dso-l10n="searchTitle">銀河・星団名，惑星状星雲の名前で検索</label>
  <input type="search" id="dsoFilterSearch" placeholder="例：M31 / NGC 891 / Fornax" autocomplete="off" />
  <section class="saved-pn-section dso-saved-section" id="myDSOList" aria-label="My selected DSO list">
- <h3><span data-dso-saved-l10n="title">選択した銀河・星団のリスト</span> <span id="dsoSavedCount">0</span></h3>
+ <div class="saved-list-heading"><h3><span data-dso-saved-l10n="title">選択した銀河・星団のリスト</span> <span id="dsoSavedCount">0</span></h3><button id="dsoSavedClear" class="saved-list-clear" type="button" data-dso-saved-l10n="clear" disabled>クリア</button></div>
  
  <div id="dsoSavedItems" class="saved-items" aria-live="polite"></div>
  <label data-dso-saved-l10n="exportTitle" for="dsoSavedExportFormat">このリストを出力</label>
@@ -1242,7 +1374,95 @@ html[lang="ja"] .pn-legend-en,html[lang="en"] .pn-legend-ja{display:none!importa
 <script id="hashEmbedded" type="application/json"></script>
 <script src="assets/pnmap-hashEmbedded-01.js"></script>
 <script src="assets/pnmap-hashEmbedded-02.js"></script>
-<script src="assets/pnmap-app.js"></script><div hidden="" id="fovTooltip" role="tooltip"></div><div hidden="" id="newMoonTooltip" role="tooltip" aria-live="off"></div><script id="pnmap-publication-controls">
+<script src="assets/pnmap-app-20261119.js"></script><div hidden="" id="fovTooltip" role="tooltip"></div><div hidden="" id="newMoonTooltip" role="tooltip" aria-live="off"></div><script id="pnmap-share-controls">
+(function(){
+ 'use strict';
+ // Always share the live site, rather than a file:// URL of this working HTML.
+ const publishedUrl='https://dopa-gaki.github.io/.github.io/';
+ const button=document.getElementById('pnmapShareButton');
+ const menu=document.getElementById('pnmapShareMenu');
+ const status=document.getElementById('pnmapShareStatus');
+ if(!button||!menu||!status)return;
+ const isEnglish=()=>document.documentElement.lang==='en';
+ const loc=(ja,en)=>isEnglish()?en:ja;
+ const setStatus=text=>{status.textContent=text};
+ const close=()=>{menu.hidden=true;button.setAttribute('aria-expanded','false')};
+ const updateLabel=()=>{button.textContent=loc('共有','Share');menu.setAttribute('aria-label',loc('共有先','Share PNmap'));const nativeBtn=menu.querySelector('[data-share-i18n="native"]');if(nativeBtn)nativeBtn.textContent=loc('その他のアプリ…','Other apps…');const copyBtn=menu.querySelector('[data-share-i18n="copy"]');if(copyBtn)copyBtn.textContent=loc('URLをコピー','Copy URL');};
+ async function copyPublishedUrl(){
+  const link=publishedUrl+(isEnglish()?'?lang=en':'?lang=ja');
+  try{
+   if(navigator.clipboard&&navigator.clipboard.writeText){await navigator.clipboard.writeText(link);return true;}
+  }catch(_err){}
+  const area=document.createElement('textarea');
+  area.value=link;
+  area.setAttribute('readonly','');
+  area.style.cssText='position:fixed;left:-9999px;top:0;opacity:0;';
+  document.body.appendChild(area);
+  area.focus();area.select();
+  let success=false;
+  try{success=document.execCommand('copy')}catch(_err){}
+  area.remove();return success;
+ }
+ async function shareTo(platform){
+  const title=loc('PNmap｜惑星状星雲マップ','PNmap — Planetary Nebula Sky Map');
+  const message=loc('PNmapで惑星状星雲を探そう。天球・銀河系マップと観測支援機能を利用できます。','Explore planetary nebulae with PNmap: sky maps, Galactic views, and observing tools.');
+  const shareUrl=publishedUrl+(isEnglish()?'?lang=en':'?lang=ja');
+  const enc=encodeURIComponent;
+  if(platform==='copy'){
+   setStatus(await copyPublishedUrl()?loc('URLをコピーしました','URL copied'):loc('URLをコピーできませんでした','Could not copy URL'));
+   return;
+  }
+  if(platform==='native'){
+   if(typeof navigator.share==='function'){
+    try{await navigator.share({title,text:message,url:shareUrl})}catch(_err){}
+   }
+   return;
+  }
+  // These services do not expose a reliable generic web link-posting intent.
+  // Copy the live URL instead of sending users to an unrelated upload/login page.
+  const copyOnly=['instagram','youtube','tiktok','wechat','snapchat','mastodon'];
+  if(copyOnly.includes(platform)){
+   const copied=await copyPublishedUrl();
+   const label={instagram:'Instagram',youtube:'YouTube',tiktok:'TikTok',wechat:'WeChat',snapchat:'Snapchat',mastodon:'Mastodon'}[platform];
+   setStatus(copied?loc(label+'用にURLをコピーしました．アプリで貼り付けてください', 'URL copied for '+label+'. Paste it in the app'):loc('URLをコピーできませんでした','Could not copy URL'));
+   return;
+  }
+  const targets={
+   x:'https://twitter.com/intent/tweet?text='+enc(message)+'&url='+enc(shareUrl),
+   facebook:'https://www.facebook.com/sharer/sharer.php?u='+enc(shareUrl),
+   whatsapp:'https://api.whatsapp.com/send?text='+enc(message+' '+shareUrl),
+   telegram:'https://t.me/share/url?url='+enc(shareUrl)+'&text='+enc(message),
+   pinterest:'https://www.pinterest.com/pin/create/button/?url='+enc(shareUrl)+'&description='+enc(message),
+   reddit:'https://www.reddit.com/submit?url='+enc(shareUrl)+'&title='+enc(title),
+   threads:'https://www.threads.net/intent/post?text='+enc(message+' '+shareUrl),
+   linkedin:'https://www.linkedin.com/sharing/share-offsite/?url='+enc(shareUrl),
+   line:'https://social-plugins.line.me/lineit/share?url='+enc(shareUrl),
+   tumblr:'https://www.tumblr.com/widgets/share/tool?canonicalUrl='+enc(shareUrl)+'&title='+enc(title),
+   bluesky:'https://bsky.app/intent/compose?text='+enc(message+' '+shareUrl)
+  };
+  if(targets[platform]){
+   const win=window.open(targets[platform],'_blank','noopener,noreferrer,width=740,height=650');
+   // Browser popup-blocker status is not universally reliable with noopener.
+   if(!win&&platform==='pinterest')setStatus(loc('Pinterestでの共有には画像を求められる場合があります','Pinterest may require an image for a Pin'));
+  }
+ }
+ updateLabel();
+ const native=menu.querySelector('[data-share="native"]');
+ if(native&&typeof navigator.share==='function')native.hidden=false;
+ document.querySelectorAll('#langJa,#langEn').forEach(b=>b.addEventListener('click',updateLabel));
+ button.addEventListener('click',e=>{
+  e.stopPropagation();
+  const open=menu.hidden;
+  menu.hidden=!open;
+  button.setAttribute('aria-expanded',String(open));
+  setStatus('');
+ });
+ document.addEventListener('click',e=>{if(!menu.hidden&&!menu.contains(e.target)&&e.target!==button)close()});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!menu.hidden){close();button.focus()}});
+ menu.querySelectorAll('[data-share]').forEach(b=>b.addEventListener('click',()=>{try{window.pnmapTrackShare?.(b.dataset.share)}catch(_err){}close();void shareTo(b.dataset.share)}));
+})();
+</script>
+<script id="pnmap-publication-controls">
 (function(){
  'use strict';
  const measurementId='G-KZR370GN19';
@@ -1330,92 +1550,6 @@ html[lang="ja"] .pn-legend-en,html[lang="en"] .pn-legend-ja{display:none!importa
  }
  function boot(){window.pnmapTrackShare=trackShare;consentUI();}
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
-})();
-</script>
-<script id="pnmap-share-controls">
-(function(){
- 'use strict';
- // Always share the live site, rather than a file:// URL of this working HTML.
- const publishedUrl='https://dopa-gaki.github.io/.github.io/';
- const button=document.getElementById('pnmapShareButton');
- const menu=document.getElementById('pnmapShareMenu');
- const status=document.getElementById('pnmapShareStatus');
- if(!button||!menu||!status)return;
- const isEnglish=()=>document.documentElement.lang==='en';
- const loc=(ja,en)=>isEnglish()?en:ja;
- const setStatus=text=>{status.textContent=text};
- const close=()=>{menu.hidden=true;button.setAttribute('aria-expanded','false')};
- const updateLabel=()=>{button.textContent=loc('共有','Share');menu.setAttribute('aria-label',loc('共有先','Share PNmap'));const nativeBtn=menu.querySelector('[data-share-i18n="native"]');if(nativeBtn)nativeBtn.textContent=loc('その他のアプリ…','Other apps…');const copyBtn=menu.querySelector('[data-share-i18n="copy"]');if(copyBtn)copyBtn.textContent=loc('URLをコピー','Copy URL');};
- async function copyPublishedUrl(){
-  try{
-   if(navigator.clipboard&&navigator.clipboard.writeText){await navigator.clipboard.writeText(publishedUrl);return true;}
-  }catch(_err){}
-  const area=document.createElement('textarea');
-  area.value=publishedUrl;
-  area.setAttribute('readonly','');
-  area.style.cssText='position:fixed;left:-9999px;top:0;opacity:0;';
-  document.body.appendChild(area);
-  area.focus();area.select();
-  let success=false;
-  try{success=document.execCommand('copy')}catch(_err){}
-  area.remove();return success;
- }
- async function shareTo(platform){
-  const title='PNmap — Planetary Nebula Sky Map';
-  const message='Explore planetary nebulae in PNmap';
-  const enc=encodeURIComponent;
-  if(platform==='copy'){
-   setStatus(await copyPublishedUrl()?loc('URLをコピーしました','URL copied'):loc('URLをコピーできませんでした','Could not copy URL'));
-   return;
-  }
-  if(platform==='native'){
-   if(typeof navigator.share==='function'){
-    try{await navigator.share({title,text:message,url:publishedUrl})}catch(_err){}
-   }
-   return;
-  }
-  // These services do not expose a reliable generic web link-posting intent.
-  // Copy the live URL instead of sending users to an unrelated upload/login page.
-  const copyOnly=['instagram','youtube','tiktok','wechat','snapchat','mastodon'];
-  if(copyOnly.includes(platform)){
-   const copied=await copyPublishedUrl();
-   const label={instagram:'Instagram',youtube:'YouTube',tiktok:'TikTok',wechat:'WeChat',snapchat:'Snapchat',mastodon:'Mastodon'}[platform];
-   setStatus(copied?loc(label+'用にURLをコピーしました．アプリで貼り付けてください', 'URL copied for '+label+'. Paste it in the app'):loc('URLをコピーできませんでした','Could not copy URL'));
-   return;
-  }
-  const targets={
-   x:'https://twitter.com/intent/tweet?text='+enc(message)+'&url='+enc(publishedUrl),
-   facebook:'https://www.facebook.com/sharer/sharer.php?u='+enc(publishedUrl),
-   whatsapp:'https://api.whatsapp.com/send?text='+enc(message+' '+publishedUrl),
-   telegram:'https://t.me/share/url?url='+enc(publishedUrl)+'&text='+enc(message),
-   pinterest:'https://www.pinterest.com/pin/create/button/?url='+enc(publishedUrl)+'&description='+enc(message),
-   reddit:'https://www.reddit.com/submit?url='+enc(publishedUrl)+'&title='+enc(title),
-   threads:'https://www.threads.net/intent/post?text='+enc(message+' '+publishedUrl),
-   linkedin:'https://www.linkedin.com/sharing/share-offsite/?url='+enc(publishedUrl),
-   line:'https://social-plugins.line.me/lineit/share?url='+enc(publishedUrl),
-   tumblr:'https://www.tumblr.com/widgets/share/tool?canonicalUrl='+enc(publishedUrl)+'&title='+enc(title),
-   bluesky:'https://bsky.app/intent/compose?text='+enc(message+' '+publishedUrl)
-  };
-  if(targets[platform]){
-   const win=window.open(targets[platform],'_blank','noopener,noreferrer,width=740,height=650');
-   // Browser popup-blocker status is not universally reliable with noopener.
-   if(!win&&platform==='pinterest')setStatus(loc('Pinterestでの共有には画像を求められる場合があります','Pinterest may require an image for a Pin'));
-  }
- }
- updateLabel();
- const native=menu.querySelector('[data-share="native"]');
- if(native&&typeof navigator.share==='function')native.hidden=false;
- document.querySelectorAll('#langJa,#langEn').forEach(b=>b.addEventListener('click',updateLabel));
- button.addEventListener('click',e=>{
-  e.stopPropagation();
-  const open=menu.hidden;
-  menu.hidden=!open;
-  button.setAttribute('aria-expanded',String(open));
-  setStatus('');
- });
- document.addEventListener('click',e=>{if(!menu.hidden&&!menu.contains(e.target)&&e.target!==button)close()});
- document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!menu.hidden){close();button.focus()}});
- menu.querySelectorAll('[data-share]').forEach(b=>b.addEventListener('click',()=>{try{window.pnmapTrackShare?.(b.dataset.share)}catch(_err){}close();void shareTo(b.dataset.share)}));
 })();
 </script>
 </body></html>
