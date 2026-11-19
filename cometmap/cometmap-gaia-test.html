@@ -512,7 +512,7 @@ main>.comet-map-column{display:flex;flex-direction:column;min-width:0;width:100%
 <button aria-pressed="false" data-en="Inside" data-ja="内側から" id="skyViewInside" type="button">内側から</button>
 </div>
 <div hidden="" id="cometListView"><div id="cometListToolbar"><div id="cometPhotoSourceToolbar"><label data-en="Image source" data-ja="画像ソース" for="listPhotoSource">画像ソース</label><select id="listPhotoSource"></select><button data-en="Retry photos" data-ja="再取得" id="listPhotoRetry" type="button">再取得</button></div><label data-en="Sort by" data-ja="並べ替え" for="cometListSort" id="cometListSortLabel">並べ替え</label><select id="cometListSort"><option data-en="Imaging suitability" data-ja="観測適性" value="rank">観測適性</option><option data-en="Estimated magnitude" data-ja="推定光度" value="mag">推定光度</option><option data-en="Current altitude" data-ja="現在の高度" value="alt">現在の高度</option><option data-en="Solar elongation" data-ja="太陽離角" value="elong">太陽離角</option><option data-en="Perihelion time" data-ja="近日点日時" value="peri">近日点日時</option><option data-en="Name" data-ja="名前順" value="name">名前順</option></select></div><div id="cometListGrid"></div></div>
-<div class="mapbottom"><div class="mapbadge" id="mapcount">0</div></div><div class="sky-layer-panel" id="mapSkyLayers"><label class="check"><input checked="" id="showConstLines" type="checkbox"/> <span data-en="Constellation lines" data-ja="星座線">星座線</span></label><label class="check"><input checked="" id="showConstBounds" type="checkbox"/> <span data-en="IAU boundaries" data-ja="星座境界">星座境界</span></label><label class="check"><input checked="" id="showConstNames" type="checkbox"/> <span data-en="Constellation names" data-ja="星座名">星座名</span></label><label class="check"><input checked="" id="showTrail" type="checkbox"/> <span data-en="Motion trail" data-ja="移動軌跡">移動軌跡</span></label></div></section>
+<div class="mapbottom"><div class="mapbadge" id="mapcount">0</div></div><div class="sky-layer-panel" id="mapSkyLayers"><label class="check"><input checked="" id="showConstLines" type="checkbox"/> <span data-en="Constellation lines" data-ja="星座線">星座線</span></label><label class="check"><input checked="" id="showConstBounds" type="checkbox"/> <span data-en="IAU boundaries" data-ja="星座境界">星座境界</span></label><label class="check"><input checked="" id="showConstNames" type="checkbox"/> <span data-en="Constellation names" data-ja="星座名">星座名</span></label><label class="check"><input checked id="showStarLabels" type="checkbox"/><span data-ja="恒星の固有名・α/番号" data-en="Star names / Bayer / Flamsteed">恒星の固有名・α/番号</span></label><label class="check"><input checked="" id="showTrail" type="checkbox"/> <span data-en="Motion trail" data-ja="移動軌跡">移動軌跡</span></label></div></section>
 <section id="cometTimePanel" class="comet-time-panel" aria-label="観測日時の操作 / Observation time controls"><h2 id="timePanelTitle" data-ja="観測日時・再生" data-en="Date, time & playback">観測日時・再生</h2><div class="comet-clock-header"><div class="comet-calendar-row"><div><label data-t="date" for="date">観測日時</label><input id="date" type="datetime-local"/></div></div></div><div aria-label="Time controls" id="timeRibbon"><div class="clockrow"><strong class="clockread" id="clockread">観測日時</strong><button id="tminusday" title="-1 day">−1日</button><button id="tminushour" title="-1 hour">−1h</button><button id="timelineStop" title="Play/pause">▶ 再生</button><button id="tplushour" title="+1 hour">+1h</button><button id="tplusday" title="+1 day">+1日</button><button id="timelineNow">現在</button></div><input aria-label="観測日時を前後にスライド" id="timeSlider" max="720" min="-720" step="1" type="range" value="0"/><div class="clockrow"><span id="timelineSteps">±30日（1時間刻み）</span><span class="meta" id="sliderOffset">基準日時から 0 h</span><select aria-label="再生ステップ" id="playSpeed"><option data-en="10 min / frame" data-ja="10分／コマ" value="10">10分 / frame</option><option data-en="1 hour / frame" data-ja="1時間／コマ" selected="" value="60">1時間 / frame</option><option data-en="1 day / frame" data-ja="1日／コマ" value="1440">1日 / frame</option><option data-en="7 days / frame" data-ja="7日／コマ" value="10080">7日 / frame</option><option data-en="30 days / frame" data-ja="30日／コマ" value="43200">30日 / frame</option></select></div></div><div class="comet-legacy-clock" hidden aria-hidden="true"><button class="tiny" data-t="now" id="now">現在日時</button><button class="tiny" id="back">−1 d</button><button class="tiny" id="forward">+1 d</button></div></section></div>
 <aside class="panel" data-tab="conditions" id="side"><div class="mobiletabs tabs"><button class="tab" data-t="info" id="detailsTab">天体情報</button><button class="tab active" data-t="settings" id="conditionsTab">表示条件</button></div><div class="scroll details"><h2 class="pane-heading" data-en="Object details" data-ja="天体情報">天体情報</h2><div class="placeholder" data-t="select" id="details">彗星を選択してください。</div><section aria-label="Observing site and optimal windows" class="pn-observe" id="obsPlanner">
 <h3 id="obsTitle">観測に適した時期</h3>
@@ -3419,4 +3419,125 @@ function translate(){let v='ja';try{v=localStorage.getItem('cometmap_language');
 select.addEventListener('change',()=>{try{localStorage.setItem('cometmap_freshness_hours',select.value)}catch(_){}updateWarnings()});
 document.getElementById('lang')?.addEventListener('click',()=>queueMicrotask(translate));window.addEventListener('storage',()=>{translate();updateWarnings()});translate();updateWarnings();setInterval(updateWarnings,60000);
 })();</script>
+
+<style id="cmStarLabelsTestStyle">
+#framingSvg .cm-star-name {font-family:system-ui,"Noto Sans JP",sans-serif;font-weight:550;paint-order:stroke;stroke:#07111f;stroke-width:3px;stroke-linejoin:round;pointer-events:none}
+#mapSkyLayers label:has(#showStarLabels){white-space:normal}
+.cm-star-credit{font-size:10px;color:#a9c6d8;padding:3px 8px;text-align:left}
+</style>
+<script id="cm-star-labels-v124-test">
+'use strict';
+// Named-star positions are HYG J2000, while Gaia DR3 tile points are J2016.
+// A separate naming layer avoids confusing HYG V magnitudes with Gaia G.
+const CM_STAR_LABEL_URL=CM_TILED_BASE+'star-labels/hyg-labels.json';
+const CM_STAR_LABEL_KEY='cometmap_show_star_labels_test_v124';
+let cmStarLabelData=[],cmStarLabelReady=false;
+const cmStarNameCheck=document.getElementById('showStarLabels');
+try{cmStarNameCheck.checked=localStorage.getItem(CM_STAR_LABEL_KEY)!=='false'}catch(_){}
+function cmStarsNamesOn(){return cmStarNameCheck?.checked!==false}
+function cmNamesString(s,full){
+ const parts=[s[3],s[4],s[5]].filter(Boolean);
+ return (full?parts:parts.slice(0,2)).join(' · ');
+}
+function cmAllowedNameMag(fovDeg){
+ if(fovDeg>100)return 2.5;
+ if(fovDeg>35)return 3.5;
+ if(fovDeg>12)return 4.5;
+ if(fovDeg>3)return 6.0;
+ if(fovDeg>1)return 7.2;
+ if(fovDeg>.25)return 9;
+ return 11.2;
+}
+function cmRectsIntersect(a,b,pad=3){
+ return a.x<b.x+b.w+pad&&a.x+a.w+pad>b.x&&a.y<b.y+b.h+pad&&a.y+a.h+pad>b.y;
+}
+function cmDrawMapStarLabels(){
+ if(!cmStarsNamesOn()||!cmStarLabelReady||mode==='solar')return;
+ const ms=msDate(),boxes=[];
+ const limit=mode==='sky'?2.9:3.1,maxN=mode==='sky'?56:45;
+ ctx.save();
+ if(mode==='sky'){ctx.beginPath();ctx.arc(CW/2,CH/2,sphereRadius()-2,0,Math.PI*2);ctx.clip()}
+ ctx.font='11px system-ui,"Noto Sans JP"';ctx.lineJoin='round';ctx.lineWidth=3.2;ctx.textBaseline='middle';
+ let count=0;
+ for(const s of cmStarLabelData){
+  if(s[2]>limit||count>=maxN)break;
+  const ra=s[0],dec=s[1];
+  let pos;
+  if(mode==='sky'){
+   const p=skyCartesian(skyVec(ra,dec));
+   if(!p||p[2]<0.11)continue;
+   pos=[p[0],p[1]];
+  }else{
+   const a=altaz(ra,dec,ms);
+   if(!a||a.alt<0.4)continue;
+   pos=Phor(a.az,a.alt);
+  }
+  if(!pos)continue;
+  const x=pos[0],y=pos[1];
+  if(x<14||x>CW-14||y<27||y>CH-16)continue;
+  const name=cmNamesString(s,false);
+  if(!name)continue;
+  const width=ctx.measureText(name).width;
+  const tx=x+9+width<CW-8?x+9:x-width-9,ty=y-9;
+  const rect={x:tx-2,y:ty-7,w:width+4,h:14};
+  if(rect.x<3||rect.x+rect.w>CW-3||rect.y<10||rect.y+rect.h>CH-5||boxes.some(b=>cmRectsIntersect(rect,b,5)))continue;
+  boxes.push(rect);count++;
+  ctx.beginPath();ctx.arc(x,y,Math.max(1.6,3.3-.27*s[2]),0,Math.PI*2);
+  ctx.fillStyle='#f6f1df';ctx.fill();
+  ctx.strokeStyle='#06111e';ctx.strokeText(name,tx,ty);
+  ctx.fillStyle='#e4ebfb';ctx.fillText(name,tx,ty);
+ }
+ ctx.restore();
+}
+function cmDrawFramingStarLabels(center,fw,fh,scale,cx,cy,group){
+ if(!cmStarsNamesOn()||!cmStarLabelReady||!group?.isConnected)return;
+ const box=[],maxMag=cmAllowedNameMag(Math.max(fw,fh)/60),maxN=fw>1800?36:fw>600?56:95;
+ let count=0;
+ for(const s of cmStarLabelData){
+  if(s[2]>maxMag||count>=maxN)break;
+  let dra=mod(s[0]-center.ra+180,360)-180;
+  const east=dra*Math.cos(rad((s[1]+center.dec)/2))*60,north=(s[1]-center.dec)*60;
+  if(Math.abs(east)>fw*.52||Math.abs(north)>fh*.52)continue;
+  const x=cx-east*scale,y=cy-north*scale;
+  if(x<6||x>514||y<10||y>292)continue;
+  const name=cmNamesString(s,fw<360),fullName=cmNamesString(s,true);
+  if(!name)continue;
+  const w=Math.min(300,name.length*6.5+3),xx=x+6+w<509?x+6:x-6-w,yy=y-8;
+  const rect={x:xx,y:yy-10,w,h:14};
+  if(rect.x<4||rect.x+rect.w>516||rect.y<5||rect.y+rect.h>295||box.some(b=>cmRectsIntersect(rect,b,3)))continue;
+  box.push(rect);count++;
+  const text=elSVG('text',{x:xx,y:yy,'font-size':'11','class':'cm-star-name',fill:'#e3edff'});
+  text.textContent=name;
+  const title=elSVG('title');title.textContent=fullName+' · V '+s[2].toFixed(2)+' (HYG J2000)';
+  text.append(title);group.append(text);
+ }
+}
+const cmOriginalDrawMap=drawMap;
+drawMap=function(){cmOriginalDrawMap.apply(this,arguments);cmDrawMapStarLabels()};
+const cmOriginalPlotCatalogStars=cmPlotCatalogStars;
+cmPlotCatalogStars=function(center,fw,fh,scale,cx,cy,group,data){
+ const result=cmOriginalPlotCatalogStars.apply(this,arguments);
+ cmDrawFramingStarLabels(center,fw,fh,scale,cx,cy,group);
+ return result;
+};
+cmStarNameCheck.addEventListener('change',()=>{
+ try{localStorage.setItem(CM_STAR_LABEL_KEY,String(cmStarNameCheck.checked))}catch(_){}
+ drawMap();refreshFramingChart();
+});
+async function cmLoadStarNames(){
+ try{
+  const response=await fetch(CM_STAR_LABEL_URL,{cache:'no-cache'});
+  if(!response.ok)throw Error('HYG lookup HTTP '+response.status);
+  const j=await response.json();
+  if(j.format!=='cometmap-hyg-star-labels-v1'||!Array.isArray(j.data)||j.data.length<3000)throw Error('Invalid HYG star-name lookup');
+  cmStarLabelData=j.data.filter(s=>Array.isArray(s)&&s.length===6&&Number.isFinite(s[0])&&Number.isFinite(s[1])&&Number.isFinite(s[2]));
+  cmStarLabelData.sort((a,b)=>a[2]-b[2]);cmStarLabelReady=true;
+  drawMap();refreshFramingChart();
+  console.info('Cometmap TEST: HYG star-name labels loaded',cmStarLabelData.length);
+ }catch(err){
+  console.warn('Cometmap TEST: Star names unavailable; Gaia points remain visible',err);
+ }
+}
+cmLoadStarNames();
+</script>
 </body></html>
