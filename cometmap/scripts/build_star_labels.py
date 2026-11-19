@@ -32,7 +32,7 @@ with urllib.request.urlopen(urllib.request.Request(SOURCE_URL,headers={"User-Age
         bf=""
         if b:
             import re
-            m=re.fullmatch(r"([A-Za-z]{2,3})(\d*)",b)
+            m=re.fullmatch(r"([A-Za-z]{2,3})-?(\d*)",b)
             if m:
                 p=GREEK.get(m.group(1).lower())
                 if p:bf=p+''.join("⁰¹²³⁴⁵⁶⁷⁸⁹"[int(d)] for d in m.group(2))+(" "+con if con else "")
