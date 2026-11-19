@@ -1,0 +1,742 @@
+{
+  "format": "cometmap-gaia-dr3-bright-v1",
+  "epoch": "J2016.0",
+  "record_format": "little-endian float32[ra_deg,dec_deg,phot_g_mean_mag,bp_rp], stride=16",
+  "mag_limit": "G<11",
+  "stars_g_lt_10": 476946,
+  "stars_g_lt_11": 1234090,
+  "tiles": [
+    {
+      "file": "bright-r00-z0.bin",
+      "ra_min": 0,
+      "ra_max": 30,
+      "sin_dec_min": -1.0,
+      "sin_dec_max": -0.6666666666666667,
+      "count": 8475,
+      "bytes": 135600
+    },
+    {
+      "file": "bright-r00-z1.bin",
+      "ra_min": 0,
+      "ra_max": 30,
+      "sin_dec_min": -0.6666666666666667,
+      "sin_dec_max": -0.33333333333333337,
+      "count": 6390,
+      "bytes": 102240
+    },
+    {
+      "file": "bright-r00-z2.bin",
+      "ra_min": 0,
+      "ra_max": 30,
+      "sin_dec_min": -0.33333333333333337,
+      "sin_dec_max": 0.0,
+      "count": 6523,
+      "bytes": 104368
+    },
+    {
+      "file": "bright-r00-z3.bin",
+      "ra_min": 0,
+      "ra_max": 30,
+      "sin_dec_min": 0.0,
+      "sin_dec_max": 0.33333333333333326,
+      "count": 7651,
+      "bytes": 122416
+    },
+    {
+      "file": "bright-r00-z4.bin",
+      "ra_min": 0,
+      "ra_max": 30,
+      "sin_dec_min": 0.33333333333333326,
+      "sin_dec_max": 0.6666666666666667,
+      "count": 12643,
+      "bytes": 202288
+    },
+    {
+      "file": "bright-r00-z5.bin",
+      "ra_min": 0,
+      "ra_max": 30,
+      "sin_dec_min": 0.6666666666666667,
+      "sin_dec_max": 1.0,
+      "count": 26617,
+      "bytes": 425872
+    },
+    {
+      "file": "bright-r01-z0.bin",
+      "ra_min": 30,
+      "ra_max": 60,
+      "sin_dec_min": -1.0,
+      "sin_dec_max": -0.6666666666666667,
+      "count": 8792,
+      "bytes": 140672
+    },
+    {
+      "file": "bright-r01-z1.bin",
+      "ra_min": 30,
+      "ra_max": 60,
+      "sin_dec_min": -0.6666666666666667,
+      "sin_dec_max": -0.33333333333333337,
+      "count": 7363,
+      "bytes": 117808
+    },
+    {
+      "file": "bright-r01-z2.bin",
+      "ra_min": 30,
+      "ra_max": 60,
+      "sin_dec_min": -0.33333333333333337,
+      "sin_dec_max": 0.0,
+      "count": 7454,
+      "bytes": 119264
+    },
+    {
+      "file": "bright-r01-z3.bin",
+      "ra_min": 30,
+      "ra_max": 60,
+      "sin_dec_min": 0.0,
+      "sin_dec_max": 0.33333333333333326,
+      "count": 8114,
+      "bytes": 129824
+    },
+    {
+      "file": "bright-r01-z4.bin",
+      "ra_min": 30,
+      "ra_max": 60,
+      "sin_dec_min": 0.33333333333333326,
+      "sin_dec_max": 0.6666666666666667,
+      "count": 13602,
+      "bytes": 217632
+    },
+    {
+      "file": "bright-r01-z5.bin",
+      "ra_min": 30,
+      "ra_max": 60,
+      "sin_dec_min": 0.6666666666666667,
+      "sin_dec_max": 1.0,
+      "count": 23132,
+      "bytes": 370112
+    },
+    {
+      "file": "bright-r02-z0.bin",
+      "ra_min": 60,
+      "ra_max": 90,
+      "sin_dec_min": -1.0,
+      "sin_dec_max": -0.6666666666666667,
+      "count": 11821,
+      "bytes": 189136
+    },
+    {
+      "file": "bright-r02-z1.bin",
+      "ra_min": 60,
+      "ra_max": 90,
+      "sin_dec_min": -0.6666666666666667,
+      "sin_dec_max": -0.33333333333333337,
+      "count": 11951,
+      "bytes": 191216
+    },
+    {
+      "file": "bright-r02-z2.bin",
+      "ra_min": 60,
+      "ra_max": 90,
+      "sin_dec_min": -0.33333333333333337,
+      "sin_dec_max": 0.0,
+      "count": 13803,
+      "bytes": 220848
+    },
+    {
+      "file": "bright-r02-z3.bin",
+      "ra_min": 60,
+      "ra_max": 90,
+      "sin_dec_min": 0.0,
+      "sin_dec_max": 0.33333333333333326,
+      "count": 15989,
+      "bytes": 255824
+    },
+    {
+      "file": "bright-r02-z4.bin",
+      "ra_min": 60,
+      "ra_max": 90,
+      "sin_dec_min": 0.33333333333333326,
+      "sin_dec_max": 0.6666666666666667,
+      "count": 19333,
+      "bytes": 309328
+    },
+    {
+      "file": "bright-r02-z5.bin",
+      "ra_min": 60,
+      "ra_max": 90,
+      "sin_dec_min": 0.6666666666666667,
+      "sin_dec_max": 1.0,
+      "count": 19835,
+      "bytes": 317360
+    },
+    {
+      "file": "bright-r03-z0.bin",
+      "ra_min": 90,
+      "ra_max": 120,
+      "sin_dec_min": -1.0,
+      "sin_dec_max": -0.6666666666666667,
+      "count": 19671,
+      "bytes": 314736
+    },
+    {
+      "file": "bright-r03-z1.bin",
+      "ra_min": 90,
+      "ra_max": 120,
+      "sin_dec_min": -0.6666666666666667,
+      "sin_dec_max": -0.33333333333333337,
+      "count": 31546,
+      "bytes": 504736
+    },
+    {
+      "file": "bright-r03-z2.bin",
+      "ra_min": 90,
+      "ra_max": 120,
+      "sin_dec_min": -0.33333333333333337,
+      "sin_dec_max": 0.0,
+      "count": 33342,
+      "bytes": 533472
+    },
+    {
+      "file": "bright-r03-z3.bin",
+      "ra_min": 90,
+      "ra_max": 120,
+      "sin_dec_min": 0.0,
+      "sin_dec_max": 0.33333333333333326,
+      "count": 29656,
+      "bytes": 474496
+    },
+    {
+      "file": "bright-r03-z4.bin",
+      "ra_min": 90,
+      "ra_max": 120,
+      "sin_dec_min": 0.33333333333333326,
+      "sin_dec_max": 0.6666666666666667,
+      "count": 22212,
+      "bytes": 355392
+    },
+    {
+      "file": "bright-r03-z5.bin",
+      "ra_min": 90,
+      "ra_max": 120,
+      "sin_dec_min": 0.6666666666666667,
+      "sin_dec_max": 1.0,
+      "count": 15144,
+      "bytes": 242304
+    },
+    {
+      "file": "bright-r04-z0.bin",
+      "ra_min": 120,
+      "ra_max": 150,
+      "sin_dec_min": -1.0,
+      "sin_dec_max": -0.6666666666666667,
+      "count": 33443,
+      "bytes": 535088
+    },
+    {
+      "file": "bright-r04-z1.bin",
+      "ra_min": 120,
+      "ra_max": 150,
+      "sin_dec_min": -0.6666666666666667,
+      "sin_dec_max": -0.33333333333333337,
+      "count": 29343,
+      "bytes": 469488
+    },
+    {
+      "file": "bright-r04-z2.bin",
+      "ra_min": 120,
+      "ra_max": 150,
+      "sin_dec_min": -0.33333333333333337,
+      "sin_dec_max": 0.0,
+      "count": 17351,
+      "bytes": 277616
+    },
+    {
+      "file": "bright-r04-z3.bin",
+      "ra_min": 120,
+      "ra_max": 150,
+      "sin_dec_min": 0.0,
+      "sin_dec_max": 0.33333333333333326,
+      "count": 12231,
+      "bytes": 195696
+    },
+    {
+      "file": "bright-r04-z4.bin",
+      "ra_min": 120,
+      "ra_max": 150,
+      "sin_dec_min": 0.33333333333333326,
+      "sin_dec_max": 0.6666666666666667,
+      "count": 9883,
+      "bytes": 158128
+    },
+    {
+      "file": "bright-r04-z5.bin",
+      "ra_min": 120,
+      "ra_max": 150,
+      "sin_dec_min": 0.6666666666666667,
+      "sin_dec_max": 1.0,
+      "count": 9755,
+      "bytes": 156080
+    },
+    {
+      "file": "bright-r05-z0.bin",
+      "ra_min": 150,
+      "ra_max": 180,
+      "sin_dec_min": -1.0,
+      "sin_dec_max": -0.6666666666666667,
+      "count": 40787,
+      "bytes": 652592
+    },
+    {
+      "file": "bright-r05-z1.bin",
+      "ra_min": 150,
+      "ra_max": 180,
+      "sin_dec_min": -0.6666666666666667,
+      "sin_dec_max": -0.33333333333333337,
+      "count": 14869,
+      "bytes": 237904
+    },
+    {
+      "file": "bright-r05-z2.bin",
+      "ra_min": 150,
+      "ra_max": 180,
+      "sin_dec_min": -0.33333333333333337,
+      "sin_dec_max": 0.0,
+      "count": 8728,
+      "bytes": 139648
+    },
+    {
+      "file": "bright-r05-z3.bin",
+      "ra_min": 150,
+      "ra_max": 180,
+      "sin_dec_min": 0.0,
+      "sin_dec_max": 0.33333333333333326,
+      "count": 6823,
+      "bytes": 109168
+    },
+    {
+      "file": "bright-r05-z4.bin",
+      "ra_min": 150,
+      "ra_max": 180,
+      "sin_dec_min": 0.33333333333333326,
+      "sin_dec_max": 0.6666666666666667,
+      "count": 6327,
+      "bytes": 101232
+    },
+    {
+      "file": "bright-r05-z5.bin",
+      "ra_min": 150,
+      "ra_max": 180,
+      "sin_dec_min": 0.6666666666666667,
+      "sin_dec_max": 1.0,
+      "count": 7765,
+      "bytes": 124240
+    },
+    {
+      "file": "bright-r06-z0.bin",
+      "ra_min": 180,
+      "ra_max": 210,
+      "sin_dec_min": -1.0,
+      "sin_dec_max": -0.6666666666666667,
+      "count": 35476,
+      "bytes": 567616
+    },
+    {
+      "file": "bright-r06-z1.bin",
+      "ra_min": 180,
+      "ra_max": 210,
+      "sin_dec_min": -0.6666666666666667,
+      "sin_dec_max": -0.33333333333333337,
+      "count": 12926,
+      "bytes": 206816
+    },
+    {
+      "file": "bright-r06-z2.bin",
+      "ra_min": 180,
+      "ra_max": 210,
+      "sin_dec_min": -0.33333333333333337,
+      "sin_dec_max": 0.0,
+      "count": 7595,
+      "bytes": 121520
+    },
+    {
+      "file": "bright-r06-z3.bin",
+      "ra_min": 180,
+      "ra_max": 210,
+      "sin_dec_min": 0.0,
+      "sin_dec_max": 0.33333333333333326,
+      "count": 6241,
+      "bytes": 99856
+    },
+    {
+      "file": "bright-r06-z4.bin",
+      "ra_min": 180,
+      "ra_max": 210,
+      "sin_dec_min": 0.33333333333333326,
+      "sin_dec_max": 0.6666666666666667,
+      "count": 5817,
+      "bytes": 93072
+    },
+    {
+      "file": "bright-r06-z5.bin",
+      "ra_min": 180,
+      "ra_max": 210,
+      "sin_dec_min": 0.6666666666666667,
+      "sin_dec_max": 1.0,
+      "count": 7108,
+      "bytes": 113728
+    },
+    {
+      "file": "bright-r07-z0.bin",
+      "ra_min": 210,
+      "ra_max": 240,
+      "sin_dec_min": -1.0,
+      "sin_dec_max": -0.6666666666666667,
+      "count": 38229,
+      "bytes": 611664
+    },
+    {
+      "file": "bright-r07-z1.bin",
+      "ra_min": 210,
+      "ra_max": 240,
+      "sin_dec_min": -0.6666666666666667,
+      "sin_dec_max": -0.33333333333333337,
+      "count": 17249,
+      "bytes": 275984
+    },
+    {
+      "file": "bright-r07-z2.bin",
+      "ra_min": 210,
+      "ra_max": 240,
+      "sin_dec_min": -0.33333333333333337,
+      "sin_dec_max": 0.0,
+      "count": 9747,
+      "bytes": 155952
+    },
+    {
+      "file": "bright-r07-z3.bin",
+      "ra_min": 210,
+      "ra_max": 240,
+      "sin_dec_min": 0.0,
+      "sin_dec_max": 0.33333333333333326,
+      "count": 7957,
+      "bytes": 127312
+    },
+    {
+      "file": "bright-r07-z4.bin",
+      "ra_min": 210,
+      "ra_max": 240,
+      "sin_dec_min": 0.33333333333333326,
+      "sin_dec_max": 0.6666666666666667,
+      "count": 6898,
+      "bytes": 110368
+    },
+    {
+      "file": "bright-r07-z5.bin",
+      "ra_min": 210,
+      "ra_max": 240,
+      "sin_dec_min": 0.6666666666666667,
+      "sin_dec_max": 1.0,
+      "count": 8333,
+      "bytes": 133328
+    },
+    {
+      "file": "bright-r08-z0.bin",
+      "ra_min": 240,
+      "ra_max": 270,
+      "sin_dec_min": -1.0,
+      "sin_dec_max": -0.6666666666666667,
+      "count": 40033,
+      "bytes": 640528
+    },
+    {
+      "file": "bright-r08-z1.bin",
+      "ra_min": 240,
+      "ra_max": 270,
+      "sin_dec_min": -0.6666666666666667,
+      "sin_dec_max": -0.33333333333333337,
+      "count": 29282,
+      "bytes": 468512
+    },
+    {
+      "file": "bright-r08-z2.bin",
+      "ra_min": 240,
+      "ra_max": 270,
+      "sin_dec_min": -0.33333333333333337,
+      "sin_dec_max": 0.0,
+      "count": 13249,
+      "bytes": 211984
+    },
+    {
+      "file": "bright-r08-z3.bin",
+      "ra_min": 240,
+      "ra_max": 270,
+      "sin_dec_min": 0.0,
+      "sin_dec_max": 0.33333333333333326,
+      "count": 15076,
+      "bytes": 241216
+    },
+    {
+      "file": "bright-r08-z4.bin",
+      "ra_min": 240,
+      "ra_max": 270,
+      "sin_dec_min": 0.33333333333333326,
+      "sin_dec_max": 0.6666666666666667,
+      "count": 12526,
+      "bytes": 200416
+    },
+    {
+      "file": "bright-r08-z5.bin",
+      "ra_min": 240,
+      "ra_max": 270,
+      "sin_dec_min": 0.6666666666666667,
+      "sin_dec_max": 1.0,
+      "count": 11432,
+      "bytes": 182912
+    },
+    {
+      "file": "bright-r09-z0.bin",
+      "ra_min": 270,
+      "ra_max": 300,
+      "sin_dec_min": -1.0,
+      "sin_dec_max": -0.6666666666666667,
+      "count": 22584,
+      "bytes": 361344
+    },
+    {
+      "file": "bright-r09-z1.bin",
+      "ra_min": 270,
+      "ra_max": 300,
+      "sin_dec_min": -0.6666666666666667,
+      "sin_dec_max": -0.33333333333333337,
+      "count": 33057,
+      "bytes": 528912
+    },
+    {
+      "file": "bright-r09-z2.bin",
+      "ra_min": 270,
+      "ra_max": 300,
+      "sin_dec_min": -0.33333333333333337,
+      "sin_dec_max": 0.0,
+      "count": 27353,
+      "bytes": 437648
+    },
+    {
+      "file": "bright-r09-z3.bin",
+      "ra_min": 270,
+      "ra_max": 300,
+      "sin_dec_min": 0.0,
+      "sin_dec_max": 0.33333333333333326,
+      "count": 30152,
+      "bytes": 482432
+    },
+    {
+      "file": "bright-r09-z4.bin",
+      "ra_min": 270,
+      "ra_max": 300,
+      "sin_dec_min": 0.33333333333333326,
+      "sin_dec_max": 0.6666666666666667,
+      "count": 32456,
+      "bytes": 519296
+    },
+    {
+      "file": "bright-r09-z5.bin",
+      "ra_min": 270,
+      "ra_max": 300,
+      "sin_dec_min": 0.6666666666666667,
+      "sin_dec_max": 1.0,
+      "count": 20756,
+      "bytes": 332096
+    },
+    {
+      "file": "bright-r10-z0.bin",
+      "ra_min": 300,
+      "ra_max": 330,
+      "sin_dec_min": -1.0,
+      "sin_dec_max": -0.6666666666666667,
+      "count": 12720,
+      "bytes": 203520
+    },
+    {
+      "file": "bright-r10-z1.bin",
+      "ra_min": 300,
+      "ra_max": 330,
+      "sin_dec_min": -0.6666666666666667,
+      "sin_dec_max": -0.33333333333333337,
+      "count": 12543,
+      "bytes": 200688
+    },
+    {
+      "file": "bright-r10-z2.bin",
+      "ra_min": 300,
+      "ra_max": 330,
+      "sin_dec_min": -0.33333333333333337,
+      "sin_dec_max": 0.0,
+      "count": 14592,
+      "bytes": 233472
+    },
+    {
+      "file": "bright-r10-z3.bin",
+      "ra_min": 300,
+      "ra_max": 330,
+      "sin_dec_min": 0.0,
+      "sin_dec_max": 0.33333333333333326,
+      "count": 21351,
+      "bytes": 341616
+    },
+    {
+      "file": "bright-r10-z4.bin",
+      "ra_min": 300,
+      "ra_max": 330,
+      "sin_dec_min": 0.33333333333333326,
+      "sin_dec_max": 0.6666666666666667,
+      "count": 33181,
+      "bytes": 530896
+    },
+    {
+      "file": "bright-r10-z5.bin",
+      "ra_min": 300,
+      "ra_max": 330,
+      "sin_dec_min": 0.6666666666666667,
+      "sin_dec_max": 1.0,
+      "count": 28688,
+      "bytes": 459008
+    },
+    {
+      "file": "bright-r11-z0.bin",
+      "ra_min": 330,
+      "ra_max": 360,
+      "sin_dec_min": -1.0,
+      "sin_dec_max": -0.6666666666666667,
+      "count": 9451,
+      "bytes": 151216
+    },
+    {
+      "file": "bright-r11-z1.bin",
+      "ra_min": 330,
+      "ra_max": 360,
+      "sin_dec_min": -0.6666666666666667,
+      "sin_dec_max": -0.33333333333333337,
+      "count": 7780,
+      "bytes": 124480
+    },
+    {
+      "file": "bright-r11-z2.bin",
+      "ra_min": 330,
+      "ra_max": 360,
+      "sin_dec_min": -0.33333333333333337,
+      "sin_dec_max": 0.0,
+      "count": 7975,
+      "bytes": 127600
+    },
+    {
+      "file": "bright-r11-z3.bin",
+      "ra_min": 330,
+      "ra_max": 360,
+      "sin_dec_min": 0.0,
+      "sin_dec_max": 0.33333333333333326,
+      "count": 9790,
+      "bytes": 156640
+    },
+    {
+      "file": "bright-r11-z4.bin",
+      "ra_min": 330,
+      "ra_max": 360,
+      "sin_dec_min": 0.33333333333333326,
+      "sin_dec_max": 0.6666666666666667,
+      "count": 15816,
+      "bytes": 253056
+    },
+    {
+      "file": "bright-r11-z5.bin",
+      "ra_min": 330,
+      "ra_max": 360,
+      "sin_dec_min": 0.6666666666666667,
+      "sin_dec_max": 1.0,
+      "count": 30307,
+      "bytes": 484912
+    }
+  ],
+  "source_repo": "https://github.com/ngwnos/gaia-dr3-chunked",
+  "source_revision": "7ed549309fb4999cbee94efd971d8cf6182efafa",
+  "gaia_credit": "ESA/Gaia/DPAC; Gaia Collaboration (2022), Gaia DR3",
+  "selection_note": "From a third-party Gaia DR3-derived, magnitude-sorted subset. The upstream does not document its initial selection completely; this is NOT an independently complete Gaia DR3 extract. Very bright stars may be absent owing to Gaia saturation.",
+  "input_chunks": [
+    {
+      "chunk": 0,
+      "records": 100000,
+      "first_g": 1.9425238370895386,
+      "last_g": 8.453972816467285
+    },
+    {
+      "chunk": 1,
+      "records": 100000,
+      "first_g": 8.4539794921875,
+      "last_g": 9.128748893737793
+    },
+    {
+      "chunk": 2,
+      "records": 100000,
+      "first_g": 9.128750801086426,
+      "last_g": 9.53039836883545
+    },
+    {
+      "chunk": 3,
+      "records": 100000,
+      "first_g": 9.530401229858398,
+      "last_g": 9.821104049682617
+    },
+    {
+      "chunk": 4,
+      "records": 100000,
+      "first_g": 9.821110725402832,
+      "last_g": 10.048832893371582
+    },
+    {
+      "chunk": 5,
+      "records": 100000,
+      "first_g": 10.048832893371582,
+      "last_g": 10.23666000366211
+    },
+    {
+      "chunk": 6,
+      "records": 100000,
+      "first_g": 10.236661911010742,
+      "last_g": 10.398017883300781
+    },
+    {
+      "chunk": 7,
+      "records": 100000,
+      "first_g": 10.398018836975098,
+      "last_g": 10.538865089416504
+    },
+    {
+      "chunk": 8,
+      "records": 100000,
+      "first_g": 10.53886604309082,
+      "last_g": 10.662612915039062
+    },
+    {
+      "chunk": 9,
+      "records": 100000,
+      "first_g": 10.662613868713379,
+      "last_g": 10.774441719055176
+    },
+    {
+      "chunk": 10,
+      "records": 100000,
+      "first_g": 10.774441719055176,
+      "last_g": 10.876803398132324
+    },
+    {
+      "chunk": 11,
+      "records": 100000,
+      "first_g": 10.876803398132324,
+      "last_g": 10.969986915588379
+    },
+    {
+      "chunk": 12,
+      "records": 100000,
+      "first_g": 10.969986915588379,
+      "last_g": 11.05614948272705
+    }
+  ]
+}
