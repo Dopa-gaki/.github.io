@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="ja"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="dark" name="color-scheme"/><meta name="description" content="SNmap｜超新星と未分類突発天体の天球・銀河系・一覧マップ．PNmapに準拠した観測支援ツール．"><link rel="canonical" href="https://dopa-gaki.github.io/.github.io/snmap/"><title>SNmap v6.10｜超新星観測マップ</title>
+<meta content="dark" name="color-scheme"/><meta name="description" content="SNmap｜超新星と未分類突発天体の天球・銀河系・一覧マップ．PNmapに準拠した観測支援ツール．"><link rel="canonical" href="https://dopa-gaki.github.io/.github.io/snmap/"><title>SNmap v9.6｜超新星観測マップ</title>
 <style>
 :root{--bg:#070e1c;--panel:#102036;--panel2:#152940;--line:#304c67;--text:#e9f4ff;--sub:#a8c0d7;--cyan:#68c7ff;--gold:#ffcd83;--orange:#f2a25e;--green:#9fe0b5;--red:#f3a7b4}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{font:14px/1.5 system-ui,-apple-system,"Noto Sans JP",sans-serif;color:var(--text);background:radial-gradient(circle at 10% -20%,#172c50 0,#070e1c 42%);margin:0}button,select,input{font:inherit}button{cursor:pointer;color:var(--text);background:#244260;border:1px solid #4d7398;padding:8px 11px;border-radius:8px}button:hover{background:#315a7c}button.active{background:#136da4;border-color:#91d4fc}button:disabled{opacity:.5;cursor:not-allowed}a{color:#91d9ff}h1,h2,h3,p{margin-top:0}header{max-width:1700px;margin:auto;padding:21px 20px 14px}.eyebrow{font-size:11px;font-weight:800;letter-spacing:.2em;color:var(--cyan)}h1{font-size:clamp(24px,2.4vw,32px);margin:2px 0}header p{color:var(--sub);margin:0 0 11px;max-width:900px;font-size:13px}.headerline{display:flex;align-items:center;justify-content:space-between;gap:16px}.headeractions{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.muted{color:var(--sub)}.small{font-size:11px}.status{display:flex;align-items:center;gap:9px;color:#c6d9e9;font-size:12px;flex-wrap:wrap}.status-dot{width:8px;height:8px;border-radius:50%;background:#dda16c;box-shadow:0 0 0 3px #e7a66817}.status-dot.live{background:#7ee0ac;box-shadow:0 0 0 3px #7ee0ac2b}.status-dot.error{background:#f39c8e}main{max-width:1700px;margin:auto;padding:0 14px 22px;display:grid;grid-template-columns:minmax(540px,1fr) minmax(350px,435px);gap:13px}.card{border:1px solid var(--line);border-radius:13px;background:var(--panel);overflow:hidden}.mapcard{position:relative;min-height:560px;background:#07101f;align-self:start}.maptoolbar{position:absolute;left:12px;top:12px;z-index:3;display:flex;gap:5px;padding:5px;background:#102a46e8;border:1px solid #456985;border-radius:10px;max-width:calc(100% - 24px);flex-wrap:wrap}.maptoolbar button{font-size:12px;padding:6px 9px;background:transparent;border:0}.maptoolbar button.active{background:#1b75aa}#sky{width:100%;height:660px;display:block;cursor:crosshair;touch-action:none}.mapfoot{position:absolute;bottom:11px;left:12px;right:12px;pointer-events:none;display:flex;justify-content:space-between;gap:14px;color:#c0d7e7;font-size:11px;text-shadow:0 1px 4px #000}.maptip{position:absolute;z-index:4;display:none;border:1px solid #72a9d1;background:#112a42ee;border-radius:7px;padding:6px 8px;font-size:12px;pointer-events:none;max-width:230px}.side{padding:14px}.side h2{font-size:15px;margin:0 0 12px}.summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-bottom:11px}.metric{background:#172d46;border:1px solid #385876;border-radius:9px;padding:8px 9px}.metric strong{font-size:23px;display:block;line-height:1.1;font-variant-numeric:tabular-nums}.metric span{font-size:10px;color:var(--sub)}.section{border-top:1px solid #2f4a64;margin-top:15px;padding-top:13px}.secthead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}.secthead h3{font-size:13px;margin:0}.field{display:block;min-width:0}.field>span{font-size:11px;color:#afc6dc;display:block;margin:0 0 3px}input,select{background:#091a2b;border:1px solid #3c607c;border-radius:7px;color:var(--text);padding:8px;width:100%;min-width:0}input:focus,select:focus{outline:1px solid #7acbf8}.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.fields.triple{grid-template-columns:repeat(3,minmax(0,1fr))}.checkbox{display:flex;align-items:center;gap:6px;color:#d0e3f4;font-size:12px}.checkbox input{width:auto;accent-color:#58bdf3}.filters{display:flex;gap:5px;flex-wrap:wrap;margin:8px 0}.filters button{font-size:11px;padding:5px 9px}.selected{margin-top:13px;padding:13px;border:1px solid #456481;background:#10273f;border-radius:9px}.selectedtitle{display:flex;justify-content:space-between;align-items:center;gap:10px}.selectedtitle h3{margin:0 0 5px;font-size:17px}.chip{font-size:10px;padding:3px 7px;border:1px solid #527593;border-radius:20px;color:#aee0ff}.objectgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:10px 0}.kv{background:#0c1d31;padding:7px 8px;border:1px solid #2c4964;border-radius:7px;min-width:0}.kv dt{color:#a2bad0;font-size:10px}.kv dd{margin:2px 0 0;font-size:12px;overflow-wrap:anywhere}.links{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}.links a{font-size:11px;border:1px solid #416d8c;padding:6px 8px;border-radius:7px;text-decoration:none}.links a:hover{background:#214361}.imagebox{margin-top:11px;background:#071626;border:1px solid #355575;border-radius:8px;min-height:172px;position:relative;overflow:hidden}.imagebox img{width:100%;height:210px;object-fit:contain;display:none}.imgmsg{position:absolute;top:44%;left:12px;right:12px;text-align:center;color:#9db5ca;font-size:12px}.tiny{font-size:10px;color:#9db5ca}.equipline{display:grid;grid-template-columns:minmax(0,1.4fr) .8fr .8fr;gap:6px;padding:7px 0;border-bottom:1px solid #2d4560;font-size:11px;align-items:center}.equipline b{font-weight:620}.equipline span{color:#b1d5ee;text-align:right}.asidefoot{font-size:10px;color:#9db3c8}.bottom{max-width:1700px;margin:auto;padding:0 14px 28px}.tablecard{padding:13px 14px}.tablehead{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:10px}.tablehead h2{font-size:15px;margin:0}.tablewrap{max-height:440px;overflow:auto;border:1px solid #2e4a62;border-radius:8px}table{width:100%;border-collapse:collapse;font-size:12px;white-space:nowrap}th{position:sticky;top:0;background:#193049;color:#bee2f8;text-align:left;padding:8px;z-index:1;cursor:pointer}td{padding:7px 8px;border-top:1px solid #293e56}tr[data-id]:hover{background:#1a3854;cursor:pointer}tr.chosen{background:#204965}td.num{text-align:right;font-variant-numeric:tabular-nums}.type-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}.note{max-width:1700px;margin:auto;padding:0 17px 33px;color:#a6bbce;font-size:11px;line-height:1.65}.note p{margin:5px 0}.badgebox{display:inline-block;border:1px solid #44637e;border-radius:6px;padding:3px 7px;color:#abd9f4;font-size:10px}.pillrow{display:flex;gap:6px;flex-wrap:wrap;align-items:center}.two{display:grid;grid-template-columns:1fr 1fr;gap:7px}.warning{color:#ffc69b}.green{color:#a5dfb5}.loading{opacity:.65}#toast{position:fixed;right:15px;bottom:15px;background:#203c57;border:1px solid #5b87a3;padding:10px 14px;border-radius:10px;z-index:10;display:none;max-width:360px;font-size:12px;box-shadow:0 10px 32px #0008}details summary{cursor:pointer;color:#afd9f4;font-size:12px;font-weight:600;margin:9px 0}.help{font-size:11px;color:#abc1d5;line-height:1.7}
@@ -158,7 +158,7 @@ body[data-pn-layout="mobile"] .photo-box .imagebox,body[data-pn-layout="mobile"]
 .sn-gal-description{font-size:10px;color:#bdd2e5;line-height:1.45;margin:7px 0 0}
 @media(max-width:600px){.sn-gal-controls{max-height:42%;width:min(245px,calc(100% - 24px))}.sn-gal-description{font-size:10px}}
 
-/* SNmap v6.9 — visual / terminology parity with the published PNmap (2026-11-19).
+/* SNmap v7.0 — visual / terminology parity with the published PNmap (2026-11-19).
    Only supernova-specific data units, labels and visualizations differ. */
 :root{--bg:#080d18;--panel:#0e1b2e;--panel2:#13263e;--line:#294763;--text:#e9f4ff;--sub:#a9bed1}
 body{background:var(--bg)}
@@ -281,7 +281,30 @@ function n(v){if(v===null||v===undefined||v==='')return null;const x=typeof v===
 function str(v){return v==null?'':String(v).trim()}
 function first(o,...keys){for(const k of keys){const v=o[k];if(v!==undefined&&v!==null&&v!=='')return v}return null}
 function esc(x){return str(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function coord(v,isRA){if(typeof v==='number')return v;let s=str(v);if(!s)return null;if(/[hms:°′'" ]/.test(s)&&/[\d]\s*[:h° ]/.test(s)){let q=s.replace(/[hms°′'"]/g,':').split(/[:\s]+/).filter(Boolean).map(Number);if(q.length>=2&&q.every(Number.isFinite)){let sign=s.trim().startsWith('-')?-1:1;let val=Math.abs(q[0])+q[1]/60+(q[2]||0)/3600;return isRA?val*15:sign*val}}return n(s)}
+// Strict J2000 coordinate parser. Reject impossible sexagesimal fields rather than
+// silently wrapping 12:75:00 into a different position on the sky.
+function coord(v,isRA){
+ if(typeof v==='number')return Number.isFinite(v)?v:null;
+ const s=str(v);if(!s)return null;
+ // Plain decimal coordinates in the API/CSV are degrees, not hours.
+ if(/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(s))return Number(s);
+ const explicitHours=/[hH]/.test(s);
+ const explicitDegrees=/[°dD]/.test(s);
+ if(isRA&&explicitDegrees)return null;
+ if(!isRA&&explicitHours)return null;
+ // Accept HH:MM[:SS], HHhMMmSSs and spaced sexagesimal fields.
+ const cleaned=s.replace(/[hHdD°mM′'sS″"]/g,':').trim();
+ if(!/^[+-]?\d+(?:\.\d+)?(?:[:\s]+\d+(?:\.\d+)?){1,2}:?$/.test(cleaned))return null;
+ const parts=cleaned.replace(/:$/,'').split(/[:\s]+/).map(Number);
+ if(parts.length<2||parts.length>3||parts.some(x=>!Number.isFinite(x)))return null;
+ const [a,b,c=0]=parts;
+ if(b<0||b>=60||c<0||c>=60)return null;
+ const sign=s.startsWith('-')?-1:1;
+ const absolute=Math.abs(a)+b/60+c/3600;
+ if(isRA){if(sign<0||absolute>24||(absolute===24&&(b!==0||c!==0)))return null;return absolute*15;}
+ if(absolute>90||(absolute===90&&(b!==0||c!==0)))return null;
+ return sign*absolute;
+}
 function dateVal(v){
  if(v==null||v==='')return '';
  if(typeof v==='string' && /^\d{4}-\d{2}-\d{2}/.test(v)){const d=v.slice(0,10);return Number.isFinite(safeDate(d))?d:'';}
@@ -357,27 +380,65 @@ function merge(all){
  for(const item of all){
   const x=normal(item,item.source||'API');if(!x)continue;
   const old=m.get(x.id);if(!old){m.set(x.id,x);continue}
+  // Select the newest *valid dated photometric measurement*, not simply the
+  // record with the newest metadata timestamp. Otherwise an updated TNS entry
+  // with no magnitude can erase a valid measurement from another survey.
   const oldTs=safeTime(old.last),newTs=safeTime(x.last);
-  const older=oldTs>0&&(!newTs||oldTs>newTs),newer=newTs>oldTs;
-  const winner=newer?x:old;
+  const oldPhot=oldTs>0&&Number.isFinite(old.mag);
+  const newPhot=newTs>0&&Number.isFinite(x.mag);
+  const winner=newTs>oldTs?x:old;
   const updated={...old,...x,...winner};
-  // Only an actual dated photometric observation may replace a dated measurement.
-  if(newer){updated.mag=x.mag;updated.magSource=x.magSource||x.source;updated.band=x.band}
-  else if(older){updated.mag=old.mag;updated.magSource=old.magSource;updated.band=old.band}
-  else if(oldTs&&newTs&&oldTs===newTs){
-   // The same night can contain different bands. Retain earlier value unless absent.
-   updated.mag=old.mag??x.mag;updated.magSource=old.magSource||x.magSource;updated.band=old.band||x.band;
-  }else if(!oldTs&&!newTs){
-   updated.mag=old.mag??x.mag;updated.magSource=old.magSource||x.magSource;updated.band=old.band||x.band;
-  }
-  updated.last=newer?x.last:(old.last||x.last);
+  let phot=null;
+  if(oldPhot&&newPhot){
+   // Two catalogues may report different measurements on the same UTC day.
+   // Select deterministically, independently of fetch/merge order. Prefer a
+   // documented filter and an identified observing source; never use the
+   // brighter magnitude as a proxy for recency.
+   if(newTs!==oldTs)phot=newTs>oldTs?x:old;
+   else {
+    const photRank=v=>{
+     const origin=String(v.magSource||v.source||'');
+     const knownSource=/(?:TNS|Rochester|Transients\.fyi)/i.test(origin)?1:0;
+     return Number(Boolean(v.band&&v.band!=='—'))*4+knownSource*2+Number(Boolean(v.magSource));
+    };
+    const a=photRank(old),b=photRank(x);
+    if(a!==b)phot=b>a?x:old;
+    else {
+     // Stable lexical tie-break prevents periodic refreshes from flipping
+     // the displayed value when API completion order changes.
+     const key=v=>[String(v.magSource||v.source||''),String(v.band||''),Number(v.mag).toFixed(6)].join('|');
+     phot=key(x)<key(old)?x:old;
+    }
+   }
+  }else if(newPhot)phot=x;
+  else if(oldPhot)phot=old;
+  updated.mag=phot?phot.mag:null;
+  updated.magSource=phot?(phot.magSource||phot.source||''):'';
+  updated.band=phot?(phot.band||''):'';
+  // 'last' is the date of the displayed measurement, never a catalogue
+  // update date without photometry. This also keeps age calculations honest.
+  updated.last=phot?phot.last:'';
+  // Track the newest reported record date separately for diagnostics.
+  updated.catalogueLast=newTs>oldTs?x.last:(old.last||x.last);
+  // Cross-source provenance must survive later broker updates. A new candidate
+  // record must never erase a prior TNS verification or spectral designation.
+  updated.tnsVerified=old.tnsVerified===true||x.tnsVerified===true;
+  updated.tns_type=old.tns_type||x.tns_type;
+  updated.tns_name=old.tns_name||x.tns_name;
+  // Preserve the original magnitude's source even when a newer record supplies
+  // no valid photometry. Do not misrepresent discovery magnitudes as latest.
+  if(updated.mag==null)updated.magSource='';
   // TNS-verified spectral types outrank unclassified/candidate broker labels.
   const typed=[old,x].filter(v=>v.confirmed);
-  if(typed.length){const q=typed.sort((a,b)=>Number(Boolean(a.tnsVerified||a.tnsChecked))-Number(Boolean(b.tnsVerified||b.tnsChecked))).at(-1);updated.type=q.type;updated.confirmed=true;updated.name=q.name}
+  if(typed.length){const q=typed.sort((a,b)=>Number(Boolean(a.tnsVerified||a.tnsChecked))-Number(Boolean(b.tnsVerified||b.tnsChecked))).at(-1);updated.type=q.type;updated.confirmed=true;updated.candidate=false;updated.name=q.name}
   if(!updated.host||updated.host==='—'||updated.host==='none')updated.host=[x.host,old.host].find(v=>v&&v!=='—'&&v!=='none')||'—';
-  updated.peak=[old.peak,x.peak].filter(Number.isFinite).reduce((a,b)=>Math.min(a,b),Infinity);
-  if(!Number.isFinite(updated.peak))updated.peak=null;
-  updated.recordedPeakSource=old.recordedPeakSource||x.recordedPeakSource;
+  // The brightest reported measurement and its provenance must travel together.
+  // Selecting a peak from source B while retaining source A's label is misleading.
+  const peakCandidates=[old,x].filter(v=>Number.isFinite(v.peak));
+  const bestPeak=peakCandidates.sort((a,b)=>a.peak-b.peak ||
+    String(a.recordedPeakSource||a.source||'').localeCompare(String(b.recordedPeakSource||b.source||'')))[0];
+  updated.peak=bestPeak?bestPeak.peak:null;
+  updated.recordedPeakSource=bestPeak?(bestPeak.recordedPeakSource||bestPeak.source||''):'';
   updated.discoveryMag=old.discoveryMag??x.discoveryMag;
   updated.discovery=old.discovery||x.discovery;
   // Preserve both redshifts where source catalogues disagree.
@@ -385,7 +446,9 @@ function merge(all){
    updated.zDiscrepancy=old.zDiscrepancy||`${old.source||'source A'} ${old.z} / ${x.source||'source B'} ${x.z}`;
   }
   updated.z=(x.tnsVerified&&Number.isFinite(x.z))?x.z:(old.z??x.z);
-  updated.tnsZ=old.tnsZ??x.tnsZ;updated.tnsRa=old.tnsRa??x.tnsRa;updated.tnsDec=old.tnsDec??x.tnsDec;
+  const tnsPreferred=x.tnsVerified&&!old.tnsVerified?x:old;
+  const tnsOther=tnsPreferred===x?old:x;
+  updated.tnsZ=tnsPreferred.tnsZ??tnsOther.tnsZ;updated.tnsRa=tnsPreferred.tnsRa??tnsOther.tnsRa;updated.tnsDec=tnsPreferred.tnsDec??tnsOther.tnsDec;
   updated.tnsURL=old.tnsURL||x.tnsURL;updated.tnsChecked=old.tnsChecked||x.tnsChecked;
   if(Number.isFinite(old.ra)&&Number.isFinite(x.ra)&&Number.isFinite(old.dec)&&Number.isFinite(x.dec)){const dra=(((x.ra-old.ra+540)%360)-180)*Math.cos((x.dec+old.dec)*Math.PI/360),ddec=x.dec-old.dec,arcsec=3600*Math.hypot(dra,ddec);if(arcsec>3)updated.posDiscrepancy=`${arcsec.toFixed(1)} arcsec`;}
   if(old.posDiscrepancy)updated.posDiscrepancy=old.posDiscrepancy;
@@ -534,10 +597,29 @@ function lst(date){return (gmst(date)+Number($('lon').value)+360)%360}
 function horiz(x,date=observationDate()){let lat=(Number($('lat').value)||0)*rad,ha=((lst(date)-x.ra+540)%360-180)*rad,dec=x.dec*rad;let alt=Math.asin(Math.sin(lat)*Math.sin(dec)+Math.cos(lat)*Math.cos(dec)*Math.cos(ha));let sinaz=-Math.sin(ha)*Math.cos(dec)/Math.max(1e-9,Math.cos(alt)),cosaz=(Math.sin(dec)-Math.sin(alt)*Math.sin(lat))/Math.max(1e-9,Math.cos(alt)*Math.cos(lat));return {alt:alt*deg,az:(Math.atan2(sinaz,cosaz)*deg+360)%360}}
 function sunEquatorial(dt){const jd=dt.getTime()/86400000+2440587.5,n=jd-2451545,L=((280.460+0.9856474*n)%360+360)%360,g=((357.528+0.9856003*n)%360+360)%360;const lambda=(L+1.915*Math.sin(g*rad)+0.020*Math.sin(2*g*rad))*rad,eps=(23.439-0.0000004*n)*rad;return {ra:(Math.atan2(Math.cos(eps)*Math.sin(lambda),Math.cos(lambda))*deg+360)%360,dec:Math.asin(Math.sin(eps)*Math.sin(lambda))*deg}}
 function altitudeNow(x){return horiz(x).alt}
-function age(s){const t=safeDate(s);if(!Number.isFinite(t)||t>Date.now()+86400000)return Infinity;return Math.max(0,Math.floor((Date.now()-t)/86400000))}
+// Reject all future-dated measurements consistently across filtering, ranking and export.
+function age(s){const t=safeDate(s),now=Date.now();if(!Number.isFinite(t)||t>now)return Infinity;return Math.max(0,(now-t)/86400000)}
+// Only dated, recent measurements may drive brightness filtering or sorting.
+// v8.5: compare exact elapsed milliseconds rather than rounded-down days.
+// Date-only catalogue observations are UTC calendar dates; future dates are not current.
+function snPhotometryFresh(x){
+ if(!x||!Number.isFinite(x.mag))return false;
+ const t=safeDate(x.last),elapsed=Date.now()-t;
+ return Number.isFinite(t)&&elapsed>=0&&elapsed<=30*86400000;
+}
+function snRankingMag(x){return snPhotometryFresh(x)?x.mag:Infinity}
+// v8.6: An observation-date filter must never substitute the discovery date.
+// Use exact elapsed time; unknown, invalid and future observation dates are
+// excluded from finite windows, but remain accessible under "no limit".
+function snWithinObservationWindow(x,days,now=Date.now()){
+ if(days>=99999)return true;
+ const t=safeDate(x.last);
+ if(!Number.isFinite(t)||t>now)return false;
+ return now-t>=0&&now-t<=days*86400000;
+}
 function filtered(){const q=$('search').value.toLowerCase().trim(),kind=$('type').value,days=+$('days').value,maxMag=+$('mag').value,upOnly=$('upOnly').checked,favOnly=$('favoritesOnly').checked,unknown=$('unknownMag').checked;let v=records.filter(x=>{
- if(q&&!`${x.name} ${x.type} ${x.host}`.toLowerCase().includes(q))return false;if(kind==='confirmed'&&!x.confirmed)return false;if(kind==='candidate'&&x.confirmed)return false;if(kind==='Ia'&&cat(x)!=='ia')return false;if(kind==='II'&&cat(x)!=='ii')return false;if(kind==='Ibc'&&cat(x)!=='ibc')return false;if(age(x.last||x.discovery)>days)return false;if(Number.isFinite(x.mag)?x.mag>maxMag:!unknown)return false;if(upOnly&&altitudeNow(x)<25)return false;if(favOnly&&!favs.has(x.id))return false;return true});let sort=$('sort').value;v.sort((a,b)=>{if(sort==='name')return a.name.localeCompare(b.name,undefined,{numeric:true});if(sort==='host')return a.host.localeCompare(b.host,undefined,{numeric:true})||a.name.localeCompare(b.name);if(sort==='recent')return safeTime(b.last)-safeTime(a.last);if(sort==='discovery')return safeTime(b.discovery)-safeTime(a.discovery);if(sort==='alt')return altitudeNow(b)-altitudeNow(a);if(sort==='recommended')return snImagingScore(b)-snImagingScore(a)||a.name.localeCompare(b.name);return (a.mag??99)-(b.mag??99)||a.name.localeCompare(b.name)});return v}
-function safeTime(s){let v=safeDate(s);return Number.isFinite(v)&&v<=Date.now()+86400000?v:0}
+ if(q&&!`${x.name} ${x.type} ${x.host}`.toLowerCase().includes(q))return false;if(kind==='confirmed'&&!x.confirmed)return false;if(kind==='candidate'&&x.confirmed)return false;if(kind==='Ia'&&cat(x)!=='ia')return false;if(kind==='II'&&cat(x)!=='ii')return false;if(kind==='Ibc'&&cat(x)!=='ibc')return false;if(!snWithinObservationWindow(x,days))return false;if(Number.isFinite(snRankingMag(x))?snRankingMag(x)>maxMag:!unknown)return false;if(upOnly&&altitudeNow(x)<25)return false;if(favOnly&&!favs.has(x.id))return false;return true});let sort=$('sort').value;v.sort((a,b)=>{if(sort==='name')return a.name.localeCompare(b.name,undefined,{numeric:true});if(sort==='host')return a.host.localeCompare(b.host,undefined,{numeric:true})||a.name.localeCompare(b.name);if(sort==='recent')return safeTime(b.last)-safeTime(a.last)||a.name.localeCompare(b.name);if(sort==='discovery')return safeTime(b.discovery)-safeTime(a.discovery);if(sort==='alt')return altitudeNow(b)-altitudeNow(a);if(sort==='recommended')return snImagingScore(b)-snImagingScore(a)||a.name.localeCompare(b.name);return (snRankingMag(a)<snRankingMag(b)?-1:snRankingMag(a)>snRankingMag(b)?1:0)||a.name.localeCompare(b.name)});return v}
+function safeTime(s){let v=safeDate(s);return Number.isFinite(v)&&v<=Date.now()?v:0}
 function download(text,name,type='text/csv;charset=utf-8'){let url=URL.createObjectURL(new Blob([text],{type})),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2500)}
 function csvQuote(v){
  let t=str(v);
@@ -547,17 +629,23 @@ function csvQuote(v){
     /^[\s\uFEFF\u200B-\u200D\u2060]*[=+@\-\t\r\n]/.test(t))t="'"+t;
  return '"'+t.replace(/"/g,'""')+'"'
 }
+// An undated or stale measurement is not a current acquisition magnitude.
+// Keep it in the general catalogue with its date, but leave N.I.N.A.'s
+// magnitude field empty so acquisition software cannot mistake it for current.
+function snCurrentExportMag(x){
+ return snPhotometryFresh(x) ? x.mag : '';
+}
 function exportCSV(nina=false){
  const vv=filtered();if(!vv.length){toast(lang==='ja'?'出力する取得済み天体がありません．':'No fetched objects to export.');return;}
  if(nina){
   const headers=['Catalogue Entry','Familiar Name','Alternative Entries','Type','Constellation','Right Ascension','Declination','Magnitude','Size','Surface Brightness (mag/arcsec2)','Rises over 10º','Transit Time','Sets below 10º','Maximum Altitude','Position Angle (East)','Next Opposition','Notes'];
   const raN=(v)=>{let h=v/15,H=Math.floor(h),M=Math.floor((h-H)*60),sec=((h-H)*60-M)*60;return `${String(H).padStart(2,'0')}h ${String(M).padStart(2,'0')}' ${sec.toFixed(2)}"`};
   const decN=(v)=>{let d=Math.abs(v),D=Math.floor(d),M=Math.floor((d-D)*60),sec=((d-D)*60-M)*60;return `${v<0?'-':'+'}${String(D).padStart(2,'0')}º ${String(M).padStart(2,'0')}' ${sec.toFixed(1)}"`};
-  const lines=[headers.map(csvQuote).join(',')].concat(vv.map(x=>[x.name,x.name,'',x.confirmed?'Supernova':'Transient','',raN(x.ra),decN(x.dec),x.mag??'','','','','','','','','',`${x.type}; host ${x.host}; J2000`].map(csvQuote).join(',')));
+  const lines=[headers.map(csvQuote).join(',')].concat(vv.map(x=>[x.name,x.name,'',x.confirmed?'Supernova':'Transient','',raN(x.ra),decN(x.dec),snCurrentExportMag(x),'','','','','','','',`${x.type}; host ${x.host}; J2000; ${snPhotometryFresh(x)?'dated magnitude':'historical or unavailable magnitude'}; observed ${x.last||'undated'}; band ${x.band||'unknown'}; source ${x.magSource||x.source||'unknown'}${!snPhotometryFresh(x)?'; not suitable as current brightness':''}`].map(csvQuote).join(',')));
   download('\ufeff'+lines.join('\r\n'),'SNmap_Telescopius_NINA_J2000.csv');
  }else{
-  let cols=['name','ra_deg','dec_deg','ra_j2000','dec_j2000','latest_mag','peak_mag','type','confirmed','host','last_observed','discovery','redshift','source','observation_date_verified','observation_age_days','photometry_band','photometry_source','photometry_status','catalogue_origin','source_data_through','tns_verified','tns_checked','position_discrepancy','redshift_discrepancy','crosscheck_status'];
-  let lines=[cols.join(',')].concat(vv.map(x=>[x.name,x.ra,x.dec,raText(x.ra),decText(x.dec),x.mag??'',x.peak??'',x.type,x.confirmed,x.host,x.last,x.discovery,x.z??'',x.source,x.last?'yes':'no',Number.isFinite(age(x.last))?age(x.last):'',x.band||'',x.magSource||'',!x.last?'no dated observation':age(x.last)>30?'historical (>30 days)':'dated observation',x.catalogueOrigin||'',through||'',x.tnsVerified?'yes':'no',x.tnsChecked||'',x.posDiscrepancy||'',x.zDiscrepancy||'',x.crosschecked||''].map(csvQuote).join(',')));
+  let cols=['name','ra_deg','dec_deg','ra_j2000','dec_j2000','latest_mag','historical_last_mag','peak_mag','type','confirmed','host','last_observed','discovery','redshift','source','observation_date_verified','observation_age_days','photometry_band','photometry_source','photometry_status','catalogue_origin','source_data_through','tns_verified','tns_checked','position_discrepancy','redshift_discrepancy','crosscheck_status'];
+  let lines=[cols.join(',')].concat(vv.map(x=>[x.name,x.ra,x.dec,raText(x.ra),decText(x.dec),snCurrentExportMag(x),x.mag??'',x.peak??'',x.type,x.confirmed,x.host,x.last,x.discovery,x.z??'',x.source,x.last?'yes':'no',Number.isFinite(age(x.last))?Math.max(0,Math.round(age(x.last)*100)/100):'',x.band||'',x.magSource||'',x.mag==null?'no valid measured magnitude':!x.last?'no dated observation':!Number.isFinite(age(x.last))?'invalid/future observation':!snPhotometryFresh(x)?'historical (>30 days)':'current dated observation',x.catalogueOrigin||'',through||'',x.tnsVerified?'yes':'no',x.tnsChecked||'',x.posDiscrepancy||'',x.zDiscrepancy||'',x.crosschecked||''].map(csvQuote).join(',')));
   download('\ufeff'+lines.join('\r\n'),'SNmap_visible_'+new Date().toISOString().slice(0,10)+'.csv');
  }
 }
@@ -565,7 +653,7 @@ function exportCSV(nina=false){
 
 const SN_FAVORITE_COLORS=['#82d5ff','#ffcd8c','#9fe0b5','#ffb0c6','#d2b9ff','#f5ee9b','#a5ced8','#f3a885','#a2a8ff','#b7e2a4','#ebbbc7','#a9d6d9'];
 let snListLimit=240,fovIndex=0,fovPinned=false;
-function drawListMode(){const area=$('snListRows');if(!area||mode!=='list')return;const v=filtered(),slice=v.slice(0,snListLimit);$('snListSummary').textContent=(lang==='ja'?`表示 ${slice.length.toLocaleString()} / ${v.length.toLocaleString()} 件`:`${slice.length.toLocaleString()} / ${v.length.toLocaleString()} shown`);area.innerHTML=slice.map(x=>{const a=altitudeNow(x),warn=age(x.last)>30?' ⚑':'';return `<tr tabindex="0" data-sn-id="${esc(x.id)}" class="${current?.id===x.id?'sn-picked':''}"><td><b>${esc(x.name)}</b></td><td class="sn-mag">${fmt(x.mag)}${warn}</td><td>${esc(x.last||'—')}</td><td>${esc(x.type)}</td><td>${esc(x.host||'—')}</td><td>${a.toFixed(1)}°</td><td><button data-sn-fav="${esc(x.id)}" aria-label="${lang==='ja'?'保存を切替':'Toggle saved'}">${favs.has(x.id)?'★':'☆'}</button></td></tr>`}).join('');$('snListMore').hidden=slice.length>=v.length;$('snListMore').textContent=lang==='ja'?'さらに表示':'Show more'}
+function drawListMode(){const area=$('snListRows');if(!area||mode!=='list')return;const v=filtered(),slice=v.slice(0,snListLimit);$('snListSummary').textContent=(lang==='ja'?`表示 ${slice.length.toLocaleString()} / ${v.length.toLocaleString()} 件`:`${slice.length.toLocaleString()} / ${v.length.toLocaleString()} shown`);area.innerHTML=slice.map(x=>{const a=altitudeNow(x),fresh=snPhotometryFresh(x),warn=x.last&&!fresh?' ⚑':'';return `<tr tabindex="0" data-sn-id="${esc(x.id)}" class="${current?.id===x.id?'sn-picked':''}"><td><b>${esc(x.name)}</b></td><td class="sn-mag">${fresh?fmt(x.mag):'—'}${warn}</td><td>${esc(x.last||'—')}</td><td>${esc(x.type)}</td><td>${esc(x.host||'—')}</td><td>${a.toFixed(1)}°</td><td><button data-sn-fav="${esc(x.id)}" aria-label="${lang==='ja'?'保存を切替':'Toggle saved'}">${favs.has(x.id)?'★':'☆'}</button></td></tr>`}).join('');$('snListMore').hidden=slice.length>=v.length;$('snListMore').textContent=lang==='ja'?'さらに表示':'Show more'}
 function snGalRefresh(){if(mode==='list')drawListMode();if(!$('snAltPanel').hidden)renderAltitude()}
 function fovPopupHtml(e){if(!e)return '';const pix=206.265*e.pixel/e.focal,fw=pix*e.width/60,fh=pix*e.height/60,asp=Math.max(.4,Math.min(3,fw/Math.max(fh,.00001))),w=asp>1?230:230*asp,h=asp>1?Math.max(55,230/asp):130;return `<div><strong>${esc(e.name)}</strong><div class="sn-fov-diagram"><div class="sn-fov-frame" style="width:${Math.min(230,w).toFixed(0)}px;height:${Math.min(130,h).toFixed(0)}px"></div></div><div class="sn-fov-measures"><div>${lang==='ja'?'画角':'Field of view'}<b>${fw.toFixed(2)}′ × ${fh.toFixed(2)}′</b></div><div>${lang==='ja'?'画素スケール':'Pixel scale'}<b>${pix.toFixed(3)}″/px</b></div><div>${lang==='ja'?'焦点距離':'Focal length'}<b>${e.focal} mm</b></div><div>${lang==='ja'?'センサー':'Sensor'}<b>${e.width} × ${e.height} px</b></div></div><p class="sn-float-hint">${lang==='ja'?'超新星を画面中央の十字で表した模式図です．母銀河の大きさはデータ不明のため描いていません．':'Crosshair represents the SN position. Host galaxy size is not estimated without a measurement.'}</p>${current?`<div class="sn-alt-readout">${esc(current.name)} · J2000 ${raText(current.ra)} / ${decText(current.dec)}</div>`:''}</div>`}
 function showFOV(i=0,keep=false){if(!equipment.length)return;fovIndex=clamp(Number(i)||0,0,equipment.length-1);$('snFovTitle').textContent=lang==='ja'?'撮影画角':'Imaging field of view';$('snFovBody').innerHTML=fovPopupHtml(equipment[fovIndex]);$('snFovPanel').hidden=false;if(!keep)clampFloating($('snFovPanel'))}
@@ -577,12 +665,12 @@ function renderAltitude(){if($('snAltPanel').hidden)return;const start=localDayS
  if(!Number.isFinite(start))return;
  $('snAltTitle').textContent=(lang==='ja'?'高度曲線（保存リスト）':'Altitude curves (saved list)')+' · '+objects.length;
  if(!objects.length){$('snAltChart').textContent=lang==='ja'?'天体を選択するか，☆でリストに保存してください．':'Select an object or save one with ☆.';$('snAltLegend').textContent='';return}
- const d=lang==='ja'?'高度':'Altitude';let g=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${d}"><rect x="${L}" y="${T}" width="${gw}" height="${gh}" fill="#0b1b2f"/>`;
+ const d=lang==='ja'?'高度':'Altitude';let g=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${d}"><defs><clipPath id="sn-alt-plot-clip"><rect x="${L}" y="${T}" width="${gw}" height="${gh}"/></clipPath></defs><rect x="${L}" y="${T}" width="${gw}" height="${gh}" fill="#0b1b2f"/>`;
  for(const a of [-30,0,25,50,75,90]){const y=T+(90-a)/120*gh;g+=`<line x1="${L}" y1="${y.toFixed(1)}" x2="${W-R}" y2="${y.toFixed(1)}" stroke="${a===25?'#b7a665':'#2c445c'}" stroke-dasharray="${a===25?'4 4':'0'}"/><text x="${L-8}" y="${(y+4).toFixed(1)}" text-anchor="end" fill="#b6d4e9" font-size="11">${a}°</text>`}
  for(let h=0;h<=24;h+=3){const x=L+h/24*gw;g+=`<line x1="${x.toFixed(1)}" y1="${T}" x2="${x.toFixed(1)}" y2="${T+gh}" stroke="#29445c"/><text x="${x.toFixed(1)}" y="${H-8}" text-anchor="middle" fill="#b6d4e9" font-size="11">${h}</text>`}
- for(const [i,obj] of objects.entries()){const color=SN_FAVORITE_COLORS[i%SN_FAVORITE_COLORS.length];let path='';for(let step=0;step<=96;step++){const utc=new Date(start+step*900000),a=horiz(obj,utc).alt,x=L+step/96*gw,y=T+(90-a)/120*gh;path+=(step?'L':'M')+x.toFixed(2)+' '+y.toFixed(2)+' '}g+=`<path d="${path.trim()}" fill="none" stroke="${color}" stroke-width="${current?.id===obj.id?'2.9':'1.9'}" stroke-linecap="round"/>`}
- const markerX=L+clamp((observationDate().getTime()-start)/86400000,0,1)*gw;g+=`<line x1="${markerX.toFixed(1)}" y1="${T}" x2="${markerX.toFixed(1)}" y2="${T+gh}" stroke="#fff" stroke-width="1" stroke-dasharray="3 3"/><text x="${W/2}" y="${H-23}" text-anchor="middle" fill="#c9e3f5" font-size="10">${lang==='ja'?'観測地の現地時刻 (h)':'Local time (h)'}</text></svg>`;
- $('snAltChart').innerHTML=g;$('snAltLegend').innerHTML=objects.map((obj,i)=>`<span><i style="background:${SN_FAVORITE_COLORS[i%SN_FAVORITE_COLORS.length]}"></i>${esc(obj.name)}</span>`).join('');$('snAltReadout').textContent=objects.map(x=>x.name+' '+horiz(x).alt.toFixed(1)+'°').join(' · ');$('snAltHint').textContent=lang==='ja'?'点線＝高度25°．白い縦線＝選択した観測時刻．最大12天体を重ね表示．':'Dashed line: altitude 25°. White cursor: selected observing time. Up to 12 objects.'}
+ for(const [i,obj] of objects.entries()){const color=SN_FAVORITE_COLORS[i%SN_FAVORITE_COLORS.length];let path='';for(let step=0;step<=96;step++){const utc=new Date(start+step*900000),a=horiz(obj,utc).alt,x=L+step/96*gw,y=T+(90-a)/120*gh;path+=(step?'L':'M')+x.toFixed(2)+' '+y.toFixed(2)+' '}g+=`<path d="${path.trim()}" clip-path="url(#sn-alt-plot-clip)" fill="none" stroke="${color}" stroke-width="${current?.id===obj.id?'2.9':'1.9'}" stroke-linecap="round"/>`}
+ const markerFraction=(observationDate().getTime()-start)/86400000; if(Number.isFinite(markerFraction)&&markerFraction>=0&&markerFraction<=1){const markerX=L+markerFraction*gw;g+=`<line x1="${markerX.toFixed(1)}" y1="${T}" x2="${markerX.toFixed(1)}" y2="${T+gh}" stroke="#fff" stroke-width="1" stroke-dasharray="3 3"/>`;}g+=`<text x="${W/2}" y="${H-23}" text-anchor="middle" fill="#c9e3f5" font-size="10">${lang==='ja'?'観測地の現地時刻 (h)':'Local time (h)'}</text></svg>`;
+ $('snAltChart').innerHTML=g;$('snAltLegend').innerHTML=objects.map((obj,i)=>`<span><i style="background:${SN_FAVORITE_COLORS[i%SN_FAVORITE_COLORS.length]}"></i>${esc(obj.name)}</span>`).join('');$('snAltReadout').textContent=objects.map(x=>x.name+' '+horiz(x).alt.toFixed(1)+'°').join(' · ');$('snAltHint').textContent=lang==='ja'?('点線＝高度25°．'+(markerFraction>=0&&markerFraction<=1?'白い縦線＝選択した観測時刻．':'選択した観測時刻は表示日の範囲外．')+'最大12天体を重ね表示．'):('Dashed line: altitude 25°. '+(markerFraction>=0&&markerFraction<=1?'White cursor: selected observing time. ':'Selected observing time is outside the plotted day. ')+'Up to 12 objects.')}
 
 const cvs=$('sky'),ctx=cvs.getContext('2d');let CW=800,CH=620,resizeObserver=null;
 function resize(){const r=cvs.getBoundingClientRect(),d=Math.min(2,window.devicePixelRatio||1);CW=Math.max(200,r.width);CH=Math.max(200,r.height);cvs.width=Math.round(CW*d);cvs.height=Math.round(CH*d);ctx.setTransform(d,0,0,d,0,0);drawMap()}
@@ -615,20 +703,30 @@ function snSkyPath(points,stroke,width=1,dash=[]){
  ctx.stroke();ctx.restore();
 }
 function skyPaths(geometry){if(!geometry)return [];if(geometry.type==='LineString')return [geometry.coordinates];if(geometry.type==='MultiLineString')return geometry.coordinates;if(geometry.type==='Polygon')return geometry.coordinates;if(geometry.type==='MultiPolygon')return geometry.coordinates.flat();return []}
-// IAU 88 constellation names: identical spellings to PNmap's public Japanese/Latin dictionaries.
-const SN_CONSTELLATION_JA = {"and":"アンドロメダ座","ant":"ポンプ座","aps":"ふうちょう座","aqr":"みずがめ座","aql":"わし座","ara":"さいだん座","ari":"おひつじ座","aur":"ぎょしゃ座","boo":"うしかい座","cae":"ちょうこくぐ座","cam":"きりん座","cnc":"かに座","cvn":"りょうけん座","cma":"おおいぬ座","cmi":"こいぬ座","cap":"やぎ座","car":"りゅうこつ座","cas":"カシオペヤ座","cen":"ケンタウルス座","cep":"ケフェウス座","cet":"くじら座","cha":"カメレオン座","cir":"コンパス座","col":"はと座","com":"かみのけ座","cra":"みなみのかんむり座","crb":"かんむり座","crv":"からす座","crt":"コップ座","cru":"みなみじゅうじ座","cyg":"はくちょう座","del":"いるか座","dor":"かじき座","dra":"りゅう座","equ":"こうま座","eri":"エリダヌス座","for":"ろ座","gem":"ふたご座","gru":"つる座","her":"ヘルクレス座","hor":"とけい座","hya":"うみへび座","hyi":"みずへび座","ind":"インディアン座","lac":"とかげ座","leo":"しし座","lmi":"こじし座","lep":"うさぎ座","lib":"てんびん座","lup":"おおかみ座","lyn":"やまねこ座","lyr":"こと座","men":"テーブルさん座","mic":"けんびきょう座","mon":"いっかくじゅう座","mus":"はえ座","nor":"じょうぎ座","oct":"はちぶんぎ座","oph":"へびつかい座","ori":"オリオン座","pav":"くじゃく座","peg":"ペガスス座","per":"ペルセウス座","phe":"ほうおう座","pic":"がか座","psc":"うお座","psa":"みなみのうお座","pup":"とも座","pyx":"らしんばん座","ret":"レチクル座","sge":"や座","sgr":"いて座","sco":"さそり座","scl":"ちょうこくしつ座","sct":"たて座","ser":"へび座","sex":"ろくぶんぎ座","tau":"おうし座","tel":"ぼうえんきょう座","tri":"さんかく座","tra":"みなみのさんかく座","tuc":"きょしちょう座","uma":"おおぐま座","umi":"こぐま座","vel":"ほ座","vir":"おとめ座","vol":"とびうお座","vul":"こぎつね座"};
-const SN_CONSTELLATION_LATIN = {"and":"Andromeda","ant":"Antlia","aps":"Apus","aqr":"Aquarius","aql":"Aquila","ara":"Ara","ari":"Aries","aur":"Auriga","boo":"Boötes","cae":"Caelum","cam":"Camelopardalis","cnc":"Cancer","cvn":"Canes Venatici","cma":"Canis Major","cmi":"Canis Minor","cap":"Capricornus","car":"Carina","cas":"Cassiopeia","cen":"Centaurus","cep":"Cepheus","cet":"Cetus","cha":"Chamaeleon","cir":"Circinus","col":"Columba","com":"Coma Berenices","cra":"Corona Australis","crb":"Corona Borealis","crv":"Corvus","crt":"Crater","cru":"Crux","cyg":"Cygnus","del":"Delphinus","dor":"Dorado","dra":"Draco","equ":"Equuleus","eri":"Eridanus","for":"Fornax","gem":"Gemini","gru":"Grus","her":"Hercules","hor":"Horologium","hya":"Hydra","hyi":"Hydrus","ind":"Indus","lac":"Lacerta","leo":"Leo","lmi":"Leo Minor","lep":"Lepus","lib":"Libra","lup":"Lupus","lyn":"Lynx","lyr":"Lyra","men":"Mensa","mic":"Microscopium","mon":"Monoceros","mus":"Musca","nor":"Norma","oct":"Octans","oph":"Ophiuchus","ori":"Orion","pav":"Pavo","peg":"Pegasus","per":"Perseus","phe":"Phoenix","pic":"Pictor","psc":"Pisces","psa":"Piscis Austrinus","pup":"Puppis","pyx":"Pyxis","ret":"Reticulum","sge":"Sagitta","sgr":"Sagittarius","sco":"Scorpius","scl":"Sculptor","sct":"Scutum","ser":"Serpens","sex":"Sextans","tau":"Taurus","tel":"Telescopium","tri":"Triangulum","tra":"Triangulum Australe","tuc":"Tucana","uma":"Ursa Major","umi":"Ursa Minor","vel":"Vela","vir":"Virgo","vol":"Volans","vul":"Vulpecula"};
-function snConstellationName(feature){
- const code=String(feature?.id||'').trim().toLowerCase();
- const local=lang==='ja'?SN_CONSTELLATION_JA:SN_CONSTELLATION_LATIN;
- return local[code]||String(feature?.properties?.name||code.toUpperCase());
+// Constellation names follow the 88-constellation nomenclature used by PNmap.
+const SN_CONSTELLATION_JA={"and":"アンドロメダ座","ant":"ポンプ座","aps":"ふうちょう座","aqr":"みずがめ座","aql":"わし座","ara":"さいだん座","ari":"おひつじ座","aur":"ぎょしゃ座","boo":"うしかい座","cae":"ちょうこくぐ座","cam":"きりん座","cnc":"かに座","cvn":"りょうけん座","cma":"おおいぬ座","cmi":"こいぬ座","cap":"やぎ座","car":"りゅうこつ座","cas":"カシオペヤ座","cen":"ケンタウルス座","cep":"ケフェウス座","cet":"くじら座","cha":"カメレオン座","cir":"コンパス座","col":"はと座","com":"かみのけ座","cra":"みなみのかんむり座","crb":"かんむり座","crv":"からす座","crt":"コップ座","cru":"みなみじゅうじ座","cyg":"はくちょう座","del":"いるか座","dor":"かじき座","dra":"りゅう座","equ":"こうま座","eri":"エリダヌス座","for":"ろ座","gem":"ふたご座","gru":"つる座","her":"ヘルクレス座","hor":"とけい座","hya":"うみへび座","hyi":"みずへび座","ind":"インディアン座","lac":"とかげ座","leo":"しし座","lmi":"こじし座","lep":"うさぎ座","lib":"てんびん座","lup":"おおかみ座","lyn":"やまねこ座","lyr":"こと座","men":"テーブルさん座","mic":"けんびきょう座","mon":"いっかくじゅう座","mus":"はえ座","nor":"じょうぎ座","oct":"はちぶんぎ座","oph":"へびつかい座","ori":"オリオン座","pav":"くじゃく座","peg":"ペガスス座","per":"ペルセウス座","phe":"ほうおう座","pic":"がか座","psc":"うお座","psa":"みなみのうお座","pup":"とも座","pyx":"らしんばん座","ret":"レチクル座","sge":"や座","sgr":"いて座","sco":"さそり座","scl":"ちょうこくしつ座","sct":"たて座","ser":"へび座","sex":"ろくぶんぎ座","tau":"おうし座","tel":"ぼうえんきょう座","tri":"さんかく座","tra":"みなみのさんかく座","tuc":"きょしちょう座","uma":"おおぐま座","umi":"こぐま座","vel":"ほ座","vir":"おとめ座","vol":"とびうお座","vul":"こぎつね座"};
+const SN_CONSTELLATION_EN={"and":"Andromeda","ant":"Antlia","aps":"Apus","aqr":"Aquarius","aql":"Aquila","ara":"Ara","ari":"Aries","aur":"Auriga","boo":"Boötes","cae":"Caelum","cam":"Camelopardalis","cnc":"Cancer","cvn":"Canes Venatici","cma":"Canis Major","cmi":"Canis Minor","cap":"Capricornus","car":"Carina","cas":"Cassiopeia","cen":"Centaurus","cep":"Cepheus","cet":"Cetus","cha":"Chamaeleon","cir":"Circinus","col":"Columba","com":"Coma Berenices","cra":"Corona Australis","crb":"Corona Borealis","crv":"Corvus","crt":"Crater","cru":"Crux","cyg":"Cygnus","del":"Delphinus","dor":"Dorado","dra":"Draco","equ":"Equuleus","eri":"Eridanus","for":"Fornax","gem":"Gemini","gru":"Grus","her":"Hercules","hor":"Horologium","hya":"Hydra","hyi":"Hydrus","ind":"Indus","lac":"Lacerta","leo":"Leo","lmi":"Leo Minor","lep":"Lepus","lib":"Libra","lup":"Lupus","lyn":"Lynx","lyr":"Lyra","men":"Mensa","mic":"Microscopium","mon":"Monoceros","mus":"Musca","nor":"Norma","oct":"Octans","oph":"Ophiuchus","ori":"Orion","pav":"Pavo","peg":"Pegasus","per":"Perseus","phe":"Phoenix","pic":"Pictor","psc":"Pisces","psa":"Piscis Austrinus","pup":"Puppis","pyx":"Pyxis","ret":"Reticulum","sge":"Sagitta","sgr":"Sagittarius","sco":"Scorpius","scl":"Sculptor","sct":"Scutum","ser":"Serpens","sex":"Sextans","tau":"Taurus","tel":"Telescopium","tri":"Triangulum","tra":"Triangulum Australe","tuc":"Tucana","uma":"Ursa Major","umi":"Ursa Minor","vel":"Vela","vir":"Virgo","vol":"Volans","vul":"Vulpecula"};
+// Resolve both IAU abbreviations and full Latin names from GeoJSON providers.
+// Do not truncate multiword names such as Canes Venatici or Ursa Major.
+const SN_CONSTELLATION_BY_LATIN=Object.fromEntries(
+ Object.entries(SN_CONSTELLATION_EN).map(([code,name])=>[name.normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase(),code])
+);
+function snConstellationLabel(feature){
+ const raw=String(feature?.id||feature?.properties?.name||'').trim();
+ const cleaned=raw.normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
+ const code=SN_CONSTELLATION_EN[cleaned]?cleaned:
+   SN_CONSTELLATION_BY_LATIN[cleaned]||
+   (cleaned.match(/(?:^|[^a-z])([a-z]{3})(?:$|[^a-z])/g)||[])
+     .map(v=>v.replace(/[^a-z]/g,''))
+     .find(v=>SN_CONSTELLATION_EN[v])||'';
+ return (lang==='ja'?SN_CONSTELLATION_JA:SN_CONSTELLATION_EN)[code]||raw;
 }
 function drawConstellations(mode){
  if(!skyData)return;
  if(mode==='equatorial'){
   if($('showConstBounds').checked)for(const f of skyData.bounds)for(const path of skyPaths(f.geometry))snSkyPath(path,'#d8946580',.85,[3,4]);
   if($('showConstLines').checked)for(const f of skyData.figurePaths)for(const path of f.paths)snSkyPath(path.coords,'#8ad6faac',path.weight==='bold'?1.9:path.weight==='thin'?.8:1.3);
-  if($('showConstNames').checked){ctx.save();ctx.font='11px system-ui';ctx.textAlign='center';ctx.fillStyle='#c7dce4a8';for(const f of skyData.names){let coords=f.geometry?.coordinates;if(!Array.isArray(coords))continue;const p=skyProj(+coords[0],+coords[1]);if(p.shown)ctx.fillText(snConstellationName(f),p.x,p.y)}ctx.restore()}
+  if($('showConstNames').checked){ctx.save();ctx.font='11px system-ui';ctx.textAlign='center';ctx.fillStyle='#c7dce4a8';for(const f of skyData.names){let coords=f.geometry?.coordinates;if(!Array.isArray(coords))continue;const p=skyProj(+coords[0],+coords[1]);if(p.shown)ctx.fillText(snConstellationLabel(f),p.x,p.y)}ctx.restore()}
  }else if(mode==='horizon'){
   if($('showConstLines').checked)for(const f of skyData.figurePaths)for(const path of f.paths){
    ctx.save();ctx.strokeStyle='#80bfe0a3';ctx.lineWidth=1.1;ctx.beginPath();let before=null;
@@ -640,7 +738,7 @@ function drawConstellations(mode){
    }
    ctx.stroke();ctx.restore();
   }
-  if($('showConstNames').checked){ctx.save();ctx.font='10px system-ui';ctx.fillStyle='#b8ced8a8';ctx.textAlign='center';for(const f of skyData.names){const c=f.geometry?.coordinates;if(!Array.isArray(c))continue;const p=project({ra:+c[0],dec:+c[1]});if(p.shown)ctx.fillText(snConstellationName(f),p.x,p.y)}ctx.restore()}
+  if($('showConstNames').checked){ctx.save();ctx.font='10px system-ui';ctx.fillStyle='#b8ced8a8';ctx.textAlign='center';for(const f of skyData.names){const c=f.geometry?.coordinates;if(!Array.isArray(c))continue;const p=project({ra:+c[0],dec:+c[1]});if(p.shown)ctx.fillText(snConstellationLabel(f),p.x,p.y)}ctx.restore()}
  }
 }
 
@@ -699,8 +797,7 @@ function skyExtractStellarium(data){
    // identifiers as long strings; those must NOT be mistaken for HIP IDs.
    const tokens=stars.map(v=>{const n=Number(v);return Number.isSafeInteger(n)&&n>0&&n<=120404?n:null});
    if(tokens.some(Number.isInteger)){
-    paths.push({hip:tokens,weight});for(const h of tokens)if(h!==null)wanted.add(h);
-   }
+    paths.push({hip:tokens,weight});for(const h of tokens)if(h!==null)wanted.add(h);   }
   }
   if(paths.length){result.push({id,paths});ids.add(id.toLowerCase())}
  }
@@ -877,9 +974,15 @@ function snImagingScore(o){
  const latitude=Number($('lat').value);
  const transit=90-Math.abs((Number.isFinite(latitude)?latitude:43.0621)-o.dec);
  const sky=clamp((transit-20)/60,0,1);
- const brightness=Number.isFinite(o.mag)?clamp((22-o.mag)/12,0,1):0;
- const observedAge=age(o.last||o.discovery);
- const freshness=Number.isFinite(observedAge)?Math.exp(-observedAge/20):0;
+ // Discovery date is not a photometry date. An undated or stale magnitude
+ // must not inflate the current imaging priority.
+ // Use the same exact 30-day boundary as brightness filters and exports.
+ // A rounded-down day count could incorrectly prioritize 30-day-old photometry.
+ const freshPhotometry=snPhotometryFresh(o);
+ const observedAt=safeDate(o.last);
+ const observedAge=freshPhotometry?Math.max(0,(Date.now()-observedAt)/86400000):Infinity;
+ const brightness=freshPhotometry?clamp((22-o.mag)/12,0,1):0;
+ const freshness=freshPhotometry?Math.exp(-observedAge/20):0;
  return .47*brightness+.33*sky+.20*freshness;
 }
 function drawMap(){if(mode==='list'){drawListMode();return}if(!CW||!CH)return;const grad=ctx.createLinearGradient(0,0,CW,CH);grad.addColorStop(0,'#0b1c31');grad.addColorStop(.5,'#06101e');grad.addColorStop(1,'#10213b');ctx.fillStyle=grad;ctx.fillRect(0,0,CW,CH);ctx.font='11px system-ui';axes();pts=[];visible=filtered();if(mode==='galactic')visible=visible.filter(x=>snDistanceMpc(x)!==null).sort((a,b)=>snDistanceMpc(b)-snDistanceMpc(a));for(const x of visible){let p=project(x);if(!p.shown)continue;const col=colors[cat(x)];const appearance=snPointAppearance(x),size=appearance.size;
@@ -894,7 +997,7 @@ function drawMap(){if(mode==='list'){drawListMode();return}if(!CW||!CH)return;co
   ctx.fillStyle='#c2d9ec';ctx.font='10px system-ui';if(mode==='equatorial'&&Math.hypot(box.x+box.w/2-CW/2,box.y+7-CH/2)>snSkyRadius()-5)continue;ctx.fillText(text,box.x,box.y+11);filled.push(box);labelled++;
  }
 }$('mapCount').textContent=(lang==='ja'?`描画 ${pts.length} / 抽出 ${visible.length} 天体`:`Plotted ${pts.length} / filtered ${visible.length}`)+(mode==='galactic'?(lang==='ja'?` · 赤方偏移不明 ${Math.max(0,filtered().length-visible.length)}件を除外`:` · ${Math.max(0,filtered().length-visible.length)} without redshift excluded`):'');$('mapCaption').textContent=mode==='equatorial'?(lang==='ja'?'J2000 · 球面天球図 · ドラッグ：回転／ホイール：拡大':'J2000 · celestial globe · drag to rotate / scroll to zoom'):(lang==='ja'?'3D銀河系外分布（赤方偏移距離，Mpc） · ドラッグ：回転 · ホイール：拡大':'3D extragalactic view (redshift distance, Mpc) · drag / scroll')}
-function drawTable(){const policy=$('photometryPolicy');if(policy)policy.textContent=lang==='ja'?'観測日が確認できない等級は表示しません．30日超の観測値は ⚑ で示し，N.I.N.A.出力の等級欄から除外します．未分類候補は確定超新星に含めません．':'Undated magnitudes are hidden. Measurements older than 30 days are marked ⚑ and omitted from N.I.N.A. magnitude exports. Unclassified candidates are not confirmed supernovae.';let vv=filtered();$('filterCount').textContent=vv.length+(lang==='ja'?' 件':' objects');$('listMeta').textContent=lang==='ja'?`表示 ${Math.min(tableLimit,vv.length)} / ${vv.length} 件（取込 ${records.length} 件）`:`Showing ${Math.min(tableLimit,vv.length)} / ${vv.length}`;const html=vv.slice(0,tableLimit).map(x=>{let c=colors[cat(x)],al=altitudeNow(x),warn=age(x.last)>30?' ⚑':'';const photoTitle=!x.last?'No dated photometry':age(x.last)>30?'Historical photometry, '+age(x.last)+' days old':'Observed '+x.last;return `<tr data-id="${esc(x.id)}" class="${current?.id===x.id?'chosen':''}"><td><b>${esc(x.name)}</b></td><td class="num" title="${esc(photoTitle)}">${fmt(x.mag)}${warn}</td><td>${esc(x.last||'—')}</td><td><span class="type-dot" style="background:${c}"></span>${esc(x.type)}</td><td>${esc(x.host)}</td><td>${raText(x.ra)}</td><td>${decText(x.dec)}</td><td class="num" style="color:${al>=25?'#9fe4bd':'#e0bac1'}">${al.toFixed(1)}°</td><td><button data-fav="${esc(x.id)}" aria-label="favorite" style="border:0;padding:2px 7px;background:transparent;color:#ffe2a0">${favs.has(x.id)?'★':'☆'}</button></td></tr>`}).join('');$('rows').innerHTML=html;$('listMore').textContent=vv.length>tableLimit?(lang==='ja'?'下にスクロールして続きを表示':'Scroll down to load more'):'';$('rows').querySelectorAll('tr[data-id]').forEach(tr=>tr.addEventListener('click',(e)=>{let id=tr.dataset.id;if(e.target.closest('[data-fav]')){toggleFav(id);e.stopPropagation()}else select(id)}))}
+function drawTable(){const policy=$('photometryPolicy');if(policy)policy.textContent=lang==='ja'?'観測日が確認できない等級は表示しません．30日超の観測値は ⚑ で示し，N.I.N.A.出力の等級欄から除外します．未分類候補は確定超新星に含めません．':'Undated magnitudes are hidden. Measurements older than 30 days are marked ⚑ and omitted from N.I.N.A. magnitude exports. Unclassified candidates are not confirmed supernovae.';let vv=filtered();$('filterCount').textContent=vv.length+(lang==='ja'?' 件':' objects');$('listMeta').textContent=lang==='ja'?`表示 ${Math.min(tableLimit,vv.length)} / ${vv.length} 件（取込 ${records.length} 件）`:`Showing ${Math.min(tableLimit,vv.length)} / ${vv.length}`;const html=vv.slice(0,tableLimit).map(x=>{let c=colors[cat(x)],al=altitudeNow(x),fresh=snPhotometryFresh(x),warn=x.mag!=null&&!fresh?' ⚑':'';const photoTitle=!Number.isFinite(age(x.last))?'Unverified or future-dated photometry':age(x.last)>30?'Historical photometry, '+age(x.last).toFixed(1)+' days old':'Observed '+x.last;return `<tr data-id="${esc(x.id)}" class="${current?.id===x.id?'chosen':''}"><td><b>${esc(x.name)}</b></td><td class="num" title="${esc(photoTitle)}">${fresh?fmt(x.mag):'—'}${warn}</td><td>${esc(x.last||'—')}</td><td><span class="type-dot" style="background:${c}"></span>${esc(x.type)}</td><td>${esc(x.host)}</td><td>${raText(x.ra)}</td><td>${decText(x.dec)}</td><td class="num" style="color:${al>=25?'#9fe4bd':'#e0bac1'}">${al.toFixed(1)}°</td><td><button data-fav="${esc(x.id)}" aria-label="favorite" style="border:0;padding:2px 7px;background:transparent;color:#ffe2a0">${favs.has(x.id)?'★':'☆'}</button></td></tr>`}).join('');$('rows').innerHTML=html;$('listMore').textContent=vv.length>tableLimit?(lang==='ja'?'下にスクロールして続きを表示':'Scroll down to load more'):'';$('rows').querySelectorAll('tr[data-id]').forEach(tr=>tr.addEventListener('click',(e)=>{let id=tr.dataset.id;if(e.target.closest('[data-fav]')){toggleFav(id);e.stopPropagation()}else select(id)}))}
 function newTab(url){return url}
 function chooseURL(x){let key=(x.name.match(/\d{4}[a-z]+/i)||[])[0];return key?'https://www.wis-tns.org/object/'+encodeURIComponent(key):'https://www.wis-tns.org/search'}
 function finderURL(x){return 'https://alasky.cds.unistra.fr/hips-image-services/hips2fits?'+new URLSearchParams({hips:'CDS/P/DSS2/color',ra:x.ra.toFixed(7),dec:x.dec.toFixed(7),fov:'0.16',width:'520',height:'520',projection:'TAN',format:'jpg'}).toString()}
@@ -951,7 +1054,7 @@ function bestDarkWindow(x){
  return lang==='ja'?`${fromSelectedTime?'指定日時から24時間の撮影好機':'今後24時間の撮影好機'}：${local}（現地時刻），高度${best.alt.toFixed(0)}°，暗夜かつ高度25°以上 約${(count*20/60).toFixed(1)}時間`:`${fromSelectedTime?'Best within 24 h of selected future time':'Best in next 24 h'}: ${local} (site time), altitude ${best.alt.toFixed(0)}°, dark and ≥25° for ~${(count*20/60).toFixed(1)} h`;
 }
 
-function select(id){current=records.find(x=>x.id===id);if(!current)return;drawTable();drawMap();const x=current,a=horiz(x),solar=horiz(sunEquatorial(observationDate()));$('selTitle').textContent=x.name;$('selSubtitle').textContent=x.confirmed?(lang==='ja'?'確定超新星':'Classified supernova'):(lang==='ja'?'未分類・超新星候補（要確認）':'Unclassified transient / candidate');$('star').textContent=favs.has(x.id)?'★':'☆';$('selDetails').style.display='block';const items=lang==='ja'?[['最新報告等級',(fmt(x.mag)+' mag'+(x.band?' ('+x.band+')':'')+(x.last?(age(x.last)>30?' · 過去の観測値（'+age(x.last)+'日前）':''):' · 観測日不明'))],['最輝等級（履歴）',fmt(x.peak)+' mag'],['最輝時との等級差',Number.isFinite(x.mag)&&Number.isFinite(x.peak)?((x.mag-x.peak).toFixed(1)+' mag（異なる観測帯域の場合あり）'):'—'],['分類',x.type],['母銀河',x.host],['赤経・赤緯',raText(x.ra)+' / '+decText(x.dec)],['赤方偏移',x.z==null?'—':x.z.toFixed(5)],['最終観測',x.last||'—'],['発見日',x.discovery||'—'],['最新等級の出典',x.magSource||x.source||'—'],['データ出典',x.source||'—'],['TNS照合',x.tnsChecked?('照合 '+x.tnsChecked+' / '+(x.zDiscrepancy||'分類・位置確認')+(x.posDiscrepancy?' · 座標差'+x.posDiscrepancy:'')):'未実施']]:[['Latest reported mag',fmt(x.mag)+(x.band?' ('+x.band+')':'')+(x.last?(age(x.last)>30?' · historical ('+age(x.last)+' days old)':''):' · date unknown')],['Brightest recorded',fmt(x.peak)],['Difference from brightest',Number.isFinite(x.mag)&&Number.isFinite(x.peak)?(x.mag-x.peak).toFixed(1)+' mag (bands may differ)':'—'],['Type',x.type],['Host',x.host],['RA / Dec',raText(x.ra)+' / '+decText(x.dec)],['Redshift',x.z??'—'],['Last observed',x.last||'—'],['First detected',x.discovery||'—'],['Latest mag source',x.magSource||x.source||'—'],['Data source',x.source||'—'],['TNS cross-check',x.tnsChecked?('checked '+x.tnsChecked+' / '+(x.zDiscrepancy||'type/position')+(x.posDiscrepancy?' · separation '+x.posDiscrepancy:'')):'not checked']];$('objectGrid').innerHTML=items.map(p=>`<div class="kv"><dt>${esc(p[0])}</dt><dd>${esc(p[1])}</dd></div>`).join('');$('obsLine').textContent=(lang==='ja'?'選択日時の高度：':'Altitude at selected time: ')+a.alt.toFixed(1)+'° · '+(lang==='ja'?'方位角：':'Azimuth: ')+a.az.toFixed(0)+'°'+(a.alt<0?(lang==='ja'?'（地平線下）':' (below horizon)'):'');$('tnsLink').href=x.tnsURL||chooseURL(x);$('astrobinLink').href='https://www.astrobin.com/search/?q='+encodeURIComponent(x.name);$('finderLink').href=finderURL(x);let query=(lang==='ja'?'超新星 ': 'Supernova ')+x.name+', '+x.host+', RA '+raText(x.ra)+', Dec '+decText(x.dec)+', latest mag '+(x.mag??'unknown')+', telescope options '+equipment.map(e=>e.name).join('/');$('gptLink').href='https://chatgpt.com/?q='+encodeURIComponent(query); // Also updated just before click with current site/time.
+function select(id){current=records.find(x=>x.id===id);if(!current)return;drawTable();drawMap();const x=current,a=horiz(x),solar=horiz(sunEquatorial(observationDate()));$('selTitle').textContent=x.name;$('selSubtitle').textContent=x.confirmed?(lang==='ja'?'確定超新星':'Classified supernova'):(lang==='ja'?'未分類・超新星候補（要確認）':'Unclassified transient / candidate');$('star').textContent=favs.has(x.id)?'★':'☆';$('selDetails').style.display='block';const items=lang==='ja'?[['最新報告等級',(fmt(x.mag)+' mag'+(x.band?' ('+x.band+')':'')+(x.last?(age(x.last)>30?' · 過去の観測値（'+age(x.last)+'日前）':''):' · 観測日不明'))],['最輝等級（履歴）',fmt(x.peak)+' mag'],['最輝時との等級差',Number.isFinite(x.mag)&&Number.isFinite(x.peak)?((x.mag-x.peak).toFixed(1)+' mag（異なる観測帯域の場合あり）'):'—'],['分類',x.type],['母銀河',x.host],['赤経・赤緯',raText(x.ra)+' / '+decText(x.dec)],['赤方偏移',x.z==null?'—':x.z.toFixed(5)],['最終観測',x.last||'—'],['発見日',x.discovery||'—'],['最新等級の出典',x.magSource||x.source||'—'],['データ出典',x.source||'—'],['TNS照合',x.tnsChecked?('照合 '+x.tnsChecked+' / '+(x.zDiscrepancy||'分類・位置確認')+(x.posDiscrepancy?' · 座標差'+x.posDiscrepancy:'')):'未実施']]:[['Latest reported mag',fmt(x.mag)+(x.band?' ('+x.band+')':'')+(x.last?(age(x.last)>30?' · historical ('+age(x.last).toFixed(1)+' days old)':''):' · date unknown')],['Brightest recorded',fmt(x.peak)],['Difference from brightest',Number.isFinite(x.mag)&&Number.isFinite(x.peak)?(x.mag-x.peak).toFixed(1)+' mag (bands may differ)':'—'],['Type',x.type],['Host',x.host],['RA / Dec',raText(x.ra)+' / '+decText(x.dec)],['Redshift',x.z??'—'],['Last observed',x.last||'—'],['First detected',x.discovery||'—'],['Latest mag source',x.magSource||x.source||'—'],['Data source',x.source||'—'],['TNS cross-check',x.tnsChecked?('checked '+x.tnsChecked+' / '+(x.zDiscrepancy||'type/position')+(x.posDiscrepancy?' · separation '+x.posDiscrepancy:'')):'not checked']];$('objectGrid').innerHTML=items.map(p=>`<div class="kv"><dt>${esc(p[0])}</dt><dd>${esc(p[1])}</dd></div>`).join('');$('obsLine').textContent=(lang==='ja'?'選択日時の高度：':'Altitude at selected time: ')+a.alt.toFixed(1)+'° · '+(lang==='ja'?'方位角：':'Azimuth: ')+a.az.toFixed(0)+'°'+(a.alt<0?(lang==='ja'?'（地平線下）':' (below horizon)'):'');$('tnsLink').href=x.tnsURL||chooseURL(x);$('astrobinLink').href='https://www.astrobin.com/search/?q='+encodeURIComponent(x.name);$('finderLink').href=finderURL(x);let query=(lang==='ja'?'超新星 ': 'Supernova ')+x.name+', '+x.host+', RA '+raText(x.ra)+', Dec '+decText(x.dec)+', latest mag '+(x.mag??'unknown')+', telescope options '+equipment.map(e=>e.name).join('/');$('gptLink').href='https://chatgpt.com/?q='+encodeURIComponent(query); // Also updated just before click with current site/time.
  startImage(x);$('bestTime').textContent=bestDarkWindow(x);if(!$('snAltPanel').hidden)renderAltitude();if(!$('snFovPanel').hidden)showFOV(fovIndex);
  let likely=Number.isFinite(x.mag)?(x.mag<=14.5?'比較的明るい':x.mag<=17?'中程度':'暗い'):'等級不明';
  $('imagingHint').textContent=lang==='ja'?
@@ -959,7 +1062,7 @@ function select(id){current=records.find(x=>x.id===id);if(!current)return;drawTa
  `Imaging: ${Number.isFinite(x.mag)?'reported mag '+x.mag.toFixed(1):'magnitude unknown'}. Broadband imaging is generally suitable for the host galaxy and SN. Check the field of view, pixel scale and tracking of your configured equipment. ${age(x.last)>30?'The last reported magnitude is more than 30 days old.':''}`;persist()}
 function toggleFav(id){if(favs.has(id))favs.delete(id);else favs.add(id);persist();if(current?.id===id)$('star').textContent=favs.has(id)?'★':'☆';refreshUI()}
 function equipmentUI(){let content=equipment.map(e=>{const pix=206.265*e.pixel/e.focal,fw=pix*e.width/60,fh=pix*e.height/60;return `<div class="equipline" data-equip="${equipment.indexOf(e)}" title="${lang==='ja'?'画角を表示':'Show FOV'}" tabindex="0"><b>${esc(e.name)}</b><span>${pix.toFixed(2)}″/px</span><span>${fw.toFixed(1)}′×${fh.toFixed(1)}′</span></div>`}).join('');$('equipment').innerHTML='<div class="equipline"><b>'+(lang==='ja'?'組合せ':'Setup')+'</b><span>″/px</span><span>'+(lang==='ja'?'画角':'FOV')+'</span></div>'+content}
-function refreshUI(){const d=observationDate(),s=horiz(sunEquatorial(d));$('nightInfo').textContent=(lang==='ja'?'太陽高度：':'Sun altitude: ')+s.alt.toFixed(1)+'° · '+(s.alt<=-18?(lang==='ja'?'天文薄明終了後':'Astronomical darkness'):s.alt<=-12?(lang==='ja'?'天文薄明':'Astronomical twilight'):s.alt<0?(lang==='ja'?'薄明':'Twilight'):(lang==='ja'?'昼間':'Daylight'))+' · '+(lang==='ja'?'高度は簡易計算':'Approximate altitude');$('nAll').textContent=records.length.toLocaleString();$('nVisible').textContent=records.filter(x=>horiz(x,d).alt>=25).length.toLocaleString();$('nBright').textContent=records.filter(x=>Number.isFinite(x.mag)&&x.mag<=18).length.toLocaleString();drawTable();drawMap();equipmentUI();if(current)select(current.id)}
+function refreshUI(){const d=observationDate(),s=horiz(sunEquatorial(d));$('nightInfo').textContent=(lang==='ja'?'太陽高度：':'Sun altitude: ')+s.alt.toFixed(1)+'° · '+(s.alt<=-18?(lang==='ja'?'天文薄明終了後':'Astronomical darkness'):s.alt<=-12?(lang==='ja'?'天文薄明':'Astronomical twilight'):s.alt<0?(lang==='ja'?'薄明':'Twilight'):(lang==='ja'?'昼間':'Daylight'))+' · '+(lang==='ja'?'高度は簡易計算':'Approximate altitude');$('nAll').textContent=records.length.toLocaleString();$('nVisible').textContent=records.filter(x=>horiz(x,d).alt>=25).length.toLocaleString();$('nBright').textContent=records.filter(x=>snRankingMag(x)<=18).length.toLocaleString();drawTable();drawMap();equipmentUI();if(current)select(current.id)}
 function updateModeBtns(){document.querySelectorAll('.maptoolbar button[data-mode]').forEach(b=>{b.classList.toggle('active',b.dataset.mode===mode);b.setAttribute('aria-pressed',String(b.dataset.mode===mode))});$('sky').hidden=mode==='list';$('snListMode').hidden=mode!=='list';$('mapFoot').hidden=mode==='list';document.querySelector('.skyoptions').hidden=mode!=='equatorial';$('snSkyViewPanel').hidden=mode!=='equatorial';$('snPointStylePanel').hidden=mode==='list';$('snGalaxyControls').hidden=mode!=='galactic';$('center').hidden=mode==='list';if(mode==='list')drawListMode()}
 function changeMode(m){if(!['equatorial','galactic','list'].includes(m))return;mode=m;updateModeBtns();persist();if(mode==='list')drawListMode();else resize()}
 function toast(msg){$('toast').textContent=msg;$('toast').style.display='block';clearTimeout(toast.timer);toast.timer=setTimeout(()=>{$('toast').style.display='none'},4000)}
@@ -1241,7 +1344,18 @@ async function checkPrivateFeed(manual=false){
   if(!records.length)setStatus('error','起動プログラムに接続できません：'+shortError(e),'HTMLを直接開かず，SNmapを起動.commandから起動してください．');
  }
 }
-async function loadLive(manual=false){
+// v9.0: serialize the entire refresh pipeline, including the published-feed fetch.
+// Previously simultaneous timer, visibility and manual refresh calls could race
+// before `busy` was set, allowing an older response to overwrite newer records.
+let snLiveRefreshPromise=null;
+function loadLive(manual=false){
+ if(snLiveRefreshPromise)return snLiveRefreshPromise;
+ const pending=loadLiveCore(manual);
+ snLiveRefreshPromise=pending;
+ pending.finally(()=>{if(snLiveRefreshPromise===pending)snLiveRefreshPromise=null}).catch(()=>{});
+ return pending;
+}
+async function loadLiveCore(manual=false){
  if(SNMAP_PRIVATE_PREVIEW){await checkPrivateFeed(manual);return;}
  const publishedOK=await loadPublishedFeed();
  // A fresh published feed needs no cross-origin API, but an older snapshot can be
@@ -1357,41 +1471,71 @@ async function loadLive(manual=false){
 
 // RFC 4180 CSV parser: handles quoted commas, embedded newlines, CRLF and doubled quotes.
 function csvRows(text){
- const rows=[];let row=[],field='',quoted=false;
- text=String(text).replace(/^\ufeff/,'');
+ // Strict RFC 4180 parsing. Reject malformed quotes rather than silently
+ // corrupting sky coordinates or photometry during an import.
+ const MAX_CSV_CHARS=24*1024*1024,MAX_CSV_ROWS=200000,MAX_CSV_COLUMNS=256;
+ if(typeof text!=='string'||text.length>MAX_CSV_CHARS)throw Error('CSV exceeds size limit (24 MiB)');
+ text=text.replace(/^\ufeff/,'');
+ const rows=[];let row=[],field='',state=0; // 0=start, 1=plain, 2=quoted, 3=after quote
+ const pushField=()=>{if(row.length>=MAX_CSV_COLUMNS)throw Error('CSV has too many columns');row.push(field);field='';state=0};
+ const pushRow=()=>{pushField();if(row.some(v=>v.trim())){if(rows.length>=MAX_CSV_ROWS)throw Error('CSV has too many rows');rows.push(row)}row=[]};
  for(let i=0;i<text.length;i++){
   const c=text[i];
-  if(c==='"'){
-   if(quoted&&text[i+1]==='"'){field+='"';i++}
-   else if(quoted){quoted=false}
-   else if(field===''){quoted=true}
-   else field+=c;
-  }else if(c===','&&!quoted){row.push(field);field=''}
-  else if((c==='\n'||c==='\r')&&!quoted){
-   if(c==='\r'&&text[i+1]==='\n')i++;
-   row.push(field);if(row.some(v=>v.trim()))rows.push(row);
-   row=[];field='';
-  }else field+=c;
+  if(state===2){if(c==='"'){if(text[i+1]==='"'){field+='"';i++}else state=3}else field+=c;continue}
+  if(c===','){pushField();continue}
+  if(c==='\n'||c==='\r'){if(c==='\r'&&text[i+1]==='\n')i++;pushRow();continue}
+  if(c==='"'){if(state===0){state=2;continue}throw Error('Malformed CSV quotation at character '+i)}
+  if(state===3){if(c===' '||c==='\t')continue;throw Error('Unexpected text after CSV quotation at character '+i)}
+  field+=c;state=1;
  }
- if(quoted)throw Error('Unterminated quoted CSV field');
- row.push(field);if(row.some(v=>v.trim()))rows.push(row);
+ if(state===2)throw Error('Unterminated quoted CSV field');
+ // Avoid creating an extra empty row when the input ends with a line break.
+ if(row.length||field.length||state!==0)pushRow();
  return rows;
 }
 function parseCSV(txt){
- const lines=csvRows(txt),headerIdx=lines.findIndex(x=>{const h=x.join(' ').toLowerCase();return /ra|r\.a\.|right ascension/.test(h)&&/dec|decl/.test(h)&&/name|object|supernova|sn/.test(h)});
+ const lines=csvRows(txt),headerIdx=lines.findIndex(x=>{const h=x.map(v=>v.trim().toLowerCase().replace(/[^a-z0-9]/g,''));return h.some(v=>['ra','radeg','ra2000','rightascension'].includes(v))&&h.some(v=>['dec','decl','declination','decdeg','dec2000'].includes(v))&&h.some(v=>['name','iauname','tnsname','objectname','objectid','displayname','supernova'].includes(v))});
  if(headerIdx<0)return [];
  const header=lines[headerIdx].map(x=>x.trim()),rows=[];
- const map={'Name':['Name','name','IAUname','iau_name','object_name'],'RA':['RA','ra','R.A.','RA (J2000)'],'Dec':['Dec','dec','Decl.','DEC','declination'],'type':['type','Type','type_name','object_type'],'mag':['Latest Mag','latest_mag','last_mag'],'host':['Host Galaxy','host_name','host'],'discovery':['Discovery date','discoverydate','discovery_date'],'last':['Last Observed','last_observed'],'z':['z','redshift'],'discoveryMag':['discoverymag','discovery_mag']};
+ // Reject ambiguous duplicate columns: otherwise the last duplicate silently
+ // overrides the first, potentially changing positions or magnitudes.
+ const normalizedHeaders=header.map(x=>x.replace(/^\uFEFF/,'').toLowerCase().replace(/[^a-z0-9]/g,''));
+ if(normalizedHeaders.some((h,i)=>h && normalizedHeaders.indexOf(h)!==i))throw Error('CSV contains duplicate column headings');
+ // Keep the CSV schema aligned with the live API: photometry dates are often
+ // provided as MJD, not ISO strings.  normal() validates them before display.
+ const map={
+  'Name':['Name','name','IAUname','iau_name','object_name','tns_name','display_name','object_id'],
+  'RA':['RA','ra','R.A.','RA (J2000)','ra_deg','radeg','ra2000'],
+  'Dec':['Dec','dec','Decl.','DEC','declination','dec_deg','dec2000'],
+  'type':['type','Type','type_name','object_type','tns_type','sn_type','classification'],
+  'mag':['Latest Mag','latest_mag','last_mag','lastmag','mag'],
+  'band':['last_band','last_filter','last_mag_filter','filter','band'],
+  'host':['Host Galaxy','host_name','host','tns_host','host_galaxy'],
+  'discovery':['Discovery date','discoverydate','discovery_date','discovery_mjd','first_mjd','first_night'],
+  'last':['Last Observed','last_observed','last_mjd','latest_mjd','last_night','last_date'],
+  'peak':['peak_mag','max_mag','Max Mag','peak'],
+  'z':['z','redshift','tns_redshift','tns_host_redshift'],
+  'discoveryMag':['discoverymag','discovery_mag','first_det_mag'],
+  'class_bucket':['class_bucket','bucket'],
+  'tns_name':['tns_name','tns_designation'],
+  'tns_type':['tns_type','sn_type']
+ };
  for(const vals of lines.slice(headerIdx+1)){
-  if(vals.length<header.length/2)continue;
+  // Do not shift or silently pad fields in a malformed row. A missing
+  // trailing cell is not distinguishable from a truncated download.
+  if(vals.length!==header.length)continue;
   const o={};for(let j=0;j<header.length;j++)o[header[j]]=vals[j]??'';
-  for(const [dst,keys] of Object.entries(map))if(o[dst]==null||o[dst]==='')for(const k of keys)if(o[k]!==undefined&&o[k]!==''){o[dst]=o[k];break}
+  const canonical=new Map(Object.entries(o).map(([k,v])=>[k.replace(/^\uFEFF/,'').trim().toLowerCase().replace(/[^a-z0-9]/g,''),v]));
+  for(const [dst,keys] of Object.entries(map))if(o[dst]==null||o[dst]==='')for(const k of keys){
+   const v=canonical.get(k.toLowerCase().replace(/[^a-z0-9]/g,''));
+   if(v!==undefined&&v!==''){o[dst]=v;break}
+  }
   rows.push(o);
  }
  return rows;
 }
 
-// SNmap v6.9: fetch public CSV into memory and feed it directly to the existing
+// SNmap v7.0: fetch public CSV into memory and feed it directly to the existing
 // validated parser.  Browsers cannot read a downloaded file or bypass CORS;
 // this uses fetch() (no filesystem picker) and reports blocked sources honestly.
 const SN_CSV_JOBS = [
@@ -1442,10 +1586,8 @@ function snCSVSummary(received, date, issues){
   : `Automatic CSV: ${received} objects (coverage/source update unverified; newest observation ${dateLabel})${err}`;
 }
 async function snAutoCSV(force=false){
- if(location.protocol==='file:'){
-  snCSVState={kind:'file'};snRenderCSVSource();
-  return false;
- }
+ // A local HTML file can still fetch CORS-enabled HTTPS endpoints.
+ // Try the real request and report an actual network/CORS failure if blocked.
  if(snCSVJob)return snCSVJob;
  if(!force&&Date.now()-snCSVLastAttempt<SN_CSV_INTERVAL_MS)return false;
  snCSVLastAttempt=Date.now();
@@ -1454,8 +1596,7 @@ async function snAutoCSV(force=false){
   let validCount=0,loadedJobs=0,newest=0;
   const problems=[],fromCSV=[];
   for(const job of SN_CSV_JOBS){
-   const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),22000);
-   try{
+   const controller=new AbortController(),timeout=setTimeout(()=>controller.abort(),22000);   try{
     const res=await fetch(job.url,{mode:'cors',credentials:'omit',cache:'no-store',signal:controller.signal});
     if(!res.ok)throw Error(`HTTP ${res.status}`);
     const csv=await snReadCSVText(res,controller.signal);
@@ -1594,7 +1735,7 @@ function validateSiteInput(id){
 }
 for(const id of ['lat','lon','tz'])$(id).addEventListener('change',()=>{validateSiteInput(id);persist();refreshUI()});
 $('moment').addEventListener('change',()=>{if(!Number.isFinite(observationDate().getTime())){$('moment').value=siteDate();toast(lang==='ja'?'無効な日時を現在時刻に戻しました．':'Invalid date reset to current time.')}persist();refreshUI()});$('now').onclick=()=>{$('moment').value=siteDate();refreshUI()};$('refresh').onclick=()=>{loadLive(true);snAutoCSV(true)};$('probeCORS').onclick=probeBrowserAPI;const originDiag=$('originDiagnostic');if(originDiag)originDiag.textContent=location.protocol==='file:'?'現在の起動方式：file://（ローカルファイル）．':'現在の起動元：'+location.origin+'．';$('refreshSources').onclick=()=>{loadLive(true);updateOtherSources(true);snAutoCSV(true)};$('language').onclick=()=>{lang=lang==='ja'?'en':'ja';persist();updateLanguage()};$('center').onclick=()=>{snSkyViewpoint='outside';snSaveViewPref();for(const [id,v] of [['snSkyOutside','outside'],['snSkyInside','inside']]){const b=$(id);b.classList.toggle('active',v===snSkyViewpoint);b.setAttribute('aria-pressed',String(v===snSkyViewpoint))}skyCenterRA=180;skyCenterDec=30;skyZoom=1;galCenterL=0;galCenterB=0;galZoom=1;snGalAz=-.58;snGalEl=.64;snGalRange=150;drawMap()};document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>changeMode(b.dataset.mode)));for(const id of ['showConstLines','showConstBounds','showConstNames'])$(id).addEventListener('change',drawMap);$('star').onclick=()=>{if(current)toggleFav(current.id)};$('csv').onclick=()=>exportCSV(false);$('nina').onclick=()=>exportCSV(true);$('file').addEventListener('change',e=>importFile(e.target.files?.[0]));$('imgSource').addEventListener('change',()=>{try{localStorage.setItem('snmap_photo_source_v1',$('imgSource').value)}catch(_){}if(current)startImage(current,true)});$('imgRetry').addEventListener('click',()=>{if(current)startImage(current,true)});$('gptLink').addEventListener('click',e=>{if(!current)return;const x=current;const q=(lang==='ja'?'超新星の撮影について所有機材で比較提案：':'Supernova imaging advice: ')+x.name+', J2000 RA '+raText(x.ra)+', Dec '+decText(x.dec)+', latest reported '+(x.mag??'unknown')+' mag on '+(x.last||'unknown')+', host '+x.host+', type '+x.type+', observer lat '+$('lat').value+'° lon '+$('lon').value+'° UTC'+$('tz').value+', observing site local date/time '+$('moment').value+', equipment '+equipment.map(k=>k.name+' focal '+k.focal+'mm').join(' / ');e.currentTarget.href='https://chatgpt.com/?q='+encodeURIComponent(q)});$('tablewrap').addEventListener('scroll',()=>{const e=$('tablewrap');if(e.scrollTop+e.clientHeight>=e.scrollHeight-120){const total=filtered().length;if(tableLimit<total){tableLimit+=250;drawTable()}}});$('topBtn').onclick=()=>window.scrollTo({top:0,behavior:'smooth'});document.querySelectorAll('th[data-sort]').forEach(th=>th.onclick=()=>{$('sort').value=th.dataset.sort;refreshUI()});
-// SNmap v6.9: PNmap-style solar-centred, rotatable Galactic 3D view.
+// SNmap v7.0: PNmap-style solar-centred, rotatable Galactic 3D view.
 // Extragalactic SN distances are not PN-scale kpc distances: only documented
 // positive redshifts are placed, using a clearly labelled cosmological model.
 let snGalAz=-0.58,snGalEl=0.64,snGalRange=150,snGalRings=true;
@@ -1951,8 +2092,15 @@ function snRenderSavedList(){
 }
 function snExportSavedCSV(){
  const items=snSavedObjects();if(!items.length)return;
- const lines=[['Name','RA J2000 (deg)','Dec J2000 (deg)','Classification','Latest magnitude','Last observed','Host','Source'].join(',')];
- for(const x of items)lines.push([x.name,x.ra,x.dec,x.type,x.mag??'',x.last??'',x.host,x.source].map(csvQuote).join(','));
+ // Saved-list exports follow the same current-vs-historical photometry
+ // contract as the main catalogue CSV. Never present stale flux as current.
+ const headers=['Name','RA J2000 (deg)','Dec J2000 (deg)','Classification','Current magnitude (<=30 days)','Historical last magnitude','Last observed','Photometry status','Photometry band','Host','Source'];
+ const lines=[headers.map(csvQuote).join(',')];
+ for(const x of items){
+  const fresh=snPhotometryFresh(x);
+  const status=x.mag==null?'no valid measured magnitude':!x.last?'no dated observation':!Number.isFinite(age(x.last))?'invalid/future observation':fresh?'current dated observation':'historical (>30 days)';
+  lines.push([x.name,x.ra,x.dec,x.type,fresh?x.mag:'',x.mag??'',x.last??'',status,x.band||'',x.host,x.magSource||x.source].map(csvQuote).join(','));
+ }
  download('\ufeff'+lines.join('\r\n')+'\r\n','SNmap_saved_'+new Date().toISOString().slice(0,10)+'.csv');
 }
 function snExportStellarium(){
