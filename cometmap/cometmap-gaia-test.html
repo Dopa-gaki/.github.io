@@ -551,7 +551,7 @@ main>.comet-map-column{display:flex;flex-direction:column;min-width:0;width:100%
 <label for="tailLengthArcmin"><span data-en="Tail length (arcmin; optional)" data-ja="尾の長さ（分角・任意入力）">尾の長さ（分角・任意入力）</span><input id="tailLengthArcmin" max="3000" min="0" placeholder="未設定" step="0.1" type="number"/></label>
 <label for="tailAngle"><span data-en="Tail position angle (°; optional)" data-ja="尾の位置角（°・任意入力）">尾の位置角（°・任意入力）</span><input id="tailAngle" max="360" min="0" placeholder="反太陽方向" step="1" type="number"/></label>
 </div><div class="tool" id="tailStatus">尾の長さは写真等から入力。未入力なら描画しません。</div>
-<svg aria-label="Sensor field of view" id="framingSvg" role="img" viewbox="0 0 520 300"></svg>
+<svg aria-label="Sensor field of view" id="framingSvg" role="img" viewbox="0 0 520 300"></svg><div class="cm-star-credit" data-ja="恒星名・識別符号：HYG v4.1（David Nash / Astronexus，CC BY-SA 4.0）．位置はJ2000，Gaia分割星図はJ2016．" data-en="Star names/designations: HYG v4.1 (David Nash / Astronexus, CC BY-SA 4.0). Label positions J2000; Gaia tiles J2016.">恒星名・識別符号：<a href="https://github.com/astronexus/HYG-Database" target="_blank" rel="noopener">HYG v4.1</a>（David Nash / Astronexus，<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>）．位置はJ2000，Gaia分割星図はJ2016．</div>
 <div class="float-meta" id="framingNote"></div><label class="check float-toggle"><input id="frameOnMap" type="checkbox"/><span data-en="Show FOV on sky/ground map" data-ja="天球・地上図に画角枠を表示">天球・地上図に画角枠を表示</span></label></div>
 </div>
 <style id="cometmap-v66-style">
@@ -3433,6 +3433,16 @@ const CM_STAR_LABEL_URL=CM_TILED_BASE+'star-labels/hyg-labels.json';
 const CM_STAR_LABEL_KEY='cometmap_show_star_labels_test_v124';
 let cmStarLabelData=[],cmStarLabelReady=false;
 const cmStarNameCheck=document.getElementById('showStarLabels');
+const cmFrameStarLabelButton=document.createElement('button');
+cmFrameStarLabelButton.type='button';cmFrameStarLabelButton.id='cmFrameStarLabelToggle';
+cmFrameStarLabelButton.className='tiny';cmFrameStarLabelButton.title='HYG v4.1 • Bayer / Flamsteed / IAU proper names';
+document.getElementById('cometStarChartToggle')?.parentElement?.append(cmFrameStarLabelButton);
+function cmSyncStarLabelButton(){
+ cmFrameStarLabelButton.textContent=(lang==='ja'?'恒星名 ':'Star labels ')+(cmStarNameCheck.checked?'ON':'OFF');
+ cmFrameStarLabelButton.setAttribute('aria-pressed',String(cmStarNameCheck.checked));
+}
+cmFrameStarLabelButton.onclick=()=>{cmStarNameCheck.checked=!cmStarNameCheck.checked;cmStarNameCheck.dispatchEvent(new Event('change',{bubbles:true}))};
+
 try{cmStarNameCheck.checked=localStorage.getItem(CM_STAR_LABEL_KEY)!=='false'}catch(_){}
 function cmStarsNamesOn(){return cmStarNameCheck?.checked!==false}
 function cmNamesString(s,full){
@@ -3513,7 +3523,7 @@ function cmDrawFramingStarLabels(center,fw,fh,scale,cx,cy,group){
  }
 }
 const cmOriginalDrawMap=drawMap;
-drawMap=function(){cmOriginalDrawMap.apply(this,arguments);cmDrawMapStarLabels()};
+drawMap=function(){cmOriginalDrawMap.apply(this,arguments);cmSyncStarLabelButton();cmDrawMapStarLabels()};
 const cmOriginalPlotCatalogStars=cmPlotCatalogStars;
 cmPlotCatalogStars=function(center,fw,fh,scale,cx,cy,group,data){
  const result=cmOriginalPlotCatalogStars.apply(this,arguments);
