@@ -14,23 +14,6 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PNmap｜惑星状星雲マップ">
 <meta name="twitter:description" content="天球・銀河系マップと観測支援ツール / Planetary nebula atlas and observing tools">
-<script id="pnmap-language-preference">
-// Select language locally; no country lookup or redirect.
-(function(){
-  var chosen='';
-  try{
-    var q=new URLSearchParams(location.search).get('lang');
-    if(q==='ja'||q==='en')chosen=q;
-    if(!chosen){var saved=localStorage.getItem('pnmap_preferred_language_v1');if(saved==='ja'||saved==='en')chosen=saved;}
-  }catch(_err){}
-  if(!chosen){
-    var preferred=(navigator.languages&&navigator.languages[0])||navigator.language||'';
-    chosen=/^ja(?:-|$)/i.test(preferred)?'ja':'en';
-  }
-  window.PNMAP_INITIAL_LANG=chosen;
-  document.documentElement.lang=chosen;
-})();
-</script>
 <!-- PNmap 2026-11-16: host image optics / source persistence / displayed cutout links -->
 <style>
 :root{color-scheme:dark;--bg:#080d18;--surface:#101d30;--panel:#142239;--text:#ecf3ff;--muted:#aebed1;--border:#304563;--accent:#72bafa}*{box-sizing:border-box}
@@ -893,9 +876,9 @@ html[lang="ja"] .pn-legend-en,html[lang="en"] .pn-legend-ja{display:none!importa
 </style>
 <style id="pnmap-multi-altitude-20261117">
 /* Compact observing-night comparison, integrated into the existing map. */
-#pnAltToggle{padding:8px 14px;border:1px solid #4383ae;border-radius:8px;background:#21547b;color:#eaf7ff;cursor:pointer;white-space:nowrap;font:600 12px system-ui}
-#pnAltToggle:hover,#pnAltToggle:focus-visible{background:#34759c;outline:2px solid #83d5fc;outline-offset:2px}
-#myPNList #pnAltToggle{margin:0 0 11px;display:block;width:100%;white-space:normal;text-align:center;min-height:37px}
+#dsoAltToggle,#pnAltToggle{padding:8px 14px;border:1px solid #4383ae;border-radius:8px;background:#21547b;color:#eaf7ff;cursor:pointer;white-space:nowrap;font:600 12px system-ui}
+#dsoAltToggle:hover,#dsoAltToggle:focus-visible,#pnAltToggle:hover,#pnAltToggle:focus-visible{background:#34759c;outline:2px solid #83d5fc;outline-offset:2px}
+#myDSOList #dsoAltToggle,#myPNList #pnAltToggle{margin:0 0 11px;display:block;width:100%;white-space:normal;text-align:center;min-height:37px}
 #pnAltPanel{box-sizing:border-box;position:fixed;left:50%;top:50%;bottom:auto;transform:translate(-50%,-50%);z-index:1200;width:min(710px,calc(100vw - 32px));max-height:min(78vh,740px);overflow:auto;background:#101f33;border:1px solid #51718e;border-radius:12px;box-shadow:0 15px 55px #000b;color:#e8f2ff;padding:14px 15px;font-family:system-ui,sans-serif}
 #pnAltPanel[hidden]{display:none!important}
 #pnAltPanel *{box-sizing:border-box}
@@ -923,7 +906,7 @@ html[lang="ja"] .pn-legend-en,html[lang="en"] .pn-legend-ja{display:none!importa
 #pnAltPanel .alt-readout{font-variant-numeric:tabular-nums;line-height:1.5;font-size:12px;min-height:1.5em;margin:9px 0 0;overflow-wrap:anywhere}
 #pnAltPanel .alt-hint{font-size:11px;color:#9cbbd2;line-height:1.45;margin:4px 0 0}
 #pnAltPanel .alt-empty{font-size:12px;color:#b9d5e9;padding:20px 5px}
-@media(max-width:550px){#pnAltPanel{width:calc(100vw - 16px);padding:10px;max-height:68vh}#myPNList #pnAltToggle{position:static!important;min-width:0;padding:9px 8px}#pnAltPanel .alt-head h2{font-size:14px}}
+@media(max-width:550px){#pnAltPanel{width:calc(100vw - 16px);padding:10px;max-height:68vh}#myDSOList #dsoAltToggle,#myPNList #pnAltToggle{position:static!important;min-width:0;padding:9px 8px}#pnAltPanel .alt-head h2{font-size:14px}}
 </style>
 <style id="pnmap-mobile-refinement-20261118">
 /* Compact phone layout: controls are in document flow and never occlude the map. */
@@ -1010,11 +993,20 @@ body[data-pn-layout="mobile"] #chartpanel .projection-toggle button{
 #pnAltPanel #pnAltExportPNG{min-height:32px}
 @media(max-width:395px){#pnAltPanel .alt-head{gap:5px}#pnAltPanel .alt-head button{padding:5px 7px}}
 </style>
-<style id="pnmap-dso-alt-toggle-style">
-/* Match the saved-PN comparison control for saved DSOs on every layout. */
-#myDSOList #dsoAltToggle{display:block;width:100%;min-height:37px;margin:0 0 11px;padding:8px 14px;white-space:normal;text-align:center;font:600 12px system-ui;color:#eaf7ff;background:#21547b;border:1px solid #4383ae;border-radius:8px;cursor:pointer}
-#myDSOList #dsoAltToggle:hover,#myDSOList #dsoAltToggle:focus-visible{background:#34759c;outline:2px solid #83d5fc;outline-offset:2px}
-@media(max-width:550px){#myDSOList #dsoAltToggle{position:static!important;min-width:0;padding:9px 8px}}
+
+<style id="pnmap-cursor-consistency">
+/* Standard interaction cursors: clickable controls use the hand pointer. */
+button:not(:disabled), input[type="button"]:not(:disabled), input[type="submit"]:not(:disabled),
+input[type="reset"]:not(:disabled), summary, a[href], [role="button"]:not([aria-disabled="true"]),
+label[for], .obs-date-row, .pixel-table tbody tr, .dso-pixel-table tr[data-dso-setup],
+#dsoPixelResults .pixel-table tbody tr { cursor:pointer; }
+button:disabled, input[type="button"]:disabled, input[type="submit"]:disabled,
+input[type="reset"]:disabled, [role="button"][aria-disabled="true"] { cursor:not-allowed; }
+/* Keep map drag, sliders, text inputs and panel drag handles contextual. */
+#plot { cursor:grab; }
+#pnAltPanel .alt-head { cursor:grab; }
+#pnAltPanel .alt-head.dragging { cursor:grabbing; }
+#pnAltPanel .alt-head button { cursor:pointer; }
 </style>
 </head><body>
 <style id="pnmap-share-style">
@@ -1042,22 +1034,18 @@ body[data-pn-layout="mobile"] #chartpanel .projection-toggle button{
  body[data-pn-layout="mobile"] .pn-device-toggle button,body[data-pn-layout="mobile"] .lang-buttons button{padding:6px 4px;font-size:11px}
 }
 
+/* Harmonize all header controls: 48px outer groups and 38px buttons. */
 .headline>.pn-device-toggle,.headline>.lang-buttons,.headline>.pnmap-share{
-box-sizing:border-box;height:48px;min-height:48px;align-items:center;padding:4px;
-border:1px solid #50738f;border-radius:9px;background:#13263e
+ box-sizing:border-box;height:48px;min-height:48px;align-items:center;padding:4px;
+ border:1px solid #50738f;border-radius:9px;background:#13263e;
 }
-.headline>.pn-device-toggle>button,.headline>.lang-buttons>button,
-.headline>.pnmap-share>#pnmapShareButton,body[data-pn-layout="mobile"] .headline>.pnmap-share>#pnmapShareButton{
-display:inline-flex;align-items:center;justify-content:center;
-box-sizing:border-box;height:38px;min-height:38px;line-height:1.2
+.headline>.pn-device-toggle>button,.headline>.lang-buttons>button,.headline>.pnmap-share>#pnmapShareButton,
+body[data-pn-layout="mobile"] .headline>.pnmap-share>#pnmapShareButton{
+ display:inline-flex;align-items:center;justify-content:center;
+ box-sizing:border-box;height:38px;min-height:38px;line-height:1.2;
 }
 .headline>.pnmap-share{display:flex;align-self:center}
-.headline>.pnmap-share>#pnmapShareButton{
-border:0;border-radius:6px;padding:6px 11px;background:#2473ad;color:#fff
-}
-.pnmap-consent{position:fixed;bottom:12px;right:12px;z-index:160;background:#14263b;color:#eef8ff;padding:10px 12px;max-width:calc(100vw - 24px);border:1px solid #517f9e;border-radius:8px;box-shadow:0 6px 20px #0009;font-size:12px}
-.pnmap-consent p{margin:0 0 7px;line-height:1.5}.pnmap-consent .actions{display:flex;gap:7px;justify-content:flex-end}
-.pnmap-consent button{padding:5px 10px;font-size:12px}
+.headline>.pnmap-share>#pnmapShareButton{border:0;border-radius:6px;padding:6px 11px;background:#2473ad;color:#fff}
 </style>
 <header><div class="headline"><h1 data-i18n="title">惑星状星雲3Dマップ</h1>
 <div class="pn-device-toggle" role="group" aria-label="画面レイアウト / Display layout">
@@ -1083,7 +1071,6 @@ border:0;border-radius:6px;padding:6px 11px;background:#2473ad;color:#fff
   <button type="button" data-share="tumblr">Tumblr</button>
   <button type="button" data-share="bluesky">Bluesky</button>
   <button type="button" data-share="mastodon">Mastodon · URL</button>
-  <button type="button" data-share="native" hidden data-share-i18n="native">その他のアプリ…</button>
   <button type="button" data-share="copy" data-share-i18n="copy">URLをコピー</button>
  </div>
  <span id="pnmapShareStatus" role="status" aria-live="polite"></span>
@@ -1380,7 +1367,7 @@ border:0;border-radius:6px;padding:6px 11px;background:#2473ad;color:#fff
 <script id="hashEmbedded" type="application/json"></script>
 <script src="assets/pnmap-hashEmbedded-01.js"></script>
 <script src="assets/pnmap-hashEmbedded-02.js"></script>
-<script src="assets/pnmap-app-20261119-attribution-fix.js"></script><div hidden="" id="fovTooltip" role="tooltip"></div><div hidden="" id="newMoonTooltip" role="tooltip" aria-live="off"></div><script id="pnmap-share-controls">
+<script src="assets/pnmap-app-20261120-062022.js"></script><div hidden="" id="fovTooltip" role="tooltip"></div><div hidden="" id="newMoonTooltip" role="tooltip" aria-live="off"></div><script id="pnmap-share-controls">
 (function(){
  'use strict';
  // Always share the live site, rather than a file:// URL of this working HTML.
@@ -1393,7 +1380,7 @@ border:0;border-radius:6px;padding:6px 11px;background:#2473ad;color:#fff
  const loc=(ja,en)=>isEnglish()?en:ja;
  const setStatus=text=>{status.textContent=text};
  const close=()=>{menu.hidden=true;button.setAttribute('aria-expanded','false')};
- const updateLabel=()=>{button.textContent=loc('共有','Share');menu.setAttribute('aria-label',loc('共有先','Share PNmap'));const nativeBtn=menu.querySelector('[data-share-i18n="native"]');if(nativeBtn)nativeBtn.textContent=loc('その他のアプリ…','Other apps…');const copyBtn=menu.querySelector('[data-share-i18n="copy"]');if(copyBtn)copyBtn.textContent=loc('URLをコピー','Copy URL');};
+ const updateLabel=()=>{button.textContent=loc('共有','Share');menu.setAttribute('aria-label',loc('共有先','Share PNmap'));const copyBtn=menu.querySelector('[data-share-i18n="copy"]');if(copyBtn)copyBtn.textContent=loc('URLをコピー','Copy URL');};
  async function copyPublishedUrl(){
   const link=publishedUrl+(isEnglish()?'?lang=en':'?lang=ja');
   try{
@@ -1416,12 +1403,6 @@ border:0;border-radius:6px;padding:6px 11px;background:#2473ad;color:#fff
   const enc=encodeURIComponent;
   if(platform==='copy'){
    setStatus(await copyPublishedUrl()?loc('URLをコピーしました','URL copied'):loc('URLをコピーできませんでした','Could not copy URL'));
-   return;
-  }
-  if(platform==='native'){
-   if(typeof navigator.share==='function'){
-    try{await navigator.share({title,text:message,url:shareUrl})}catch(_err){}
-   }
    return;
   }
   // These services do not expose a reliable generic web link-posting intent.
@@ -1453,8 +1434,6 @@ border:0;border-radius:6px;padding:6px 11px;background:#2473ad;color:#fff
   }
  }
  updateLabel();
- const native=menu.querySelector('[data-share="native"]');
- if(native&&typeof navigator.share==='function')native.hidden=false;
  document.querySelectorAll('#langJa,#langEn').forEach(b=>b.addEventListener('click',updateLabel));
  button.addEventListener('click',e=>{
   e.stopPropagation();
@@ -1465,97 +1444,7 @@ border:0;border-radius:6px;padding:6px 11px;background:#2473ad;color:#fff
  });
  document.addEventListener('click',e=>{if(!menu.hidden&&!menu.contains(e.target)&&e.target!==button)close()});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!menu.hidden){close();button.focus()}});
- menu.querySelectorAll('[data-share]').forEach(b=>b.addEventListener('click',()=>{try{window.pnmapTrackShare?.(b.dataset.share)}catch(_err){}close();void shareTo(b.dataset.share)}));
-})();
-</script>
-<script id="pnmap-publication-controls">
-(function(){
- 'use strict';
- const measurementId='G-KZR370GN19';
- const siteUrl='https://dopa-gaki.github.io/.github.io/';
- const online=/^https?:$/.test(location.protocol);
- const consentKey='pnmap_ga4_consent_v1';
- let gaEnabled=false;
- const isEn=()=>document.documentElement.lang==='en';
- const t=(ja,en)=>isEn()?en:ja;
- function readConsent(){try{return localStorage.getItem(consentKey)}catch(_){return null}}
- function storeConsent(value){try{localStorage.setItem(consentKey,value)}catch(_){}}
- function loadGA(){
-   if(!online||gaEnabled)return;
-   gaEnabled=true;
-   window.dataLayer=window.dataLayer||[];
-   window.gtag=function(){window.dataLayer.push(arguments)};
-   window.gtag('js',new Date());
-   window.gtag('config',measurementId);
-   const tag=document.createElement('script');
-   tag.async=true;
-   tag.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(measurementId);
-   document.head.appendChild(tag);
- }
- function trackShare(platform){
-  if(!gaEnabled||typeof window.gtag!=='function')return;
-  window.gtag('event','share_click',{method:platform,content_type:'website',item_id:'PNmap'});
-  window.gtag('event','share_'+platform,{method:platform});
- }
- function stat(message){document.getElementById('pnmapShareStatus').textContent=message}
- function shareLink(platform){
-  const u=new URL(siteUrl);
-  if(platform!=='copy' && platform!=='native'){
-   u.searchParams.set('utm_source',platform);
-   u.searchParams.set('utm_medium','social');
-   u.searchParams.set('utm_campaign','pnmap_share');
-  }
-  return u.href;
- }
- function share(platform){
-  const title='PNmap — Planetary Nebula Sky Map & 3D Galactic Atlas';
-  const description='Explore planetary nebulae in PNmap';
-  const url=shareLink(platform);
-  const enc=encodeURIComponent;
-  if(platform==='copy'){
-    const copied=()=>{trackShare('copy');stat(t('URLをコピーしました','URL copied'))};
-    if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(url).then(copied,()=>stat(t('コピーできませんでした','Unable to copy')));
-    }else{
-      const text=document.createElement('textarea');text.value=url;text.style.cssText='position:fixed;opacity:0';document.body.appendChild(text);text.select();
-      const ok=document.execCommand('copy');text.remove();if(ok)copied();else stat(t('コピーできませんでした','Unable to copy'));
-    }
-    return;
-  }
-  if(platform==='native'){
-    if(navigator.share)navigator.share({title,text:description,url}).then(()=>trackShare('native')).catch(()=>{});
-    return;
-  }
-  const target={
-    x:'https://twitter.com/intent/tweet?text='+enc(description)+'&url='+enc(url),
-    bluesky:'https://bsky.app/intent/compose?text='+enc(description+' '+url),
-    reddit:'https://www.reddit.com/submit?url='+enc(url)+'&title='+enc(title),
-    facebook:'https://www.facebook.com/sharer/sharer.php?u='+enc(url),
-    line:'https://social-plugins.line.me/lineit/share?url='+enc(url)
-  }[platform];
-  if(target){trackShare(platform);window.open(target,'_blank','noopener,noreferrer,width=740,height=650')}
- }
- function consentUI(){
-  if(!online)return;
-  if(readConsent()==='accepted'){loadGA();return}
-  if(readConsent()==='declined')return;
-  const box=document.createElement('div');box.className='pnmap-consent';
-  const text=document.createElement('p');text.textContent=t('匿名のアクセス解析を許可しますか？','Allow anonymous usage analytics?');
-  const actions=document.createElement('div');actions.className='actions';
-  const no=document.createElement('button');no.type='button';no.textContent=t('拒否','Decline');
-  const yes=document.createElement('button');yes.type='button';yes.textContent=t('許可','Allow');
-  no.addEventListener('click',()=>{storeConsent('declined');box.remove()});
-  yes.addEventListener('click',()=>{storeConsent('accepted');box.remove();loadGA()});
-  actions.append(no,yes);box.append(text,actions);document.body.appendChild(box);
-  // Keep the prompt's two labels in sync with manual language switching.
-  document.querySelectorAll('#langJa,#langEn').forEach(b=>b.addEventListener('click',()=>{
-    if(!box.isConnected)return;
-    text.textContent=t('匿名のアクセス解析を許可しますか？','Allow anonymous usage analytics?');
-    no.textContent=t('拒否','Decline');yes.textContent=t('許可','Allow');
-  }));
- }
- function boot(){window.pnmapTrackShare=trackShare;consentUI();}
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
+ menu.querySelectorAll('[data-share]').forEach(b=>b.addEventListener('click',()=>{close();void shareTo(b.dataset.share)}));
 })();
 </script>
 </body></html>
