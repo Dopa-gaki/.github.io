@@ -1,0 +1,42 @@
+name: Cometmap one-off bright Gaia test data
+on:
+  push:
+    paths:
+      - '.github/workflows/cometmap-bright-test.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build-bright-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Build bright Gaia DR3 sky tiles from pinned source
+        run: python cometmap/scripts/build_gaia_bright.py
+      - name: Verify generated bright catalogue counts
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          p=pathlib.Path('cometmap/gaia-bright/manifest.json')
+          d=json.loads(p.read_text())
+          assert len(d['tiles'])==72
+          assert sum(t['count'] for t in d['tiles'])==d['stars_g_lt_11']
+          assert 400000<d['stars_g_lt_10']<650000
+          assert all(pathlib.Path('cometmap/gaia-bright',t['file']).stat().st_size==t['bytes'] for t in d['tiles'])
+          print('Tile verification passed', d['stars_g_lt_10'], d['stars_g_lt_11'])
+          PY
+      - name: Commit test-data files only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add cometmap/gaia-bright/
+          if ! git diff --cached --quiet; then
+            git commit -m "Add G<11 Gaia DR3 bright-star tiles for isolated Cometmap test"
+            git push origin HEAD:main
+          fi
