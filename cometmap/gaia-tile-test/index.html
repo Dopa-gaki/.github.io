@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cometmap Gaia DR3 split-star-chart TEST | alternate entry</title>
+<style>
+:root{color-scheme:dark;font-family:system-ui,-apple-system,"Noto Sans JP",sans-serif;background:#07101d;color:#ebf3ff}
+body{max-width:1150px;margin:20px auto;padding:0 14px}h1{font-size:1.4rem}
+p,small{color:#b3c6db}a{color:#7ed1ff}
+.controls{display:flex;gap:9px;flex-wrap:wrap;align-items:end;margin:15px 0}
+label{font-size:.87rem;display:grid;gap:4px}
+input,button,select{background:#172d46;border:1px solid #52708b;border-radius:7px;color:white;padding:8px;font:inherit}
+input{width:105px}button{cursor:pointer}button:hover{background:#285477}
+canvas{display:block;width:100%;height:540px;border:1px solid #52708b;border-radius:10px;background:#06101b;touch-action:none}
+#status{padding:10px;background:#14283e;border-radius:8px;white-space:pre-wrap;line-height:1.6;font-size:.88rem}
+.ok{color:#8ae5b6}.warn{color:#ffcb87}footer{margin:15px 0;font-size:.78rem;color:#aabdd0}
+</style></head><body>
+<h1>Cometmap 星図分割読み込み・テスト</h1>
+<p>既存のCometmap公開版には変更を加えず，GitHub上の128個の分割ファイルを視野に応じて読み込む独立テストです．星の点は実際に読み込んだタイルから復元します．</p>
+<div class="controls">
+<label>赤経 RA (°)<input id="ra" type="number" min="0" max="360" step=".1" value="83.82"></label>
+<label>赤緯 Dec (°)<input id="dec" type="number" min="-90" max="90" step=".1" value="-5.39"></label>
+<label>視野幅 (°)<input id="fov" type="number" min="0.25" max="90" step=".25" value="6"></label>
+<button id="load">タイルを読み込む</button><button id="clear">キャッシュをクリア</button>
+<select id="preset" aria-label="Position presets"><option value="">観測対象を選択</option><option value="83.82,-5.39">M42 付近</option><option value="10.68,41.27">M31 付近</option><option value="201.37,-43.02">ω Centauri 付近</option><option value="279.24,38.78">Vega 付近</option></select>
+</div>
+<canvas id="sky"></canvas>
+<div id="status" role="status">準備中</div>
+<footer>出典：ESA/Gaia/DPAC，Gaia DR3．タイル化元：chrisjz/universe-data．収録範囲はG≈11〜12かつ視差精度条件を満たす星の部分集合のみ．完全なGaia DR3ではありません．J2016.0のカタログ位置を表示し，固有運動による位置更新は行いません．</footer>
+<script>
+'use strict';
+const $=id=>document.getElementById(id), canvas=$('sky'),ctx=canvas.getContext('2d');
+const BASE='../gaia-dr3/', cache=new Map();let manifest=null,token=0;
+const M=[[-.0548755604,-.8734370902,-.4838350155],[.4941094279,-.44482963,.7469822445],[-.867666149,-.1980763734,.4559837762]];
+const rad=Math.PI/180,pc=3.0857e16;
+function eqDir(ra,dec){const a=ra*rad,d=dec*rad;return [Math.cos(d)*Math.cos(a),Math.cos(d)*Math.sin(a),Math.sin(d)]}
+function galDir(eq){const g=M.map(row=>row[0]*eq[0]+row[1]*eq[1]+row[2]*eq[2]);return [-g[0],g[2],g[1]]}
+function dot(a,b){return a[0]*b[0]+a[1]*b[1]+a[2]*b[2]}
+function status(msg){$('status').textContent=msg}
+async function getManifest(){if(manifest)return manifest;const r=await fetch(BASE+'manifest.json',{cache:'no-cache'});if(!r.ok)throw Error('manifest HTTP '+r.status);const j=await r.json();if(j.format!=='cometmap-gaia-dr3-tile-b64-v1'||!Array.isArray(j.tiles)||j.tiles.length!==128)throw Error('manifest形式が不正です');manifest=j;return j}
+async function loadTile(t){if(cache.has(t.file))return cache.get(t.file);const task=(async()=>{const r=await fetch(BASE+t.file);if(!r.ok)throw Error(t.file+' HTTP '+r.status);const txt=(await r.text()).trim(),bin=atob(txt),length=bin.length;if(length!==22*t.count)throw Error(t.file+' バイト数不一致 '+length+' != '+(22*t.count));const buf=new ArrayBuffer(length),dst=new Uint8Array(buf);for(let i=0;i<length;i++)dst[i]=bin.charCodeAt(i);return new DataView(buf)})();cache.set(t.file,task);try{return await task}catch(e){cache.delete(t.file);throw e}}
+function decodeVisible(view,center,halfW,halfH,stars){let good=0;for(let p=0;p<view.byteLength;p+=22){const x=view.getFloat32(p,true),y=view.getFloat32(p+4,true),z=view.getFloat32(p+8,true),norm=Math.hypot(x,y,z);if(!Number.isFinite(norm)||norm<=0)continue;
+const g=[-x/norm,z/norm,y/norm],e=[M[0][0]*g[0]+M[1][0]*g[1]+M[2][0]*g[2],M[0][1]*g[0]+M[1][1]*g[1]+M[2][1]*g[2],M[0][2]*g[0]+M[1][2]*g[1]+M[2][2]*g[2]];
+const ra=Math.atan2(e[1],e[0])/rad,dec=Math.asin(Math.max(-1,Math.min(1,e[2])))/rad;
+let dra=((ra-center.ra+540)%360)-180;const east=dra*Math.cos((dec+center.dec)/2*rad),north=dec-center.dec;
+if(Math.abs(east)>halfW||Math.abs(north)>halfH)continue;
+const dist=norm/pc,absmag=view.getUint8(p+15)/8-15,mag=absmag+5*Math.log10(dist)-5;
+if(!(mag>=9&&mag<=13))continue;
+stars.push({east,north,mag,r:view.getUint8(p+12),g:view.getUint8(p+13),b:view.getUint8(p+14)});good++}return good}
+function paint(stars,ra,dec,fov){const dpr=Math.min(devicePixelRatio||1,2),w=canvas.clientWidth,h=canvas.clientHeight;canvas.width=Math.round(w*dpr);canvas.height=Math.round(h*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);ctx.fillStyle='#06101b';ctx.fillRect(0,0,w,h);const scale=w/fov,halfH=h/scale;
+ctx.strokeStyle='#20405a';ctx.lineWidth=1;for(let i=-4;i<=4;i++){const x=w/2+i*w/8;ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke();const y=h/2+i*h/8;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke()}
+for(const s of stars){if(Math.abs(s.north)>halfH/2)continue;const x=w/2-s.east*scale,y=h/2-s.north*scale,size=Math.max(.55,Math.min(1.8,(13-s.mag)*.38));ctx.fillStyle='rgb('+s.r+','+s.g+','+s.b+')';ctx.globalAlpha=.80;ctx.beginPath();ctx.arc(x,y,size,0,Math.PI*2);ctx.fill()}ctx.globalAlpha=1;
+ctx.strokeStyle='#80d4ff';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(w/2-10,h/2);ctx.lineTo(w/2+10,h/2);ctx.moveTo(w/2,h/2-10);ctx.lineTo(w/2,h/2+10);ctx.stroke();
+ctx.font='12px system-ui';ctx.fillStyle='#a9d3ee';ctx.fillText('N ↑ / E ← · RA '+ra.toFixed(2)+'° Dec '+dec.toFixed(2)+'° · '+fov.toFixed(2)+'°',12,22)}
+async function run(){const mine=++token,ra=+$('ra').value,dec=+$('dec').value,fov=+$('fov').value;if(!Number.isFinite(ra)||!Number.isFinite(dec)||!Number.isFinite(fov)||dec < -90||dec>90||fov<.25||fov>90){status('座標または視野幅が範囲外です');return}
+const w=canvas.clientWidth,h=canvas.clientHeight,halfW=fov/2,halfH=fov*h/w/2,center={ra,dec},v=galDir(eqDir(ra,dec));paint([],ra,dec,fov);status('manifestを取得中…');
+try{const m=await getManifest(),radius=Math.atan(Math.hypot(Math.tan(halfW*rad),Math.tan(halfH*rad)));const chosen=m.tiles.filter(t=>dot(v,t.dir)>=Math.cos(Math.min(Math.PI,t.ang+radius+.005)));if(mine!==token)return;
+status('対象タイル '+chosen.length+'/128 · 読み込み中…');const stars=[],fail=[];let count=0;const queue=chosen.slice();let done=0;
+await Promise.all(Array.from({length:Math.min(4,queue.length)},async()=>{while(queue.length&&mine===token){const t=queue.shift();try{const view=await loadTile(t);count+=view.byteLength/22;decodeVisible(view,center,halfW,halfH,stars)}catch(e){fail.push(String(e.message||e))}done++;if(mine===token)status('タイル '+done+'/'+chosen.length+' · 読み込み済みレコード '+count.toLocaleString()+' · 描画対象 '+stars.length.toLocaleString()+' · 失敗 '+fail.length)}}));
+if(mine!==token)return;paint(stars,ra,dec,fov);status('読み込み完了：'+done+'/'+chosen.length+'タイル（全128）\n検査した星：'+count.toLocaleString()+' · 視野に入った星：'+stars.length.toLocaleString()+' · キャッシュ済み：'+cache.size+'タイル\n失敗：'+fail.length+(fail.length?'\n'+fail.slice(0,4).join('\n'):'')+'\n注意：これはGaia DR3の一部（G≈11〜12）であり，より明るい星や微光星は欠けています。');}catch(e){if(mine===token)status('取得失敗：'+String(e.message||e))}}
+$('load').onclick=run;$('clear').onclick=()=>{cache.clear();status('メモリ上のタイルキャッシュをクリアしました')};$('preset').onchange=()=>{if(!$('preset').value)return;const [ra,dec]=$('preset').value.split(',');$('ra').value=ra;$('dec').value=dec;run()};window.addEventListener('resize',()=>run());run();
+</script></body></html>
