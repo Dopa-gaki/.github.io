@@ -5,6 +5,7 @@ Never overwrites the previous published JSON if all source queries fail.
 from __future__ import annotations
 import datetime as dt
 import json
+import math
 import os
 from pathlib import Path
 import time
@@ -73,56 +74,171 @@ def key_for(row):
     return ''
 
 
-def build():
-    records=[];seen=set();sources=[];partial=False;observed=[]
-    for i,(label,params) in enumerate(JOBS):
-        if i: time.sleep(12.1)   # export endpoint is rate limited (6 calls/min)
-        query = urlencode(params)
-        errors=[];result=None;export=False
-        for path in ('/export',''):
-            url=API + path + '?' + query + ('' if path else '&limit=100')
+# Transients.fyi /objects/export stops at 10,100 rows, and API offsets stop
+# at 10,000.  Count first, then split a wide declination range into complete
+# independent exports.  Dec-band boundary duplicates are removed by object ID.
+SAFE_EXPORT_ROWS=9000
+MAX_REQUESTS=180
+MAX_PARTITIONS=64
+COLLECT_TIME_BUDGET=12*60
+MIN_DEC_WIDTH=.025
+MAX_JSON_BYTES=25_000_000
+
+class PartialData(Exception):
+    pass
+
+class Pacer:
+    def __init__(self):
+        self.start=time.monotonic()
+        self.next_request=self.start
+        self.next_export=self.start
+        self.requests=0
+        self.exports=0
+
+    def fetch(self,path,params):
+        url=API+path+'?'+urlencode(params)
+        for retry in range(3):
+            if self.requests>=MAX_REQUESTS or time.monotonic()-self.start>COLLECT_TIME_BUDGET:
+                raise PartialData('request/time budget reached')
+            wait=max(self.next_request,self.next_export if path=='/export' else 0)-time.monotonic()
+            if wait>0:time.sleep(wait)
+            self.next_request=time.monotonic()+1.05  # <= one request/second
+            if path=='/export':
+                self.exports+=1
+                self.next_export=time.monotonic()+10.5  # <= six exports/minute
+            self.requests+=1
             try:
-                result=retrieve(url)
-                export=bool(path)
-                break
-            except (HTTPError,URLError,ValueError,TimeoutError,OSError) as exc:
-                errors.append(('export' if path else 'objects') + ': ' + str(exc)[:120])
-                # Try the documented paged endpoint even if export fails.
-                if path: time.sleep(1.5)
-        if result is None:
-            partial=True
-            sources.append({'query':label,'received':0,'total':0,'complete':False,'data_through':'','errors':errors})
-            continue
-        rows=result['rows']
-        total=safe_total(result.get('total'))
-        through=str(result.get('data_through') or '').strip()
-        if through: observed.append(through)
-        complete=(total is not None and len(rows)>=total and not bool(result.get('truncated')))
-        if total is None or not complete or not through: partial=True
-        sources.append({'query':label,'received':len(rows),'total':total, 'complete':complete,
-                        'data_through':through,'method':'export' if export else 'paged-sample',
-                        'errors':[] if export else errors[:1]})
+                return retrieve(url)
+            except HTTPError as exc:
+                if exc.code not in (429,500,502,503,504) or retry==2:raise
+                try:
+                    delay=min(90,max(2,float(exc.headers.get('Retry-After') or '0')))
+                except (TypeError,ValueError):
+                    delay=3*(retry+1)
+                self.next_request=max(self.next_request,time.monotonic()+delay)
+            except (URLError,TimeoutError,OSError):
+                if retry==2:raise
+                self.next_request=max(self.next_request,time.monotonic()+3*(retry+1))
+        raise PartialData('no valid API response')
+
+def fetch_adaptive(pacer,label,params):
+    rows=[]
+    errs=[]
+    dates=set()
+    versions=set()
+    root_total=None
+    parts=0
+    splits=0
+    verified=True
+
+    def visit(lo,hi,depth=0):
+        nonlocal root_total,parts,splits,verified
+        if parts>=MAX_PARTITIONS:
+            raise PartialData('declination partition budget reached')
+        query={**params,'dec_min':round(lo,6),'dec_max':round(hi,6)}
+        # Unlike /export, /objects exposes an exact total for a 1-row probe.
+        count=pacer.fetch('',{**query,'limit':1,'offset':0})
+        total=safe_total(count.get('total'))
+        if total is None:raise PartialData('count endpoint did not provide an exact total')
+        if depth==0:root_total=total
+        if total>SAFE_EXPORT_ROWS:
+            if depth>=16 or hi-lo<=MIN_DEC_WIDTH:
+                raise PartialData('crowded sky region could not be subdivided')
+            splits+=1
+            mid=(lo+hi)/2
+            visit(lo,mid,depth+1)
+            visit(mid,hi,depth+1)
+            return
+        parts+=1
+        if total==0:return
+        result=pacer.fetch('/export',query)
+        segment=result['rows']
+        if result.get('truncated') is not False or len(segment)!=total:
+            # Never accept a capped export or a changing total silently.
+            if depth>=16 or hi-lo<=MIN_DEC_WIDTH:
+                raise PartialData('count/export mismatch: %s/%s'%(len(segment),total))
+            parts-=1
+            splits+=1
+            mid=(lo+hi)/2
+            visit(lo,mid,depth+1)
+            visit(mid,hi,depth+1)
+            return
+        date=str(result.get('data_through') or count.get('data_through') or '').strip()
+        if date:dates.add(date)
+        else:verified=False
+        build_id=str(result.get('generated_at') or count.get('generated_at') or '').strip()
+        if build_id:versions.add(build_id)
+        for row in segment:
+            if not valid_row(row):
+                verified=False
+                continue
+            if not lo-1e-6<=float(row['dec'])<=hi+1e-6:
+                verified=False
+                continue
+            rows.append(row)
+
+    try:
+        visit(-90.0,90.0)
+    except (PartialData,HTTPError,URLError,ValueError,TimeoutError,OSError) as exc:
+        verified=False
+        errs.append(str(exc)[:160])
+    unique={}
+    for row in rows:
+        key=key_for(row)
+        if key:unique[key]=compact_row(row)
+        else:verified=False
+    if root_total is None or len(unique)!=root_total:
+        verified=False
+        errs.append('coverage mismatch: %s/%s unique objects'%(len(unique),root_total))
+    if len(dates)>1 or len(versions)>1:
+        verified=False
+        errs.append('provider rebuilt its data during the segmented fetch')
+    note={'query':label,'received':len(unique),'total':root_total,
+          'complete':verified and not errs,'data_through':min(dates) if dates else '',
+          'method':'adaptive-dec-slices','partitions':parts,'splits':splits,'errors':errs}
+    return list(unique.values()),note
+
+def build():
+    pacer=Pacer()
+    records={}
+    sources=[]
+    for label,params in JOBS:
+        rows,note=fetch_adaptive(pacer,label,params)
+        sources.append(note)
+        budget_hit=False
         for row in rows:
-            if not valid_row(row):continue
             key=key_for(row)
-            if not key or key in seen:continue
-            seen.add(key)
-            if len(records)<MAX_ROWS:records.append(compact_row(row))
-            else:partial=True
+            if key not in records:
+                if len(records)>=MAX_ROWS:
+                    budget_hit=True
+                else:
+                    records[key]=row
+        if budget_hit:
+            note['complete']=False
+            note['errors'].append('SNmap display record budget reached (%s)'%MAX_ROWS)
     if not records:
-        raise RuntimeError('All sources failed or provided no verifiable coordinates; keep old published feed')
-    if len(observed)<sum(1 for s in sources if s['received']>0): partial=True
+        raise RuntimeError('All sources unavailable; previous public feed preserved')
     dates=[s['data_through'] for s in sources if s['received']>0 and s['data_through']]
+    enough_dates=len(dates)==sum(s['received']>0 for s in sources)
     payload={'format':'SNmap-public-feed-v1',
-             'generated_at':dt.datetime.now(dt.timezone.utc).isoformat(),
-             'data_through':min(dates) if dates and len(dates)==sum(s['received']>0 for s in sources) else '',
-             'partial':partial, 'rows':records, 'sources':sources}
+        'generated_at':dt.datetime.now(dt.timezone.utc).isoformat(),
+        'data_through':min(dates) if dates and enough_dates else '',
+        'partial':any(not s['complete'] for s in sources),
+        'collection_strategy':'adaptive-declination-slices-v1',
+        'rows':list(records.values()),'sources':sources}
+    raw=json.dumps(payload,ensure_ascii=False,separators=(',',':')).encode('utf-8')
+    if len(raw)>MAX_JSON_BYTES:
+        raise RuntimeError('JSON size budget exceeded; previous feed preserved')
     DEST.parent.mkdir(parents=True,exist_ok=True)
     tmp=DEST.with_suffix('.json.tmp')
-    tmp.write_text(json.dumps(payload,ensure_ascii=False,separators=(',',':')),encoding='utf-8')
+    tmp.write_bytes(raw)
     os.replace(tmp,DEST)
-    print('SNmap rows:', len(records),'partial:',partial)
-    for note in sources:print(note['query'],note['received'],'/',note['total'],note['method'] if 'method' in note else 'unavailable')
+    print('SNmap rows:',len(records),'partial:',payload['partial'],
+          'requests:',pacer.requests,'exports:',pacer.exports)
+    for note in sources:
+        print(note['query'],note['received'],'/',note['total'],
+              'parts:',note['partitions'],'complete:',note['complete'],
+              'errors:',note['errors'])
 
 if __name__=='__main__':
     build()
