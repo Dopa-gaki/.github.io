@@ -1,24 +1,75 @@
-name: SNmap data validation (manual only)
-# No scheduled or push-triggered execution.
-# This workflow never commits or deploys; output is a private workflow artifact.
+name: SNmap hourly public catalogue
+
+# Server-side collection avoids browser CORS errors and manual CSV downloads.
+# This workflow changes only snmap/data/snmap-live.json.
 on:
+  schedule:
+    - cron: '17 * * * *'  # UTC; every hour, off the top-of-hour peak
   workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/snmap-data.yml'  # bootstrap on installing/updating this workflow
+
 permissions:
-  contents: read
+  contents: write
+
+concurrency:
+  group: snmap-public-catalogue-main
+  cancel-in-progress: false
+
 jobs:
-  validate:
+  build-feed:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Checkout the current main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Retrieve data for review (no publication)
+
+      - name: Retrieve published supernova/transient data
         run: python3 snmap/scripts/update_feed.py
-      - name: Save proposed JSON as workflow artifact only
-        uses: actions/upload-artifact@v4
-        with:
-          name: snmap-data-review
-          path: snmap/data/snmap-live.json
-          retention-days: 7
+
+      - name: Validate the output before publishing
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import datetime as dt
+          import json
+          from pathlib import Path
+          p = Path('snmap/data/snmap-live.json')
+          raw = p.read_bytes()
+          assert 0 < len(raw) <= 25_000_000, 'bad file size'
+          data = json.loads(raw)
+          assert data.get('format') == 'SNmap-public-feed-v1'
+          assert isinstance(data.get('rows'), list) and 0 < len(data['rows']) <= 25000
+          assert isinstance(data.get('sources'), list) and len(data['sources']) >= 3
+          stamp = dt.datetime.fromisoformat(data['generated_at'].replace('Z', '+00:00'))
+          assert stamp.tzinfo is not None
+          age = (dt.datetime.now(dt.timezone.utc)-stamp).total_seconds()
+          assert -120 <= age < 3600, 'stale generated timestamp'
+          print(f"Validated: {len(data['rows'])} objects; partial={data.get('partial')}; {len(raw)} bytes")
+          PY
+
+      - name: Commit only the SNmap public JSON snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -- snmap/data/snmap-live.json
+          if git diff --cached --quiet; then
+            echo 'No changes to SNmap public data.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'SNmap: hourly public transient catalogue refresh'
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
