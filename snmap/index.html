@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="ja"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="dark" name="color-scheme"/><meta name="description" content="SNmap｜超新星と未分類突発天体の天球・銀河系・一覧マップ．PNmapに準拠した観測支援ツール．"><link rel="canonical" href="https://dopa-gaki.github.io/.github.io/snmap/"><title>SNmap v12.0｜超新星観測マップ</title>
+<meta content="dark" name="color-scheme"/><meta name="description" content="SNmap｜超新星と未分類突発天体の天球・銀河系・一覧マップ．PNmapに準拠した観測支援ツール．"><link rel="canonical" href="https://dopa-gaki.github.io/.github.io/snmap/"><title>SNmap v12.1｜超新星観測マップ</title>
 <style>
 :root{--bg:#070e1c;--panel:#102036;--panel2:#152940;--line:#304c67;--text:#e9f4ff;--sub:#a8c0d7;--cyan:#68c7ff;--gold:#ffcd83;--orange:#f2a25e;--green:#9fe0b5;--red:#f3a7b4}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{font:14px/1.5 system-ui,-apple-system,"Noto Sans JP",sans-serif;color:var(--text);background:radial-gradient(circle at 10% -20%,#172c50 0,#070e1c 42%);margin:0}button,select,input{font:inherit}button{cursor:pointer;color:var(--text);background:#244260;border:1px solid #4d7398;padding:8px 11px;border-radius:8px}button:hover{background:#315a7c}button.active{background:#136da4;border-color:#91d4fc}button:disabled{opacity:.5;cursor:not-allowed}a{color:#91d9ff}h1,h2,h3,p{margin-top:0}header{max-width:1700px;margin:auto;padding:21px 20px 14px}.eyebrow{font-size:11px;font-weight:800;letter-spacing:.2em;color:var(--cyan)}h1{font-size:clamp(24px,2.4vw,32px);margin:2px 0}header p{color:var(--sub);margin:0 0 11px;max-width:900px;font-size:13px}.headerline{display:flex;align-items:center;justify-content:space-between;gap:16px}.headeractions{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.muted{color:var(--sub)}.small{font-size:11px}.status{display:flex;align-items:center;gap:9px;color:#c6d9e9;font-size:12px;flex-wrap:wrap}.status-dot{width:8px;height:8px;border-radius:50%;background:#dda16c;box-shadow:0 0 0 3px #e7a66817}.status-dot.live{background:#7ee0ac;box-shadow:0 0 0 3px #7ee0ac2b}.status-dot.error{background:#f39c8e}main{max-width:1700px;margin:auto;padding:0 14px 22px;display:grid;grid-template-columns:minmax(540px,1fr) minmax(350px,435px);gap:13px}.card{border:1px solid var(--line);border-radius:13px;background:var(--panel);overflow:hidden}.mapcard{position:relative;min-height:560px;background:#07101f;align-self:start}.maptoolbar{position:absolute;left:12px;top:12px;z-index:3;display:flex;gap:5px;padding:5px;background:#102a46e8;border:1px solid #456985;border-radius:10px;max-width:calc(100% - 24px);flex-wrap:wrap}.maptoolbar button{font-size:12px;padding:6px 9px;background:transparent;border:0}.maptoolbar button.active{background:#1b75aa}#sky{width:100%;height:660px;display:block;cursor:crosshair;touch-action:none}.mapfoot{position:absolute;bottom:11px;left:12px;right:12px;pointer-events:none;display:flex;justify-content:space-between;gap:14px;color:#c0d7e7;font-size:11px;text-shadow:0 1px 4px #000}.maptip{position:absolute;z-index:4;display:none;border:1px solid #72a9d1;background:#112a42ee;border-radius:7px;padding:6px 8px;font-size:12px;pointer-events:none;max-width:230px}.side{padding:14px}.side h2{font-size:15px;margin:0 0 12px}.summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-bottom:11px}.metric{background:#172d46;border:1px solid #385876;border-radius:9px;padding:8px 9px}.metric strong{font-size:23px;display:block;line-height:1.1;font-variant-numeric:tabular-nums}.metric span{font-size:10px;color:var(--sub)}.section{border-top:1px solid #2f4a64;margin-top:15px;padding-top:13px}.secthead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}.secthead h3{font-size:13px;margin:0}.field{display:block;min-width:0}.field>span{font-size:11px;color:#afc6dc;display:block;margin:0 0 3px}input,select{background:#091a2b;border:1px solid #3c607c;border-radius:7px;color:var(--text);padding:8px;width:100%;min-width:0}input:focus,select:focus{outline:1px solid #7acbf8}.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.fields.triple{grid-template-columns:repeat(3,minmax(0,1fr))}.checkbox{display:flex;align-items:center;gap:6px;color:#d0e3f4;font-size:12px}.checkbox input{width:auto;accent-color:#58bdf3}.filters{display:flex;gap:5px;flex-wrap:wrap;margin:8px 0}.filters button{font-size:11px;padding:5px 9px}.selected{margin-top:13px;padding:13px;border:1px solid #456481;background:#10273f;border-radius:9px}.selectedtitle{display:flex;justify-content:space-between;align-items:center;gap:10px}.selectedtitle h3{margin:0 0 5px;font-size:17px}.chip{font-size:10px;padding:3px 7px;border:1px solid #527593;border-radius:20px;color:#aee0ff}.objectgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:10px 0}.kv{background:#0c1d31;padding:7px 8px;border:1px solid #2c4964;border-radius:7px;min-width:0}.kv dt{color:#a2bad0;font-size:10px}.kv dd{margin:2px 0 0;font-size:12px;overflow-wrap:anywhere}.links{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}.links a{font-size:11px;border:1px solid #416d8c;padding:6px 8px;border-radius:7px;text-decoration:none}.links a:hover{background:#214361}.imagebox{margin-top:11px;background:#071626;border:1px solid #355575;border-radius:8px;min-height:172px;position:relative;overflow:hidden}.imagebox img{width:100%;height:210px;object-fit:contain;display:none}.imgmsg{position:absolute;top:44%;left:12px;right:12px;text-align:center;color:#9db5ca;font-size:12px}.tiny{font-size:10px;color:#9db5ca}.equipline{display:grid;grid-template-columns:minmax(0,1.4fr) .8fr .8fr;gap:6px;padding:7px 0;border-bottom:1px solid #2d4560;font-size:11px;align-items:center}.equipline b{font-weight:620}.equipline span{color:#b1d5ee;text-align:right}.asidefoot{font-size:10px;color:#9db3c8}.bottom{max-width:1700px;margin:auto;padding:0 14px 28px}.tablecard{padding:13px 14px}.tablehead{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:10px}.tablehead h2{font-size:15px;margin:0}.tablewrap{max-height:440px;overflow:auto;border:1px solid #2e4a62;border-radius:8px}table{width:100%;border-collapse:collapse;font-size:12px;white-space:nowrap}th{position:sticky;top:0;background:#193049;color:#bee2f8;text-align:left;padding:8px;z-index:1;cursor:pointer}td{padding:7px 8px;border-top:1px solid #293e56}tr[data-id]:hover{background:#1a3854;cursor:pointer}tr.chosen{background:#204965}td.num{text-align:right;font-variant-numeric:tabular-nums}.type-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}.note{max-width:1700px;margin:auto;padding:0 17px 33px;color:#a6bbce;font-size:11px;line-height:1.65}.note p{margin:5px 0}.badgebox{display:inline-block;border:1px solid #44637e;border-radius:6px;padding:3px 7px;color:#abd9f4;font-size:10px}.pillrow{display:flex;gap:6px;flex-wrap:wrap;align-items:center}.two{display:grid;grid-template-columns:1fr 1fr;gap:7px}.warning{color:#ffc69b}.green{color:#a5dfb5}.loading{opacity:.65}#toast{position:fixed;right:15px;bottom:15px;background:#203c57;border:1px solid #5b87a3;padding:10px 14px;border-radius:10px;z-index:10;display:none;max-width:360px;font-size:12px;box-shadow:0 10px 32px #0008}details summary{cursor:pointer;color:#afd9f4;font-size:12px;font-weight:600;margin:9px 0}.help{font-size:11px;color:#abc1d5;line-height:1.7}
@@ -295,7 +295,7 @@ a.sn-download-link:hover,.sn-source-fallback a:hover{background:#285775}
  </div><div class="sn-sky-view" id="snSkyViewPanel" role="group" aria-label="天球の視点">
  <button id="snSkyOutside" type="button" class="active" aria-pressed="true">外側から</button><button id="snSkyInside" type="button" aria-pressed="false">内側から</button></div>
  <div class="skyoptions"><label><input checked="" id="showConstLines" type="checkbox"/> <span id="optLines">星座線</span></label><label><input checked="" id="showConstBounds" type="checkbox"/> <span id="optBounds">星座境界</span></label><label><input checked="" id="showConstNames" type="checkbox"/> <span id="optNames">星座名</span></label><details id="skyStatusDetails" class="sky-status-details"><summary id="skyStatusLabel">星座データ</summary><button id="skyRetry" type="button">再取得</button><span aria-live="polite" id="skyDataStatus"></span></details></div><canvas aria-label="超新星のインタラクティブ天球・銀河系マップ" id="sky"></canvas><section class="sn-list-mode" id="snListMode" hidden aria-label="超新星の一覧モード"><div class="sn-list-head"><div class="sn-list-heading"><strong id="snListHead">超新星・突発天体の一覧</strong><span id="snListSummary" aria-live="polite"></span></div><div class="sn-list-sort-controls"><label for="snListSort" id="snListSortLabel" class="sn-list-sort-label">並び順</label><select id="snListSort" aria-label="超新星の並べ替え"><option value="mag">明るい順</option><option value="recent">最近の観測・発見順</option><option value="discovery">新発見順</option><option value="alt">高度順</option><option value="name">名前順</option><option value="host">母銀河順</option><option value="recommended">撮影適性順</option></select><button id="snListRecommend" type="button" aria-pressed="false">おすすめ</button></div></div><div class="sn-list-scroll"><table class="sn-list-table"><thead><tr><th data-sn-sort="name" id="snHeadName">天体名</th><th data-sn-sort="mag" id="snHeadMag">等級</th><th data-sn-sort="recent" id="snHeadLast">観測日</th><th id="snHeadType">分類</th><th data-sn-sort="host" id="snHeadHost">母銀河</th><th data-sn-sort="alt" id="snHeadAlt">高度</th><th id="snHeadFav">保存</th></tr></thead><tbody id="snListRows"></tbody></table></div><button id="snListMore" type="button" hidden>さらに表示</button></section><div class="maptip" id="maptip"></div><div class="mapfoot" id="mapFoot"><span id="mapCaption">J2000 · 球面天球図 · ドラッグ：回転／ホイール：拡大</span><span id="mapCount"></span></div></section>
-<aside aria-label="選択した超新星と撮影機材" class="card side inspector" id="snInspector"><section class="photo-box" id="selectedPhoto"><div class="photo-head"><h2 id="photoHeading">選択した超新星の画像</h2><span class="small" id="photoCreditHint">DSS2などの公開サーベイ画像</span></div><div class="imageControls"><label class="field" style="flex:1"><span id="labImageSource">画像ソース</span><select id="imgSource"><option value="auto">自動（代替画像へ切替）</option><option value="dss-color">DSS2 カラー</option><option value="dss-red">DSS2 赤色</option><option value="panstarrs">Pan-STARRS（北天）</option><option value="2mass">2MASS 近赤外</option><option value="allwise">AllWISE 赤外</option></select></label><button id="imgRetry" type="button">再取得</button></div><div class="imagebox"><img alt="選択天体付近のサーベイ画像" id="finder"/><div class="imgmsg" id="imgMessage">画像を取得</div></div><div class="tiny" id="imgCredit" style="margin-top:4px"></div></section><div class="selected"><div class="selectedtitle"><h3 id="selTitle">天体を選択</h3><button aria-label="お気に入り" id="star" style="min-width:38px">☆</button></div><div class="small" id="selSubtitle">天球図の点または一覧を選んでください．</div><div id="selDetails" style="display:none"><dl class="objectgrid" id="objectGrid"></dl><div class="small" id="obsLine"></div><div class="sn-quick-actions"><button id="snAltToggle" type="button">高度曲線</button><button id="snFovToggle" type="button">画角</button><button id="snSavedToggle" type="button">保存リスト</button></div><div class="links"><a id="tnsLink" rel="noopener noreferrer" target="_blank">TNS</a><a id="astrobinLink" rel="noopener noreferrer" target="_blank">AstroBin</a><a id="finderLink" rel="noopener noreferrer" target="_blank">DSS2 / HiPS</a><a id="gptLink" rel="noopener noreferrer" target="_blank">GPT撮影相談</a><button aria-label="選択天体へのリンクをコピー" id="shareObject" type="button">共有</button></div><div class="help" id="imagingHint" style="margin-top:9px"></div><div class="help" id="bestTime" style="margin-top:7px"></div></div></div><details class="sn-saved-panel" id="snSavedPanel"><summary><span id="snSavedTitle">選択した天体のリスト</span> <span id="snSavedCount">0</span></summary>
+<aside aria-label="選択した超新星と撮影機材" class="card side inspector" id="snInspector"><section class="photo-box" id="selectedPhoto"><div class="photo-head"><h2 id="photoHeading">超新星・母銀河の画像</h2><span class="small" id="photoCreditHint">母銀河画像にも自動切替</span></div><div class="imageControls"><label class="field" style="flex:1"><span id="labImageSource">画像ソース</span><select id="imgSource"><option value="auto">自動（代替画像へ切替）</option><option value="dss-color">DSS2 カラー</option><option value="dss-red">DSS2 赤色</option><option value="panstarrs">Pan-STARRS（北天）</option><option value="2mass">2MASS 近赤外</option><option value="allwise">AllWISE 赤外</option></select></label><button id="imgRetry" type="button">再取得</button></div><div class="imagebox"><img alt="選択天体付近のサーベイ画像" id="finder"/><div class="imgmsg" id="imgMessage">画像を取得</div></div><div class="tiny" id="imgCredit" style="margin-top:4px"></div></section><div class="selected"><div class="selectedtitle"><h3 id="selTitle">天体を選択</h3><button aria-label="お気に入り" id="star" style="min-width:38px">☆</button></div><div class="small" id="selSubtitle">天球図の点または一覧を選んでください．</div><div id="selDetails" style="display:none"><dl class="objectgrid" id="objectGrid"></dl><div class="small" id="obsLine"></div><div class="sn-quick-actions"><button id="snAltToggle" type="button">高度曲線</button><button id="snFovToggle" type="button">画角</button><button id="snSavedToggle" type="button">保存リスト</button></div><div class="links"><a id="tnsLink" rel="noopener noreferrer" target="_blank">TNS</a><a id="astrobinLink" rel="noopener noreferrer" target="_blank">AstroBin</a><a id="finderLink" rel="noopener noreferrer" target="_blank">DSS2 / HiPS</a><a id="gptLink" rel="noopener noreferrer" target="_blank">GPT撮影相談</a><button aria-label="選択天体へのリンクをコピー" id="shareObject" type="button">共有</button></div><div class="help" id="imagingHint" style="margin-top:9px"></div><div class="help" id="bestTime" style="margin-top:7px"></div></div></div><details class="sn-saved-panel" id="snSavedPanel"><summary><span id="snSavedTitle">選択した天体のリスト</span> <span id="snSavedCount">0</span></summary>
  <div id="snSavedItems" class="sn-saved-items" aria-live="polite"></div>
  <div class="sn-saved-buttons"><button type="button" id="snSavedExport">Excel用CSV</button><button type="button" id="snSavedStellarium">Stellarium用リスト</button><button type="button" id="snSavedClear">クリア</button></div>
  </details><div class="section"><div class="secthead"><h3 id="labEquip">撮影機材（編集可能）</h3><button aria-controls="equipmentEditor" aria-expanded="false" id="editEquipment" type="button">編集</button></div><div class="field"><span id="labEquipNote">初期設定7件．機材を編集できます．</span><div id="equipment" style="margin-top:7px"></div></div><div class="equipment-editor" hidden="" id="equipmentEditor"><div class="small" id="equipEditorHelp">このブラウザにのみ保存されます．元のPNmapは変更しません．</div><div id="equipRows"></div><div class="equip-actions"><button id="equipAdd" type="button">＋ 機材を追加</button><button id="equipSave" type="button">設定を保存</button><button id="equipDefault" type="button">初期7件に戻す</button><button id="snEquipExport" type="button">設定を書き出す</button><button id="snEquipImport" type="button">設定を読み込む</button><input id="snEquipImportFile" type="file" accept=".json,application/json" hidden></div></div></div></aside><aside class="card side right"><div class="summary"><div class="metric"><strong id="nAll">0</strong><span id="labAll">登録天体</span></div><div class="metric"><strong id="nVisible">0</strong><span id="labVisible">現在25°以上</span></div><div class="metric"><strong id="nBright">0</strong><span id="labBright">18等より明るい</span></div></div>
@@ -1119,7 +1119,7 @@ const SURVEYS={
  '2mass':['CDS/P/2MASS/color','2MASS','jpg'],
  'allwise':['CDS/P/allWISE/color','AllWISE','jpg']
 };
-let imageKey='',imageToken=0,imageLastGood=null,imageRequests=[];
+let imageKey='',imageToken=0,imageLastGood=null,imageRequests=[],snImageShown=null;
 const snImageMemo=new Map(),SN_IMAGE_MAX_MEMO=48;
 try{const pref=localStorage.getItem('snmap_photo_source_v1');if(pref&&$('imgSource').querySelector('option[value="'+pref+'"]'))$('imgSource').value=pref}catch(_){}
 function makeImageURL(x,mode,mirror=false){
@@ -1128,15 +1128,63 @@ function makeImageURL(x,mode,mirror=false){
 function makeMastImageURL(x){
  return IMAGE_MAST+'?'+new URLSearchParams({v:'poss2ukstu_red',r:x.ra.toFixed(6),d:x.dec.toFixed(6),e:'J2000',h:'9.6',w:'9.6',f:'gif',c:'none'}).toString()
 }
+// A survey field centred on a supernova is not a verified photograph of the transient.
+// If that field fails, query the named host galaxy independently using CDS Sesame,
+// then try wider coordinate-based and Legacy Surveys cutouts without requiring CORS fetch.
+function snUsableHost(x){
+ const name=typeof x.host==='string'?x.host.replace(/\s+/g,' ').trim():'';
+ return name.length>1&&name.length<=90&&!/[<>\x00-\x1f]/.test(name)&&
+  !/^(?:[—–-]|\?|unknown|none|n\/?a|not known|not reported|hostless|anonymous|unidentified|null)$/i.test(name)?name:'';
+}
+function snHostImageURL(host,mode,mirror=false,fov=0.36){
+ const v=SURVEYS[mode];
+ return (mirror?IMAGE_MIRROR:IMAGE_SERVICE)+'?'+new URLSearchParams({hips:v[0],object:host,fov:String(fov),width:'500',height:'500',projection:'TAN',coordsys:'icrs',format:v[2]}).toString();
+}
+function snWideImageURL(x,mode,fov=0.42,mirror=false){
+ const v=SURVEYS[mode];
+ return (mirror?IMAGE_MIRROR:IMAGE_SERVICE)+'?'+new URLSearchParams({hips:v[0],ra:x.ra.toFixed(7),dec:x.dec.toFixed(7),fov:String(fov),width:'500',height:'500',projection:'TAN',coordsys:'icrs',format:v[2]}).toString();
+}
+function snLegacyImageURL(x,fov=0.16){
+ const size=520;
+ return 'https://www.legacysurvey.org/viewer/jpeg-cutout?'+new URLSearchParams({ra:x.ra.toFixed(7),dec:x.dec.toFixed(7),width:String(size),height:String(size),layer:'ls-dr10',pixscale:(fov*3600/size).toFixed(3)}).toString();
+}
+function snPaintImageCaption(c,x){
+ if(!c)return;
+ const provider=c.source==='mast'?'STScI':c.source==='legacy'?'Legacy Surveys':'CDS';
+ const host=snUsableHost(x),isHost=c.role==='host';
+ const region=lang==='ja'?(isHost?'母銀河 '+host+' の中心':c.role==='wide'?'超新星の周辺広域写野':'超新星座標の周辺写野'):(isHost?'Host galaxy '+host+' (centred)':c.role==='wide'?'Wide field around SN':'Field around SN coordinates');
+ const note=lang==='ja'?'過去のサーベイ画像（超新星の写り込みは未確認）':'Archival survey (SN presence unverified)';
+ $('imgCredit').textContent=c.label+' / '+provider+' · '+region+' · '+note;
+ $('finder').alt=lang==='ja'?region+'の公開サーベイ画像':'Public survey image: '+region;
+}
 function imageCandidates(x){
- const choice=$('imgSource').value,items=[],seen=new Set();
- function add(mode,mirror=false){if(!SURVEYS[mode]||(mode==='panstarrs'&&x.dec<=-30))return;const url=makeImageURL(x,mode,mirror);if(!seen.has(url)){seen.add(url);items.push({source:mode,mirror,url,label:SURVEYS[mode][1]+(mirror?' · mirror':'')})}}
- // Choice always wins; survey coverage gaps fall back to all-sky imagery.
- if(choice!=='auto'){add(choice);add(choice,true)}
- else {add('dss-color');add('dss-color',true);add('panstarrs');}
- add('dss-color');add('dss-color',true);add('dss-red');add('dss-red',true);
- const mast=makeMastImageURL(x);if(!seen.has(mast)){seen.add(mast);items.push({source:'mast',mirror:false,url:mast,label:'MAST / DSS2 red'})}
- add('2mass');add('allwise');add('panstarrs',true);
+ const choice=$('imgSource').value,items=[],seen=new Set(),host=snUsableHost(x);
+ function add(url,source,label,role='field'){
+  if(!seen.has(url)){seen.add(url);items.push({url,source,label,role});}
+ }
+ function field(mode,mirror=false){
+  if(!SURVEYS[mode]||(mode==='panstarrs'&&x.dec<=-30))return;
+  add(makeImageURL(x,mode,mirror),mode,SURVEYS[mode][1]+(mirror?' · mirror':''));
+ }
+ function hostField(mode,mirror=false){
+  if(!host||!SURVEYS[mode]||(mode==='panstarrs'&&x.dec<=-30))return;
+  add(snHostImageURL(host,mode,mirror),mode,SURVEYS[mode][1]+(mirror?' · mirror':''),'host');
+ }
+ function wide(mode,fov=0.42,mirror=false){
+  if(SURVEYS[mode])add(snWideImageURL(x,mode,fov,mirror),mode,SURVEYS[mode][1]+' / '+(fov*60).toFixed(0)+' arcmin','wide');
+ }
+ function legacy(fov=0.16){add(snLegacyImageURL(x,fov),'legacy','Legacy Surveys DR10','wide');}
+ // Prefer the requested source, but do not depend on one imaging provider.
+ if(choice!=='auto'){field(choice);field(choice,true);}
+ else{field('dss-color');field('panstarrs');field('dss-color',true);}
+ legacy(0.16);
+ field('dss-color');field('dss-color',true);field('dss-red');
+ // Actual host coordinates are resolved by CDS from the catalogued galaxy name.
+ hostField('dss-color');hostField('dss-color',true);hostField('panstarrs');
+ // Host ID may not resolve; these use the validated SN coordinates instead.
+ wide('dss-color');legacy(0.42);wide('dss-color',0.75,true);
+ const mast=makeMastImageURL(x);add(mast,'mast','MAST / DSS2 red');
+ field('dss-red',true);field('2mass');field('allwise');field('panstarrs',true);
  return items;
 }
 function snStopImageRequests(){
@@ -1144,15 +1192,15 @@ function snStopImageRequests(){
  imageRequests=[];
 }
 function snMemoImage(key,candidate){
- snImageMemo.delete(key);snImageMemo.set(key,{url:candidate.url,label:candidate.label,source:candidate.source,at:Date.now()});
+ snImageMemo.delete(key);snImageMemo.set(key,{url:candidate.url,label:candidate.label,source:candidate.source,role:candidate.role,at:Date.now()});
  while(snImageMemo.size>SN_IMAGE_MAX_MEMO)snImageMemo.delete(snImageMemo.keys().next().value);
 }
 function startImage(x,force=false){
- const key=x.id+'|'+$('imgSource').value;
+ const key=x.id+'|'+(snUsableHost(x)||'')+'|'+$('imgSource').value;
  if(!force&&imageKey===key)return;
  imageKey=key;const token=++imageToken;
  snStopImageRequests();
- const el=$('finder'),status=$('imgMessage'),credit=$('imgCredit');
+ const el=$('finder'),status=$('imgMessage'),credit=$('imgCredit');snImageShown=null;
  el.onload=null;el.onerror=null;el.style.display='none';el.removeAttribute('src');
  status.style.display='block';status.textContent=lang==='ja'?'画像を取得中…':'Loading survey image…';credit.textContent='';
  const memo=snImageMemo.get(key);
@@ -1161,7 +1209,7 @@ function startImage(x,force=false){
   // A remembered URL is only a hint: browser caches can evict it and servers can fail later.
   // Confirm the actual displayed image before hiding the loading state; otherwise retry the full chain.
   el.onload=()=>{if(token!==imageToken)return;el.onload=null;el.onerror=null;
-   if(el.naturalWidth>0&&el.naturalHeight>0){el.style.display='block';status.style.display='none';credit.textContent=memo.label+' / '+(memo.source==='mast'?'STScI':'CDS');$('finderLink').href=memo.url;}
+   if(el.naturalWidth>0&&el.naturalHeight>0){el.style.display='block';status.style.display='none';snImageShown=memo;snPaintImageCaption(memo,x);$('finderLink').href=memo.url;}
    else{snImageMemo.delete(key);imageKey='';startImage(x,true);}};
   el.onerror=()=>{if(token!==imageToken)return;el.onload=null;el.onerror=null;snImageMemo.delete(key);imageKey='';startImage(x,true);};
   el.src=memo.url;
@@ -1175,7 +1223,7 @@ function startImage(x,force=false){
   done=true;
   // The preloaded URL is reused by the display element (usually a browser-cache hit).
   el.src=candidate.url;el.style.display='block';status.style.display='none';
-  credit.textContent=candidate.label+' / '+(candidate.source==='mast'?'STScI':'CDS');
+  snImageShown=candidate;snPaintImageCaption(candidate,x);
   $('finderLink').href=candidate.url;imageLastGood=candidate.source;
   snMemoImage(key,candidate);snStopImageRequests();
  }
@@ -2310,9 +2358,9 @@ function syncPublicControls(){
  $('langJa').classList.toggle('active',ja);$('langEn').classList.toggle('active',!ja);
  $('langJa').setAttribute('aria-pressed',ja?'true':'false');$('langEn').setAttribute('aria-pressed',ja?'false':'true');
  $('layoutDesktop').textContent=ja?'PC版':'Desktop';$('layoutMobile').textContent=ja?'スマホ版':'Mobile';
- $('photoHeading').textContent=ja?'選択した超新星の画像':'Image of selected object';
+ $('photoHeading').textContent=ja?'超新星・母銀河の画像':'Supernova / host galaxy images';
  $('shareObject').textContent=ja?'共有':'Share link';$('shareObject').setAttribute('aria-label',ja?'選択天体へのリンクをコピー':'Copy link to selected object');
- $('photoCreditHint').textContent=ja?'DSS2などの公開サーベイ画像':'Public survey images (DSS2, etc.)';
+ $('photoCreditHint').textContent=ja?'母銀河画像にも自動切替':'Automatic host-galaxy fallback';if(snImageShown&&current)snPaintImageCaption(snImageShown,current);
  $('getLocation').textContent=ja?'現在地を取得':'Use current location';
  $('resetSite').textContent=ja?'札幌に戻す':'Reset to Sapporo';
  $('filterReset').textContent=ja?'リセット':'Reset';
