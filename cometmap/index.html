@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="ja"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="dark" name="color-scheme"/><title>Cometmap v106 | 彗星マップ・観測支援 / Comet Observing Atlas</title>
+<html lang="ja"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="dark" name="color-scheme"/><title>Cometmap v138 LOCAL | 彗星マップ・観測支援 / Comet Observing Atlas</title>
 <style>
 :root{color-scheme:dark;--bg:#080e18;--s:#101e30;--sub:#14263d;--text:#ebf4ff;--muted:#aabed2;--line:#37536c;--hi:#7bcaff;--green:#69d9b5}
 *{box-sizing:border-box}body{background:var(--bg);color:var(--text);font:13px/1.5 system-ui,-apple-system,'Noto Sans JP',sans-serif;margin:0}header{max-width:1780px;margin:auto;padding:13px 20px 7px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}h1{font-size:25px;line-height:1.3;margin:0 0 3px}header small{color:#9bc4e4;font-weight:700;letter-spacing:.12em}header p{margin:0;color:var(--muted)}.topactions{display:flex;gap:6px;flex-wrap:wrap}main{max-width:1780px;margin:auto;padding:8px 14px 18px;display:grid;grid-template-columns:minmax(480px,1fr) minmax(380px,510px);gap:12px;min-height:80vh}.panel{border:1px solid var(--line);border-radius:12px;background:var(--s);min-width:0}#view{position:relative;background:radial-gradient(ellipse at 45% 40%,#0a1d32,#07101e 70%);overflow:hidden}canvas{display:block;width:100%;height:min(81vh,850px);min-height:540px;cursor:grab;touch-action:none}canvas:active{cursor:grabbing}.maptop{position:absolute;top:12px;left:12px;display:flex;gap:5px;flex-wrap:wrap;max-width:calc(100% - 24px);z-index:3}.mapbottom{position:absolute;left:10px;bottom:12px;right:10px;display:flex;gap:7px;align-items:end;justify-content:space-between;pointer-events:none}.mapbottom>*{pointer-events:auto}.ribbon{background:#10263ee8;border:1px solid #4e7191;border-radius:9px;padding:6px 9px;color:#c6dfed;font-size:11px;max-width:67%}.mapbadge{background:#10263ee8;border:1px solid #4e7191;border-radius:9px;padding:6px 9px;font-size:11px;white-space:nowrap}aside{display:flex;flex-direction:column;gap:10px;max-height:calc(100vh - 112px);min-height:680px}.tabs{display:flex;gap:5px;margin:10px 10px 0}.tab{flex:1}.scroll{overflow-y:auto;min-height:0;padding:11px 13px;scrollbar-color:#43617e #101e30}.scroll.settings{flex:0 0 44%;border-bottom:1px solid var(--line)}.scroll.details{flex:1}button,input,select{font:inherit}button{background:#254867;color:#f5fbff;border:1px solid #5781a1;border-radius:7px;padding:7px 10px;cursor:pointer;line-height:1.35}button:hover{background:#32638b}button.active{background:#126d9e;border-color:#a4e0ff;font-weight:750}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid #8de2ff;outline-offset:2px}button:disabled{opacity:.5;cursor:default}.tiny{padding:6px 8px;font-size:11px}.mini{font-size:11px;color:var(--muted)}.notice{font-size:11px;color:#b9d6e8;margin:5px 0}.status{border:1px solid #355a73;border-radius:8px;background:#10273b;padding:7px 9px;line-height:1.5;min-height:34px;margin-bottom:9px}.statrow{display:flex;gap:5px;margin:8px 0}.stat{flex:1;background:#192c43;border:1px solid #36536f;border-radius:7px;padding:6px 7px;min-width:0}.stat strong{display:block;font-size:20px;line-height:1.2}.stat span{color:var(--muted);font-size:10px}label{display:block;font-weight:650;font-size:12px;margin:10px 0 4px}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.grid2 label,.grid3 label{margin:5px 0 3px}input:not([type=checkbox]):not([type=file]),select{width:100%;min-width:0;border:1px solid #4e6a86;border-radius:6px;padding:7px;background:#0b192c;color:var(--text)}input[type=file]{max-width:100%;font-size:11px}.flex{display:flex;flex-wrap:wrap;gap:5px;align-items:center}.flex>*{min-width:0}a{color:#99d9ff}.sect{border-top:1px solid #314c66;margin:12px 0;padding-top:10px}h2{font-size:15px;margin:4px 0 8px}h3{font-size:13px;margin:8px 0 4px}.obj-list{max-height:195px;overflow:auto;border:1px solid #334b66;border-radius:8px;margin-top:7px}.obj{width:100%;border:0;border-bottom:1px solid #253d54;border-radius:0;background:transparent;padding:7px 9px;display:flex;justify-content:space-between;text-align:left;gap:9px}.obj.active{background:#204b69}.obj small{font-weight:400;color:#aec6d9}.obj .mag{white-space:nowrap;color:#b9e4fe;text-align:right}.line{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px solid #253d54}.line>span:first-child{color:var(--muted)}.line strong{font-weight:650;text-align:right;font-variant-numeric:tabular-nums}.detail-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}.detail-head h2{font-size:19px;margin:0}.chip{font-size:10px;border:1px solid #537b97;border-radius:10px;padding:2px 7px;color:#d9efff;white-space:nowrap}.good{color:#7ae1c3}.warn{color:#ffce8b}.equiprow{display:grid;grid-template-columns:minmax(0,1fr) 66px 60px 60px 60px 22px;gap:5px;margin:5px 0}.equiprow input{padding:4px!important;font-size:11px}.equiprow button{padding:4px}.imgwrap{margin:9px 0;background:#071222;border:1px solid #36516a;border-radius:8px;min-height:120px;display:grid;place-items:center;overflow:hidden}.imgwrap img{max-height:200px;max-width:100%;object-fit:contain}footer{font-size:11px;color:var(--muted);max-width:1760px;margin:auto;padding:0 16px 12px}.pill{border:1px solid #4e8097;border-radius:12px;padding:1px 7px}.hidden{display:none!important}.mobiletabs{display:none}.footbar{display:flex;gap:5px;flex-wrap:wrap}.placeholder{color:var(--muted);border:1px dashed #34536c;border-radius:8px;padding:16px;text-align:center}.check{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:400;margin:0}.check input{accent-color:#73c8eb}.tight{margin-top:4px}details>summary{cursor:pointer;color:#bfe6ff;font-weight:650;padding:6px 0}details{border-top:1px solid #2d465f;margin-top:9px}table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid #30485e;padding:5px;text-align:left;font-size:11px}th{color:#accee8}.tool{font-size:10px;color:#94bad6;margin-top:4px}.muted{color:var(--muted)}@media(max-width:1050px){main{grid-template-columns:minmax(0,1fr)}aside{max-height:none;min-height:0}.scroll.settings{flex:none}.scroll.details{max-height:550px}canvas{min-height:450px;height:63vh}}@media(max-width:650px){header{padding:13px}h1{font-size:22px}main{padding:6px 8px;gap:8px}canvas{height:58vh;min-height:370px}.maptop{top:8px;left:8px}.maptop button{font-size:10px;padding:6px 7px}.ribbon{max-width:75%;font-size:10px}.scroll{padding:9px}.mobiletabs{display:flex}.scroll.settings,.scroll.details{max-height:none;flex:none;min-height:0}.scroll.settings{display:block}.scroll.details{display:none}aside[data-tab=details] .scroll.settings{display:none}aside[data-tab=details] .scroll.details{display:block}aside{max-height:63vh;overflow:hidden}aside .scroll{overflow-y:auto;max-height:calc(63vh - 48px)!important}.equiprow{grid-template-columns:minmax(0,1fr) 46px 47px 47px 47px 22px}.equiprow input{font-size:10px!important}}
@@ -492,7 +492,19 @@ main>.comet-map-column{display:flex;flex-direction:column;min-width:0;width:100%
 #details .pn-photo-links a{display:inline-flex;align-items:center;justify-content:center;min-height:34px;padding:6px 11px;border-radius:7px;text-decoration:none}
 #details .pn-photo-links .pn-gpt-link{background:#214662;color:#e8f7ff;border:1px solid #537d99}
 #cometPhotoStats{display:none!important}
-</style></head><body>
+</style>
+<style id="cometmap-v110-compact-framing">
+/* Compact, draggable framing window; leave inline preview and altitude chart unchanged. */
+#framingPopup:not(.comet-inline-chart){width:min(440px,calc(100vw - 20px))!important;min-width:0!important;max-height:min(560px,calc(100dvh - 24px))!important;overflow:auto;resize:both}
+#framingPopup:not(.comet-inline-chart) .floating-content{padding:8px 10px!important}
+#framingPopup:not(.comet-inline-chart) #framingSvg{display:block;width:100%;height:auto;max-height:205px!important;aspect-ratio:520/300}
+#framingPopup:not(.comet-inline-chart) .frame-controls{gap:4px!important;margin:3px 0 5px!important}
+#framingPopup:not(.comet-inline-chart) .frame-controls label{font-size:10px}
+#framingPopup:not(.comet-inline-chart) .frame-controls input,#framingPopup:not(.comet-inline-chart) .frame-controls select{padding:4px!important;margin-top:2px}
+#framingPopup:not(.comet-inline-chart) .float-meta,#framingPopup:not(.comet-inline-chart) #tailStatus{font-size:10px;line-height:1.35;margin:3px 0}
+@media(max-width:520px){#framingPopup:not(.comet-inline-chart){width:min(390px,calc(100vw - 16px))!important;max-height:calc(100dvh - 16px)!important}#framingPopup:not(.comet-inline-chart) #framingSvg{max-height:175px!important}}
+</style>
+<style id="cm-gaia-test-v123-banner">#cm-test-only-banner{background:#473722;color:#ffdfa1;border-bottom:1px solid #927040;text-align:center;font-weight:650;padding:6px;font-size:12px}</style></head><body><div id="cm-test-only-banner">TEST ONLY · Gaia DR3分割星図 G&lt;11＋11–12等の部分集合 · 公開中のCometmapとは別ファイル</div>
 <header><div class="headline"><h1 data-t="title">彗星マップ</h1><div aria-label="画面レイアウト / Display layout" class="pn-device-toggle" role="group"><button aria-pressed="true" class="active" data-en="Desktop" data-ja="PC版" id="cometLayoutDesktop" type="button">PC版</button><button aria-pressed="false" data-en="Mobile" data-ja="スマホ版" id="cometLayoutMobile" type="button">スマホ版</button></div><div aria-label="Language" class="lang-buttons" role="group"><button aria-pressed="true" class="active" id="langJa" type="button">日本語</button><button aria-pressed="false" id="langEn" type="button">English</button></div><div aria-label="Share Cometmap" class="pnmap-share" role="group"><button aria-controls="cometShareMenu" aria-expanded="false" aria-haspopup="true" data-en="Share" data-ja="共有" id="cometShareButton" type="button">共有</button><div aria-label="Share Cometmap" hidden="" id="cometShareMenu"><button data-share="x" type="button">X</button><button data-share="facebook" type="button">Facebook</button><button data-share="line" type="button">LINE</button><button data-share="bluesky" type="button">Bluesky</button><button data-en="Other apps…" data-ja="その他のアプリ…" data-share="native" type="button">その他のアプリ…</button><button data-en="Copy URL" data-ja="URLをコピー" data-share="copy" type="button">URLをコピー</button></div><span aria-live="polite" id="cometShareStatus" role="status"></span></div></div><button aria-hidden="true" hidden="" id="lang" tabindex="-1" type="button">English</button></header>
 <main><div class="comet-map-column"><section class="panel" id="view"><div aria-live="polite" aria-atomic="true" class="status comet-fetch-state is-loading" id="status" role="status"><span class="comet-fetch-spinner" aria-hidden="true"></span><span class="comet-fetch-message">オンラインの最新データを取得中…</span><span class="comet-provider-status" id="cometProviderStatus" aria-label="Data provider states"></span></div><div class="projection-toggle"><button aria-pressed="true" class="active" data-mode="sky" data-t="sky" type="button">天球モード</button><button aria-pressed="false" data-mode="horizon" data-t="horizon" type="button">地上モード</button><button aria-pressed="false" data-mode="solar" data-t="solar" type="button">太陽系モード</button><button aria-pressed="false" data-en="List view" data-ja="一覧モード" id="modeList" type="button">一覧モード</button></div><div class="point-style-panel" id="pointStylePanel" role="group" aria-label="点の明度・サイズ / Point brightness and size"><label for="pointStyle" data-ja="点の明度・サイズ" data-en="Point brightness and size">点の明度・サイズ</label><select id="pointStyle" aria-label="Point brightness and size"><option value="mag" data-ja="推定光度" data-en="Estimated magnitude">推定光度</option><option value="score" data-ja="撮影適性" data-en="Imaging suitability">撮影適性</option><option value="alt" data-ja="高度" data-en="Altitude">高度</option><option value="elong" data-ja="太陽離角" data-en="Solar elongation">太陽離角</option><option value="uniform" data-ja="一律" data-en="Uniform">一律</option></select><div id="pointStyleLegend" class="point-style-note" aria-live="polite"></div></div><button class="map-reset" data-t="center" id="reset" type="button">中心に戻す</button><canvas aria-label="Comet sky map" id="canvas"></canvas>
 <div aria-label="Celestial sphere viewpoint" class="sky-view-panel" id="skyViewPanel" role="group">
@@ -500,7 +512,7 @@ main>.comet-map-column{display:flex;flex-direction:column;min-width:0;width:100%
 <button aria-pressed="false" data-en="Inside" data-ja="内側から" id="skyViewInside" type="button">内側から</button>
 </div>
 <div hidden="" id="cometListView"><div id="cometListToolbar"><div id="cometPhotoSourceToolbar"><label data-en="Image source" data-ja="画像ソース" for="listPhotoSource">画像ソース</label><select id="listPhotoSource"></select><button data-en="Retry photos" data-ja="再取得" id="listPhotoRetry" type="button">再取得</button></div><label data-en="Sort by" data-ja="並べ替え" for="cometListSort" id="cometListSortLabel">並べ替え</label><select id="cometListSort"><option data-en="Imaging suitability" data-ja="観測適性" value="rank">観測適性</option><option data-en="Estimated magnitude" data-ja="推定光度" value="mag">推定光度</option><option data-en="Current altitude" data-ja="現在の高度" value="alt">現在の高度</option><option data-en="Solar elongation" data-ja="太陽離角" value="elong">太陽離角</option><option data-en="Perihelion time" data-ja="近日点日時" value="peri">近日点日時</option><option data-en="Name" data-ja="名前順" value="name">名前順</option></select></div><div id="cometListGrid"></div></div>
-<div class="mapbottom"><div class="mapbadge" id="mapcount">0</div></div><div class="sky-layer-panel" id="mapSkyLayers"><label class="check"><input checked="" id="showConstLines" type="checkbox"/> <span data-en="Constellation lines" data-ja="星座線">星座線</span></label><label class="check"><input checked="" id="showConstBounds" type="checkbox"/> <span data-en="IAU boundaries" data-ja="星座境界">星座境界</span></label><label class="check"><input checked="" id="showConstNames" type="checkbox"/> <span data-en="Constellation names" data-ja="星座名">星座名</span></label><label class="check"><input checked="" id="showTrail" type="checkbox"/> <span data-en="Motion trail" data-ja="移動軌跡">移動軌跡</span></label></div></section>
+<div class="mapbottom"><div class="mapbadge" id="mapcount">0</div></div><div class="sky-layer-panel" id="mapSkyLayers"><label class="check"><input checked="" id="showConstLines" type="checkbox"/> <span data-en="Constellation lines" data-ja="星座線">星座線</span></label><label class="check"><input checked="" id="showConstBounds" type="checkbox"/> <span data-en="IAU boundaries" data-ja="星座境界">星座境界</span></label><label class="check"><input checked="" id="showConstNames" type="checkbox"/> <span data-en="Constellation names" data-ja="星座名">星座名</span></label><label class="check"><input checked="" id="showStarLabels" type="checkbox"/><span data-ja="画角内の恒星名・α星・番号" data-en="FOV star names / Bayer / Flamsteed">画角内の恒星名・α星・番号</span></label><label class="check"><input checked="" id="showTrail" type="checkbox"/> <span data-en="Motion trail" data-ja="移動軌跡">移動軌跡</span></label></div></section>
 <section id="cometTimePanel" class="comet-time-panel" aria-label="観測日時の操作 / Observation time controls"><h2 id="timePanelTitle" data-ja="観測日時・再生" data-en="Date, time & playback">観測日時・再生</h2><div class="comet-clock-header"><div class="comet-calendar-row"><div><label data-t="date" for="date">観測日時</label><input id="date" type="datetime-local"/></div></div></div><div aria-label="Time controls" id="timeRibbon"><div class="clockrow"><strong class="clockread" id="clockread">観測日時</strong><button id="tminusday" title="-1 day">−1日</button><button id="tminushour" title="-1 hour">−1h</button><button id="timelineStop" title="Play/pause">▶ 再生</button><button id="tplushour" title="+1 hour">+1h</button><button id="tplusday" title="+1 day">+1日</button><button id="timelineNow">現在</button></div><input aria-label="観測日時を前後にスライド" id="timeSlider" max="720" min="-720" step="1" type="range" value="0"/><div class="clockrow"><span id="timelineSteps">±30日（1時間刻み）</span><span class="meta" id="sliderOffset">基準日時から 0 h</span><select aria-label="再生ステップ" id="playSpeed"><option data-en="10 min / frame" data-ja="10分／コマ" value="10">10分 / frame</option><option data-en="1 hour / frame" data-ja="1時間／コマ" selected="" value="60">1時間 / frame</option><option data-en="1 day / frame" data-ja="1日／コマ" value="1440">1日 / frame</option><option data-en="7 days / frame" data-ja="7日／コマ" value="10080">7日 / frame</option><option data-en="30 days / frame" data-ja="30日／コマ" value="43200">30日 / frame</option></select></div></div><div class="comet-legacy-clock" hidden aria-hidden="true"><button class="tiny" data-t="now" id="now">現在日時</button><button class="tiny" id="back">−1 d</button><button class="tiny" id="forward">+1 d</button></div></section></div>
 <aside class="panel" data-tab="conditions" id="side"><div class="mobiletabs tabs"><button class="tab" data-t="info" id="detailsTab">天体情報</button><button class="tab active" data-t="settings" id="conditionsTab">表示条件</button></div><div class="scroll details"><h2 class="pane-heading" data-en="Object details" data-ja="天体情報">天体情報</h2><div class="placeholder" data-t="select" id="details">彗星を選択してください。</div><section aria-label="Observing site and optimal windows" class="pn-observe" id="obsPlanner">
 <h3 id="obsTitle">観測に適した時期</h3>
@@ -559,7 +571,7 @@ main>.comet-map-column{display:flex;flex-direction:column;min-width:0;width:100%
 // Live-first: no bundled catalog; persist last successful online responses for use ONLY when navigator.onLine is false.
 const $=id=>document.getElementById(id),D=Math.PI/180,R=180/Math.PI,K=.01720209895,OBL=23.439291111*D,DAY=86400000;
 const LANG={ja:{title:'彗星マップ',subtitle:'彗星の位置・観測条件・撮影設定',refresh:'最新データを取得',export:'観測リストCSV',sky:'天球モード',horizon:'地上モード',solar:'太陽系モード',center:'中心に戻す',settings:'表示条件',info:'天体情報',objects:'軌道収録数',shown:'表示数',brightness:'推定光度',date:'観測日時',utc:'UTC時差',now:'現在日時',lat:'緯度（°）',lon:'経度（°）',minAlt:'最低高度（°）',search:'彗星を検索',sort:'並べ替え',sortRank:'観測適性',sortMag:'推定光度',sortAlt:'現在の高度',sortElong:'太陽離角',sortPeri:'近日点日時',sortName:'名前順',onlyBright:'COBSに光度がある彗星',onlyAbove:'最低高度以上のみ',load:'データ取得後に表示します。',equipment:'撮影機材',editEquipment:'撮影機材の登録・編集',addEquipment:'＋機材を追加',resetEquipment:'初期設定に戻す',data:'オンラインデータの取得状況',backup:'JSON保存',import:'彗星軌道JSONを読み込む',notice:'表示位置は概算です。精密な位置や追尾にはJPL Horizonsをご利用ください。',select:'天体を選択してください。',footer:'位置と光度は予測値です。実際の観測値とは異なる場合があります。',none:'未登録',unknown:'不明',approx:'概算',unit:'等',sunElong:'太陽離角',alt:'高度',az:'方位角',raDec:'赤経・赤緯（J2000近似）',delta:'地心距離',r:'日心距離',peri:'近日点通過',q:'近日点距離',ecc:'離心率',epoch:'軌道要素の元期',motion:'移動量',fov:'画角',scale:'画素スケール',rate:'追尾ずれ（30分）',best:'今夜の最高高度',refmag:'推定光度',magmodel:'MPC光度モデル',model:'推定値',observation:'参考光度',sources:'データ参照',astrobin:'AstroBinで検索',horizons:'Horizonsで検証',image:'背景星野を表示',imageNote:'DSS2背景星野（彗星本体の画像ではありません）',csv:'CSV',listEmpty:'条件に合う彗星がありません。',saved:'保存済み',fetch:'取得中…',latest:'オンライン取得完了',offline:'オンライン取得失敗。軌道は表示しません',noCache:'取得できません。ネットワーク・取得経路を確認してください。',cobsFail:'推定光度データに接続できませんでした',stale:'保存データ',online:'オンライン取得',sunDanger:'昼間または太陽に近いため，太陽の方向へ望遠鏡を向けないでください。'},en:{title:'Cometmap',subtitle:'Comet positions, observing conditions and imaging setups',refresh:'Refresh data',export:'Export observing CSV',sky:'Celestial sphere',horizon:'Ground mode',solar:'Solar system',center:'Reset view',settings:'Display settings',info:'Object details',objects:'Orbit records',shown:'Displayed',brightness:'Estimated magnitudes',date:'Observation date/time',utc:'UTC offset',now:'Now',lat:'Latitude (°)',lon:'Longitude (°)',minAlt:'Minimum alt. (°)',search:'Search comets',sort:'Sort by',sortRank:'Imaging suitability',sortMag:'COBS estimated mag.',sortAlt:'Current altitude',sortElong:'Solar elongation',sortPeri:'Perihelion time',sortName:'Name (A–Z)',onlyBright:'Comets with COBS brightness',onlyAbove:'Above min. altitude',load:'Comets appear after data loading.',equipment:'Imaging setups',editEquipment:'Manage imaging setups',addEquipment:'+ Add setup',resetEquipment:'Restore defaults',data:'Data refresh and backup',backup:'Export JSON',import:'Import orbital JSON',notice:'Positions use a two-body approximation. Verify accurate positions and tracking with JPL Horizons.',select:'Select a comet.',footer:'Positions and magnitudes are estimates and may differ from observations.',none:'Not recorded',unknown:'Unknown',approx:'approx.',unit:'mag',sunElong:'Solar elongation',alt:'Altitude',az:'Azimuth',raDec:'RA / Dec (approx. J2000)',delta:'Geocentric distance',r:'Heliocentric distance',peri:'Perihelion',q:'Perihelion dist.',ecc:'Eccentricity',epoch:'Orbit epoch',motion:'Sky motion',fov:'Field of view',scale:'Pixel scale',rate:'Drift in 30 min',best:'Max. altitude tonight',refmag:'COBS reference magnitude',magmodel:'MPC magnitude model',model:'Estimated',observation:'Reference mag.',sources:'Sources',astrobin:'Search AstroBin',horizons:'Verify via Horizons',image:'Show background survey',imageNote:'DSS2 background field (not necessarily the comet)',csv:'CSV',listEmpty:'No comets match these filters.',saved:'Cached',fetch:'Fetching…',latest:'Fetched online',offline:'Live fetch failed; no orbital data displayed',noCache:'Unable to fetch. Check network and data routes.',cobsFail:'COBS brightness API unavailable',stale:'Cached',online:'Online',sunDanger:'Daylight or close to the Sun: never point an optical telescope at or near the Sun.'}};
-let lang='ja';try{if(localStorage.getItem('cometmap_language')==='en')lang='en'}catch(e){}const t=(k)=>LANG[lang][k]||k;
+let lang='ja';try{if(['en','"en"'].includes(localStorage.getItem('cometmap_language')))lang='en'}catch(e){}const t=(k)=>LANG[lang][k]||k;
 const DEF=[{name:'MAK127 + EOS RP',focal:1500,pixel:5.76,width:6240,height:4160},{name:'MAK127 + ASI715MC',focal:1500,pixel:1.45,width:3864,height:2192},{name:'R200SS + EOS RP',focal:800,pixel:5.76,width:6240,height:4160},{name:'R200SS + ASI715MC',focal:800,pixel:1.45,width:3864,height:2192},{name:'HAC125DX + ASI715MC',focal:250,pixel:1.45,width:3864,height:2192},{name:'Sigma 600mm F8 + ASI715MC',focal:600,pixel:1.45,width:3864,height:2192},{name:'R150S + EOS RP',focal:750,pixel:5.76,width:6240,height:4160}];
 const LS={settings:'cometmap_settings_v2',equip:'cometmap_equipment_v2',select:'cometmap_select_v2',lang:'cometmap_language',offlineMPC:'cometmap_offline_mpc_v10',offlineCOBS:'cometmap_offline_cobs_v10'};
 function load(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}}
@@ -577,28 +589,39 @@ let catalog=[],cobs=[],byId=new Map(),cobsMap=new Map(),lastData=null,lastCOBS=n
 let defaultSelectionDone=false,solarAnchor=null,solarPlaybackOrigin=null,userChangedPlaySpeed=false;
 let horizonPanX=0,horizonPanY=0;
 const MIN_SOLAR_ZOOM=0.00001;
+// v136: expand both celestial and heliocentric zoom. Keep limits mode-specific
+// so changing modes cannot accidentally clamp a previously saved magnification.
+const CM_MAX_ZOOM={sky:600,horizon:600,solar:120};
+const cmMaxZoom=m=>CM_MAX_ZOOM[m]||5;
+const cmMinZoom=m=>m==='solar'?MIN_SOLAR_ZOOM:.6;
+
 const zoomByMode={sky:1,horizon:1,solar:1};
 function bestInitialComet(items,ms){
- // Evaluate astronomical-night visibility, not just altitude at the instant the page is opened.
- // Apparent magnitudes here are forecast/reference estimates, NOT individual measurements.
- const minAlt=Number($('minAlt').value)||25,from=Math.max(ms,Date.now()),times=[];
- for(let h=0;h<=42;h+=2){const t0=from+h*3600000;if(sunAlt(t0)<-15)times.push(t0)}
- const bright=v=>v.mag!==null?v.mag:Number.isFinite(v.model)?v.model+3:35;
- const shortlist=items.filter(v=>v.elong>=28).sort((a,b)=>bright(a)-bright(b)).slice(0,180);
+ // The next usable observing night is evaluated at the selected date/time,
+ // at the currently selected site. Forecast magnitudes are not observations.
+ const minAlt=Number.isFinite(Number($('minAlt').value))?Number($('minAlt').value):25;
+ const night=[],start=ms;
+ for(let h=0;h<=36;h+=1){const t0=start+h*3600000;if(sunAlt(t0)<=-15)night.push(t0)}
+ const brightest=v=>v.mag!==null?v.mag:Number.isFinite(v.model)?v.model:35;
+ // Do not truncate to the brightest 180: evaluate every usable orbit.
  let winner=null,best=-Infinity;
- for(const v of shortlist){
-  let nightPeak=-Infinity;
-  for(const t0 of times){const g=geo(v.o,jd(t0));if(!g||g.elong<35)continue;
+ for(const v of items){
+  if(!v||!v.o)continue;
+  const mag=brightest(v),hasEstimate=v.mag!==null||Number.isFinite(v.model);
+  let score=-Infinity;
+  for(const t0 of night){
+   const g=geo(v.o,jd(t0));if(!g||g.elong<35)continue;
    const alt=altaz(g.ra,g.dec,t0).alt;if(alt<minAlt)continue;
-   const strength=(Math.min(90,alt)-minAlt)*0.8+Math.min(160,g.elong)*0.13;
-   if(strength>nightPeak)nightPeak=strength;
+   const visibility=(Math.min(90,alt)-minAlt)*.8+Math.min(160,g.elong)*.13;
+   const brightness=hasEstimate?clamp((19-mag)*3,-35,50):-25;
+   const qualityPenalty=v.mag===null?6:0;
+   score=Math.max(score,visibility+brightness-qualityPenalty);
   }
-  if(!Number.isFinite(nightPeak))continue;
-  const m=bright(v),light=Math.max(-35,Math.min(50,(19-m)*3.0)),penalty=v.mag===null?10:0;
-  const score=nightPeak+light-penalty;
-  if(score>best){best=score;winner=v}
+  if(score>best){best=score;winner=v;}
  }
- return winner||items.slice().sort((a,b)=>b.score-a.score)[0]||null;
+ // If no comet can be seen in the upcoming night, choose the highest
+ // current suitability score rather than an arbitrary catalog entry.
+ return winner||items.slice().sort((a,b)=>b.score-a.score||(brightest(a)-brightest(b)))[0]||null;
 }
 function focusSelectedAtTime(ms=msDate()){
  const obj=byId.get(String(selectedId||''));if(!obj)return false;
@@ -713,7 +736,7 @@ function setClock(ms,keepBase=false){if(!Number.isFinite(ms))return;$('date').va
 function stopTimeline(){if(playingTimer){clearInterval(playingTimer);playingTimer=null}updateClockReadout()}
 function setupTimeline(){timeBase=msDate();$('tminusday').onclick=()=>setClock(msDate()-DAY);$('tplusday').onclick=()=>setClock(msDate()+DAY);$('tminushour').onclick=()=>setClock(msDate()-3600000);$('tplushour').onclick=()=>setClock(msDate()+3600000);$('timelineNow').onclick=()=>setClock(Date.now());
  $('timeSlider').oninput=()=>setClock(timeBase+Number($('timeSlider').value)*3600000,true);
- $('playSpeed').addEventListener('change',()=>{userChangedPlaySpeed=true});
+ $('playSpeed').addEventListener('change',()=>{userChangedPlaySpeed=true;if(typeof cmPrefetchFutureFields==='function')cmPrefetchFutureFields()});
  $('timelineStop').onclick=()=>{if(playingTimer){stopTimeline();return}
   if(mode==='solar'&&selectedId){solarPlaybackOrigin={id:String(selectedId),time:msDate(),point:solarAnchor?.slice()||null};}
   playingTimer=setInterval(()=>{let min=Number($('playSpeed').value)||60;setClock(msDate()+min*60000,true)},850);updateClockReadout()};document.addEventListener('visibilitychange',()=>{if(document.hidden)stopTimeline()});updateClockReadout()}
@@ -724,7 +747,7 @@ function setupControls(){
  $('skyViewInside').onclick=()=>setSkyViewpoint('inside');
  $('closeAltitudePopup').onclick=()=>{$('altitudePopup').hidden=true};
  $('closeFramingPopup').onclick=()=>{$('framingPopup').hidden=true};
- $('frameOnMap').onchange=()=>drawMap();
+ $('frameOnMap').onchange=()=>{if($('frameOnMap').checked&&mode==='sky')cmFitSelectedFOV();else drawMap()};
  setupFloatingPopups();
 for(const id of ['pointStyle','magLimit','minElong']){const el=$(id);el.value=String(settings[id]??(id==='pointStyle'?'mag':id==='magLimit'?99:0));el.addEventListener('change',()=>{settings[id]=id==='pointStyle'?el.value:Number(el.value);save(LS.settings,settings);updatePointStyleLegend();if(id==='pointStyle')drawMap();else render()})}updatePointStyleLegend();
 for(const id of ['showConstLines','showConstBounds','showConstNames','showTrail']){$(id).checked=load('cometmap_'+id)??true;$(id).addEventListener('change',()=>{save('cometmap_'+id,$(id).checked);drawMap()})}for(const id of ['lat','lon','utc','minAlt','query','sort','brightOnly','aboveOnly']){let el=$(id);if(el.type==='checkbox')el.checked=!!settings[id];else el.value=settings[id];el.addEventListener(el.type==='checkbox'?'change':'input',()=>{settings[id]=el.type==='checkbox'?el.checked:el.value;save(LS.settings,settings);render()})}
@@ -744,7 +767,7 @@ for(const id of ['showConstLines','showConstBounds','showConstNames','showTrail'
  $('reset').onclick=()=>{ /* Recenter orientation/target only: preserve the user's current magnification in each mode. */ const retainedZoom=zoom;rotSolar=0;tiltSolar=28;horizonPanX=0;horizonPanY=0;if(mode==='sky'||mode==='solar'){if(!focusSelectedAtTime()){skyRA=180;skyDec=10;solarAnchor=null}}zoom=retainedZoom;zoomByMode[mode]=retainedZoom;render()};
  $('conditionsTab').onclick=()=>switchTab('conditions');$('detailsTab').onclick=()=>switchTab('details');
  $('sync').onclick=()=>fetchData(true);$('diagnose').onclick=()=>{ $('dataDiagnostics').open=true; connectionHistory=[];fetchData(true) }; $('export').onclick=exportCSV; $('auditExport').onclick=exportQualityReport;
- $('equipment').onchange=()=>{selectedEquipment=Number($('equipment').value);save('cometmap_eq_choice',selectedEquipment);renderDetails();renderOptics();refreshFramingChart()};
+ $('equipment').onchange=()=>{selectedEquipment=Number($('equipment').value);save('cometmap_eq_choice',selectedEquipment);renderDetails();renderOptics();refreshFramingChart();if($('frameOnMap')?.checked)drawMap()};
  $('addEquipment').onclick=()=>{equipments.push({name:'New setup',focal:400,pixel:2.4,width:4000,height:3000});save(LS.equip,equipments);drawEquipmentRows()};
  $('defaultEquipment').onclick=()=>{equipments=structuredClone(DEF);save(LS.equip,equipments);selectedEquipment=0;drawEquipmentRows();refreshFramingChart()};
  try{selectedEquipment=Number(localStorage.getItem('cometmap_eq_choice'))||0}catch(e){}
@@ -771,7 +794,7 @@ function updateStamp(){const fmt=n=>n?new Date(n).toLocaleString(lang==='ja'?'ja
 }
 function render(){renderSavedList();let ms=msDate(),text=$('query').value.trim().toLowerCase(), minAlt=Number($('minAlt').value);all=catalog.map(c=>active(c,ms)).filter(Boolean);
  shown=all.filter(v=>(!$('brightOnly').checked||v.mag!==null)&&(!$('aboveOnly').checked||v.alt>=minAlt)&&(Number($('magLimit').value)>=90||(cometPointMagnitude(v)!==null&&cometPointMagnitude(v)<=Number($('magLimit').value)))&&(v.elong>=Number($('minElong').value||0))&&(!text||v.o.name.toLowerCase().includes(text)||v.o.pdes.toLowerCase().includes(text)));
- if(catalog.length&&(!defaultSelectionDone||!selectedId||!byId.has(String(selectedId)))){const pick=bestInitialComet(shown.length?shown:all,ms);selectedId=pick?.o.id||null;defaultSelectionDone=true;if(selectedId){save(LS.select,selectedId);focusSelectedAtTime(ms)}}
+ if(catalog.length&&(!defaultSelectionDone||!selectedId||!byId.has(String(selectedId)))){const pick=bestInitialComet(all,ms);selectedId=pick?.o.id||null;defaultSelectionDone=true;if(selectedId){save(LS.select,selectedId);focusSelectedAtTime(ms)}}
  const sort=$('sort').value;shown.sort((a,b)=>{switch(sort){case'mag':return (a.mag??99)-(b.mag??99)||b.score-a.score;case'alt':return b.alt-a.alt;case'elong':return b.elong-a.elong;case'peri':return Math.abs(a.o.tp-jd(ms))-Math.abs(b.o.tp-jd(ms));case'name':return a.o.name.localeCompare(b.o.name);default:return b.score-a.score||(a.mag??99)-(b.mag??99)}});
  updateClockReadout();$('visible').textContent=shown.length.toLocaleString();$('mapcount').textContent=shown.length.toLocaleString()+' '+(lang==='ja'?'件':'comets');
  const list=$('list');list.textContent='';if(!shown.length){const e=document.createElement('div');e.className='placeholder';e.textContent=catalog.length?t('listEmpty'):t('load');list.append(e)}
@@ -788,8 +811,7 @@ function updateCometListView(){
  const pane=$('cometListView'),grid=$('cometListGrid');
  pane.hidden=!cometListMode;
  $('canvas').style.visibility=cometListMode?'hidden':'';
- $('modeList').classList.toggle('active',cometListMode);
- document.querySelectorAll('[data-mode]').forEach(b=>{if(cometListMode)b.classList.remove('active');});
+ cmUpdateExclusiveModes();
  if(cometPhotoObserver)cometPhotoObserver.disconnect();
  if(cometListSentinelObserver)cometListSentinelObserver.disconnect();
  updateMapModePanels();
@@ -870,10 +892,10 @@ function fitSolarComets(){
  sampled.push([0,0,0],earth(jd(msDate())));
  const oldZoom=zoom;solarAnchor=null;zoom=1;
  let farthest=0;for(const point of sampled){if(!point||!point.every(Number.isFinite))continue;const xy=solarScreen(point);farthest=Math.max(farthest,Math.abs(xy[0])/(CW*.44),Math.abs(xy[1])/(CH*.42));}
- zoom=farthest>0?Math.min(5,Math.max(MIN_SOLAR_ZOOM,1/farthest)):oldZoom;
+ zoom=farthest>0?Math.min(cmMaxZoom('solar'),Math.max(MIN_SOLAR_ZOOM,1/farthest)):oldZoom;
  zoomByMode.solar=zoom;drawMap();
 }
-function changeSolarZoom(factor){zoom=clamp(zoom*factor,MIN_SOLAR_ZOOM,5);zoomByMode.solar=zoom;drawMap()}
+function changeSolarZoom(factor){zoom=clamp(zoom*factor,MIN_SOLAR_ZOOM,cmMaxZoom('solar'));zoomByMode.solar=zoom;drawMap()}
 
 function sizeCanvas(){let r=canvas.getBoundingClientRect(),w=Math.max(100,Math.round(r.width)),h=Math.max(100,Math.round(r.height)),dpr=Math.min(2,window.devicePixelRatio||1);canvas.width=w*dpr;canvas.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);CW=w;CH=h}
 function sphereRadius(){return Math.max(35,Math.min((CW-40)/2,(CH-85)/2))*zoom}
@@ -1101,8 +1123,16 @@ function drawHorizonEnvironment(ms){
  }}
  return {daylight,phase:bodies.phase};
 }
+function cmUpdateExclusiveModes(){
+ const listSelected=typeof cometListMode!=='undefined'&&cometListMode;
+ document.querySelectorAll('#view .projection-toggle button').forEach(b=>{
+  const active=b.id==='modeList'?listSelected:!listSelected&&b.dataset.mode===mode;
+  b.classList.toggle('active',active);
+  b.setAttribute('aria-pressed',String(active));
+ });
+}
 function drawMap(){sizeCanvas();ctx.clearRect(0,0,CW,CH);ctx.fillStyle='#06111f';ctx.fillRect(0,0,CW,CH);hits=[];
- const when=msDate(),dateJ=jd(when),sel=all.find(v=>v.o.id===selectedId);for(const b of document.querySelectorAll('[data-mode]'))b.classList.toggle('active',b.dataset.mode===mode);
+ const when=msDate(),dateJ=jd(when),sel=all.find(v=>v.o.id===selectedId);cmUpdateExclusiveModes();
  if(mode==='sky')beginSkyGlobe();
  if(mode==='horizon'){
   drawHorizonEnvironment(when);
@@ -1567,7 +1597,7 @@ function renderDetails(){const c=$('details'),o=byId.get(String(hoverId||selecte
  const photoArea=document.createElement('div');photoArea.className='pn-detail-photo';photoArea.dataset.cometId=String(o.id);c.append(photoArea);loadCometPhotograph(o,photoArea);
  
  const photoLinks=document.createElement('div');photoLinks.className='pn-photo-links';c.append(photoLinks);
- const head=document.createElement('div');head.className='detail-head';let name=document.createElement('h2');name.textContent=o.name;let badge=document.createElement('span');badge.className='chip';badge.textContent=s.mag!==null?`COBS ${f(s.mag,1)} ${t('unit')}`:`${s.score}/100`;head.append(name,badge);c.append(head);
+ const head=document.createElement('div');head.className='detail-head';let name=document.createElement('h2');name.textContent=o.name;let badge=document.createElement('span');badge.className='chip';badge.textContent=s.mag!==null?`${lang==='ja'?'COBS予測':'COBS pred.'} ${f(s.mag,1)} ${t('unit')}`:`${s.score}/100`;head.append(name,badge);c.append(head);
  const listTools=document.createElement('div');listTools.className='pn-detail-actions pn-photo-primary-actions';photoLinks.append(listTools);
   const alreadySaved=readIds(CM_LIST_KEY).includes(String(o.id));
   const addList=detailButton(alreadySaved?(lang==='ja'?'リストから削除':'Remove from list'):(lang==='ja'?'＋リストに追加':'+ Add to list'),()=>{
@@ -1842,20 +1872,27 @@ function saveOfflineCOBS(rows,at,route){
  logConn('offline COBS cache',stored?'saved '+rows.length+' rows':'SAVE FAILED: browser storage unavailable or full');
  return stored;
 }
+// v117: reject cache snapshots with missing, implausible or future fetch timestamps.
+// This checks provenance integrity, not scientific validity or orbit freshness.
+function cacheTimestampOK(entry){
+ const t=Number(entry?.fetchedAt);
+ return entry?.version===1&&Array.isArray(entry.rows)&&entry.rows.length>0&&
+  Number.isFinite(t)&&t>=946684800000&&t<=Date.now()+300000;
+}
 function showOfflineCache(){
  // A failed remote request while navigator.onLine is true must NEVER activate this branch.
  if(navigator.onLine!==false)return false;
  ++fetchGeneration;fetching=false;$('sync').disabled=false;
  const mp=load(LS.offlineMPC),ph=load(LS.offlineCOBS);
- const restored=mp?.version===1&&Array.isArray(mp.rows)?mp.rows.map(o=>normalOrbit(o,[])).filter(Boolean):[];
+ const restored=cacheTimestampOK(mp)?mp.rows.map(o=>normalOrbit(o,[])).filter(Boolean):[];
  const priorOrbits=catalog,priorCOBS=cobs;
  const priorOrbitTime=lastData,priorCOBSTime=lastCOBS;
  catalog=restored.length?restored:priorOrbits;
- cobs=ph?.version===1&&Array.isArray(ph.rows)&&ph.rows.length?ph.rows:priorCOBS;
- lastData=restored.length&&Number.isFinite(Number(mp?.fetchedAt))?Number(mp.fetchedAt):priorOrbitTime;
- lastCOBS=ph?.rows?.length&&Number.isFinite(Number(ph?.fetchedAt))?Number(ph.fetchedAt):priorCOBSTime;
+ cobs=cacheTimestampOK(ph)?ph.rows:priorCOBS;
+ lastData=restored.length&&cacheTimestampOK(mp)?Number(mp.fetchedAt):priorOrbitTime;
+ lastCOBS=cacheTimestampOK(ph)?Number(ph.fetchedAt):priorCOBSTime;
  orbitRoute=catalog.length?(restored.length?String(mp.route||'MPC')+' [CACHE]':String(orbitRoute||'MPC')+' [MEMORY]'):'';
- cobsRoute=cobs.length?(ph?.rows?.length?String(ph.route||'COBS')+' [CACHE]':String(cobsRoute||'COBS')+' [MEMORY]'):'';
+ cobsRoute=cobs.length?(cacheTimestampOK(ph)?String(ph.route||'COBS')+' [CACHE]':String(cobsRoute||'COBS')+' [MEMORY]'):'';
  orbitModified=restored.length&&mp?.modified!=null&&Number.isFinite(Number(mp.modified))?Number(mp.modified):orbitModified;
  offlineCacheActive=true;
  $('brightOnly').disabled=!cobs.length;
@@ -1882,11 +1919,11 @@ async function fetchData(force=false){
  if(mpc.status==='fulfilled'){
   catalog=mpc.value.rows;lastData=Date.now();orbitRoute=mpc.value.src.label;orbitModified=mpc.value.modified;
   saveOfflineOrbits(catalog,lastData,orbitRoute,orbitModified);
- }else{logConn('MPC result','UNAVAILABLE '+mpc.reason?.message);if(catalog.length){offlineCacheActive=true;if(!/\[CACHE\]|\[MEMORY\]/.test(orbitRoute))orbitRoute+=' [MEMORY]';}if(!catalog.length){const mp=load(LS.offlineMPC);const restored=mp?.version===1&&Array.isArray(mp.rows)?mp.rows.map(o=>normalOrbit(o,[])).filter(Boolean):[];if(restored.length){catalog=restored;lastData=Number(mp.fetchedAt)||null;orbitRoute=String(mp.route||'MPC')+' [CACHE]';orbitModified=Number(mp.modified)||null;offlineCacheActive=true;logConn('MPC fallback','Using '+catalog.length+' stored orbits after online failure')}}}
+ }else{logConn('MPC result','UNAVAILABLE '+mpc.reason?.message);if(catalog.length){offlineCacheActive=true;if(!/\[CACHE\]|\[MEMORY\]/.test(orbitRoute))orbitRoute+=' [MEMORY]';}if(!catalog.length){const mp=load(LS.offlineMPC);const restored=cacheTimestampOK(mp)?mp.rows.map(o=>normalOrbit(o,[])).filter(Boolean):[];if(restored.length){catalog=restored;lastData=Number(mp.fetchedAt)||null;orbitRoute=String(mp.route||'MPC')+' [CACHE]';orbitModified=Number(mp.modified)||null;offlineCacheActive=true;logConn('MPC fallback','Using '+catalog.length+' stored orbits after online failure')}}}
  if(cobsResult.status==='fulfilled'){
   cobs=cobsResult.value.rows;lastCOBS=Date.now();cobsRoute=cobsResult.value.src.label;
   saveOfflineCOBS(cobs,lastCOBS,cobsRoute);
- }else{logConn('COBS result','UNAVAILABLE '+cobsResult.reason?.message);if(cobs.length){offlineCacheActive=true;if(!/\[CACHE\]|\[MEMORY\]/.test(cobsRoute))cobsRoute+=' [MEMORY]';}if(!cobs.length){const ph=load(LS.offlineCOBS);if(ph?.version===1&&Array.isArray(ph.rows)&&ph.rows.length){cobs=ph.rows;lastCOBS=Number(ph.fetchedAt)||null;cobsRoute=String(ph.route||'COBS')+' [CACHE]';offlineCacheActive=true;logConn('COBS fallback','Using '+cobs.length+' stored catalog entries after online failure')}}}
+ }else{logConn('COBS result','UNAVAILABLE '+cobsResult.reason?.message);if(cobs.length){offlineCacheActive=true;if(!/\[CACHE\]|\[MEMORY\]/.test(cobsRoute))cobsRoute+=' [MEMORY]';}if(!cobs.length){const ph=load(LS.offlineCOBS);if(cacheTimestampOK(ph)){cobs=ph.rows;lastCOBS=Number(ph.fetchedAt)||null;cobsRoute=String(ph.route||'COBS')+' [CACHE]';offlineCacheActive=true;logConn('COBS fallback','Using '+cobs.length+' stored catalog entries after online failure')}}}
  // Cached values are explicitly marked as stale whenever live retrieval fails.
  if(!cobs.length){$('brightOnly').checked=false;$('brightOnly').disabled=true;settings.brightOnly=false;save(LS.settings,settings)}
  else $('brightOnly').disabled=false;
@@ -1941,10 +1978,10 @@ function initializeLiveOnly(){
 function needRevalidate(){if(navigator.onLine===false)return false;return !lastData||Date.now()-lastData>60*60000}
 function invalidateIfOld(){if(navigator.onLine===false){if(!offlineCacheActive)showOfflineCache();return}if(needRevalidate())fetchData()}
 let onStart=0;canvas.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY,ra:skyRA,dec:skyDec,angle:rotSolar,tilt:tiltSolar,panX:horizonPanX,panY:horizonPanY,moved:false};onStart=Date.now();canvas.setPointerCapture(e.pointerId)});
-canvas.addEventListener('pointermove',e=>{let r=canvas.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;if(drag){let dx=e.clientX-drag.x,dy=e.clientY-drag.y;if(Math.abs(dx)+Math.abs(dy)>3)drag.moved=true;if(mode==='sky'){skyRA=mod(drag.ra-(skyViewpoint==='inside'?-dx:dx)/Math.max(1,CW)*220/zoom,360);skyDec=clamp(drag.dec+dy/Math.max(1,CH)*180/zoom,-90,90);}if(mode==='horizon'){horizonPanX=drag.panX+dx;horizonPanY=clamp(drag.panY+dy,-CH*.3,CH*.9);}if(mode==='solar'){rotSolar=mod(drag.angle+dx/Math.max(CW,1)*240,360);tiltSolar=clamp(drag.tilt+dy/Math.max(CH,1)*180,-89,89);}if(drag.moved)drawMap();return}if(!e.shiftKey)return;let h=hits.filter(k=>Math.hypot(k.x-x,k.y-y)<14).sort((a,b)=>Math.hypot(a.x-x,a.y-y)-Math.hypot(b.x-x,b.y-y))[0];let id=h?h.id:null;if(id!==hoverId){hoverId=id;renderDetails();drawMap()}});
+canvas.addEventListener('pointermove',e=>{let r=canvas.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;if(drag){let dx=e.clientX-drag.x,dy=e.clientY-drag.y;if(Math.abs(dx)+Math.abs(dy)>3)drag.moved=true;if(mode==='sky'){skyRA=mod(drag.ra-(skyViewpoint==='inside'?-dx:dx)/Math.max(1,CW)*220/zoom,360);skyDec=clamp(drag.dec+dy/Math.max(1,CH)*180/zoom,-90,90);}if(mode==='horizon'){horizonPanX=drag.panX+dx/Math.max(1,zoom);horizonPanY=clamp(drag.panY+dy/Math.max(1,zoom),-CH*.3,CH*.9);}if(mode==='solar'){rotSolar=mod(drag.angle+dx/Math.max(CW,1)*240,360);tiltSolar=clamp(drag.tilt+dy/Math.max(CH,1)*180,-89,89);}if(drag.moved)drawMap();return}if(!e.shiftKey)return;let h=hits.filter(k=>Math.hypot(k.x-x,k.y-y)<14).sort((a,b)=>Math.hypot(a.x-x,a.y-y)-Math.hypot(b.x-x,b.y-y))[0];let id=h?h.id:null;if(id!==hoverId){hoverId=id;renderDetails();drawMap()}});
 canvas.addEventListener('pointerup',e=>{let wasDrag=drag?.moved;drag=null;if(wasDrag)return;let r=canvas.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;let h=hits.filter(k=>Math.hypot(k.x-x,k.y-y)<14).sort((a,b)=>Math.hypot(a.x-x,a.y-y)-Math.hypot(b.x-x,b.y-y))[0];if(h)select(h.id,true)});
 canvas.addEventListener('pointerleave',()=>{if(!drag&&hoverId){hoverId=null;renderDetails();drawMap()}});window.addEventListener('keyup',e=>{if(e.key==='Shift'&&hoverId){hoverId=null;renderDetails();drawMap()}});
-canvas.addEventListener('wheel',e=>{e.preventDefault();zoom=clamp(zoom*(e.deltaY>0?(mode==='solar'?.72:.85):1.18),mode==='solar'?MIN_SOLAR_ZOOM:.6,5);zoomByMode[mode]=zoom;drawMap()},{passive:false});window.addEventListener('resize',drawMap);
+canvas.addEventListener('wheel',e=>{e.preventDefault();const factor=e.deltaY>0?1/1.30:1.30;zoom=clamp(zoom*factor,cmMinZoom(mode),cmMaxZoom(mode));zoomByMode[mode]=zoom;drawMap()},{passive:false});window.addEventListener('resize',drawMap);
 
 /* v38 PNmap parity: celestial inside/outside, actual equipment framing and movable altitude chart. */
 function updateMapModePanels(){
@@ -2057,81 +2094,366 @@ function openFramingChart(){
  if(!selectedComet())return;
  showFloating('framingPopup');refreshFramingChart();
 }
-// Local-first star chart: uses the same Hipparcos/stars.6 source loaded for constellation lines.
-// Gaia DR3 is an optional ONLINE deep-field supplement, never mislabelled as built-in data.
+// TEST v123: single Gaia DR3 tile-based star chart, with G<11 bright + 11<=G<12 subset.
+// This is independent of the public Cometmap, and does not query VizieR.
 const CM_STAR_KEY='cometmap_gaia_stars_enabled_v84';
 let cometStarsEnabled=(()=>{try{return localStorage.getItem(CM_STAR_KEY)!=='false'}catch(_){return true}})();
-let cmStarSource=(()=>{try{return localStorage.getItem('cometmap_chart_source_v104')==='gaia'?'gaia':'local'}catch(_){return 'local'}})();
-const gaiaStore=new Map();let lastGaiaKey='';
+let cmStarSource='github-tiled-gaia'; // Compatibility only: there is no longer a user-visible source selector.
+const CM_TILED_BASE=location.protocol==='file:'?'https://dopa-gaki.github.io/.github.io/cometmap/':new URL('./',location.href).href;
+const CM_EQU2GAL=[[-.0548755604,-.8734370902,-.4838350155],[.4941094279,-.44482963,.7469822445],[-.867666149,-.1980763734,.4559837762]];
+const cmTileCache=new Map(),cmManifestCache=new Map(),cmStarFieldCache=new Map();let cmStarDrawTicket=0;
+// Gaia DR3 catalog tiles are static assets, unlike live comet ephemerides.
+// Store verified binary tiles in IndexedDB (per origin, across reloads), with
+// in-memory LRU and a fallback to normal HTTP caching if storage is blocked.
+const CM_GAIA_DB='cometmap-static-gaia-dr3-v1', CM_GAIA_STORE='tiles';
+let cmGaiaDBPromise;
+function cmGaiaDB(){
+ if(cmGaiaDBPromise)return cmGaiaDBPromise;
+ cmGaiaDBPromise=new Promise(resolve=>{
+  if(!('indexedDB' in window)){resolve(null);return}
+  try{
+   const req=indexedDB.open(CM_GAIA_DB,1);
+   req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains(CM_GAIA_STORE))db.createObjectStore(CM_GAIA_STORE)};
+   req.onsuccess=()=>resolve(req.result);
+   req.onerror=()=>resolve(null);
+   req.onblocked=()=>resolve(null);
+  }catch(_){resolve(null)}
+ });
+ return cmGaiaDBPromise;
+}
+async function cmDBRead(key){
+ const db=await cmGaiaDB();if(!db)return null;
+ return new Promise(resolve=>{try{
+  const rq=db.transaction(CM_GAIA_STORE,'readonly').objectStore(CM_GAIA_STORE).get(key);
+  rq.onsuccess=()=>resolve(rq.result??null);rq.onerror=()=>resolve(null);
+ }catch(_){resolve(null)}});
+}
+async function cmDBWrite(key,value){
+ const db=await cmGaiaDB();if(!db)return false;
+ return new Promise(resolve=>{try{
+  const tx=db.transaction(CM_GAIA_STORE,'readwrite');tx.objectStore(CM_GAIA_STORE).put(value,key);
+  tx.oncomplete=()=>resolve(true);tx.onerror=()=>resolve(false);tx.onabort=()=>resolve(false);
+ }catch(_){resolve(false)}});
+}
+function cmStarKey(center,fw,fh){
+ return [center.ra.toFixed(4),center.dec.toFixed(4),fw.toFixed(4),fh.toFixed(4)].join('|');
+}
+function cmSetFieldCache(key,stars,note){
+ cmStarFieldCache.delete(key);cmStarFieldCache.set(key,{stars,note});
+ while(cmStarFieldCache.size>12)cmStarFieldCache.delete(cmStarFieldCache.keys().next().value);
+}
+
 function setStarChartButton(){const btn=document.getElementById('cometStarChartToggle');if(!btn)return;
  btn.textContent=(lang==='ja'?'星図 ':'Star chart ')+(cometStarsEnabled?'ON':'OFF');btn.setAttribute('aria-pressed',String(cometStarsEnabled));
- const source=document.getElementById('cometStarSource');if(source)source.value=cmStarSource;
 }
-function gaiaStarsKey(center,fw,fh){return [Math.round(center.ra*10)/10,Math.round(center.dec*10)/10,Math.ceil(Math.max(fw,fh)/30)].join('/');}
-function decodeVizierTSV(t){
- const lines=t.split(/\r?\n/).filter(s=>s&&!/^#/.test(s));
- const columns=lines.findIndex(line=>/RA_ICRS/.test(line)&&/DE_ICRS/.test(line));if(columns<0)throw Error('Gaia columns missing');
- const hdr=lines[columns].split('\t').map(s=>s.trim()),a=hdr.indexOf('RA_ICRS'),b=hdr.indexOf('DE_ICRS'),m=hdr.indexOf('Gmag');const out=[];
- for(const line of lines.slice(columns+1)){if(/^[-\s\t]+$/.test(line)||/\[deg\]|\[mag\]/.test(line))continue;
-  const cols=line.split('\t'),ra=Number(cols[a]),dec=Number(cols[b]),mag=m>=0?Number(cols[m]):13;
-  if(Number.isFinite(ra)&&Number.isFinite(dec)&&Number.isFinite(mag)&&mag>=-2&&mag<=19)out.push({ra,dec,mag});}
- return out;
+function cmDot(a,b){return a[0]*b[0]+a[1]*b[1]+a[2]*b[2]}
+function cmDir(ra,dec){const d=rad(dec),a=rad(ra);return [Math.cos(d)*Math.cos(a),Math.cos(d)*Math.sin(a),Math.sin(d)];}
+function cmGalDir(ra,dec){const u=cmDir(ra,dec),v=CM_EQU2GAL.map(r=>cmDot(r,u));return [-v[0],v[2],v[1]];}
+function cmEqFromGalData(x,y,z){const n=Math.hypot(x,y,z);if(!(n>0&&Number.isFinite(n)))return null;
+ const g=[-x/n,z/n,y/n],m=CM_EQU2GAL;
+ const e=[m[0][0]*g[0]+m[1][0]*g[1]+m[2][0]*g[2],m[0][1]*g[0]+m[1][1]*g[1]+m[2][1]*g[2],m[0][2]*g[0]+m[1][2]*g[1]+m[2][2]*g[2]];
+ return [mod(Math.atan2(e[1],e[0])*180/Math.PI,360),Math.asin(Math.max(-1,Math.min(1,e[2])))*180/Math.PI,n];
 }
-async function gaiaCone(center,fw,fh){
- const key=gaiaStarsKey(center,fw,fh);if(gaiaStore.has(key))return gaiaStore.get(key);
- const storageKey='cometmap_gaia_field_v103_'+key;
- try{const cached=JSON.parse(localStorage.getItem(storageKey)||'null');if(cached&&Array.isArray(cached.stars)&&cached.stars.length&&cached.stars.every(st=>Number.isFinite(st.ra)&&Number.isFinite(st.dec)&&Number.isFinite(st.mag))){gaiaStore.set(key,Promise.resolve(cached.stars));return cached.stars}}catch(_){ }
- const radius=Math.min(1.7,Math.max(.08,Math.hypot(fw,fh)/120*1.1));
- const url='https://vizier.cds.unistra.fr/viz-bin/asu-tsv?'+new URLSearchParams({'-source':'I/355/gaiadr3','-c':center.ra.toFixed(5)+' '+center.dec.toFixed(5),'-c.r':radius.toFixed(4),'-c.u':'deg','-out':'RA_ICRS,DE_ICRS,Gmag','-out.max':'950','Gmag':'<16.5'}).toString();
- const promise=fetch(url,{mode:'cors',cache:'force-cache',signal:AbortSignal.timeout(9500)}).then(async res=>{
-  if(!res.ok)throw Error('HTTP '+res.status);const out=decodeVizierTSV(await res.text());if(!out.length)throw Error('No Gaia sources returned');
-  try{localStorage.setItem(storageKey,JSON.stringify({savedUTC:Date.now(),stars:out}))}catch(_){ }return out;
- }).catch(e=>{gaiaStore.delete(key);throw e});
- gaiaStore.set(key,promise);if(gaiaStore.size>24)gaiaStore.delete(gaiaStore.keys().next().value);return promise;
+function cmManifestValid(kind,m){
+ const fmt=kind==='bright'?'cometmap-gaia-dr3-bright-v1':'cometmap-gaia-dr3-tile-b64-v1';
+ return !!m&&m.format===fmt&&Array.isArray(m.tiles)&&m.tiles.length===(kind==='bright'?72:128);
+}
+async function cmGetManifest(kind){
+ if(cmManifestCache.has(kind))return cmManifestCache.get(kind);
+ const rel=kind==='bright'?'gaia-bright/manifest.json':'gaia-dr3/manifest.json';
+ const key='cometmap_gaia_manifest_v137_'+kind;
+ const promise=(async()=>{
+  let saved=null;
+  try{saved=JSON.parse(localStorage.getItem(key)||'null')}catch(_){}
+  // Reuse unchanged Gaia catalogs for 30 days, even without network connectivity.
+  if(cmManifestValid(kind,saved?.manifest)&&Date.now()-saved.savedAt<30*86400000)return saved.manifest;
+  try{
+   const res=await fetch(CM_TILED_BASE+rel,{cache:'force-cache',signal:AbortSignal.timeout(12000)});
+   if(!res.ok)throw Error(rel+' HTTP '+res.status);
+   const m=await res.json();if(!cmManifestValid(kind,m))throw Error('Incompatible manifest: '+kind);
+   try{localStorage.setItem(key,JSON.stringify({savedAt:Date.now(),manifest:m}))}catch(_){}
+   return m;
+  }catch(e){if(cmManifestValid(kind,saved?.manifest))return saved.manifest;throw e}
+ })();
+ cmManifestCache.set(kind,promise);
+ try{return await promise}catch(e){cmManifestCache.delete(kind);throw e}
+}
+async function cmGetTile(kind,t){
+ const rel=(kind==='bright'?'gaia-bright/':'gaia-dr3/')+t.file;
+ if(cmTileCache.has(rel)){
+  const current=cmTileCache.get(rel);cmTileCache.delete(rel);cmTileCache.set(rel,current);
+  return current;
+ }
+ const promise=(async()=>{
+  const stride=kind==='bright'?16:22,expected=t.count*stride;
+  const saved=await cmDBRead('v1:'+rel);
+  if(saved instanceof ArrayBuffer&&saved.byteLength===expected)return new DataView(saved);
+  const res=await fetch(CM_TILED_BASE+rel,{cache:'force-cache',signal:AbortSignal.timeout(20000)});
+  if(!res.ok)throw Error('HTTP '+res.status+' '+rel);
+  let buf;
+  if(kind==='bright')buf=await res.arrayBuffer();
+  else {const txt=(await res.text()).trim(),raw=atob(txt);buf=new ArrayBuffer(raw.length);const a=new Uint8Array(buf);for(let i=0;i<raw.length;i++)a[i]=raw.charCodeAt(i)}
+  if(buf.byteLength!==expected)throw Error('Invalid tile length: '+rel);
+  // Save before returning only if quota permits; a browser without IndexedDB
+  // continues normally using its own HTTP cache and the per-tab RAM cache.
+  void cmDBWrite('v1:'+rel,buf);
+  return new DataView(buf);
+ })();
+ cmTileCache.set(rel,promise);
+ while(cmTileCache.size>64)cmTileCache.delete(cmTileCache.keys().next().value);
+ try{return await promise}catch(e){cmTileCache.delete(rel);throw e}
+}
+function cmBrightDirTile(t){const ra=(t.ra_min+t.ra_max)/2,z=(t.sin_dec_min+t.sin_dec_max)/2,dec=Math.asin(z)*180/Math.PI;
+ const u=cmDir(ra,dec);let ang=0;
+ for(const a of [t.ra_min,t.ra_max])for(const zz of [t.sin_dec_min,t.sin_dec_max]){
+  const corner=cmDir(a,Math.asin(Math.max(-1,Math.min(1,zz)))*180/Math.PI);
+  ang=Math.max(ang,Math.acos(Math.max(-1,Math.min(1,cmDot(u,corner)))));
+ }return {u,ang};
+}
+function cmSelectTiles(kind,manifest,center,fw,fh){const target=kind==='bright'?cmDir(center.ra,center.dec):cmGalDir(center.ra,center.dec);
+ const halfRad=Math.min(Math.PI,Math.hypot(fw,fh)/120*Math.PI/180+0.006);
+ return manifest.tiles.filter(t=>{const u=kind==='bright'?cmBrightDirTile(t):{u:t.dir,ang:t.ang};
+  return cmDot(target,u.u)>=Math.cos(Math.min(Math.PI,u.ang+halfRad))});
 }
 function cmBuiltInStars(){
  if(Array.isArray(cometSky?.starPoints)&&cometSky.starPoints.length)return cometSky.starPoints.map(p=>({ra:p[0],dec:p[1],mag:p[2]}));
- // Old saved sky data have Stellarium line vertices: these are REAL positions, not random stars.
- const found=new Map();for(const fig of cometSky?.figurePaths||[])for(const path of fig.paths||[])for(const p of path.coords||[]){if(!Number.isFinite(p[0])||!Number.isFinite(p[1]))continue;const key=p.map(x=>x.toFixed(4)).join(',');if(!found.has(key))found.set(key,{ra:p[0],dec:p[1],mag:6.0});}return [...found.values()];
+ const found=new Map();for(const fig of cometSky?.figurePaths||[])for(const path of fig.paths||[])for(const p of path.coords||[]){if(!Number.isFinite(p[0])||!Number.isFinite(p[1]))continue;const k=p.map(x=>x.toFixed(4)).join(',');if(!found.has(k))found.set(k,{ra:p[0],dec:p[1],mag:6})}return [...found.values()];
 }
 function cmPlotCatalogStars(center,fw,fh,scale,cx,cy,group,data){
- const stars=document.createDocumentFragment();let count=0;
- for(const st of data){const dra=mod(st.ra-center.ra+180,360)-180;
-  const east=dra*Math.cos(rad((st.dec+center.dec)/2))*60,north=(st.dec-center.dec)*60;
+ const visible=[];
+ for(const s of data){const dra=mod(s.ra-center.ra+180,360)-180,east=dra*Math.cos(rad((s.dec+center.dec)/2))*60,north=(s.dec-center.dec)*60;
   if(Math.abs(east)>fw*.55||Math.abs(north)>fh*.55)continue;
   const x=cx-east*scale,y=cy-north*scale;if(x<0||x>520||y<0||y>300)continue;
-  const size=Math.max(.7,Math.min(3.6,3.0-(st.mag-4)*.17));stars.append(elSVG('circle',{cx:x,cy:y,r:size,fill:'#dceafd','fill-opacity':Math.max(.5,Math.min(.98,1-(st.mag-5)*.028))}));count++;
+  if(!Number.isFinite(s.mag)||s.mag>12.2)continue;
+  visible.push({x,y,mag:s.mag});
  }
- group.replaceChildren(stars);return count;
+ // Keep SVG responsive even with very wide fields or dense Galactic-plane regions.
+ visible.sort((a,b)=>a.mag-b.mag);const selected=visible.slice(0,4000).reverse(),frag=document.createDocumentFragment();
+ for(const s of selected){
+  const size=Math.max(.45,Math.min(4.8,4.9-s.mag*.34));
+  const alpha=Math.max(.42,Math.min(1,.98-(s.mag-4)*.035));
+  frag.append(elSVG('circle',{cx:s.x,cy:s.y,r:size,fill:'#e3eefc','fill-opacity':alpha}));
+ }
+ group.replaceChildren(frag);group.removeAttribute('transform');
+ group.dataset.baseRa=String(center.ra);group.dataset.baseDec=String(center.dec);group.dataset.ready='yes';
+ return {plotted:selected.length,visible:visible.length};
 }
+function cmBrightStars(view,center,fw,fh,out){
+ const stride=16;
+ for(let i=0;i<view.byteLength;i+=stride){const ra=view.getFloat32(i,true),dec=view.getFloat32(i+4,true),mag=view.getFloat32(i+8,true),bp=view.getFloat32(i+12,true);
+  if(!Number.isFinite(ra)||!Number.isFinite(dec)||!Number.isFinite(mag))continue;
+  const d=mod(ra-center.ra+180,360)-180;if(Math.abs(d*Math.cos(rad((center.dec+dec)/2))*60)>fw*.56||Math.abs(dec-center.dec)*60>fh*.56)continue;
+  out.push({ra,dec,mag,bp});
+ }
+}
+function cmFaintStars(view,center,fw,fh,out){const parsec=3.0857e16;
+ for(let i=0;i<view.byteLength;i+=22){const x=view.getFloat32(i,true),y=view.getFloat32(i+4,true),z=view.getFloat32(i+8,true);
+  const result=cmEqFromGalData(x,y,z);if(!result)continue;const [ra,dec,distM]=result;
+  const delta=mod(ra-center.ra+180,360)-180;if(Math.abs(delta*Math.cos(rad((dec+center.dec)/2))*60)>fw*.56||Math.abs(dec-center.dec)*60>fh*.56)continue;
+  const distPc=distM/parsec,mag=view.getUint8(i+15)/8-15+5*Math.log10(distPc)-5;
+  if(!Number.isFinite(mag)||mag<10.95||mag>=12.15)continue;
+  out.push({ra,dec,mag});
+ }
+}
+async function cmLoadLayer(kind,center,fw,fh,out,progress,concurrency=6){
+ const manifest=await cmGetManifest(kind),selected=cmSelectTiles(kind,manifest,center,fw,fh),queue=selected.slice();
+ let done=0;const errors=[];
+ await Promise.all(Array.from({length:Math.min(queue.length,concurrency)},async()=>{while(queue.length){const tile=queue.shift();
+  try{const view=await cmGetTile(kind,tile);if(kind==='bright')cmBrightStars(view,center,fw,fh,out);else cmFaintStars(view,center,fw,fh,out)}
+  catch(e){errors.push(String(e.message||e))}done++;if(progress)progress(kind,done,selected.length,errors.length);}}));
+ return {selected:selected.length,done,errors,count:out.length};
+}
+// v138: Predict nearby comet positions from the same local orbital model used by
+// the map. Gaia stars are STATIC catalog entries; this is background loading of
+// fields, NOT a comet astrometric observation or an ephemeris accuracy upgrade.
+const cmOrbitPrefetch={wanted:[],running:false,activeKey:'',lastPlanKey:'',lastStatus:'',jobPromises:new Map(),failedUntil:new Map(),failureCount:0};
+function cmOrbitPrefetchStatus(msg){
+ cmOrbitPrefetch.lastStatus=msg;
+ const out=document.getElementById('cmOrbitPrefetchStatus');if(out)out.textContent=msg;
+}
+function cmOrbitPrefetchCount(){
+ const pending=cmOrbitPrefetch.wanted.filter(q=>!cmStarFieldCache.has(q.key)).length;
+ return pending+(cmOrbitPrefetch.activeKey?1:0);
+}
+function cmPrefetchFutureFields(){
+ const popup=document.getElementById('framingPopup');
+ if(!cometStarsEnabled||!popup||popup.hidden||document.hidden)return;
+ const o=selectedComet(),eqp=equipment(),ms=msDate();
+ if(!o||!eqp||!Number.isFinite(ms))return;
+ const fw=206.265*eqp.pixel*eqp.width/eqp.focal/60;
+ const fh=206.265*eqp.pixel*eqp.height/eqp.focal/60;
+ if(!(fw>0&&fh>0&&Number.isFinite(fw)&&Number.isFinite(fh)))return;
+ // Expired retry markers are safe to discard; prevents unbounded growth
+ // during long playback sessions across many unique sky fields.
+ if(cmOrbitPrefetch.failedUntil.size>128){
+  const now=Date.now();
+  for(const [key,until] of cmOrbitPrefetch.failedUntil)if(until<=now)cmOrbitPrefetch.failedUntil.delete(key);
+ }
+ const step=Math.max(1,Number(document.getElementById('playSpeed')?.value)||60);
+ // Bound bandwidth and memory, particularly for weekly/monthly playback.
+ const ahead=step>=43200?2:step>=10080?3:step>=1440?4:6;
+ const plan=[],seen=new Set();
+ // Priority 1: actual playback-frame centers. These are the positions the
+ // viewer will request next; intermediate trajectory samples are secondary.
+ const at=minutes=>geo(o,jd(ms+minutes*60000));
+ const add=minutes=>{
+  const center=at(minutes);
+  if(!center||!Number.isFinite(center.ra)||!Number.isFinite(center.dec))return;
+  const key=cmStarKey(center,fw,fh);
+  if(seen.has(key)||cmStarFieldCache.has(key)||key===cmOrbitPrefetch.activeKey)return;
+  if((cmOrbitPrefetch.failedUntil.get(key)||0)>Date.now())return;
+  seen.add(key);plan.push({key,center,fw,fh});
+ };
+ for(let n=1;n<=ahead;n++)add(n*step);
+ // Priority 2: sample large gaps in the predicted trajectory, but do not
+ // displace the next playback frames from the bounded prefetch queue.
+ const first=at(0),next=at(step);
+ const separation=(a,b)=>a&&b?Math.hypot(
+  (mod(b.ra-a.ra+180,360)-180)*Math.cos(rad((a.dec+b.dec)/2))*60,
+  (b.dec-a.dec)*60):0;
+ const frameMotion=separation(first,next);
+ const subdivisions=Math.max(1,Math.min(4,Math.ceil(frameMotion/Math.max(0.01,Math.min(fw,fh)*.7))));
+ if(subdivisions>1){
+  for(let n=0;n<ahead&&plan.length<12;n++){
+   for(let j=1;j<subdivisions&&plan.length<12;j++)add((n+j/subdivisions)*step);
+  }
+ }
+ // Preserve an already-running job, but always prioritize upcoming playback
+ // frames over speculative intermediate samples. Do not queue duplicates.
+ // A change of comet, sensor dimensions or playback speed invalidates
+ // speculative positions from the previous trajectory. Retain only the
+ // current route's queue, not stale fields from another target.
+ const contextKey=[String(o.id??o.name),fw.toFixed(4),fh.toFixed(4),step].join('|');
+ const sameContext=cmOrbitPrefetch.lastPlanKey===contextKey;
+ cmOrbitPrefetch.lastPlanKey=contextKey;
+ const oldQueue=sameContext?cmOrbitPrefetch.wanted:[];
+ const merged=[...plan,...oldQueue].filter((item,index,arr)=>
+  item.key!==cmOrbitPrefetch.activeKey &&
+  !cmStarFieldCache.has(item.key) &&
+  (cmOrbitPrefetch.failedUntil.get(item.key)||0)<=Date.now() &&
+  arr.findIndex(other=>other.key===item.key)===index);
+ cmOrbitPrefetch.wanted=merged.slice(0,12);
+ if(!cmOrbitPrefetch.running)void cmRunOrbitPrefetch();
+}
+async function cmRunOrbitPrefetch(){
+ if(cmOrbitPrefetch.running)return;
+ cmOrbitPrefetch.running=true;
+ try{
+  while(cmOrbitPrefetch.wanted.length&&cometStarsEnabled&&!document.hidden){
+   const item=cmOrbitPrefetch.wanted.shift();
+   if(cmStarFieldCache.has(item.key))continue;
+   // A field that failed recently must not be retried just because it
+   // remained in a queue assembled before the failure was recorded.
+   if((cmOrbitPrefetch.failedUntil.get(item.key)||0)>Date.now())continue;
+   cmOrbitPrefetch.activeKey=item.key;
+   const promise=(async()=>{
+    const bright=[],faint=[];
+    // Lower priority: maximum 2 requests per layer (4 total), while the
+    // visible field can use up to 6 per layer. Shared tile promises dedupe I/O.
+    const [b,f]=await Promise.all([
+     cmLoadLayer('bright',item.center,item.fw,item.fh,bright,null,2),
+     cmLoadLayer('faint',item.center,item.fw,item.fh,faint,null,2)
+    ]);
+    // A successful request with zero selected tiles is not a complete Gaia
+    // field. Do not cache it as a blank sky; allow later retries instead.
+    if(b.errors.length||f.errors.length||(!b.selected&&!f.selected)||b.done<b.selected||f.done<f.selected)return false;
+    const fallback=[],existing=bright.filter(st=>st.mag<2.8);
+    for(const st of cmBuiltInStars()){
+     if(!(st.mag<2.5))continue;
+     const close=existing.some(q=>Math.abs(mod(q.ra-st.ra+180,360)-180)*Math.cos(rad(st.dec))<.02&&Math.abs(q.dec-st.dec)<.02);
+     if(!close)fallback.push(st);
+    }
+    cmSetFieldCache(item.key,[...faint,...bright,...fallback],(b.done+f.done)+' tiles / ahead');
+    return true;
+   })();
+   cmOrbitPrefetch.jobPromises.set(item.key,promise);
+   try{
+    const ok=await promise;
+    if(ok){cmOrbitPrefetch.failedUntil.delete(item.key);cmOrbitPrefetch.failureCount=0}
+    else{
+     cmOrbitPrefetch.failureCount++;
+     cmOrbitPrefetch.failedUntil.set(item.key,Date.now()+90000);
+    }
+   }catch(e){
+    cmOrbitPrefetch.failureCount++;
+    cmOrbitPrefetch.failedUntil.set(item.key,Date.now()+90000);
+    console.warn('Gaia trajectory prefetch',e);
+   }finally{cmOrbitPrefetch.jobPromises.delete(item.key);cmOrbitPrefetch.activeKey=''}
+   const waiting=cmOrbitPrefetchCount();
+   const failed=cmOrbitPrefetch.failureCount;
+   const suffix=failed?(lang==='ja'?' · 連続取得失敗 '+failed+'件（各画角90秒待機）':' · '+failed+' consecutive failures (90s per field)'):'';
+   cmOrbitPrefetchStatus((waiting?(lang==='ja'?'予測軌道の星図：残り '+waiting+'画角':'Predicted path: '+waiting+' fields remaining'):(lang==='ja'?'先読み待機':'Preload idle'))+suffix);
+  }
+ }finally{cmOrbitPrefetch.running=false;cmOrbitPrefetch.activeKey='';}
+}
+function cmStopOrbitPrefetch(){cmOrbitPrefetch.wanted=[];cmOrbitPrefetch.lastPlanKey='';cmOrbitPrefetch.failureCount=0;cmOrbitPrefetchStatus('')}
 async function drawGaiaStarChart(center,fw,fh,scale,cx,cy,group){
- const status=document.getElementById('cometStarChartStatus');
- const key=gaiaStarsKey(center,fw,fh)+'/'+cmStarSource;lastGaiaKey=key;
- const local=cmBuiltInStars(),count=cmPlotCatalogStars(center,fw,fh,scale,cx,cy,group,local);
- if(status)status.textContent=(lang==='ja'?'内蔵恒星図':'Built-in stars')+' · '+count+(lang==='ja'?'星':' stars')+(local.length?'':' · '+(lang==='ja'?'恒星カタログ未取得':'catalog unavailable'));
- if(cmStarSource!=='gaia')return;
- if(status)status.textContent=lang==='ja'?'内蔵星図を表示中 · Gaia DR3照会中…':'Built-in chart shown · checking Gaia DR3…';
- try{const data=await gaiaCone(center,fw,fh);if(!group.isConnected||lastGaiaKey!==key||!cometStarsEnabled)return;
-  const found=cmPlotCatalogStars(center,fw,fh,scale,cx,cy,group,data);
-  if(status)status.textContent='Gaia DR3 · '+found+(lang==='ja'?'星（保存後は再取得不要）':' stars (cached for reuse)');
- }catch(e){if(!group.isConnected||lastGaiaKey!==key||!cometStarsEnabled)return;
-  const n=cmPlotCatalogStars(center,fw,fh,scale,cx,cy,group,local);
-  if(status)status.textContent=(lang==='ja'?'Gaia接続不可 · 内蔵星図':'Gaia unavailable · built-in chart')+' · '+n+(lang==='ja'?'星':' stars');
+ const ticket=++cmStarDrawTicket,status=document.getElementById('cometStarChartStatus');
+ const key=cmStarKey(center,fw,fh),saved=cmStarFieldCache.get(key);
+ if(saved){
+  const n=cmPlotCatalogStars(center,fw,fh,scale,cx,cy,group,saved.stars);
+  if(status)status.textContent=(lang==='ja'?'星図（再利用）':'Star chart (reused)')+' · '+n.plotted+(lang==='ja'?'星':' stars')+' · '+saved.note;
+  cmPrefetchFutureFields();
+  return;
  }
+ // If a replay frame is already being prefetched, share that job rather than
+ // restarting its tile downloads. Keep the shifted previous chart visible.
+ const prefetch=cmOrbitPrefetch.jobPromises.get(key);
+ if(prefetch){
+  if(status)status.textContent=lang==='ja'?'先読みした星図を準備中…':'Preparing prefetched field…';
+  try{await prefetch}catch(_){}
+  if(ticket!==cmStarDrawTicket||!group.isConnected||!cometStarsEnabled)return;
+  const ready=cmStarFieldCache.get(key);
+  if(ready){
+   const n=cmPlotCatalogStars(center,fw,fh,scale,cx,cy,group,ready.stars);
+   if(status)status.textContent=(lang==='ja'?'星図（先読み） · ':'Prefetched stars · ')+n.plotted;
+   cmPrefetchFutureFields();return;
+  }
+ }
+ if(status)status.textContent=lang==='ja'?'Gaia星図を読み込み中…':'Loading Gaia stars…';
+ const bright=[],faint=[];
+ const update=(kind,done,total,fail)=>{if(ticket!==cmStarDrawTicket)return;
+  if(status)status.textContent=(kind==='bright'?'G<11':'11≤G<12')+' '+done+'/'+total+(fail?' ⚠'+fail:'');
+ };
+ // Both layers download concurrently, but render bright stars as soon as they arrive.
+ const bp=cmLoadLayer('bright',center,fw,fh,bright,update).then(result=>({result}),error=>({error}));
+ const fp=cmLoadLayer('faint',center,fw,fh,faint,update).then(result=>({result}),error=>({error}));
+ const b=await bp;
+ if(ticket!==cmStarDrawTicket||!group.isConnected||!cometStarsEnabled)return;
+ const fallback=[];
+ const existing=bright.filter(st=>st.mag<2.8);
+ for(const st of cmBuiltInStars()){
+  if(!(st.mag<2.5))continue;
+  const close=existing.some(q=>Math.abs(mod(q.ra-st.ra+180,360)-180)*Math.cos(rad(st.dec))<.02&&Math.abs(q.dec-st.dec)<.02);
+  if(!close)fallback.push(st);
+ }
+ if(bright.length||fallback.length){
+  cmPlotCatalogStars(center,fw,fh,scale,cx,cy,group,[...bright,...fallback]);
+  if(status)status.textContent=lang==='ja'?'明るい星を表示・淡い星を読み込み中…':'Bright stars ready; loading faint stars…';
+ }
+ const f=await fp;
+ if(ticket!==cmStarDrawTicket||!group.isConnected||!cometStarsEnabled)return;
+ const errors=[...(b.result?.errors||[]),...(f.result?.errors||[])];
+ if(b.error)errors.push(String(b.error.message||b.error));
+ if(f.error)errors.push(String(f.error.message||f.error));
+ const stars=[...faint,...bright,...fallback];
+ if(!stars.length)stars.push(...cmBuiltInStars());
+ const final=cmPlotCatalogStars(center,fw,fh,scale,cx,cy,group,stars);
+ // Don't cache a partial field: retry missing tiles when online next time.
+ if(!errors.length)cmSetFieldCache(key,stars,(b.result.done+f.result.done)+' tiles');
+ if(status)status.textContent=(lang==='ja'?'Gaia星図':'Gaia star chart')+' · '+final.plotted+(lang==='ja'?'星':' stars')+(errors.length?' · ⚠'+errors.length+(lang==='ja'?'件取得失敗':' fetch failures'):' · '+(lang==='ja'?'キャッシュ利用可能':'cached'));
+ if(errors.length)console.warn('Gaia tiles partially unavailable',errors.slice(0,8));
+ else cmPrefetchFutureFields();
 }
-(function initGaiaToggle(){
+(function initGaiaTileChart(){
  const controls=document.getElementById('framingPopup')?.querySelector('.floating-content');if(!controls)return;
  const bar=document.createElement('div');bar.className='flex';bar.style.margin='6px 0';
  const btn=document.createElement('button');btn.id='cometStarChartToggle';btn.type='button';bar.append(btn);
- const source=document.createElement('select');source.id='cometStarSource';source.setAttribute('aria-label','Star catalog source / 星図データ源');
- for(const [v,ja,en] of [['local','内蔵恒星図（通信不要）','Built-in stars (offline)'],['gaia','Gaia DR3（オンライン）','Gaia DR3 (online)']]){const o=document.createElement('option');o.value=v;o.dataset.ja=ja;o.dataset.en=en;o.textContent=typeof lang!=='undefined'&&lang==='ja'?ja:en;source.append(o)}
- source.value=cmStarSource;bar.append(source);
- const status=document.createElement('span');status.id='cometStarChartStatus';status.setAttribute('role','status');bar.append(status);
+ const status=document.createElement('span');status.id='cometStarChartStatus';status.setAttribute('role','status');status.style.fontSize='10px';bar.append(status);
+ const ahead=document.createElement('span');ahead.id='cmOrbitPrefetchStatus';
+ ahead.setAttribute('role','status');ahead.style.fontSize='10px';bar.append(ahead);
  controls.insertBefore(bar,document.getElementById('framingSvg'));setStarChartButton();
- btn.onclick=()=>{cometStarsEnabled=!cometStarsEnabled;try{localStorage.setItem(CM_STAR_KEY,String(cometStarsEnabled))}catch(_){ }setStarChartButton();refreshFramingChart()};
- source.onchange=()=>{cmStarSource=source.value==='gaia'?'gaia':'local';try{localStorage.setItem('cometmap_chart_source_v104',cmStarSource)}catch(_){ }refreshFramingChart()};
- document.getElementById('langJa')?.addEventListener('click',()=>{for(const o of source.options)o.textContent=o.dataset.ja;});
- document.getElementById('langEn')?.addEventListener('click',()=>{for(const o of source.options)o.textContent=o.dataset.en;});
+ btn.onclick=()=>{cometStarsEnabled=!cometStarsEnabled;try{localStorage.setItem(CM_STAR_KEY,String(cometStarsEnabled))}catch(_){ }if(!cometStarsEnabled)cmStopOrbitPrefetch();setStarChartButton();refreshFramingChart()};
 })();
 const CM_TAIL_LS='cometmap_tail_geometry_v44';
 function readTailSettings(){try{const v=JSON.parse(localStorage.getItem(CM_TAIL_LS)||'{}');return v&&typeof v==='object'?v:{}}catch(e){return {}}}
@@ -2152,7 +2474,25 @@ function refreshFramingChart(){
  syncTailFields(o);
  const fovW=206.265*eqp.pixel*eqp.width/eqp.focal/60;
  const fovH=206.265*eqp.pixel*eqp.height/eqp.focal/60;
- const frame=$('framingSvg');frame.replaceChildren();
+ const frame=$('framingSvg');
+ const ms=msDate(),g0=geo(o,jd(ms)),g1=geo(o,jd(ms+Math.max(.25,Math.min(24,Number($('motionHours').value)||1))*3600000));
+ const fieldKey=g0?cmStarKey(g0,fovW,fovH):'';
+ const priorLayer=frame.querySelector('g[data-role="gaia-star-chart"]');
+ const reuseLayer=cometStarsEnabled&&priorLayer&&priorLayer.dataset.frameKey===fieldKey;
+ let shifting=false,shiftX=0,shiftY=0;
+ if(cometStarsEnabled&&!reuseLayer&&priorLayer?.dataset.ready==='yes'&&g0){
+  const prevRa=Number(priorLayer.dataset.baseRa),prevDec=Number(priorLayer.dataset.baseDec);
+  const prevFw=Number(priorLayer.dataset.fieldWidth),prevFh=Number(priorLayer.dataset.fieldHeight);
+  if(Number.isFinite(prevRa)&&Number.isFinite(prevDec)&&Math.abs(prevFw-fovW)<1e-6&&Math.abs(prevFh-fovH)<1e-6){
+   const dra=mod(g0.ra-prevRa+180,360)-180;
+   const east=dra*Math.cos(rad((g0.dec+prevDec)/2))*60,north=(g0.dec-prevDec)*60;
+   if(Math.abs(east)<fovW*.35&&Math.abs(north)<fovH*.35){
+    const oldScale=Math.min(488/fovW,242/fovH);
+    shiftX=east*oldScale;shiftY=north*oldScale;shifting=true;
+   }
+  }
+ }
+ frame.replaceChildren();
  const scale=Math.min(488/fovW,242/fovH);
  const fw=Math.max(1,fovW*scale),fh=Math.max(1,fovH*scale),cx=260,cy=150,x=cx-fw/2,y=cy-fh/2;
  const defs=elSVG('defs'),clip=elSVG('clipPath',{id:'cometFieldClip'});clip.append(elSVG('rect',{x,y,width:fw,height:fh}));defs.append(clip);frame.append(defs);
@@ -2163,10 +2503,18 @@ function refreshFramingChart(){
  frame.append(elSVG('rect',{x,y,width:fw,height:fh,fill:'#164b6b33',stroke:'#f1cb86','stroke-width':2}));
  frame.append(svgText(x+7,y+15,lang==='ja'?'上：北 / 左：東':'N up / E left',{'font-size':10,fill:'#a6cbdc'}));
  const inside=elSVG('g',{'clip-path':'url(#cometFieldClip)'});frame.append(inside);
- const starLayer=elSVG('g',{'data-role':'gaia-star-chart'});inside.append(starLayer);
- const ms=msDate(),hours=Math.max(.25,Math.min(24,Number($('motionHours').value)||1));
- const g0=geo(o,jd(ms)),g1=geo(o,jd(ms+hours*3600000));
- if(g0&&cometStarsEnabled)drawGaiaStarChart(g0,fovW,fovH,scale,cx,cy,starLayer);else {const status=document.getElementById('cometStarChartStatus');if(status)status.textContent=lang==='ja'?'星図 OFF':'Star chart OFF';}
+ const starLayer=(reuseLayer||shifting)?priorLayer:elSVG('g',{'data-role':'gaia-star-chart'});
+ starLayer.dataset.frameKey=fieldKey;
+ starLayer.dataset.fieldWidth=String(fovW);starLayer.dataset.fieldHeight=String(fovH);
+ if(shifting)starLayer.setAttribute('transform',`translate(${shiftX},${shiftY})`);
+ inside.append(starLayer);
+ const hours=Math.max(.25,Math.min(24,Number($('motionHours').value)||1));
+ if(g0&&cometStarsEnabled){
+  if(!reuseLayer)drawGaiaStarChart(g0,fovW,fovH,scale,cx,cy,starLayer);
+ }else{
+  cmStopOrbitPrefetch();++cmStarDrawTicket;
+  const status=document.getElementById('cometStarChartStatus');if(status)status.textContent=lang==='ja'?'星図 OFF':'Star chart OFF';
+ }
  let motionText='—';
  let fieldExitText='';
  if(g0&&g1){
@@ -2255,7 +2603,28 @@ function drawSelectedFOV(){
   if(mode==='sky')pts.push(Psky(ra,dd));else{const aa=altaz(ra,dd,msDate());pts.push(Phor(aa.az,aa.alt))}
  }
  if(pts.some(p=>!p))return;
- ctx.save();ctx.lineWidth=1.7;ctx.strokeStyle='#f4c67b';ctx.setLineDash([5,3]);ctx.beginPath();pts.forEach((p,i)=>{if(i===0)ctx.moveTo(...p);else ctx.lineTo(...p)});ctx.stroke();ctx.restore();
+ ctx.save();
+ const center=mode==='sky'?Psky(s.ra,s.dec):Phor(s.az,s.alt);
+ const W=Math.hypot(pts[1][0]-pts[0][0],pts[1][1]-pts[0][1]);
+ const H=Math.hypot(pts[2][0]-pts[1][0],pts[2][1]-pts[1][1]);
+ // Glow/line thickness improve visibility without falsifying the actual angular FOV.
+ ctx.beginPath();pts.forEach((p,i)=>{if(i===0)ctx.moveTo(...p);else ctx.lineTo(...p)});
+ ctx.strokeStyle='rgba(8,18,32,.95)';ctx.lineWidth=6;ctx.setLineDash([]);ctx.stroke();
+ ctx.strokeStyle='#ffe09a';ctx.lineWidth=2.8;ctx.setLineDash([7,4]);ctx.stroke();
+ if(center&&center[0]>6&&center[0]<CW-6&&center[1]>10&&center[1]<CH-10){
+  ctx.setLineDash([]);ctx.lineWidth=1.3;ctx.strokeStyle='#ffecbd';
+  ctx.beginPath();ctx.moveTo(center[0]-8,center[1]);ctx.lineTo(center[0]+8,center[1]);
+  ctx.moveTo(center[0],center[1]-8);ctx.lineTo(center[0],center[1]+8);ctx.stroke();
+  const label=f(wdeg*60,1)+'′ × '+f(hdeg*60,1)+'′';
+  ctx.font='600 12px system-ui';ctx.lineWidth=4;ctx.textAlign='left';
+  const lx=Math.min(CW-125,Math.max(10,center[0]+13)),ly=Math.min(CH-12,Math.max(22,center[1]-16));
+  ctx.strokeStyle='#081320';ctx.strokeText(label,lx,ly);
+  ctx.fillStyle='#ffe1a3';ctx.fillText(label,lx,ly);
+  // The actual rectangle remains true to scale even when smaller than a cursor.
+  if(W<16||H<16){ctx.setLineDash([3,3]);ctx.strokeStyle='#ffe1a3';ctx.lineWidth=1.3;
+   ctx.beginPath();ctx.arc(center[0],center[1],15,0,2*Math.PI);ctx.stroke();}
+ }
+ ctx.restore();
 }
 // Keep observing tools attached to the currently selected comet, not a shift-hover preview.
 const renderDetailsBeforeV38=renderDetails;
@@ -2531,12 +2900,7 @@ setInterval(()=>{if(!fetching&&needRevalidate())invalidateIfOld()},5*60000);
   }
   $ui('modeList').setAttribute('aria-pressed',String(cometListMode));
  }
- function cometSyncModeButtons(){
-  document.querySelectorAll('#view .projection-toggle button').forEach(b=>{
-    const selected=b.id==='modeList'?cometListMode:!cometListMode&&b.dataset.mode===mode;
-    b.classList.toggle('active',!!selected);b.setAttribute('aria-pressed',String(!!selected));
-  });
-}
+ function cometSyncModeButtons(){cmUpdateExclusiveModes();}
  const previousModeButtons=document.querySelector('#view .projection-toggle');
  if(previousModeButtons)previousModeButtons.addEventListener('click',()=>queueMicrotask(cometSyncModeButtons));
 const originalApplyLang=applyLang;
@@ -2594,7 +2958,7 @@ const originalApplyLang=applyLang;
  const target=$ui('canvas'),touches=new Map();let pinchBaseline=null,suppressTapUntil=0;
  const dist=()=>{const v=[...touches.values()];return v.length>1?Math.hypot(v[0].x-v[1].x,v[0].y-v[1].y):null};
  target.addEventListener('pointerdown',e=>{if(e.pointerType!=='touch')return;touches.set(e.pointerId,{x:e.clientX,y:e.clientY});if(touches.size===2){pinchBaseline={distance:dist(),zoom:zoom};drag=null;suppressTapUntil=Date.now()+550;}},true);
- target.addEventListener('pointermove',e=>{if(!touches.has(e.pointerId))return;touches.set(e.pointerId,{x:e.clientX,y:e.clientY});if(touches.size>=2&&pinchBaseline){const d=dist();if(d&&pinchBaseline.distance>0){zoom=clamp(pinchBaseline.zoom*d/pinchBaseline.distance,mode==='solar'?MIN_SOLAR_ZOOM:.6,5);zoomByMode[mode]=zoom;drag=null;drawMap();}}},true);
+ target.addEventListener('pointermove',e=>{if(!touches.has(e.pointerId))return;touches.set(e.pointerId,{x:e.clientX,y:e.clientY});if(touches.size>=2&&pinchBaseline){const d=dist();if(d&&pinchBaseline.distance>0){zoom=clamp(pinchBaseline.zoom*d/pinchBaseline.distance,cmMinZoom(mode),cmMaxZoom(mode));zoomByMode[mode]=zoom;drag=null;drawMap();}}},true);
  const release=e=>{if(!touches.has(e.pointerId))return;if(touches.size>=2)suppressTapUntil=Date.now()+550;touches.delete(e.pointerId);if(touches.size<2){pinchBaseline=null;if(Date.now()<suppressTapUntil)drag=null;}};
  target.addEventListener('pointerup',release,true);
  target.addEventListener('pointercancel',release,true);
@@ -2937,7 +3301,7 @@ const originalApplyLang=applyLang;
  document.body.append(panel);
  const storeHidden=new Set();let selectedTime=null,pinnedTime=null,plotTimes=null,chartData=[];
  const colors=['#71def5','#ffca71','#ff83aa','#a3e886','#c9a6fa','#fa9b6b','#79a7fc','#f4df8b','#7fd6cb','#f4a1ed'];
- const validDate=str=>/^\d{4}-\d{2}-\d{2}$/.test(str)&&!Number.isNaN(Date.parse(str+'T00:00:00Z'));
+ const validDate=str=>{if(!/^\d{4}-\d{2}-\d{2}$/.test(str))return false;const d=new Date(str+'T00:00:00Z');return !Number.isNaN(d.valueOf())&&d.toISOString().slice(0,10)===str};
  const defaultNight=()=>siteDate(siteNightStart(msDate()));
  $('cmListDate').value=defaultNight();
  try{const old=localStorage.getItem('cometmap_list_min_alt_v103');if(['20','30','40','50'].includes(old))$('cmListAlt').value=old}catch(_){}
@@ -2982,7 +3346,7 @@ const originalApplyLang=applyLang;
   svg+=`<line id="cmListCursor" x1="${L}" x2="${L}" y1="${T}" y2="${H-B}" stroke="#fff" visibility="hidden"/><rect x="${L}" y="${T}" width="${WW}" height="${HH}" fill="none" stroke="#7ba4c3"/><text x="${L}" y="14" fill="#e4f4ff" font-size="12">${tr('高度','Altitude')} (°)</text><text x="${W-R}" y="${H-1}" fill="#cbdbea" font-size="11" text-anchor="end">${tr('現地時刻','Local time')} (UTC${Number($('utc').value)>=0?'+':''}${$('utc').value})</text></svg>`;
   $('cmListPlot').innerHTML=svg;
   const legend=$('cmListLegend');legend.replaceChildren();for(const row of rows){const entry=document.createElement('label');entry.title=row.o.name;const sw=document.createElement('i');sw.style.background=row.color;const t=document.createElement('span');t.textContent=row.o.name;const check=document.createElement('input');check.type='checkbox';check.checked=!storeHidden.has(String(row.o.id));check.setAttribute('aria-label',tr('高度曲線を表示：','Show altitude curve: ')+row.o.name);check.onchange=()=>{if(check.checked)storeHidden.delete(String(row.o.id));else storeHidden.add(String(row.o.id));renderChart()};entry.append(sw,t,check);legend.append(entry)}
-  $('cmListHint').textContent=tr('背景：天文夜・薄明・昼．黄色破線：最低高度．曲線は2体近似による予測位置（実測ではありません）．','Background: astronomical night, twilight and daylight. Yellow dashed line: minimum altitude. Curves use approximate predicted positions, not observations.');
+  $('cmListHint').textContent=tr('背景：天文夜・薄明・昼．黄色破線：最低高度．曲線は軌道要素に基づく予測位置であり，観測実績ではありません．精度は要素の元期と軌道品質に依存します．','Background: astronomical night, twilight and daylight. Yellow dashed line: minimum altitude. Curves are orbital predictions, not observed positions; accuracy depends on element epoch and orbit quality.');
   const graph=$('cmListSVG');function inspect(ms){selectedTime=ms;const x=XX(ms);const cursor=$('cmListCursor');if(cursor){cursor.setAttribute('x1',x);cursor.setAttribute('x2',x);cursor.setAttribute('visibility','visible')};$('cmListReadout').textContent=siteClock(ms)+' · '+rows.filter(r=>!storeHidden.has(String(r.o.id))).map(r=>r.o.name+' '+altitude(r.o,ms).toFixed(1)+'°').join(' / ')}
   graph.onpointermove=e=>{const m=graph.getScreenCTM();if(!m)return;const p=graph.createSVGPoint();p.x=e.clientX;p.y=e.clientY;const q=p.matrixTransform(m.inverse());if(q.x<L||q.x>W-R)return;inspect(start+(q.x-L)/WW*(end-start))};
   graph.onpointerdown=e=>{graph.onpointermove(e);pinnedTime=selectedTime;};
@@ -2994,6 +3358,11 @@ const originalApplyLang=applyLang;
  $('cmListCSV').addEventListener('click',()=>{const night=dateNight();if(!night||!chartData.length)return;const targets=chartData.filter(r=>!storeHidden.has(String(r.o.id)));const threshold=Number($('cmListAlt').value);const quoted=v=>'"'+String(v??'').replace(/"/g,'""')+'"';const lines=[];lines.push(['UTC','local_date','local_time','latitude_deg','longitude_deg','UTC_offset_hours','sun_altitude_deg',...targets.flatMap(r=>[r.o.name+'_predicted_altitude_deg',r.o.name+'_predicted_azimuth_deg',r.o.name+'_dark_above_'+threshold+'_deg'])].map(quoted).join(','));for(let t=night.start;t<=night.end;t+=10*60000){const sun=sunAlt(t),row=[new Date(t).toISOString(),siteDate(t),siteClock(t),$('lat').value,$('lon').value,$('utc').value,sun.toFixed(2),...targets.flatMap(r=>{const g=geo(r.o,jd(t)),a=g?altaz(g.ra,g.dec,t):null;return [a?a.alt.toFixed(2):'',a?a.az.toFixed(2):'',a&&a.alt>=threshold&&sun<=-18?'yes':'no']})];lines.push(row.map(quoted).join(','))}downloadCMFile('Cometmap_List_altitudes_'+night.date+'.csv','\ufeff'+lines.join('\r\n'),'text/csv;charset=utf-8')});
  $('cmListPNG').addEventListener('click',async()=>{const svg=$('cmListSVG');if(!svg)return;const encoded=new XMLSerializer().serializeToString(svg);const url=URL.createObjectURL(new Blob([encoded],{type:'image/svg+xml'}));try{const img=new Image();await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=()=>reject(Error('SVG conversion failed'));img.src=url});const out=document.createElement('canvas');out.width=1720;out.height=700;out.getContext('2d').drawImage(img,0,0,out.width,out.height);const blob=await new Promise(resolve=>out.toBlob(resolve,'image/png'));if(!blob)throw Error('PNG export failed');const png=URL.createObjectURL(blob),a=document.createElement('a');a.href=png;a.download='Cometmap_List_altitudes_'+dateNight().date+'.png';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(png),2000)}catch(e){alert(tr('PNG出力に失敗：','PNG export failed: ')+e.message)}finally{URL.revokeObjectURL(url)}});
  $('cmListDate').addEventListener('change',()=>{panel.dataset.manualDate='yes';renderChart()});$('cmListAlt').addEventListener('change',()=>{try{localStorage.setItem('cometmap_list_min_alt_v103',$('cmListAlt').value)}catch(_){}renderChart()});
+ // Observing-site edits invalidate the chart and CSV geometry immediately, even when the popup stays open.
+ // Use a microtask coalescer to avoid repeated redraws when a saved location updates several inputs.
+ let siteRedrawQueued=false;
+ function onSiteEdit(){if(panel.hidden||siteRedrawQueued)return;siteRedrawQueued=true;queueMicrotask(()=>{siteRedrawQueued=false;if(!panel.hidden)renderChart()})}
+ for(const id of ['lat','lon','utc']){const input=$(id);if(input){input.addEventListener('input',onSiteEdit);input.addEventListener('change',onSiteEdit)}}
  $('cmListRefresh').onclick=renderChart;$('cmListClose').onclick=()=>setOpen(false);$('cmListMin').onclick=()=>{panel.classList.toggle('cm-minimized');$('cmListMin').textContent=panel.classList.contains('cm-minimized')?'□':'−'};
  const head=$('cmListChartHead');let drag=null;
  head.addEventListener('pointerdown',e=>{if(e.button!==0||e.target.closest('button'))return;const r=panel.getBoundingClientRect();drag={id:e.pointerId,x:e.clientX,y:e.clientY,left:r.left,top:r.top};panel.style.transform='none';panel.style.left=r.left+'px';panel.style.top=r.top+'px';head.setPointerCapture(e.pointerId);e.preventDefault()});
@@ -3002,7 +3371,7 @@ const originalApplyLang=applyLang;
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!panel.hidden){setOpen(false)}});
  // Expand the same framing chart by detaching its live SVG and controls; no duplicate IDs or stale rendering.
  const framing=$('framingPopup'),details=$('details');let expanded=false;
- function enlargeFrame(){if(!selectedComet())return;expanded=true;framing.classList.remove('comet-inline-chart');document.body.append(framing);framing.hidden=false;framing.style.left=Math.max(4,(window.innerWidth-Math.min(window.innerWidth-22,1100))/2)+'px';framing.style.top=Math.max(4,window.innerHeight*.06)+'px';framing.style.zIndex='4300';framing.dataset.placed='yes';refreshFramingChart()}
+ function enlargeFrame(){if(!selectedComet())return;expanded=true;framing.classList.remove('comet-inline-chart');document.body.append(framing);framing.hidden=false;framing.style.left=Math.max(4,(window.innerWidth-Math.min(window.innerWidth-22,440))/2)+'px';framing.style.top=Math.max(4,window.innerHeight*.06)+'px';framing.style.zIndex='4300';framing.dataset.placed='yes';refreshFramingChart()}
  function compactFrame(){if(!expanded)return;expanded=false;const host=details.querySelector('.comet-inline-charts');if(host){framing.classList.add('comet-inline-chart');host.append(framing);framing.hidden=false;framing.style.left='';framing.style.top='';framing.style.zIndex='';}refreshFramingChart()}
  // Dynamic details rebuilding in older code reparents both chart nodes; re-expand after re-render.
  const before=renderDetails;renderDetails=function(){before();if(expanded){framing.classList.remove('comet-inline-chart');document.body.append(framing);framing.hidden=false;framing.style.zIndex='4300';refreshFramingChart()}};
@@ -3011,9 +3380,822 @@ const originalApplyLang=applyLang;
  $('closeFramingPopup').addEventListener('click',e=>{if(!expanded)return;e.preventDefault();e.stopImmediatePropagation();compactFrame()},true);
  $('equipmentFOVOpen')?.addEventListener('click',e=>{e.stopImmediatePropagation();enlargeFrame()},true);
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&expanded){e.stopImmediatePropagation();compactFrame()}},true);
- // Star chart is local-first. Optional Gaia queries are explicit, per-field cached, and never required.
+ // Star chart uses GitHub-hosted split Gaia tiles in this TEST build.
  document.getElementById('langJa')?.addEventListener('click',()=>{if(chartBtn)chartBtn.textContent='リストの高度曲線 ('+readIds(CM_LIST_KEY).length+')';if(!panel.hidden)renderChart()});
  document.getElementById('langEn')?.addEventListener('click',()=>{if(chartBtn)chartBtn.textContent='List altitude curves ('+readIds(CM_LIST_KEY).length+')';if(!panel.hidden)renderChart()});
  // Do not perform any publication, tracking, or write to GitHub.
 })();
-</script></body></html>
+</script>
+<!-- v108: independent, non-invasive source and connectivity audit; no network request is made here. -->
+<style>
+#cmAudit{position:fixed;bottom:12px;left:12px;z-index:1500;max-width:min(440px,calc(100vw - 24px));background:#101e30ee;border:1px solid #37536c;border-radius:9px;padding:7px 10px;color:#d7e9f8;font:11px/1.5 system-ui,sans-serif;box-shadow:0 4px 16px #0007}
+#cmAudit summary{cursor:pointer;font-weight:600}#cmAudit a{color:#9ed9ff}#cmAudit p{margin:5px 0}#cmAudit[hidden]{display:none}
+@media(max-width:650px){#cmAudit{bottom:5px;left:5px;max-width:calc(100vw - 10px)}}
+</style>
+<details id="cmAudit"><summary id="cmAuditStatus" aria-live="polite">通信・データの確認 / Connection & data</summary>
+<div id="cmAuditBody"></div></details>
+<script>
+(()=>{'use strict';
+const status=document.getElementById('cmAuditStatus'),body=document.getElementById('cmAuditBody');
+if(!status||!body)return;
+const keys=[['MPC','cometmap_offline_mpc_v10'],['COBS','cometmap_offline_cobs_v10']];
+function cacheInfo(key){
+ try{
+  const raw=localStorage.getItem(key);if(!raw)return null;
+  const data=JSON.parse(raw);
+  if(data?.version!==1||!Array.isArray(data.rows)||!Number.isFinite(Number(data.fetchedAt)))return null;
+  const fetched=Number(data.fetchedAt),age=Date.now()-fetched;
+  if(fetched<=0||age< -300000)return null;
+  return {count:data.rows.length,fetched,age,route:String(data.route||'').slice(0,100)};
+ }catch(_){return null}
+}
+function refresh(){
+ let en=false;try{en=['en','"en"'].includes(localStorage.getItem('cometmap_language'))}catch(_){}
+ const online=navigator.onLine;
+ status.textContent=en?(online?'Network interface: online (live source unverified)':'Network interface: offline'):(online?'ネットワーク接続あり（取得成功は未確認）':'ネットワーク接続なし');
+ const intro=en?'Orbital positions and brightness estimates are predictions, not measurements. COBS planner values can be modeled; verify dated individual observations.':'軌道計算による位置・光度は予測値であり，実測値ではありません．COBSプランナーの値にも推定値が含まれます．観測実績は日時付きの個別観測記録で確認してください．';
+ const rows=keys.map(([name,key])=>{
+  const d=cacheInfo(key);if(!d)return '<li>'+name+': '+(en?'no valid saved cache':'有効な保存キャッシュなし')+'</li>';
+  const date=new Date(d.fetched).toLocaleString(en?'en-US':'ja-JP');
+  const hours=Math.max(0,d.age/3600000);
+  const age=hours<1?(en?'less than 1 h':'1時間未満'):hours<48?Math.floor(hours)+(en?' h old':'時間前'):Math.floor(hours/24)+(en?' days old':'日前');
+  return '<li>'+name+': '+d.count+' '+(en?'entries':'件')+' · '+date+' ('+age+')'+(hours>=24?' ⚠':'')+'</li>';
+ }).join('');
+ (document.getElementById('cmAuditPrimary')||(()=>{const section=document.createElement('section');section.id='cmAuditPrimary';body.prepend(section);return section})()).innerHTML='<p>'+intro+'</p><p>'+(en?'Local saved-data timestamps (not proof that source data are current):':'端末に保存された取得日時（元データの最新性を保証しません）：')+'</p><ul style="margin:4px 0;padding-left:19px">'+rows+'</ul><p><a href="https://ssd-api.jpl.nasa.gov/doc/sbdb.html" target="_blank" rel="noopener noreferrer">JPL SBDB</a> · <a href="https://www.minorplanetcenter.net/iau/Ephemerides/Comets/Soft00Cmt.txt" target="_blank" rel="noopener noreferrer">MPC comet elements</a> · <a href="https://cobs.si/help/cobs_api/observation_list_api/" target="_blank" rel="noopener noreferrer">COBS observations</a> · <a href="https://cobs.si/help/cobs_api/planner_api/" target="_blank" rel="noopener noreferrer">COBS planner</a></p>';
+}
+window.addEventListener('online',refresh);window.addEventListener('offline',refresh);
+window.addEventListener('storage',refresh);
+document.addEventListener('click',e=>{if(e.target.closest('button,select,[role="button"]'))setTimeout(refresh,350)});
+refresh();
+})();
+</script>
+
+<style id="cometmap-v111-framing-override">
+/* Last-in-cascade override: v103 popup rules previously superseded v110 compact sizing. */
+#framingPopup:not(.comet-inline-chart){width:min(440px,calc(100vw - 20px))!important;max-width:calc(100vw - 12px)!important;min-width:0!important;min-height:0!important;max-height:calc(100dvh - 20px)!important;overflow:auto;resize:both}
+#framingPopup:not(.comet-inline-chart) #framingSvg{width:100%!important;min-height:0!important;max-height:205px!important;height:auto!important;aspect-ratio:520/300!important}
+#framingPopup:not(.comet-inline-chart) .floating-content{padding:8px 10px!important}
+#framingPopup:not(.comet-inline-chart) .frame-controls{gap:4px!important}
+@media(max-width:520px){#framingPopup:not(.comet-inline-chart){width:min(390px,calc(100vw - 16px))!important;max-height:calc(100dvh - 12px)!important}#framingPopup:not(.comet-inline-chart) #framingSvg{max-height:175px!important}}
+</style>
+
+<!-- v112: viewport-safe framing popup and automatic local-cache provenance refresh. -->
+<style id="cometmap-v112-viewport">
+#framingPopup:not(.comet-inline-chart){box-sizing:border-box!important;max-width:calc(100dvw - 12px)!important;max-height:calc(100dvh - 12px)!important;overscroll-behavior:contain}
+#framingPopup:not(.comet-inline-chart) #framingSvg{display:block;max-width:100%!important}
+@media(max-height:550px){#framingPopup:not(.comet-inline-chart) #framingSvg{max-height:135px!important}}
+</style>
+<script>
+(()=>{'use strict';
+ const popup=document.getElementById('framingPopup');
+ if(!popup)return;
+ function keepVisible(){
+  if(popup.hidden||popup.classList.contains('comet-inline-chart'))return;
+  const r=popup.getBoundingClientRect();
+  const margin=6,w=window.innerWidth,h=window.innerHeight;
+  if(!Number.isFinite(r.left)||!Number.isFinite(r.top))return;
+  // Do not reposition a correctly placed user-draggable window.
+  const left=Math.min(Math.max(margin,r.left),Math.max(margin,w-Math.min(r.width,w-margin*2)-margin));
+  const top=Math.min(Math.max(margin,r.top),Math.max(margin,h-Math.min(r.height,h-margin*2)-margin));
+  if(Math.abs(left-r.left)>1)popup.style.left=left+'px';
+  if(Math.abs(top-r.top)>1)popup.style.top=top+'px';
+ }
+ window.addEventListener('resize',keepVisible,{passive:true});
+ window.addEventListener('orientationchange',keepVisible,{passive:true});
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden){keepVisible();window.dispatchEvent(new Event('cometmap-cache-audit-refresh'))}});
+ // Cached-data age changes even when no control is clicked; keep the audit current.
+ const audit=document.getElementById('cmAudit');
+ if(audit){
+  const summary=document.getElementById('cmAuditStatus');
+  const originalRefresh=()=>{
+   // Existing audit listens to storage and refreshes synchronously.
+   window.dispatchEvent(new Event('storage'));
+  };
+  window.addEventListener('cometmap-cache-audit-refresh',originalRefresh);
+  window.setInterval(()=>{if(!document.hidden)originalRefresh()},60000);
+  summary?.setAttribute('title','Local cache timestamps; network availability does not confirm a successful source update / 保存データの取得日時');
+ }
+})();
+</script>
+
+<!-- v113: compact framing keyboard controls and independently documented data provenance. -->
+<style id="cometmap-v113-accessibility">
+#framingPopup:not(.comet-inline-chart) .floating-head{cursor:move}
+#framingPopup:not(.comet-inline-chart):focus-visible{outline:2px solid #9ed9ff;outline-offset:2px}
+@media(max-width:520px){#framingPopup:not(.comet-inline-chart){resize:none!important}}
+</style>
+<script>
+(()=>{'use strict';
+ const popup=document.getElementById('framingPopup'),close=document.getElementById('closeFramingPopup');
+ if(popup){
+  popup.setAttribute('tabindex','-1');
+  // Delegate to the existing close button so the inline-chart restore behavior is preserved.
+  document.addEventListener('keydown',event=>{
+   if(event.key!=='Escape'||popup.hidden||popup.classList.contains('comet-inline-chart'))return;
+   if(event.defaultPrevented)return;
+   event.preventDefault();close?.click();
+  });
+  const head=popup.querySelector('.floating-head');
+  if(head){
+   head.title='Double-click: reset popup size / ダブルクリック：画角窓のサイズを初期化';
+   head.addEventListener('dblclick',event=>{
+    if(event.target.closest('button')||popup.classList.contains('comet-inline-chart'))return;
+    popup.style.removeProperty('width');popup.style.removeProperty('height');
+    popup.style.removeProperty('max-width');popup.style.removeProperty('max-height');
+    popup.style.removeProperty('min-width');popup.style.removeProperty('min-height');
+   });
+  }
+ }
+ const body=document.getElementById('cmAuditBody');
+ const audit=document.getElementById('cmAudit');
+ if(!body||!audit)return;
+ function addNotes(){
+  let en=false;try{en=['en','"en"'].includes(localStorage.getItem('cometmap_language'))}catch(_){ }
+  let notes=document.getElementById('cmDataProvenanceNotes');
+  if(!notes){notes=document.createElement('p');notes.id='cmDataProvenanceNotes';body.appendChild(notes)}
+  notes.textContent=en?'COBS planner source codes 1–3 use fitted observational brightness parameters (30 days / 1 year / all data); code 4 uses MPC magnitude parameters. All planner magnitudes are calculated, not individual measured observations. The MPC orbit-table service currently excludes comet orbits; use the comet-specific export.':'COBSプランナーの光度出典1～3は観測から推定したパラメータ（30日／1年／全期間），4はMPC光度パラメータです．プランナー光度はいずれも計算値であり個別の実測値ではありません．MPCの軌道テーブルには彗星が未収録のため，彗星専用の軌道要素を使用します．';
+ }
+ // Audit content is rebuilt on refresh. Keep the note synchronized without modifying source fetching.
+ const observer=new MutationObserver(()=>{if(!document.getElementById('cmDataProvenanceNotes'))addNotes()});
+ observer.observe(body,{childList:true});addNotes();
+ window.addEventListener('storage',()=>{const note=document.getElementById('cmDataProvenanceNotes');if(note)note.remove();addNotes()});
+})();
+</script>
+
+<!-- v114: inspectable cache integrity and reproducible provenance report; no network writes. -->
+<style id="cometmap-v114-audit">
+#cmAudit .cm-audit-action{background:#203c57;color:#e2f3ff;border:1px solid #51748e;border-radius:5px;padding:4px 9px;font:inherit;cursor:pointer;margin-top:4px}
+#cmAudit .cm-audit-action:focus-visible{outline:2px solid #b9e7ff;outline-offset:2px}
+#cmCacheIntegrity{margin:5px 0;color:#e6c58a}
+</style>
+<script>
+(()=>{'use strict';
+ const body=document.getElementById('cmAuditBody');if(!body)return;
+ const entries=[['MPC','cometmap_offline_mpc_v10'],['COBS','cometmap_offline_cobs_v10']];
+ const language=()=>{try{return ['en','"en"'].includes(localStorage.getItem('cometmap_language'))?'en':'ja'}catch(_){return 'ja'}};
+ function inspect(){
+  return entries.map(([provider,key])=>{
+   try{
+    const raw=localStorage.getItem(key);if(!raw)return {provider,state:'absent'};
+    const data=JSON.parse(raw),ts=Number(data?.fetchedAt),rows=data?.rows;
+    if(data?.version!==1||!Array.isArray(rows)||!rows.length||!Number.isFinite(ts)||ts<=0)return {provider,state:'invalid'};
+    if(ts>Date.now()+300000)return {provider,state:'future',count:rows.length,ts};
+    return {provider,state:'valid',count:rows.length,ts,ageHours:Math.max(0,(Date.now()-ts)/3600000),route:String(data.route||'').slice(0,120)};
+   }catch(_){return {provider,state:'invalid'}}
+  });
+ }
+ function add(){
+  let warning=document.getElementById('cmCacheIntegrity');
+  if(!warning){warning=document.createElement('p');warning.id='cmCacheIntegrity';body.appendChild(warning)}
+  const en=language()==='en',issues=inspect().filter(d=>d.state==='invalid'||d.state==='future');
+  warning.textContent=issues.length?issues.map(d=>d.provider+': '+(d.state==='future'?(en?'future timestamp (check device clock)':'保存日時が未来（端末時計を確認）'):(en?'invalid or empty saved cache':'保存データが無効または空'))).join(' / '):'';
+  warning.hidden=!issues.length;
+  let button=document.getElementById('cmCopyAudit');
+  if(!button){button=document.createElement('button');button.type='button';button.id='cmCopyAudit';button.className='cm-audit-action';body.appendChild(button);
+   button.addEventListener('click',async()=>{
+    const locale=language(),lines=['Cometmap source/cache audit','Checked UTC: '+new Date().toISOString(),'Network interface: '+(navigator.onLine?'online (source success unverified)':'offline')];
+    for(const d of inspect())lines.push(d.provider+': '+d.state+(d.count!=null?', records='+d.count:'')+(d.ts?', fetchedUTC='+new Date(d.ts).toISOString():'')+(d.ageHours!=null?', ageHours='+d.ageHours.toFixed(1):'')+(d.route?', route='+d.route:''));
+    lines.push('Orbital positions and estimated magnitudes are predictions, not direct observations.');
+    try{await navigator.clipboard.writeText(lines.join('\n'));button.textContent=locale==='en'?'Copied':'コピーしました'}catch(_){
+     const area=document.createElement('textarea');area.value=lines.join('\n');area.style.width='100%';area.rows=6;area.setAttribute('aria-label','Provenance report');body.appendChild(area);area.select();button.textContent=locale==='en'?'Select and copy text':'テキストを選択してコピー';
+    }
+   });
+  }
+  if(!button.textContent||button.textContent==='Copy audit'||button.textContent==='監査情報をコピー')button.textContent=en?'Copy audit':'監査情報をコピー';
+ }
+ const observer=new MutationObserver(()=>{if(!document.getElementById('cmCopyAudit')||!document.getElementById('cmCacheIntegrity'))add()});
+ observer.observe(body,{childList:true});add();
+ window.addEventListener('storage',()=>setTimeout(add,0));
+ window.addEventListener('cometmap-cache-audit-refresh',()=>setTimeout(add,0));
+})();
+</script>
+
+<!-- v115: non-destructive cache row-level diagnostics; measured observations remain distinct from forecasts. -->
+<style id="cometmap-v115-cache-diagnostics">
+#cmCacheRowDiagnostics{font-size:11px;line-height:1.5;margin:5px 0;color:#c4d8e8;overflow-wrap:anywhere}
+</style>
+<script>
+(()=>{'use strict';
+ const body=document.getElementById('cmAuditBody');if(!body)return;
+ const keys=[['MPC','cometmap_offline_mpc_v10'],['COBS','cometmap_offline_cobs_v10']];
+ const isEn=()=>{try{return ['en','"en"'].includes(localStorage.getItem('cometmap_language'))}catch(_){return false}};
+ function check(){
+  return keys.map(([source,key])=>{
+   let raw;try{raw=localStorage.getItem(key)}catch(_){return source+': storage inaccessible'}
+   if(!raw)return null;
+   try{
+    const data=JSON.parse(raw),rows=data?.rows;if(!Array.isArray(rows)||!rows.length)return null;
+    let invalid=0,duplicates=0;const ids=new Set();
+    for(const row of rows){
+     if(!row||typeof row!=='object'||Array.isArray(row)){invalid++;continue}
+     if(source==='MPC'){
+      const name=String(row.name||row.full_name||row.pdes||'').trim();
+      const q=Number(row.q),e=Number(row.e),i=Number(row.i);
+      if(!name||!Number.isFinite(q)||q<=0||!Number.isFinite(e)||e<0||e>50||!Number.isFinite(i)||i<0||i>180)invalid++;
+      const id=String(row.id||row.spkid||row.pdes||'').trim();if(id){if(ids.has(id))duplicates++;ids.add(id)}
+     }else{
+      const name=String(row.name||row.fullname||row.mpc_name||'').trim();
+      const mag=row.current_mag;
+      if(!name||(mag!==null&&mag!==undefined&&mag!==''&&(!Number.isFinite(Number(mag))||Number(mag)<=-10||Number(mag)>40)))invalid++;
+     }
+    }
+    return {source,invalid,duplicates,total:rows.length};
+   }catch(_){return null}
+  }).filter(Boolean);
+ }
+ function update(){
+  let p=document.getElementById('cmCacheRowDiagnostics');if(!p){p=document.createElement('p');p.id='cmCacheRowDiagnostics';body.appendChild(p)}
+  const en=isEn(),items=check();
+  p.textContent=items.map(x=>typeof x==='string'?x:(en?`${x.source}: ${x.total} saved rows; ${x.invalid} suspicious, ${x.duplicates} duplicate IDs`:`${x.source}：保存${x.total}件，疑義のある行${x.invalid}件，重複ID${x.duplicates}件`)).join(' / ');
+  p.hidden=!items.length;
+ }
+ // Avoid observer feedback loops: observe only externally-triggered audit changes.
+ window.addEventListener('storage',update);window.addEventListener('cometmap-cache-audit-refresh',update);
+ document.addEventListener('click',e=>{if(e.target.closest('#cmAudit button'))setTimeout(update,100)});
+ update();
+})();
+</script>
+
+<!-- v116: offline-readable provenance snapshot; does not modify cache or publish data. -->
+<style id="cometmap-v116-snapshot-style">
+#cmAuditSnapshot{margin-left:6px;background:#203c57;color:#e2f3ff;border:1px solid #51748e;border-radius:5px;padding:4px 9px;font:inherit;cursor:pointer}
+#cmAuditSnapshot:focus-visible{outline:2px solid #b9e7ff;outline-offset:2px}
+</style>
+<script>
+(()=>{'use strict';
+ const root=document.getElementById('cmAuditBody');if(!root)return;
+ const sources=[['MPC','cometmap_offline_mpc_v10'],['COBS','cometmap_offline_cobs_v10']];
+ function locale(){try{return ['en','"en"'].includes(localStorage.getItem('cometmap_language'))?'en':'ja'}catch(_){return 'ja'}}
+ function snapshot(){
+  const result={schema:'cometmap-provenance-snapshot-v1',createdUTC:new Date().toISOString(),networkHint:navigator.onLine?'online':'offline',note:'Network hint does not prove upstream fetch succeeded. Predicted positions and brightness are not measured observations.',sources:{}};
+  for(const [name,key] of sources){
+   let item={status:'absent'};
+   try{const raw=localStorage.getItem(key);if(raw){const obj=JSON.parse(raw),ts=Number(obj?.fetchedAt);item={status:obj?.version===1&&Array.isArray(obj.rows)&&obj.rows.length&&Number.isFinite(ts)&&ts>0&&ts<=Date.now()+300000?'valid':'invalid',recordCount:Array.isArray(obj?.rows)?obj.rows.length:null,downloadUTC:Number.isFinite(ts)&&ts>0?new Date(ts).toISOString():null,route:String(obj?.route||'').slice(0,160)};}}
+   catch(e){item={status:'invalid',error:'Unreadable cache'}}
+   result.sources[name]=item;
+  }
+  return result;
+ }
+ function add(){
+  if(document.getElementById('cmAuditSnapshot'))return;
+  const btn=document.createElement('button');btn.type='button';btn.id='cmAuditSnapshot';btn.textContent=locale()==='en'?'Export source report':'出典情報を保存';btn.title=locale()==='en'?'Save cache provenance without exporting cached comet records':'彗星データ本体を含まず取得経路と日時を保存';
+  btn.addEventListener('click',()=>{
+   const blob=new Blob([JSON.stringify(snapshot(),null,2)+'\n'],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+   a.href=url;a.download='Cometmap_source_audit_'+new Date().toISOString().slice(0,10)+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  });root.appendChild(btn);
+ }
+ add();new MutationObserver(()=>{if(!document.getElementById('cmAuditSnapshot'))add();else document.getElementById('cmAuditSnapshot').textContent=locale()==='en'?'Export source report':'出典情報を保存'}).observe(root,{childList:true});
+ window.addEventListener('storage',()=>{const b=document.getElementById('cmAuditSnapshot');if(b)b.textContent=locale()==='en'?'Export source report':'出典情報を保存'});
+})();
+</script>
+<!-- v117: cache provenance validation for both online-failure and offline fallbacks. -->
+
+<!-- v118: source freshness indicators and official documentation; no remote writes. -->
+<style id="cometmap-v118-source-status">
+#cmSourceFreshness{font-size:11px;line-height:1.45;margin:7px 0 3px;overflow-wrap:anywhere}
+#cmSourceFreshness .cm-stale{color:#ffd28b}#cmSourceFreshness .cm-current{color:#a8e5c0}
+#cmSourceDocs{font-size:11px;line-height:1.5;margin:4px 0}
+#cmSourceDocs a{margin-right:10px}
+</style>
+<script>
+(()=>{'use strict';
+ const root=document.getElementById('cmAuditBody');if(!root)return;
+ const sources=[['MPC','cometmap_offline_mpc_v10'],['COBS','cometmap_offline_cobs_v10']];
+ function en(){try{return ['en','"en"'].includes(localStorage.getItem('cometmap_language'))}catch(_){return false}}
+ function refresh(){
+  let el=document.getElementById('cmSourceFreshness');if(!el){el=document.createElement('div');el.id='cmSourceFreshness';root.appendChild(el)}
+  const english=en(),now=Date.now();el.replaceChildren();
+  for(const [name,key] of sources){
+   let label=english?'not cached':'保存なし',kind='cm-stale';
+   try{const raw=localStorage.getItem(key);if(raw){const x=JSON.parse(raw),t=Number(x?.fetchedAt),valid=x?.version===1&&Array.isArray(x?.rows)&&x.rows.length>0&&Number.isFinite(t)&&t>0&&t<=now+300000;
+    if(!valid)label=english?'invalid cache':'無効なキャッシュ';
+    else{const hours=Math.max(0,(now-t)/3600000),age=hours<1?(english?'<1 h':'1時間未満'):(hours<48?hours.toFixed(1)+' h':(hours/24).toFixed(1)+(english?' d':'日'));
+     label=(english?'cached ':'保存後')+age+(hours>=24?(english?' — stale (>24 h)':' — 24時間超'):'');kind=hours>=24?'cm-stale':'cm-current';
+    }
+   }}catch(_){label=english?'unreadable cache':'読込不能'}
+   const line=document.createElement('div');line.className=kind;line.textContent=name+'：'+label;el.appendChild(line);
+  }
+  let docs=document.getElementById('cmSourceDocs');if(!docs){docs=document.createElement('div');docs.id='cmSourceDocs';root.appendChild(docs)}
+  docs.replaceChildren();
+  const links=[['MPC', 'https://docs.minorplanetcenter.net/mpc-ops-docs/orbits/comet-orbit-format/'],['JPL SBDB','https://ssd-api.jpl.nasa.gov/doc/sbdb.html'],['COBS', 'https://cobs.si/help/cobs_api/planner_api/'],['COBS observations','https://cobs.si/help/cobs_api/observation_list_api/']];
+  for(const [name,url] of links){const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=name;docs.appendChild(a)}
+  docs.setAttribute('aria-label',english?'Official source documentation':'公式データソースの仕様');
+ }
+ refresh();window.addEventListener('storage',refresh);window.addEventListener('cometmap-cache-audit-refresh',refresh);
+ const languageButton=document.getElementById('lang');if(languageButton)languageButton.addEventListener('click',()=>queueMicrotask(refresh));
+ document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh()});
+ // Only watch direct child removal, not our own text changes.
+ new MutationObserver(()=>{if(!document.getElementById('cmSourceFreshness')||!document.getElementById('cmSourceDocs'))refresh()}).observe(root,{childList:true});
+})();
+</script>
+<!-- v119: fix JSON-serialized language preference reads in all ancillary modules; refresh provenance labels on toggle. -->
+<!-- v120: preserve independently mounted diagnostic controls when refreshing connection status. -->
+<script id="cm-v121">(()=>{'use strict';const root=document.getElementById('cmAuditBody');if(!root)return;const d=document.createElement('details');d.id='cmPhotometryGuide';d.style.cssText='font-size:11px;line-height:1.5;margin:8px 0;padding:8px;border:1px solid #526078;border-radius:6px';const title=document.createElement('summary');d.appendChild(title);const content=document.createElement('p');d.appendChild(content);const link=document.createElement('a');link.href='https://cobs.si/help/cobs_api/planner_api/';link.target='_blank';link.rel='noopener noreferrer';d.appendChild(link);root.appendChild(d);function update(){let en=false;try{let v=localStorage.getItem('cometmap_language');try{v=JSON.parse(v)}catch(_){}en=v==='en'}catch(_){}title.textContent=en?'Measured vs predicted brightness':'実測光度と予測光度';content.textContent=en?'COBS planner magnitude is a prediction, not an individual measurement. orbit_calc_source: 1 = fitted from last 30 days of observations; 2 = last year; 3 = all observations; 4 = MPC magnitude parameters. MPC/JPL ephemerides are calculated positions, not measured astrometry. Cache age is not observation date.':'COBSプランナー光度は計算による予測値であり，個別の実測値ではありません．orbit_calc_source：1＝直近30日の観測から推定，2＝直近1年，3＝全期間，4＝MPCの光度パラメータ．MPC・JPLの計算位置も実測位置ではありません．キャッシュ経過時間は観測日時ではありません．';link.textContent=en?'COBS official specification':'COBS公式仕様'}update();document.getElementById('lang')?.addEventListener('click',()=>queueMicrotask(update));window.addEventListener('storage',update);setInterval(()=>{if(!document.hidden)window.dispatchEvent(new Event('cometmap-cache-audit-refresh'))},60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden){update();window.dispatchEvent(new Event('cometmap-cache-audit-refresh'))}})})();</script>
+<!-- v122: configurable cache-age warning; does not modify observational or orbital data. -->
+<script id="cm-v122">(()=>{'use strict';
+const root=document.getElementById('cmAuditBody');if(!root)return;
+const wrap=document.createElement('div');wrap.id='cmFreshnessControl';wrap.style.cssText='display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:8px 0;font-size:12px';
+const label=document.createElement('label');label.htmlFor='cmFreshnessHours';
+const select=document.createElement('select');select.id='cmFreshnessHours';select.style.cssText='max-width:170px;background:#202d40;color:#fff;border:1px solid #677b99;border-radius:5px;padding:4px';
+for(const h of [6,12,24,48,72,168]){const option=document.createElement('option');option.value=String(h);option.textContent=h===168?'7 days':h+' h';select.appendChild(option)}
+try{const saved=Number(localStorage.getItem('cometmap_freshness_hours'));select.value=String([6,12,24,48,72,168].includes(saved)?saved:24)}catch(_){select.value='24'}
+const note=document.createElement('span');note.style.opacity='.8';
+const warning=document.createElement('span');warning.style.cssText='font-weight:600';wrap.append(label,select,note,warning);root.prepend(wrap);function updateWarnings(){const limit=Number(select.value);let old=[];for(const [name,key] of [['MPC','cometmap_offline_mpc_v10'],['COBS','cometmap_offline_cobs_v10']]){try{const v=JSON.parse(localStorage.getItem(key));const age=(Date.now()-Number(v.fetchedAt))/3600000;if(v.version===1&&Array.isArray(v.rows)&&v.rows.length&&Number.isFinite(age)&&age>limit)old.push(name)}catch(_){}}warning.textContent=old.length?'⚠ '+old.join(' / '):'';}
+function translate(){let v='ja';try{v=localStorage.getItem('cometmap_language');try{v=JSON.parse(v)}catch(_){}}catch(_){}const en=v==='en';label.textContent=en?'Cache age warning threshold':'キャッシュ経過時間の警告基準';note.textContent=en?'Local alert only; not a data-validity test.':'端末上の警告基準であり，データの正確性判定ではありません．';const opt=select.querySelector('option[value="168"]');if(opt)opt.textContent=en?'7 days':'7日'}
+select.addEventListener('change',()=>{try{localStorage.setItem('cometmap_freshness_hours',select.value)}catch(_){}updateWarnings()});
+document.getElementById('lang')?.addEventListener('click',()=>queueMicrotask(translate));window.addEventListener('storage',()=>{translate();updateWarnings()});translate();updateWarnings();setInterval(updateWarnings,60000);
+})();</script>
+<style id="starLabelsV124Style">
+.cm-star-label {font-family:system-ui,'Noto Sans JP',sans-serif;font-size:11px;font-weight:550;paint-order:stroke;stroke:#07101c;stroke-width:3px;stroke-linejoin:round;pointer-events:none}
+</style>
+<script id="starLabelsV124">
+/* HYG v4.1: David Nash/Astronexus CC BY-SA 4.0. Supplemental labels, NOT Gaia source identifiers. */
+(function(){
+'use strict';
+const starToggle=document.getElementById('showStarLabels');
+const key='cometmap_star_labels_local_v124';
+const dataCacheKey='cometmap_hyg_labels_v125';
+const cacheMaxAge=45*24*3600*1000; // display warning only; versioned catalog remains usable offline
+let cmHygCacheAgeDays=null;
+let starLabelsSource='unavailable';
+let stars=[],loaded=false;
+try{starToggle.checked=localStorage.getItem(key)!=='false'}catch(e){}
+function loadCachedLabels(){
+ try{
+  const raw=localStorage.getItem(dataCacheKey);if(!raw)return false;
+  const obj=JSON.parse(raw);
+  if(obj.format!=='cometmap-hyg-star-labels-v1'||!Array.isArray(obj.data)||obj.data.length<3000)return false;
+  stars=obj.data.filter(x=>Array.isArray(x)&&x.length===6&&Number.isFinite(x[0])&&Number.isFinite(x[1])&&Number.isFinite(x[2]));
+  stars.sort((a,b)=>a[2]-b[2]);loaded=true;starLabelsSource='local-cache';cmHygCacheAgeDays=Number.isFinite(Number(obj.fetchedAt))?Math.max(0,(Date.now()-Number(obj.fetchedAt))/86400000):null;return true;
+ }catch(e){return false}
+}
+function storeLabels(obj){
+ try{localStorage.setItem(dataCacheKey,JSON.stringify({format:obj.format,data:obj.data,fetchedAt:Date.now()}))}catch(e){}
+}
+function labelStatus(){
+ const status=document.getElementById('cmHygStatus');if(!status)return;
+ const en=lang==='en';
+ status.textContent=!loaded?(en?'Names unavailable':'恒星名データ未取得'):(starLabelsSource==='online'?(en?'Names: online HYG v4.1':'恒星名：オンライン HYG v4.1'):(en?'Names: cached HYG v4.1':'恒星名：保存済み HYG v4.1')+(cmHygCacheAgeDays===null?'':(' · '+Math.floor(cmHygCacheAgeDays)+(en?' d old':'日前取得')))+(cmHygCacheAgeDays!==null&&cmHygCacheAgeDays*86400000>cacheMaxAge?(en?' · check source':' · 更新確認推奨'):''));
+}
+const labels=(s,full)=>[s[3],s[4],...(full||!s[4]?[s[5]]:[])].filter(Boolean).join(' · ');
+const rectsOverlap=(a,b)=>a.x<b.x+b.w+4&&a.x+a.w+4>b.x&&a.y<b.y+b.h+3&&a.y+a.h+3>b.y;
+const maxMag=fov=>fov>100?2.5:fov>35?3.5:fov>12?4.5:fov>3?6:fov>1?7.2:fov>.25?9:11.2;
+function drawLabelsOnMap(){
+ if(!loaded||!starToggle.checked||mode==='solar')return;
+ const used=[];let n=0;const cap=mode==='sky'?56:48;
+ ctx.save();ctx.font='11px system-ui, sans-serif';ctx.textBaseline='middle';ctx.lineWidth=3;ctx.lineJoin='round';
+ if(mode==='sky'){ctx.beginPath();ctx.arc(CW/2,CH/2,sphereRadius()-2,0,Math.PI*2);ctx.clip()}
+ const time=msDate();
+ for(const s of stars){
+  if(s[2]>3.5||n>=cap)break;
+  let p;
+  if(mode==='sky'){const q=skyCartesian(skyVec(s[0],s[1]));if(q[2]<0.12)continue;p=q}
+  else{const a=altaz(s[0],s[1],time);if(a.alt<0.5)continue;p=Phor(a.az,a.alt)}
+  if(!p)continue;
+  const x=p[0],y=p[1];if(x<10||x>CW-10||y<20||y>CH-12)continue;
+  const label=labels(s,false);if(!label)continue;
+  const w=ctx.measureText(label).width,tx=x+w+10<CW?x+8:x-w-8,ty=y-9;
+  const r={x:tx,y:ty-7,w,h:14};if(r.x<4||r.x+r.w>CW-4||r.y<10||r.y+r.h>CH-4||used.some(v=>rectsOverlap(r,v)))continue;
+  used.push(r);n++;
+  ctx.strokeStyle='#06101b';ctx.strokeText(label,tx,ty);ctx.fillStyle='#e2ebfb';ctx.fillText(label,tx,ty);
+ }
+ ctx.restore();
+}
+function drawLabelsInFrame(center,fw,fh,scale,cx,cy,group){
+ if(!loaded||!starToggle.checked||!group||!group.isConnected)return;
+ const used=[];let n=0,limit=maxMag(Math.max(fw,fh)/60);
+ for(const s of stars){
+  if(s[2]>limit||n>=90)break;
+  const dra=mod(s[0]-center.ra+180,360)-180;
+  const east=dra*Math.cos(rad((s[1]+center.dec)/2))*60,north=(s[1]-center.dec)*60;
+  if(Math.abs(east)>fw*.52||Math.abs(north)>fh*.52)continue;
+  const x=cx-east*scale,y=cy-north*scale;
+  if(x<8||x>512||y<10||y>290)continue;
+  const label=labels(s,fw<360);if(!label)continue;
+  const w=Math.min(295,label.length*6.3+5),tx=x+w+10<515?x+6:x-w-6,ty=y-7;
+  const r={x:tx,y:ty-11,w,h:15};if(r.x<3||r.x+r.w>518||r.y<3||r.y+r.h>297||used.some(v=>rectsOverlap(r,v)))continue;
+  used.push(r);n++;
+  const node=elSVG('text',{x:tx,y:ty,class:'cm-star-label',fill:'#e2edff'},label);
+  node.appendChild(elSVG('title',{},labels(s,true)+' | HYG catalog V='+s[2]+' | J2000 (not comet photometry)'));
+  group.appendChild(node);
+ }
+}
+const oldMap=drawMap;
+drawMap=function(){const r=oldMap.apply(this,arguments);return r};
+// Render labels independently of the Gaia image service. Gaia failures or the
+// star-chart OFF setting must not suppress the separate HYG name overlay.
+const oldFrame=refreshFramingChart;
+refreshFramingChart=function(){
+ const result=oldFrame.apply(this,arguments);
+ try{
+  if(!$('framingPopup').hidden&&starToggle.checked&&loaded){
+   const o=selectedComet(),eqp=equipment(),g0=o&&geo(o,jd(msDate()));
+   const group=document.querySelector('#framingSvg g[clip-path="url(#cometFieldClip)"]');
+   if(g0&&eqp&&group){
+    const fw=206.265*eqp.pixel*eqp.width/eqp.focal/60;
+    const fh=206.265*eqp.pixel*eqp.height/eqp.focal/60;
+    const scale=Math.min(488/fw,242/fh);
+    drawLabelsInFrame(g0,fw,fh,scale,260,150,group);
+   }
+  }
+ }catch(err){console.warn('HYG frame labels:',err)}
+ return result;
+};
+starToggle.addEventListener('change',()=>{try{localStorage.setItem(key,String(starToggle.checked))}catch(e){}refreshFramingChart()});
+document.getElementById('lang')?.addEventListener('click',()=>queueMicrotask(labelStatus));
+const svg=document.getElementById('framingSvg');
+if(svg){
+ const panel=svg.parentElement;
+ const bar=document.createElement('div');bar.style.cssText='display:flex;gap:8px;align-items:center;justify-content:space-between;font-size:11px;color:#b3c9dd;padding:4px 2px;flex-wrap:wrap';
+ const credit=document.createElement('span');credit.innerHTML='Star labels: <a href="https://github.com/astronexus/HYG-Database" target="_blank" rel="noopener">HYG v4.1</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a> · J2000';
+ const button=document.createElement('button');button.type='button';button.className='tiny';
+ const sync=()=>{let en=false;try{en=JSON.parse(localStorage.getItem('cometmap_language'))==='en'}catch(e){en=localStorage.getItem('cometmap_language')==='en'}button.textContent=(en?'Star labels ':'恒星名 ')+(starToggle.checked?'ON':'OFF');button.setAttribute('aria-pressed',String(starToggle.checked))};
+ button.addEventListener('click',()=>{starToggle.checked=!starToggle.checked;starToggle.dispatchEvent(new Event('change'))});
+ starToggle.addEventListener('change',sync);document.getElementById('lang')?.addEventListener('click',()=>queueMicrotask(sync));
+ const status=document.createElement('span');status.id='cmHygStatus';status.style.cssText='font-size:10px;color:#9bbbd0';
+ bar.append(credit,status,button);svg.after(bar);sync();labelStatus();
+}
+// Display cached labels immediately; refresh asynchronously when online.
+const cmHygLoadedFromCache=loadCachedLabels();
+if(cmHygLoadedFromCache){labelStatus();refreshFramingChart()}
+(async()=>{
+ // Recheck stable star names once a month; cached labels display immediately.
+ if(cmHygLoadedFromCache&&Number.isFinite(cmHygCacheAgeDays)&&cmHygCacheAgeDays<30)return;
+ try{
+  const url='https://dopa-gaki.github.io/.github.io/cometmap/star-labels/hyg-labels.json';
+  const response=await fetch(url,{cache:'no-cache',signal:AbortSignal.timeout(10000)});if(!response.ok)throw Error('HTTP '+response.status);
+  const j=await response.json();if(j.format!=='cometmap-hyg-star-labels-v1'||!Array.isArray(j.data)||j.data.length<3000)throw Error('invalid HYG labels');
+  stars=j.data.filter(x=>Array.isArray(x)&&x.length===6&&Number.isFinite(x[0])&&Number.isFinite(x[1])&&Number.isFinite(x[2]));stars.sort((a,b)=>a[2]-b[2]);loaded=true;starLabelsSource='online';cmHygCacheAgeDays=0;
+  storeLabels(j);labelStatus();drawMap();refreshFramingChart();console.info('HYG labels ready:',stars.length);
+ }catch(e){console.warn('HYG online labels unavailable; trying offline cache',e);
+   if(!loaded)loadCachedLabels();labelStatus();if(loaded){drawMap();refreshFramingChart()}
+ }
+})();
+})();
+</script>
+<style id="cm-v126-source-audit-style">
+#cm-v126-source-audit{font:12px/1.5 system-ui,'Noto Sans JP',sans-serif;color:#c8d7e8;background:#142237;border:1px solid #536b88;border-radius:8px;padding:8px 10px;margin:7px 0;max-width:100%;overflow-wrap:anywhere}
+#cm-v126-source-audit summary{cursor:pointer;font-weight:650;color:#e1ecfb}
+#cm-v126-source-audit .cm-v126-source-row{padding:3px 0;border-bottom:1px solid #30445e}
+#cm-v126-source-audit .cm-v126-source-row:last-child{border-bottom:0}
+#cm-v126-source-audit a{color:#9ed5ff}
+</style>
+<script id="cm-v126-source-audit-script">
+(function(){'use strict';
+const keys=[
+ {name:'MPC',key:'cometmap_offline_mpc_v10',type:'orbit',url:'https://www.minorplanetcenter.net/'},
+ {name:'COBS',key:'cometmap_offline_cobs_v10',type:'observation',url:'https://cobs.si/help/cobs_api/observation_list_api/'},
+ {name:'HYG v4.1',key:'cometmap_hyg_labels_v125',type:'names',url:'https://github.com/astronexus/HYG-Database'}
+];
+const box=document.createElement('details');box.id='cm-v126-source-audit';
+const title=document.createElement('summary');box.append(title);
+const content=document.createElement('div');box.append(content);
+const host=document.getElementById('dataPanel')||document.getElementById('dataManagement')||document.getElementById('dataManage')||document.querySelector('#dataSection')||document.querySelector('#settingsPanel')||document.querySelector('aside')||document.body;
+host.append(box);
+function langIsEnglish(){try{return typeof lang!=='undefined'&&lang==='en'}catch(_){return false}}
+function describeCache(item,en){
+ try{
+  const raw=localStorage.getItem(item.key);
+  if(!raw)return en?'No local snapshot':'端末内に保存なし';
+  const j=JSON.parse(raw);if(!j||typeof j!=='object')throw Error('invalid');
+  const ts=Number(j.fetchedAt);const age=Number.isFinite(ts)&&ts>1600000000000?new Date(ts).toISOString().replace('T',' ').slice(0,16)+' UTC':(en?'time unknown':'取得日時不明');
+  const n=Array.isArray(j.rows)?j.rows.length:Array.isArray(j.data)?j.data.length:null;
+  return (en?'Local snapshot':'保存済み')+' · '+age+(n!==null?' · '+n.toLocaleString()+(en?' records':'件'):'')+(j.version===1||j.format==='cometmap-hyg-star-labels-v1'?'':' · '+(en?'format unverified':'形式未確認'));
+ }catch(_){return en?'Unreadable local snapshot':'保存データを読み取れません'}
+}
+function render(){
+ const en=langIsEnglish();title.textContent=en?'Data provenance & local cache':'データ出典・保存状態';content.replaceChildren();
+ const intro=document.createElement('p');intro.textContent=en?'Orbit elements and ephemerides are calculations, not direct photometric observations. COBS values are reported observations; brightness predictions must be labelled separately.':'軌道要素・天体位置は計算値であり，測光観測値ではありません．COBSの報告値は観測実績，予測光度はモデル推定値として区別します．';content.append(intro);
+ for(const item of keys){
+  const row=document.createElement('div');row.className='cm-v126-source-row';
+  const a=document.createElement('a');a.href=item.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=item.name;
+  const desc=document.createElement('span');desc.textContent=' — '+(item.type==='orbit'?(en?'orbital elements':'軌道要素'):item.type==='observation'?(en?'reported observations':'報告された観測値'):(en?'star name catalogue':'恒星名カタログ'))+' · '+describeCache(item,en);
+  row.append(a,desc);content.append(row);
+ }
+ const footer=document.createElement('p');footer.textContent=en?'Local cache timestamps are not source update times. A failed live request does not establish that the underlying source has no new data.':'保存日時は元データの更新日時ではありません．通信失敗時も元データに更新がないとは判断できません．';content.append(footer);
+}
+box.addEventListener('toggle',()=>{if(box.open)render()});
+document.getElementById('lang')?.addEventListener('click',()=>queueMicrotask(()=>{if(box.open)render();else title.textContent=langIsEnglish()?'Data provenance & local cache':'データ出典・保存状態'}));
+render();
+})();
+</script>
+
+<style id="cm-v127-quality-style">
+#cm-v127-quality{margin:8px 0;padding:9px 11px;border:1px solid #55718b;border-radius:8px;background:#122236;color:#d7e5f5;font-size:12px;line-height:1.55}
+#cm-v127-quality summary{font-weight:650;cursor:pointer}
+#cm-v127-quality table{width:100%;border-collapse:collapse;margin-top:7px}
+#cm-v127-quality th,#cm-v127-quality td{padding:4px 5px;border-bottom:1px solid #38516c;text-align:left;vertical-align:top}
+#cm-v127-quality .cm-warning{color:#f4c986}
+</style>
+<script id="cm-v127-quality-script">
+(function(){'use strict';
+const panel=document.createElement('details');panel.id='cm-v127-quality';
+const summary=document.createElement('summary');const body=document.createElement('div');panel.append(summary,body);
+const anchor=document.getElementById('cm-v126-source-audit');
+if(anchor?.parentElement)anchor.insertAdjacentElement('afterend',panel);
+else (document.getElementById('dataPanel')||document.querySelector('aside')||document.body).append(panel);
+function readCache(key){
+ try{
+  const obj=JSON.parse(localStorage.getItem(key));
+  if(!obj||obj.version!==1||!Array.isArray(obj.rows)||!obj.rows.length)return null;
+  const t=Number(obj.fetchedAt);
+  if(!Number.isFinite(t)||t<946684800000||t>Date.now()+300000)return null;
+  return {rows:obj.rows,at:t,route:String(obj.route||'unknown'),modified:Number(obj.modified)};
+ }catch(_){return null}
+}
+function english(){try{return lang==='en'}catch(_){return false}}
+function statusRow(tbody,name,obj,en,kind){
+ const tr=document.createElement('tr');const td1=document.createElement('td'),td2=document.createElement('td');td1.textContent=name;
+ if(!obj)td2.textContent=en?'No valid cached snapshot':'有効な保存データなし';
+ else{
+  const age=(Date.now()-obj.at)/86400000;
+  const ts=new Date(obj.at).toISOString().slice(0,16).replace('T',' ')+' UTC';
+  td2.textContent=obj.rows.length.toLocaleString()+(en?' entries; saved ':'件・保存 ')+ts+(en?'; age ':'・経過 ')+age.toFixed(1)+(en?' d':'日')+'; '+obj.route;
+  if(age>7)td2.className='cm-warning';
+ }
+ tr.append(td1,td2);tbody.append(tr);
+}
+function render(){
+ const en=english();summary.textContent=en?'Data quality & reproducibility checks':'データ品質・再現性チェック';body.replaceChildren();
+ const p=document.createElement('p');p.textContent=en?'A saved file can show older or missing data. The checks below validate cache structure and dates, not orbit accuracy or source freshness.':'保存済みデータは古い可能性があります．以下は保存形式と取得日時の確認であり，軌道精度や元データの最新性を保証しません．';body.append(p);
+ const table=document.createElement('table');const header=document.createElement('tr');for(const name of [en?'Source':'データ源',en?'Local snapshot':'端末内の保存状態']){const th=document.createElement('th');th.textContent=name;header.append(th)}table.append(header);
+ const tbody=document.createElement('tbody');statusRow(tbody,'MPC',readCache('cometmap_offline_mpc_v10'),en);statusRow(tbody,'COBS',readCache('cometmap_offline_cobs_v10'),en);table.append(tbody);body.append(table);
+ const note=document.createElement('p');note.textContent=en?'MPC: orbital elements. COBS comet_list: catalogue brightness estimates, not individual photometric measurements. JPL Horizons: recommended external reference for precision ephemerides. The built-in position is an approximate two-body calculation.':'MPC：軌道要素．COBS comet_list：カタログ光度推定値であり個別の測光実績ではありません．精密な位置はJPL Horizonsで別途確認してください．アプリ内位置は二体近似です．';body.append(note);
+ const refs=document.createElement('p');for(const [name,url] of [['MPC','https://www.minorplanetcenter.net/iau/MPCORB/CometEls.txt'],['JPL Horizons','https://ssd.jpl.nasa.gov/horizons/'],['COBS','https://cobs.si/help/cobs_api/observation_list_api/']]){const a=document.createElement('a');a.textContent=name;a.href=url;a.target='_blank';a.rel='noopener noreferrer';a.style.cssText='color:#9bd9ff;margin-right:12px';refs.append(a)}body.append(refs);
+}
+panel.addEventListener('toggle',()=>{if(panel.open)render()});
+document.getElementById('lang')?.addEventListener('click',()=>queueMicrotask(render));
+window.addEventListener('storage',()=>{if(panel.open)render()});
+render();
+})();
+</script>
+<style id="cm-v128-style">
+#cm-v128-integrity{margin:8px 0;padding:9px 11px;border:1px solid #506176;border-radius:9px;font-size:12px}
+#cm-v128-integrity summary{cursor:pointer;font-weight:650}
+#cm-v128-integrity button{margin:6px 6px 6px 0;padding:5px 9px;cursor:pointer}
+#cm-v128-integrity table{width:100%;border-collapse:collapse}
+#cm-v128-integrity td,#cm-v128-integrity th{padding:4px;border-bottom:1px solid #526073;text-align:left}
+#cm-v128-integrity .bad{color:#ffb49b}
+#cm-v128-integrity .warn{color:#f8d899}
+</style>
+<script id="cm-v128-integrity-script">
+(()=>{'use strict';
+const sources=[['MPC','cometmap_offline_mpc_v10'],['COBS','cometmap_offline_cobs_v10']];
+const root=document.createElement('details');root.id='cm-v128-integrity';
+const title=document.createElement('summary');const pane=document.createElement('div');root.append(title,pane);
+const anchor=document.getElementById('cm-v127-quality');
+(anchor?.parentNode||document.body).insertBefore(root,anchor?anchor.nextSibling:null);
+const en=()=>typeof lang!=='undefined'&&lang==='en';
+function snapshot(name,key){
+ const item={source:name,key,valid:false,rows:0,issues:[],checkedAt:new Date().toISOString()};
+ let raw;try{raw=localStorage.getItem(key)}catch(e){item.issues.push('storage-unavailable');return item}
+ if(!raw){item.issues.push('cache-missing');return item}
+ item.bytes=raw.length;
+ let o;try{o=JSON.parse(raw)}catch(e){item.issues.push('invalid-json');return item}
+ if(!o||o.version!==1||!Array.isArray(o.rows)){item.issues.push('unexpected-schema');return item}
+ item.rows=o.rows.length;
+ if(!item.rows)item.issues.push('empty-rows');
+ const t=Number(o.fetchedAt);item.fetchedAt=Number.isFinite(t)&&t>0&&t<=8.64e15?new Date(t).toISOString():null;
+ if(!Number.isFinite(t)||t<946684800000||t>Date.now()+300000)item.issues.push('invalid-fetch-time');
+ else{item.ageDays=+((Date.now()-t)/86400000).toFixed(2);if(item.ageDays>7)item.issues.push('stale-over-7-days')}
+ item.route=String(o.route||'unknown').slice(0,180);
+ // Deterministic bounded checks avoid freezing on very large saved catalogs.
+ let invalid=0,nonobjects=0;const N=Math.min(o.rows.length,2000);
+ for(let i=0;i<N;i++){
+  const row=o.rows[Math.floor(i*o.rows.length/N)];
+  if(!row||typeof row!=='object'||Array.isArray(row)){nonobjects++;continue}
+  if(name==='MPC'){
+   const vals=['q','e','i','node','peri'].map(k=>row[k]);
+   // Only test numeric fields when present; alternate MPC schemas are not rejected.
+   if(vals.some(v=>v!==undefined&&v!==null&&v!==''&&!Number.isFinite(Number(v))))invalid++;
+  }
+ }
+ item.sampledRows=N;item.nonObjectRows=nonobjects;item.nonNumericOrbitFields=invalid;
+ if(nonobjects)item.issues.push('non-object-sampled-rows');
+ if(invalid)item.issues.push('non-numeric-orbit-fields');
+ item.valid=!item.issues.some(x=>['empty-rows','invalid-fetch-time','unexpected-schema','invalid-json','non-object-sampled-rows','non-numeric-orbit-fields'].includes(x));
+ return item;
+}
+function report(){return {schema:'cometmap-cache-integrity-report-v1',createdAt:new Date().toISOString(),scope:'local browser cache; metadata and sampled structure only',limitations:'Does not validate orbital elements, astronomical ephemerides, actual COBS observations, remote freshness, or completeness',sources:sources.map(([n,k])=>snapshot(n,k))}}
+function render(){
+ const english=en();title.textContent=english?'Saved-data integrity / export report':'保存データの整合性・検査報告書';pane.replaceChildren();
+ const intro=document.createElement('p');intro.textContent=english?'Checks local timestamps, schema and up to 2,000 sampled records. No remote access or numerical orbit verification.':'端末内の保存日時・形式・最大2,000件の標本を確認します．オンライン取得や軌道計算の精度検証ではありません．';pane.append(intro);
+ const data=report(),table=document.createElement('table'),head=document.createElement('tr');
+ for(const h of [english?'Source':'出典',english?'Entries':'件数',english?'Age (days)':'経過日数',english?'Check':'判定']){const th=document.createElement('th');th.textContent=h;head.append(th)}table.append(head);
+ for(const s of data.sources){const tr=document.createElement('tr');for(const v of [s.source,String(s.rows),s.ageDays===undefined?'—':String(s.ageDays),s.issues.length?s.issues.join(', '):(english?'Structure OK':'形式確認済み')]){const td=document.createElement('td');td.textContent=v;tr.append(td)}if(s.issues.some(i=>i!=='stale-over-7-days'))tr.className='bad';else if(s.issues.length)tr.className='warn';table.append(tr)}pane.append(table);
+ const btn=document.createElement('button');btn.type='button';btn.textContent=english?'Export audit JSON':'検査報告JSONを保存';btn.onclick=()=>{
+  const blob=new Blob([JSON.stringify(report(),null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='Cometmap_cache_audit_'+new Date().toISOString().slice(0,10)+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+ };pane.append(btn);
+ const refresh=document.createElement('button');refresh.type='button';refresh.textContent=english?'Recheck':'再検査';refresh.onclick=render;pane.append(refresh);
+ const note=document.createElement('p');note.textContent=english?'No stored orbital or observation records are included in the exported report. COBS planner brightness is modeled, not a dated individual observation.':'報告書には軌道要素や観測記録の本体を含めません．COBSのプランナー光度は推定値であり，日時を持つ個別の実測値ではありません．';pane.append(note);
+}
+root.addEventListener('toggle',()=>{if(root.open)render()});
+document.getElementById('lang')?.addEventListener('click',()=>{if(root.open)queueMicrotask(render)});
+window.addEventListener('storage',()=>{if(root.open)render()});render();
+})();
+</script>
+
+<style id="cm-v129-style">
+#cm-v129-reference{margin:8px 0;padding:9px 11px;border:1px solid #526c83;border-radius:8px;font-size:12px;line-height:1.55}
+#cm-v129-reference summary{cursor:pointer;font-weight:650}
+#cm-v129-reference table{border-collapse:collapse;width:100%;margin:6px 0}
+#cm-v129-reference th,#cm-v129-reference td{padding:5px;border-bottom:1px solid #4a6076;text-align:left;vertical-align:top}
+#cm-v129-reference a{color:#9bd9ff}
+</style>
+<script id="cm-v129-reference-script">
+(()=>{'use strict';
+ const parent=document.getElementById('cm-v128-integrity');if(!parent)return;
+ const details=document.createElement('details');details.id='cm-v129-reference';
+ parent.insertAdjacentElement('afterend',details);
+ const summary=document.createElement('summary');const body=document.createElement('div');details.append(summary,body);
+ function english(){try{return lang==='en'}catch(_){return false}}
+ const references=[
+  ['MPC','https://docs.minorplanetcenter.net/mpc-ops-docs/orbits/comet-orbit-format/'],
+  ['JPL Horizons','https://ssd-api.jpl.nasa.gov/doc/horizons.html'],
+  ['COBS Planner','https://cobs.si/help/cobs_api/planner_api/'],
+  ['COBS Observation List','https://cobs.si/help/cobs_api/observation_list_api/']
+ ];
+ function render(){
+  const en=english();summary.textContent=en?'Observed data vs predictions · source definitions':'観測実績と予測値・出典の区別';body.replaceChildren();
+  const intro=document.createElement('p');intro.textContent=en?'The following sources provide different kinds of data. A comet brightness estimate is not a dated photometric measurement.':'各データ源が提供する情報の種類を区別します．彗星の推定光度は観測日時を持つ実測光度ではありません．';body.append(intro);
+  const t=document.createElement('table');const head=document.createElement('tr');
+  for(const v of (en?['Source','Kind of information','What it does not prove']:['データ源','情報の種類','保証しない事項'])){const th=document.createElement('th');th.textContent=v;head.append(th)}t.append(head);
+  const rows=en?[
+   ['MPC','Published heliocentric orbital elements','Not an observed image or a measured brightness'],
+   ['JPL Horizons','Numerically computed ephemerides','Calculated positions are not individual astrometric observations'],
+   ['COBS Planner','Predicted observing conditions and modeled magnitude; orbit_calc_source 1–4','Not an individual measured magnitude'],
+   ['COBS Observation List','Dated visual/CCD observation records, with observer and conditions','Individual reports require quality checks; no records are imported here']
+  ]:[
+   ['MPC','公開された太陽中心軌道要素','画像や実測光度ではない'],
+   ['JPL Horizons','数値積分に基づく位置・運動の予報','計算位置は個々の位置測定ではない'],
+   ['COBS Planner','観測条件とモデルに基づく予測光度（orbit_calc_source 1～4）','個別の測光実績ではない'],
+   ['COBS Observation List','観測日時・観測者・条件を持つ眼視／CCDの観測記録','個別記録は品質確認が必要．本機能では実測記録を取得していない']
+  ];
+  for(const [name,kind,caution] of rows){const tr=document.createElement('tr');for(const v of [name,kind,caution]){const td=document.createElement('td');td.textContent=v;tr.append(td)}t.append(tr)}body.append(t);
+  const p=document.createElement('p');p.textContent=en?'Official documentation (opens externally): ':'公式仕様（外部リンク）：';
+  for(const [name,url] of references){const a=document.createElement('a');a.textContent=name;a.href=url;a.target='_blank';a.rel='noopener noreferrer';a.style.marginRight='12px';p.append(a)}body.append(p);
+  const caution=document.createElement('p');caution.textContent=en?'This page does not claim a successful live fetch from any of these services. Cached data may be older than the observation or orbit solution itself.':'このパネルは各サービスへの最新接続成功を意味しません．端末内の保存日時と，観測日時・軌道解のエポックは別の情報です．';body.append(caution);
+ }
+ details.addEventListener('toggle',()=>{if(details.open)render()});
+ document.getElementById('lang')?.addEventListener('click',()=>queueMicrotask(render));render();
+})();
+</script>
+<style id="cm-v130-style">
+.cm-observation-access{border:1px solid #42647e;border-radius:8px;padding:10px 12px;margin:9px 0;background:rgba(30,53,75,.25);font-size:12px;line-height:1.6}
+.cm-observation-access strong{display:block;margin-bottom:4px}
+.cm-observation-access a{color:#9bd9ff;overflow-wrap:anywhere}
+.cm-observation-access small{display:block;color:#b5c9d9;margin-top:4px}
+</style>
+<script id="cm-v131-observation-access">
+(()=>{'use strict';
+// Designation extraction is deliberately conservative. Never infer a comet identity from
+// an arbitrary substring in a proper name or an unrelated catalog identifier.
+const oldRender=renderDetails;
+function designationOf(o){
+ const raw=[o?.name,o?.id].filter(x=>typeof x==='string').map(x=>x.trim());
+ const found=new Set();
+ for(const s of raw){
+  // Official-style periodic designation: 260P/McNaught, 73P-B, 1P/Halley.
+  const p=s.match(/^(\d{1,4}P)(?:\s*\/[^\s(]+|\s*[- ]([A-Z]))?(?=\s|\(|$|\/)/i);
+  if(p)found.add(p[1].toUpperCase()+(p[2]?'-'+p[2].toUpperCase():''));
+  // Long form: C/2025 N1, P/2023 A1, D/1993 F2, I/2017 U1 etc.
+  const n=s.match(/^([CPDAXI])\s*\/\s*(\d{4})\s*([A-Z])\s*(\d{1,3})(?:\s*[- ]([A-Z]))?(?=\s|\(|$|\/)/i);
+  if(n)found.add(n[1].toUpperCase()+'/'+n[2]+' '+n[3].toUpperCase()+n[4]+(n[5]?'-'+n[5].toUpperCase():''));
+ }
+ return found.size===1?[...found][0]:null;
+}
+function insertObservationLink(){
+ const panel=document.getElementById('details');
+ const o=byId.get(String(hoverId||selectedId));
+ if(!panel||!o)return;
+ panel.querySelectorAll('.cm-observation-access').forEach(el=>el.remove());
+ const en=lang==='en',des=designationOf(o);
+ const section=document.createElement('section');section.className='cm-observation-access';
+ const heading=document.createElement('strong');heading.textContent=en?'COBS: reported observations':'COBS：報告された観測記録';section.append(heading);
+ const text=document.createElement('span');text.textContent=en
+  ?'Predicted magnitude and computed position are not individual observations. '
+  :'予測光度と計算位置は個々の観測実績ではありません．';section.append(text);
+ if(des){
+  const a=document.createElement('a');
+  a.href='https://cobs.si/api/obs_list.api?'+new URLSearchParams({format:'json',des,page:'1'});
+  a.target='_blank';a.rel='noopener noreferrer';
+  a.textContent=en?'View COBS observation API (external)':'COBS観測記録API（外部）';
+  section.append(a);
+  const meta=document.createElement('small');meta.textContent=(en?'Query designation: ':'検索符号：')+des;section.append(meta);
+ }else{
+  const meta=document.createElement('small');meta.textContent=en?'Designation ambiguous or missing; no object-specific link generated.':'彗星符号が不明確なため，天体別リンクを生成しません．';section.append(meta);
+ }
+ const disclaimer=document.createElement('small');disclaimer.textContent=en
+  ?'External API endpoint is not verified in this session. Reports, if returned, require date, observer and quality checks; none are imported into the map.'
+  :'外部APIの接続成功はこの版では未確認です．取得できた記録も観測日・観測者・品質の確認が必要です．マップ内に実測値を取り込んではいません．';section.append(disclaimer);
+ const head=panel.querySelector('.detail-head');if(head)head.insertAdjacentElement('afterend',section);else panel.append(section);
+}
+renderDetails=function(){const r=oldRender.apply(this,arguments);try{insertObservationLink()}catch(e){console.warn('COBS observation access',e)}return r};
+})();
+</script>
+
+<style id="cm-v132-style">
+.cm-ephemeris-export{border:1px solid #405e79;border-radius:8px;padding:9px 11px;margin:9px 0;font-size:12px}
+.cm-ephemeris-export button{margin:5px 0;padding:6px 10px}
+.cm-ephemeris-export small{display:block;line-height:1.55;color:#b6c8dc}
+</style>
+<script id="cm-v133-ephemeris-export">
+(()=>{'use strict';
+// LOCAL PREDICTION ONLY. The computed positions are not measured astrometry or JPL Horizons.
+// Exports exactly 25 samples: the selected map time and the following 24 UTC hours.
+const previousRender=renderDetails;
+function csvCell(v){const s=String(v??'');return '"'+s.replace(/"/g,'""')+'"'}
+function finite(v,places){return Number.isFinite(v)?Number(v).toFixed(places):''}
+function exportLocalEphemeris(o){
+ const base=msDate(),lat=Number(document.getElementById('lat')?.value),lon=Number(document.getElementById('lon')?.value);
+ if(!Number.isFinite(base)||!Number.isFinite(lat)||!Number.isFinite(lon))throw Error('Invalid observing time or location');
+ const name=String(o.name||o.id||'comet');
+ const lines=[
+  ['#','Cometmap v133 LOCAL approximate ephemeris; NOT observed astrometry; NOT JPL Horizons'],
+  ['#','Object',name],
+  ['#','Method','Local two-body Keplerian propagation + Earth approximation; no planetary perturbations or uncertainty covariance'],
+  ['#','Coordinates','Geocentric approximate equatorial RA/Dec; altitude/azimuth computed for the configured observer (no topocentric parallax/refraction)'],
+  ['#','Orbit source',String(o.source||'unknown')],
+  ['#','Orbit epoch JD',Number.isFinite(o.epoch)?o.epoch:'unknown'],
+  ['#','Orbit epoch offset days at first sample',Number.isFinite(o.epoch)?((jd(base)-o.epoch)).toFixed(1):'unknown'],
+  ['#','Time standard','UTC sampling; orbital epoch interpretation is approximate (TDB/UTC difference not modeled)'],
+  ['#','Observer latitude deg',lat],['#','Observer longitude deg east',lon],
+  ['#','Magnitude','model_mag is predicted from MPC M1/K1 where present; catalog_mag is a catalog/planner estimate, NOT an individual observation'],
+  ['#','Validity','Use official JPL Horizons for precision pointing or rapidly changing close approaches'],
+  ['#','Quality flag definition','EPOCH_GT_365D: >365d from orbit epoch; NEAR_EARTH_LT_0.1AU: approximate Earth distance <0.1 AU; MISSING_ORBIT_EPOCH: orbit epoch absent; COMPUTATION_FAILED: no valid solution']
+ ].map(a=>a.map(csvCell).join(','));
+ const head=['utc_iso','ra_deg_J2000_approx','dec_deg_J2000_approx','alt_deg','az_deg','geocentric_dist_au','heliocentric_dist_au','elongation_deg','model_mag_predicted','catalog_mag_estimate','data_class','quality_flags','orbit_epoch_offset_days'];
+ lines.push(head.map(csvCell).join(','));let n=0;
+ for(let h=0;h<=24;h++){
+  const when=base+h*3600000,s=active(o,when);
+  const flags=[];
+  if(!Number.isFinite(o.epoch))flags.push('MISSING_ORBIT_EPOCH');
+  else if(Math.abs(jd(when)-o.epoch)>365)flags.push('EPOCH_GT_365D');
+  if(s&&Number.isFinite(s.dist)&&s.dist<0.1)flags.push('NEAR_EARTH_LT_0.1AU');
+  if(!s||!Number.isFinite(s.ra)||!Number.isFinite(s.dec)||!Number.isFinite(s.alt)||!Number.isFinite(s.az))flags.push('COMPUTATION_FAILED');
+  const row=[new Date(when).toISOString(),finite(s?.ra,7),finite(s?.dec,7),finite(s?.alt,3),finite(s?.az,3),finite(s?.dist,6),finite(s?.r,6),finite(s?.elong,3),finite(s?.model,2),finite(s?.mag,2),'COMPUTED_NOT_OBSERVED',flags.join(';'),Number.isFinite(o.epoch)?finite(jd(when)-o.epoch,1):''];
+  lines.push(row.map(csvCell).join(','));if(!flags.includes('COMPUTATION_FAILED'))n++;
+ }
+ if(!n)throw Error('No computable ephemeris samples');
+ const blob=new Blob(['﻿'+lines.join('\r\n')+'\r\n'],{type:'text/csv;charset=utf-8'});
+ const url=URL.createObjectURL(blob),a=document.createElement('a');
+ a.href=url;a.download='Cometmap_LOCAL_prediction_'+new Date(base).toISOString().slice(0,10)+'_'+String(o.id||'comet').replace(/[^a-zA-Z0-9_-]/g,'_').slice(0,48)+'.csv';
+ document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);
+ return n;
+}
+function addExport(){
+ const panel=document.getElementById('details'),o=byId.get(String(hoverId||selectedId));
+ if(!panel||!o||panel.querySelector('.cm-ephemeris-export'))return;
+ const en=lang==='en',section=document.createElement('section');section.className='cm-ephemeris-export';
+ const title=document.createElement('strong');title.textContent=en?'Local predicted positions (25 hourly rows)':'ローカル予測位置（1時間刻み・25行）';section.append(title);
+ const button=document.createElement('button');button.type='button';button.textContent=en?'Export predicted ephemeris CSV':'予測位置CSVを出力';section.append(button);
+ const note=document.createElement('small');note.textContent=en?'Approximate geocentric RA/Dec and observer-dependent alt/az; no topocentric parallax or refraction. All 25 hourly rows are exported, including computation failures, with quality flags for old orbit epochs and close approaches. Not observed positions or JPL Horizons.':'赤経・赤緯は近似地心座標，高度・方位角は指定観測地の計算値です（視差・大気差は未補正）．計算不能な時刻も欠測として25行を保持し，古い軌道エポックや地球接近を品質フラグで示します．実測値・JPL Horizonsではありません．';section.append(note);
+ const feedback=document.createElement('small');feedback.setAttribute('aria-live','polite');section.append(feedback);
+ button.onclick=()=>{try{const n=exportLocalEphemeris(o);feedback.textContent=en?`Exported ${n} predicted samples.`:`予測値${n}点を出力しました．`}catch(e){feedback.textContent=(en?'Export failed: ':'出力失敗：')+String(e.message||e)}};
+ const anchor=panel.querySelector('.cm-observation-access');if(anchor)anchor.insertAdjacentElement('afterend',section);else panel.prepend(section);
+}
+renderDetails=function(){const v=previousRender.apply(this,arguments);try{addExport()}catch(e){console.warn('Cometmap ephemeris export',e)}return v};
+})();
+</script>
+
+<style id="cometmap-v135-mono-stars">
+/* Match the altitude-chart window; override v66 compact rules. */
+#framingPopup:not(.comet-inline-chart){width:min(1020px,calc(100vw - 24px))!important;min-width:0!important;min-height:520px;max-height:calc(100dvh - 20px)!important;resize:both;overflow:auto}
+#framingPopup:not(.comet-inline-chart) .floating-content{padding:14px!important}
+#framingPopup:not(.comet-inline-chart) #framingSvg{display:block;width:100%!important;height:auto!important;max-height:none!important;aspect-ratio:520/300}
+#framingPopup:not(.comet-inline-chart) .frame-controls{gap:9px!important;margin:9px 0 12px!important}
+#framingPopup:not(.comet-inline-chart) .frame-controls label{font-size:12px!important}
+#framingPopup:not(.comet-inline-chart) .float-meta,#framingPopup:not(.comet-inline-chart) #tailStatus{font-size:12px!important;line-height:1.5;margin:7px 0}
+@media(max-width:600px){#framingPopup:not(.comet-inline-chart){width:calc(100vw - 16px)!important;min-height:0;max-height:calc(100dvh - 16px)!important;left:8px!important;top:8px!important}#framingPopup:not(.comet-inline-chart) .frame-controls{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+</style>
+
+<script id="cometmap-v146-zoom-logic">
+// The zoom toolbar was removed by request. Mouse wheel/pinch zoom and the
+// automatic FOV fit on enabling the field overlay remain available.
+function cmFitSelectedFOV(){
+ const o=selectedComet(),eqp=equipment();if(!o||!eqp)return false;
+ // Actual angular field size is derived from sensor dimensions and focal length.
+ const wdeg=206.265*eqp.pixel*eqp.width/eqp.focal/3600;
+ const hdeg=206.265*eqp.pixel*eqp.height/eqp.focal/3600;
+ if(!Number.isFinite(wdeg)||!Number.isFinite(hdeg)||wdeg<=0||hdeg<=0)return false;
+ if(mode!=='sky'){
+  // A camera field is a sky-angle rectangle, not a spatial AU-scale region.
+  // Don't draw a misleading FOV rectangle in the solar-system view.
+  return false;
+ }
+ if(!focusSelectedAtTime())return false;
+ const r0=Math.max(35,Math.min((CW-40)/2,(CH-85)/2));
+ const fitWidth=Math.max(90,Math.min(CW*.48,420));
+ const fitHeight=Math.max(85,Math.min(CH*.47,340));
+ const needed=Math.min(fitWidth/(r0*rad(wdeg)),fitHeight/(r0*rad(hdeg)));
+ zoom=clamp(needed,cmMinZoom('sky'),cmMaxZoom('sky'));
+ zoomByMode.sky=zoom;
+ const c=document.getElementById('frameOnMap');if(c)c.checked=true;
+ drawMap();return true;
+}
+</script>
+<script id="cometmap-v138-persistence-check">
+// v138: background star prefetch follows approximate computed comet positions.
+// The stars are Gaia DR3 catalog data; the future positions are NOT observations.
+</script>
+</body></html>
