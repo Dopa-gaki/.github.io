@@ -4,6 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
 <title>書く｜日記</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src 'self' https://diary-auth.ueda-photo-11.workers.dev; img-src 'self' blob: data:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'">
 <link rel="stylesheet" href="assets/style.css"><link rel="stylesheet" href="assets/minimal.css">
 </head>
 <body class="simple-page editor-page">
@@ -31,16 +32,10 @@
 <div id="photo-drop" class="simple-photo-drop"><span>ここに写真をドロップ</span><input id="photo-picker" type="file" accept="image/*" multiple hidden></div>
 <div id="photo-list" class="photo-list"></div><p id="photo-status" class="status-message" role="status"></p></section>
 <section class="simple-paper simple-publish-section" id="publish-section"><div class="simple-section-title"><h2>公開</h2><span id="login-status" class="simple-status">未接続</span></div>
-<div class="simple-actions simple-publish-actions"><button id="github-login" type="button" class="action-button">GitHubでログイン</button><button id="github-logout" type="button" class="action-button quiet" hidden>ログアウト</button><button id="publish-github" type="button" class="action-button primary">公開する</button><button id="export-zip" type="button" class="action-button">ZIP出力</button></div>
+<div class="simple-actions simple-publish-actions"><button id="github-login" type="button" class="action-button">GitHubでログイン</button><button id="github-logout" type="button" class="action-button quiet" hidden>ログアウト</button><button id="publish-github" type="button" class="action-button primary">公開する</button><button id="export-zip" type="button" class="action-button">ZIP出力</button><button id="delete-published" type="button" class="action-button quiet" hidden>公開を削除</button></div>
 <p id="login-help" class="simple-status" aria-live="polite"></p><p id="publish-status" class="status-message" role="status" aria-live="polite"></p>
-<details class="simple-options simple-config"><summary>接続設定</summary><div class="simple-extra">
-<div><label for="github-owner">アカウント</label><input id="github-owner" class="editor-input" value="Dopa-gaki"></div>
-<div><label for="github-repo">リポジトリ</label><input id="github-repo" class="editor-input" value=".github.io"></div>
-<div><label for="github-branch">ブランチ</label><input id="github-branch" class="editor-input" value="main"></div>
-<div><label for="github-dir">フォルダ</label><input id="github-dir" class="editor-input" value="diary"></div>
-<div class="simple-extra-wide"><label for="github-token">予備の認証キー（PAT）</label><input id="github-token" class="editor-input" type="password" autocomplete="off" placeholder="必要な場合のみ入力"></div>
-</div></details>
+
 </section>
 </main></div>
-<script src="assets/storage.js" defer></script><script src="assets/auth-config.js?v=20261122-2" defer></script><script src="assets/auth.js" defer></script><script src="assets/editor.js" defer></script>
+<script src="assets/storage.js?v=3" defer></script><script src="assets/auth-config.js?v=20261122-2" defer></script><script src="assets/auth.js?v=3" defer></script><script src="assets/editor.js?v=3" defer></script>
 </body></html>
