@@ -221,11 +221,12 @@ async function publishSite(request,env){
   if(length>4096)throw new PublicError(413,'設定データが大きすぎます');
   const body=await request.json();
   if(!body||typeof body.title!=='string')throw new PublicError(400,'サイト名を入力してください');
-  const title=body.title.trim().normalize('NFC');
-  if(!title||title.length>80||/[\u0000-\u001f\u007f]/.test(title))throw new PublicError(400,'サイト名は改行なしの1〜80文字で入力してください');
+  const title=body.title.replace(/\r\n?/g,'\n').trim().normalize('NFC');
+  const lines=title.split('\n');
+  if(!title||title.length>80||lines.length>4||lines.some(line=>!line.trim())||/[\u0000-\u0009\u000b-\u001f\u007f]/.test(title))throw new PublicError(400,'サイト名は最大4行・合計80文字で入力してください．空行は使用できません');
   const token=await installationToken(env);
   const bytes=enc.encode(JSON.stringify({title},null,2)+'\n');
-  const sha=await commitChanges(token,[{path:DIR+'data/site.json',bytes}],[],'日記サイト名を変更: '+title);
+  const sha=await commitChanges(token,[{path:DIR+'data/site.json',bytes}],[],'日記サイト名を変更: '+title.replace(/\n/g,' / '));
   return {ok:true,commit:sha,title};
 }
 
