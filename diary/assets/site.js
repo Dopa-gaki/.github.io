@@ -111,6 +111,21 @@
     if(unread)target.prepend(node('div','error-note',unread+'件の記事を読み込めませんでした．ファイルの有無を確認してください．'));
     $('#more-button').hidden=filtered.length<=state.visible;
   }
+  async function loadSiteName(){
+    let title='日記';
+    try{
+      const response=await fetch('data/site.json?v='+Date.now(),{cache:'no-store'});
+      if(response.ok){
+        const settings=await response.json();
+        if(typeof settings.title==='string'&&settings.title.trim()&&settings.title.length<=80)title=settings.title.trim();
+      }
+    }catch{}
+    SETTINGS.browserTitle=title;SETTINGS.brandName=title;SETTINGS.titleLines=[title];SETTINGS.footerName=title;
+    document.title=(mode==='preview'?'プレビュー｜':'')+title;
+    for(const logo of document.querySelectorAll('.simple-logo'))logo.textContent=title;
+    const header=document.querySelector('.simple-reader-head h1');
+    if(header)header.textContent=title;
+  }
   function setTheme(theme){
     document.documentElement.dataset.theme=theme;
     const button=$('#theme-button');button.setAttribute('aria-label',theme==='dark'?'ライトモードに切り替える':'ダークモードに切り替える');
@@ -118,6 +133,7 @@
     $('meta[name="theme-color"]').content=theme==='dark'?'#171d1a':'#f6f5f0';
   }
   async function init(){
+    await loadSiteName();
     document.title=(mode==='preview'?'プレビュー｜':'')+SETTINGS.browserTitle;
     $('#brand-name').textContent=SETTINGS.brandName;$('#site-label').textContent=SETTINGS.label;
     $('#site-title').replaceChildren(...SETTINGS.titleLines.map(line=>node('span','',line)));
