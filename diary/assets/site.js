@@ -122,7 +122,6 @@
     }catch{}
     SETTINGS.browserTitle=title;SETTINGS.brandName=title;SETTINGS.titleLines=[title];SETTINGS.footerName=title;
     document.title=(mode==='preview'?'プレビュー｜':'')+title;
-    for(const logo of document.querySelectorAll('.simple-logo'))logo.textContent=title;
     const header=document.querySelector('.simple-reader-head h1');
     if(header)header.textContent=title;
   }
