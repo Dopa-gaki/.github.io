@@ -1,29 +1,67 @@
-# 日記サイト（GitHub Pages）
+# 日記サイト（安全な公開機能）
 
-## 画面
+- 編集：`editor.html`
+- 確認：`preview.html`
+- 公開：`index.html`
 
-- `editor.html`：下書き・写真の追加（端末内に保存）
-- `preview.html`：公開前の確認
-- `index.html`：公開済み記事のみ表示
+日記は `posts/YYYY-MM-DD.json` に1日1ファイル，記事一覧は `data/index.json`，写真は `images/` に保存します．写真ごとにタイトル・キャプションを記入できます．
 
-記事は `posts/YYYY-MM-DD.json` に1日1ファイル，公開順の軽量な一覧は `data/index.json` に保存されます．写真は `images/` に保存します．
+## 公開済み日記の編集・削除
 
-## 編集
+編集画面の「公開済み」を開き，過去の記事を選択すると本文と写真を再編集できます．「公開する」で同じ記事を上書きします．「公開を削除」で削除確認が開き，「削除」と入力して確定すると，公開記事・その記事に付属する画像・一覧登録をGitHubから削除します．Gitの履歴や第三者のコピーまでは消えません．
 
-編集画面の「詳細」を開くと，天気・タグ・ひとことを入力できます．写真は複数枚選択でき，**写真ごとにタイトル・キャプションを独立して設定**できます．保存とプレビューに反映されます．下書きは IndexedDB に端末内保存されます．
+## 安全なGitHub認証への移行（Cloudflareで追加設定が必要）
 
-## GitHubログインの準備
+**GitHub Pagesにコードをアップロードしただけでは認証サーバーは切り替わりません．** Cloudflareの既存 `diary-auth` Workerを [新しいWorkerコード](auth/diary-secure-worker.js) で置き換える必要があります．古い `auth/github-device-worker.js` は廃止します．
 
-GitHub Pagesは静的サイトのため，OAuth認証に追加のサービスが必要です．GitHub AppのDevice FlowとCloudflare Workerの組み合わせを想定しています．準備が完了するまでは編集画面の「GitHubでログイン」ボタンは利用できません．「接続設定」から既存PATを入力して公開する機能は残しています．
+新方式の仕様：
 
-1. GitHubで**GitHub App**を作成し，Repository permissionsの **Contents: Read and write** を許可．Appを `Dopa-gaki/.github.io` **だけ**にインストール．GitHub App設定で **Device Flow を有効化**．
-2. `auth/github-device-worker.js` を Cloudflare Workers にデプロイ．Worker環境変数 `GITHUB_CLIENT_ID` に GitHub AppのClient ID，`ALLOWED_ORIGIN` に `https://dopa-gaki.github.io` を設定．WorkerにはClient Secretを置く必要はありません．本番利用時はWorker側でレート制限を有効化してください．
-3. `assets/auth-config.js` の `workerUrl` にWorkerのHTTPS URLを設定し，日記フォルダにコミット．**アクセストークンやClient Secretはこのファイルに記載しないでください．**
-4. 編集画面の「GitHubでログイン」を押すとGitHubの認証ページが開きます．編集画面に表示されるコードを入力してください．本人確認が完了すると，ログインは同じタブ内のセッション中だけ維持されます．
-5. `公開する` を押すと，選択中の記事JSON・記事一覧・新規画像を1コミットにまとめてGitHubへ保存します．
+- GitHub App OAuth Web Flow（PKCE / state），本人のGitHubアカウント確認
+- GitHubのユーザーアクセストークン・インストールトークン・秘密鍵は**ブラウザに送信しない**
+- GitHubのClient Secretと秘密鍵はCloudflare **Secrets** に保管
+- ブラウザには4時間で失効するランダムな日記専用セッションのみ渡す．メモリだけに保持するため，リロードでログアウト
+- Cloudflare Worker側で日記ファイルに限定して公開・更新・削除を処理
+- GitHub AppのContents権限自体はリポジトリ全体に及ぶため，**Cloudflareの秘密鍵が漏れた場合の影響まで完全には限定できない**
 
-GitHubのリポジトリ設定やGitHub Appのインストール範囲はユーザー自身が管理します．公開フォルダのHTMLは誰でも開けますが，認証済みかつGitHub Appが権限を持つアカウントしか書き込みできません．ログインのトークンはブラウザ内の `sessionStorage` に保存するため，端末とブラウザのセキュリティには注意してください．
+### 1．GitHub App側
 
-## ZIPで公開
+https://github.com/settings/apps にアクセスし，作成済みの日記用Appで以下を設定してください．
 
-ログイン設定前でも「ZIP出力」で記事・写真をダウンロードできます．ZIPを展開して日記フォルダ内の対応する場所へアップロードしてください．
+1. **Callback URL**：`https://diary-auth.ueda-photo-11.workers.dev/auth/callback`
+2. **Generate a new client secret** からClient Secretを生成
+3. **Private keys → Generate a private key** でPEM秘密鍵をダウンロード
+4. App ID（数値）・Client IDを控える
+5. Repository permissions → **Contents: Read and write**，Install App → **Only select repositories** → `.github.io` のみ
+
+**Client Secret・PEM秘密鍵はGitHubリポジトリ，日記，チャットへ貼り付けないでください．** GitHubのDevice Flowは新方式では使用しません．移行完了後は無効化できます．
+
+### 2．Cloudflare側
+
+Cloudflare Dashboard → Workers & Pages → `diary-auth` → Settings → Variables and Secrets
+
+| 名前 | 種類 | 値 |
+|---|---|---|
+| `GITHUB_CLIENT_ID` | Text | 既存のGitHub App Client ID |
+| `GITHUB_CLIENT_SECRET` | **Secret** | GitHub AppのClient Secret |
+| `GITHUB_APP_ID` | Text | GitHub Appの数値App ID |
+| `GITHUB_APP_PRIVATE_KEY` | **Secret** | GitHub AppのPEM秘密鍵の全文 |
+| `ALLOWED_ORIGIN` | Text | `https://dopa-gaki.github.io`（従来値） |
+
+次に，Cloudflare → **Storage & databases → KV** から，例えば `diary-sessions` のKV namespaceを新規作成します．`diary-auth` の **Bindings → Add binding → KV namespace** で，**Variable name を `DIARY_SESSIONS`** として追加します．KVにはGitHub秘密鍵を入れません．
+
+最後に Workers & Pages → `diary-auth` → **Edit code** で `auth/diary-secure-worker.js` を全文貼り付けて **Deploy** します．Worker URLは変わりません．
+
+### 3．ログインを検証
+
+https://dopa-gaki.github.io/.github.io/diary/editor.html
+
+「GitHubでログイン」→ GitHub上で承認 → 編集ページの「接続済み」を確認．以前の8文字コード入力は不要です．Workerの切り替え前はログインできません．
+
+## 注意点
+
+- GitHub Pages上の `editor.html` は誰でも開けますが，記事の公開・編集・削除にはGitHubで本人認証が必要です．
+- ブラウザの下書きは IndexedDB に保存されます．同じGitHub Pagesオリジンで動く他のアプリとブラウザ保存領域を共有するため，同一オリジンの悪意あるスクリプトから下書きを完全に隔離することはできません．
+- GitHubに公開した写真と文章は公開情報です．削除後もGit履歴，キャッシュ，第三者の保存に残ることがあります．
+- Cloudflareアカウントには2段階認証を設定してください．
+
+既存のPNmap・SNmap・彗星マップ・捕獲かんらん岩マップのファイルは変更しません．
