@@ -1,3 +1,28 @@
+# 別オリジン編集画面への移行（v4）
+
+**GitHubへのWorkerコード保存と，Cloudflareへのデプロイは別操作です．**
+現行のGitHubリポジトリと日記公開URLは変えません．Cloudflareの既存 `diary-auth` Workerが編集用HTML・CSS・JavaScript・公開済み日記JSON・写真を安全な許可リストから配信します．
+
+- **新しい編集画面**：https://diary-auth.ueda-photo-11.workers.dev/editor.html
+- **新しいプレビュー**：https://diary-auth.ueda-photo-11.workers.dev/preview.html
+- **公開ページ（変更なし）**：https://dopa-gaki.github.io/.github.io/diary/
+- **旧下書きの書き出し**：https://dopa-gaki.github.io/.github.io/diary/migrate.html
+- **新しい下書きへの取り込み**：https://diary-auth.ueda-photo-11.workers.dev/import.html
+
+## Cloudflareで必要な最後の操作
+Cloudflare → Workers & Pages → `diary-auth` → Edit code で，GitHubの `diary/auth/diary-secure-worker.js` を全文コピーして置き換え，Deployしてください．
+すでに登録した Client ID，Client Secret，App ID，Private Key，`DIARY_SESSIONS` KVバインディングは変更しません．
+**新しい編集URLはWorkerのデプロイ後に使えるようになります．**
+
+## 旧下書きを残したまま移行する
+旧ドメインの `migrate.html` で **バックアップを保存** → 新ドメインの `import.html` で取り込む → 新しい編集画面で文章・写真を確認 → 旧 `migrate.html` で元データを削除します．
+バックアップJSONには私的な日記と写真が含まれるため，安全に保管し，移行後は削除してください．**元の下書きは自動削除しません．**
+
+## 安全性の範囲
+独立したWorkerオリジン上のIndexedDBを，GitHub Pages側のPNmapなどのJavaScriptが直接読み取ることはできません．ただし，GitHub AppのContents権限そのものは同じリポジトリ全体に及ぶため，Workerの秘密鍵漏えいまでは防げません．
+
+---
+
 # 日記サイト（安全な公開機能）
 
 - 編集：`editor.html`
