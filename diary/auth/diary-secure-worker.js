@@ -218,7 +218,7 @@ async function deletePost(request,env){
 /* Separate the diary editor browser origin from the public GitHub Pages site.
    No arbitrary URL proxy; only known public diary files are served here. */
 const DIARY_PUBLIC='https://dopa-gaki.github.io/.github.io/diary/';
-const EDITOR_ASSETS=new Set(['style.css','minimal.css','storage.js','site.js','auth-config.js','auth.js','editor.js','import-drafts.js']);
+const EDITOR_ASSETS=new Set(['style.css','minimal.css','storage.js','site.js','auth-config.js','auth.js','editor.js','import-drafts.js','editor-redirect.js']);
 function editorResource(pathname){
   if(pathname==='/editor.html'||pathname==='/preview.html'||pathname==='/import.html')return pathname.slice(1);
   if(pathname==='/data/index.json')return pathname.slice(1);
@@ -254,6 +254,7 @@ async function serveEditorResource(request){
 export default {
   async fetch(request,env){
     const url=new URL(request.url),origin=request.headers.get('Origin');
+    if(url.pathname==='/editor-version'&&request.method==='GET')return json({isolated:true,version:4},200,'https://dopa-gaki.github.io');
     if((url.pathname==='/'||url.pathname==='/index.html')&&request.method==='GET')return redirect(DIARY_PUBLIC);
     if(editorResource(url.pathname))return serveEditorResource(request);
     if(url.pathname==='/auth/start'&&request.method==='GET')return oauthStart(request,env);
