@@ -33,6 +33,7 @@
     showStatus(dom.status,'');
     renderPhotos();
     renderLists();
+    updateDeleteButton();
   }
   function changePending(){
     dirty=true;
@@ -174,74 +175,59 @@
     });
     return files;
   }
-  function persistedConfig(){
-    const config={owner:$('#github-owner').value.trim(),repo:$('#github-repo').value.trim(),branch:$('#github-branch').value.trim()||'main',dir:$('#github-dir').value.trim().replace(/^\/+|\/+$/g,'')};
-    if(!/^[a-z\d-]+$/i.test(config.owner)||!/^[a-z\d._-]+$/i.test(config.repo))throw new Error('GitHubアカウント名とリポジトリ名を確認してください．');
-    if(!/^[\w./-]+$/.test(config.branch)||config.branch.includes('..'))throw new Error('ブランチ名が正しくありません．');
-    if(config.dir && (!/^[\w/-]+$/.test(config.dir)||config.dir.split('/').some(p=>!p||p==='.'||p==='..')))throw new Error('設置フォルダの形式が正しくありません．');
-    try{localStorage.setItem('diary-github-settings',JSON.stringify(config));}catch{}
-    return config;
-  }
-  function loadConfig(){
-    try{
-      const v=JSON.parse(localStorage.getItem('diary-github-settings')||'{}');
-      for(const [key,id] of Object.entries({owner:'#github-owner',repo:'#github-repo',branch:'#github-branch',dir:'#github-dir'}))if(v[key]!==undefined)$(id).value=v[key];
-    }catch{}
-  }
   const bytesToBase64=bytes=>{
     let raw='';const step=0x8000;
     for(let i=0;i<bytes.length;i+=step)raw+=String.fromCharCode(...bytes.subarray(i,i+step));
     return btoa(raw);
   };
-  const base64ToText=string=>{
-    const raw=atob(string.replace(/\s+/g,'')),bytes=new Uint8Array(raw.length);
-    for(let i=0;i<raw.length;i++)bytes[i]=raw.charCodeAt(i);
-    return new TextDecoder().decode(bytes);
-  };
+  function updateDeleteButton(){
+    const button=$('#delete-published');
+    if(button)button.hidden=!published.some(item=>item.id===current.id);
+  }
   async function githubPublish(){
     try{
       validateEntry();await saveNow();
-      const cfg=persistedConfig();const token=(window.JournalAuth?.token?.()||$('#github-token').value.trim());
-      if(!token)throw new Error('GitHubでログインしてください．ログイン設定前は接続設定から認証キーを使えます．');
-      if(!window.confirm(`「${current.title}」を ${cfg.owner}/${cfg.repo} の ${cfg.branch} ブランチに公開しますか？\n設置先：${cfg.dir||'(リポジトリ直下)'}`))return;
+      if(!window.JournalAuth?.isLoggedIn?.())throw new Error('GitHubでログインしてください');
+      if(!window.confirm(`「${current.title}」を公開しますか？`))return;
       $('#publish-github').disabled=true;
-      showStatus(dom.publishStatus,'GitHub上の現在の記事を確認しています…');
-      const base=`https://api.github.com/repos/${encodeURIComponent(cfg.owner)}/${encodeURIComponent(cfg.repo)}`;
-      const req=async(method,path,body)=>{
-        const res=await fetch(base+path,{method,headers:{'Accept':'application/vnd.github+json','Authorization':'Bearer '+token,'X-GitHub-Api-Version':'2022-11-28',...(body?{'Content-Type':'application/json'}:{})},body:body?JSON.stringify(body):undefined});
-        if(!res.ok){let detail='';try{detail=(await res.json()).message||'';}catch{}throw new Error('GitHub API '+res.status+'：'+detail);}
-        return res.json();
-      };
-      const prefix=cfg.dir?cfg.dir+'/':'';
-      const postPath=prefix+'data/index.json';
-      const contents=await req('GET','/contents/'+postPath.split('/').map(encodeURIComponent).join('/')+'?ref='+encodeURIComponent(cfg.branch));
-      if(!contents.content)throw new Error('GitHub上のdata/index.jsonが読み取れません．初回は新しいサイト一式を配置してください．');
-      const latestPublished=JSON.parse(base64ToText(contents.content));
-      if(!Array.isArray(latestPublished))throw new Error('GitHub上の記事一覧が配列ではありません．');
-      const updated=publishData(latestPublished);
-      const oldPath=previousPath(latestPublished);
-      const files=filesForPublication(updated);
-      const ref=await req('GET','/git/ref/heads/'+cfg.branch.split('/').map(encodeURIComponent).join('/'));
-      const oldCommit=await req('GET','/git/commits/'+encodeURIComponent(ref.object.sha));
-      const tree=[];
-      for(const [i,file] of files.entries()){
-        showStatus(dom.publishStatus,`公開ファイルを送信中… ${i+1}/${files.length}`);
-        const bytes=file.bytes||(new Uint8Array(await file.blob.arrayBuffer()));
-        const blob=await req('POST','/git/blobs',{content:bytesToBase64(bytes),encoding:'base64'});
-        tree.push({path:prefix+file.path,mode:'100644',type:'blob',sha:blob.sha});
+      showStatus(dom.publishStatus,'写真と記事を送信しています…');
+      const post=Store.publishable(current);
+      const images=[];
+      for(let i=0;i<current.photos.length;i++){
+        const photo=current.photos[i];
+        if(photo.blob instanceof Blob){
+          images.push({path:post.photos[i].src,mime:photo.blob.type,base64:bytesToBase64(new Uint8Array(await photo.blob.arrayBuffer()))});
+        }
       }
-      if(oldPath)tree.push({path:prefix+oldPath,mode:'100644',type:'blob',sha:null});
-      const newTree=await req('POST','/git/trees',{base_tree:oldCommit.tree.sha,tree});
-      const commit=await req('POST','/git/commits',{message:'日記を公開: '+current.date+' '+current.title,tree:newTree.sha,parents:[ref.object.sha]});
-      await req('PATCH','/git/refs/heads/'+cfg.branch.split('/').map(encodeURIComponent).join('/'),{sha:commit.sha,force:false});
-      published=updated;
+      const result=await window.JournalAuth.request('/api/publish',{entry:post,images});
+      published=result.index;
       await Store.deleteDraft(current.id);
       drafts=await Store.getDrafts();
       current=createBlank();dirty=false;setForm(current);
-      renderLists();
-      showStatus(dom.publishStatus,'GitHubへの公開が完了しました．Pagesへの反映には少し時間がかかる場合があります．','success');
-    }catch(error){showStatus(dom.publishStatus,'公開に失敗しました：'+error.message,'error');}
-    finally{$('#publish-github').disabled=false;$('#github-token').value='';}
+      showStatus(dom.publishStatus,'公開しました．反映には少し時間がかかる場合があります．','success');
+    }catch(error){showStatus(dom.publishStatus,'公開できません：'+error.message,'error');}
+    finally{$('#publish-github').disabled=false;}
+  }
+  async function deletePublished(){
+    const item=published.find(x=>x.id===current.id);
+    if(!item){showStatus(dom.publishStatus,'公開済みの記事を選んでください','error');return;}
+    if(!window.JournalAuth?.isLoggedIn?.()){
+      showStatus(dom.publishStatus,'GitHubでログインしてください','error');return;
+    }
+    const confirmText=window.prompt(`${item.date}「${item.title}」を完全に非公開にします．\nこの記事と公開した写真を削除します．\n実行するには「削除」と入力してください．`);
+    if(confirmText!=='削除')return;
+    $('#delete-published').disabled=true;
+    try{
+      showStatus(dom.publishStatus,'GitHub上の記事を削除しています…');
+      const result=await window.JournalAuth.request('/api/delete',{id:item.id,date:item.date});
+      published=result.index;
+      const draft=await Store.getDraft(item.id);
+      if(draft)await Store.deleteDraft(item.id);
+      drafts=await Store.getDrafts();
+      current=createBlank();dirty=false;setForm(current);
+      showStatus(dom.publishStatus,'公開済みの記事を削除しました．Git履歴には過去の版が残ります．','success');
+    }catch(e){showStatus(dom.publishStatus,'削除できません：'+e.message,'error');}
+    finally{$('#delete-published').disabled=false;updateDeleteButton();}
   }
   // Simple, dependency-free ZIP writer (uncompressed, UTF-8 file paths).
   const crcTable=(()=>{const result=[];for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=(c&1)?(0xedb88320^(c>>>1)):(c>>>1);result.push(c>>>0);}return result;})();
@@ -286,7 +272,6 @@
     catch(error){showStatus(dom.status,'このブラウザでは下書きを保存できません：'+error.message,'error');}
     try{published=await Store.loadPublished();}
     catch(error){showStatus(dom.publishStatus,'公開済み記事の取得に失敗しました：'+error.message,'error');}
-    loadConfig();
     current=createBlank();setForm(current);
     dom.form.addEventListener('submit',async event=>{event.preventDefault();try{dirty=true;await saveNow();}catch{}});
     for(const id of ['#entry-date','#entry-title','#entry-weather','#entry-mood','#entry-tags','#entry-body'])$(id).addEventListener('input',changePending);
@@ -316,7 +301,7 @@
     drop.addEventListener('drop',e=>{e.preventDefault();drop.classList.remove('dragover');addPhotos(e.dataTransfer.files);});
     $('#publish-github').addEventListener('click',githubPublish);
     $('#export-zip').addEventListener('click',exportZip);
-    for(const id of ['#github-owner','#github-repo','#github-branch','#github-dir'])$(id).addEventListener('change',()=>{try{persistedConfig();}catch{}});
+    $('#delete-published').addEventListener('click',deletePublished);
   }
   init();
 })();
