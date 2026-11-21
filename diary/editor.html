@@ -31,6 +31,17 @@
 <section class="simple-paper simple-photo-section"><div class="simple-section-title"><h2>写真</h2><button id="select-photos" type="button" class="small-button">＋ 追加</button></div>
 <div id="photo-drop" class="simple-photo-drop"><span>ここに写真をドロップ</span><input id="photo-picker" type="file" accept="image/*" multiple hidden></div>
 <div id="photo-list" class="photo-list"></div><p id="photo-status" class="status-message" role="status"></p></section>
+
+<section class="simple-paper simple-publish-section" id="site-name-section" aria-labelledby="site-name-heading">
+<div class="simple-section-title"><h2 id="site-name-heading">サイトの名前</h2></div>
+<p class="simple-status">公開ページの大きな見出し「日記」を変更できます．記事のタイトルとは別の設定です．</p>
+<div class="simple-extra-wide">
+<label for="site-name-input">表示する言葉</label>
+<input id="site-name-input" type="text" class="editor-input" placeholder="日記" maxlength="80" autocomplete="off">
+</div>
+<div class="simple-actions"><button type="button" class="action-button primary" id="save-site-name">サイト名を公開する</button></div>
+<p class="status-message" id="site-name-status" role="status" aria-live="polite"></p>
+</section>
 <section class="simple-paper simple-publish-section" id="publish-section"><div class="simple-section-title"><h2>公開</h2><span id="login-status" class="simple-status">未接続</span></div>
 <div class="simple-actions simple-publish-actions"><button id="github-login" type="button" class="action-button">GitHubでログイン</button><button id="github-logout" type="button" class="action-button quiet" hidden>ログアウト</button><button id="publish-github" type="button" class="action-button primary">公開する</button><button id="export-zip" type="button" class="action-button">ZIP出力</button><button id="delete-published" type="button" class="action-button quiet" hidden>公開を削除</button></div>
 <p id="login-help" class="simple-status" aria-live="polite"></p><p id="publish-status" class="status-message" role="status" aria-live="polite"></p>
@@ -38,5 +49,5 @@
 </section>
 </main></div>
 <script src="assets/editor-redirect.js?v=4" defer></script>
-<script src="assets/storage.js?v=3" defer></script><script src="assets/auth-config.js?v=20261122-2" defer></script><script src="assets/auth.js?v=3" defer></script><script src="assets/editor.js?v=3" defer></script>
+<script src="assets/storage.js?v=3" defer></script><script src="assets/auth-config.js?v=20261122-2" defer></script><script src="assets/auth.js?v=3" defer></script><script src="assets/editor.js?v=5" defer></script>
 </body></html>
