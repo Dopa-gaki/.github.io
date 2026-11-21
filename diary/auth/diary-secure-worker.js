@@ -5,8 +5,8 @@
  * 書き込みをdiary/の3つのパス群に限定。KV binding: DIARY_SESSIONS。
  */
 const REPO_OWNER='Dopa-gaki',REPO_NAME='.github.io',REPO_BRANCH='main';
-const DIR='diary/',EDITOR_URL='https://dopa-gaki.github.io/.github.io/diary/editor.html';
-const PAGE_ORIGIN='https://dopa-gaki.github.io',ALLOWED_LOGIN='Dopa-gaki';
+const DIR='diary/',EDITOR_URL='https://diary-auth.ueda-photo-11.workers.dev/editor.html';
+const PAGE_ORIGIN='https://diary-auth.ueda-photo-11.workers.dev',ALLOWED_LOGIN='Dopa-gaki';
 const API_VERSION='2022-11-28',MAX_REQUEST_BYTES=12*1024*1024,SESSION_TTL=4*60*60,DEVICE_COOKIE='diary_oauth';
 const enc=new TextEncoder(),dec=new TextDecoder();
 function b64u(bytes){
@@ -214,9 +214,48 @@ async function deletePost(request,env){
   const sha=await commitChanges(token,files,deletes,'日記を削除: '+data.date);
   return {ok:true,commit:sha,index:next};
 }
+
+/* Separate the diary editor browser origin from the public GitHub Pages site.
+   No arbitrary URL proxy; only known public diary files are served here. */
+const DIARY_PUBLIC='https://dopa-gaki.github.io/.github.io/diary/';
+const EDITOR_ASSETS=new Set(['style.css','minimal.css','storage.js','site.js','auth-config.js','auth.js','editor.js','import-drafts.js']);
+function editorResource(pathname){
+  if(pathname==='/editor.html'||pathname==='/preview.html'||pathname==='/import.html')return pathname.slice(1);
+  if(pathname==='/data/index.json')return pathname.slice(1);
+  if(/^\/posts\/\d{4}-\d{2}-\d{2}\.json$/.test(pathname))return pathname.slice(1);
+  const asset=/^\/assets\/([A-Za-z0-9_-]+\.(?:js|css))$/.exec(pathname);
+  if(asset&&EDITOR_ASSETS.has(asset[1]))return pathname.slice(1);
+  if(/^\/images\/[A-Za-z0-9_-]+\/[A-Za-z0-9_-]+\.(?:webp|png|jpe?g)$/.test(pathname))return pathname.slice(1);
+  return null;
+}
+async function serveEditorResource(request){
+  const pathname=new URL(request.url).pathname;
+  if(!['GET','HEAD'].includes(request.method))return error(405,'この操作はできません');
+  const relative=editorResource(pathname);
+  if(!relative)return error(404,'ページが見つかりません');
+  const upstream=await fetch(new URL(relative,DIARY_PUBLIC).toString(),{method:'GET',redirect:'follow',headers:{Accept:'*/*'},cache:'no-store'});
+  if(!upstream.ok)return error(502,'日記ファイルを取得できませんでした');
+  let mime='application/octet-stream';
+  if(relative.endsWith('.html'))mime='text/html; charset=utf-8';
+  else if(relative.endsWith('.js'))mime='text/javascript; charset=utf-8';
+  else if(relative.endsWith('.css'))mime='text/css; charset=utf-8';
+  else if(relative.endsWith('.json'))mime='application/json; charset=utf-8';
+  else if(relative.endsWith('.png'))mime='image/png';
+  else if(relative.endsWith('.jpg')||relative.endsWith('.jpeg'))mime='image/jpeg';
+  else if(relative.endsWith('.webp'))mime='image/webp';
+  const headers={
+    'Content-Type':mime,'Cache-Control':'no-store','Referrer-Policy':'no-referrer',
+    'X-Content-Type-Options':'nosniff','X-Frame-Options':'DENY','Cross-Origin-Resource-Policy':'same-origin'
+  };
+  if(relative.endsWith('.html'))headers['Content-Security-Policy']="default-src 'self'; script-src 'self'; connect-src 'self'; img-src 'self' blob: data:; style-src 'self' 'unsafe-inline'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'";
+  return new Response(request.method==='HEAD'?null:upstream.body,{status:200,headers});
+}
+
 export default {
   async fetch(request,env){
     const url=new URL(request.url),origin=request.headers.get('Origin');
+    if((url.pathname==='/'||url.pathname==='/index.html')&&request.method==='GET')return redirect(DIARY_PUBLIC);
+    if(editorResource(url.pathname))return serveEditorResource(request);
     if(url.pathname==='/auth/start'&&request.method==='GET')return oauthStart(request,env);
     if(url.pathname==='/auth/callback'&&request.method==='GET'){
       if(!env.DIARY_SESSIONS)return error(503,'Cloudflare KVが未設定です');
