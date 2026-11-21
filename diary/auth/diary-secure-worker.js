@@ -29,7 +29,7 @@ function secretReady(env){return Boolean(env.GITHUB_CLIENT_ID&&env.GITHUB_CLIENT
 function cleanError(e){return e instanceof PublicError?e.message:'処理に失敗しました．再試行してください．';}
 class PublicError extends Error{constructor(status,message){super(message);this.status=status;}}
 async function github(url,token,options={}){
-  const response=await fetch(url,{...options,headers:{'Accept':'application/vnd.github+json','Authorization':'Bearer '+token,'X-GitHub-Api-Version':API_VERSION,...options.headers},cache:'no-store'});
+  const response=await fetch(url,{...options,headers:{'Accept':'application/vnd.github+json','User-Agent':'Dopa-gaki-Diary-Worker','Authorization':'Bearer '+token,'X-GitHub-Api-Version':API_VERSION,...options.headers},cache:'no-store'});
   if(!response.ok)throw new PublicError(response.status===409?409:502,'GitHub APIでエラーが発生しました（'+response.status+'）');
   return response.json();
 }
@@ -55,14 +55,14 @@ async function oauthCallback(request,env){
   if(!nonce||getCookie(request,DEVICE_COOKIE)!==nonce)return failure('認証が別のブラウザで開始されました');
   const callback=new URL('/auth/callback',request.url).toString();
   const tokenResponse=await fetch('https://github.com/login/oauth/access_token',{
-    method:'POST',headers:{Accept:'application/json','Content-Type':'application/x-www-form-urlencoded'},
+    method:'POST',headers:{Accept:'application/json','Content-Type':'application/x-www-form-urlencoded','User-Agent':'Dopa-gaki-Diary-Worker'},
     body:new URLSearchParams({client_id:env.GITHUB_CLIENT_ID,client_secret:env.GITHUB_CLIENT_SECRET,code,redirect_uri:callback,code_verifier:verifier})
   });
   if(!tokenResponse.ok)return failure('GitHub認証に接続できませんでした');
   const tokenInfo=await tokenResponse.json();
   if(!tokenInfo.access_token)return failure('GitHub認証が完了しませんでした');
   let user;
-  try{user=await github('https://api.github.com/user',tokenInfo.access_token);}catch{return failure('GitHubアカウントを確認できませんでした');}
+  try{user=await github('https://api.github.com/user',tokenInfo.access_token);}catch(e){return failure('GitHubアカウントを確認できませんでした：'+(e instanceof PublicError?e.message:'GitHubへの通信に失敗しました'));}
   if(String(user.login||'').toLowerCase()!==ALLOWED_LOGIN.toLowerCase())return failure('指定されたアカウント以外は使用できません');
   const session=randomId(48),sessionKey='session:'+await sha256(session);
   await env.DIARY_SESSIONS.put(sessionKey,JSON.stringify({login:ALLOWED_LOGIN,userId:user.id,createdAt:Date.now()}),{expirationTtl:SESSION_TTL});
