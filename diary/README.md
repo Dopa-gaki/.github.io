@@ -9,6 +9,12 @@
 - **旧下書きの書き出し**：https://dopa-gaki.github.io/.github.io/diary/migrate.html
 - **新しい下書きへの取り込み**：https://diary-auth.ueda-photo-11.workers.dev/import.html
 
+## サイト名の変更
+
+編集画面の「サイトの名前」に表示したい言葉（1〜80文字）を入力し，GitHubにログインした状態で「サイト名を公開する」を押します．Workerの `/api/site` が `diary/data/site.json` のみを書き換え，公開ページとプレビューの大きな見出し・ナビゲーションのサイト名を更新します．記事ごとのタイトルは変更しません．
+
+この機能は新しいWorkerコードのデプロイ後に利用できます．GitHub Pagesの配信反映に多少時間がかかることがあります．
+
 ## Cloudflareで必要な最後の操作
 Cloudflare → Workers & Pages → `diary-auth` → Edit code で，GitHubの `diary/auth/diary-secure-worker.js` を全文コピーして置き換え，Deployしてください．
 すでに登録した Client ID，Client Secret，App ID，Private Key，`DIARY_SESSIONS` KVバインディングは変更しません．
