@@ -3,9 +3,9 @@
   const $=s=>document.querySelector(s);
   const Store=window.JournalStore;
   const mode=document.body.dataset.mode;
-  const SETTINGS={browserTitle:'日々の余白｜日記',brandName:'HIBI / JOURNAL',label:'PERSONAL JOURNAL',titleLines:['日々の，','余白。'],intro:'何気ない一日にも，残しておきたいことがある．\n思いついたときに，少しずつ書いていく場所．',footerName:'日々の余白'};
+  const SETTINGS={browserTitle:'日記',brandName:'日記',label:'',titleLines:['日記'],intro:'',footerName:'日記'};
   const state={query:'',year:'all',tag:'all',visible:6,renderId:0};
-  const week=['SUN','MON','TUE','WED','THU','FRI','SAT'];
+  const week=['日','月','火','水','木','金','土'];
   const node=(tag,cls,value)=>{const element=document.createElement(tag);if(cls)element.className=cls;if(value!==undefined)element.textContent=value;return element;};
   const normalized=value=>String(value??'').normalize('NFKC').toLocaleLowerCase('ja-JP');
   const dateObj=date=>new Date(date+'T12:00:00');
@@ -17,7 +17,7 @@
     return publishedCache.get(entry.date);
   }
   const basicMatch=entry=>(state.year==='all'||entry.date.startsWith(state.year+'-'))&&(state.tag==='all'||(entry.tags||[]).includes(state.tag));
-  const searchText=entry=>normalized([entry.date,entry.title,entry.weather,entry.mood,...(entry.tags||[]),...(entry.body||[])].join(' '));
+  const searchText=entry=>normalized([entry.date,entry.title,entry.weather,entry.mood,...(entry.tags||[]),...(entry.body||[]),...(entry.photos||[]).flatMap(p=>[p.title||'',p.caption||''])].join(' '));
   function matchesSearch(entry,words){return words.every(word=>searchText(entry).includes(word));}
   function releaseImages(){for(const u of objectUrls)URL.revokeObjectURL(u);objectUrls.clear();}
   function renderEntry(entry){
@@ -38,7 +38,14 @@
         else src=Store.safeImageSrc(photo.src);
         if(!src)continue;
         const figure=node('figure'),img=node('img');img.src=src;img.alt=photo.alt||'日記の写真';img.loading='lazy';img.decoding='async';
-        figure.append(img);if(photo.caption)figure.append(node('figcaption','',photo.caption));gallery.append(figure);
+        figure.append(img);
+        if(photo.title||photo.caption){
+          const caption=node('figcaption','photo-caption');
+          if(photo.title)caption.append(node('strong','photo-caption-title',photo.title));
+          if(photo.caption)caption.append(node('span','photo-caption-body',photo.caption));
+          figure.append(caption);
+        }
+        gallery.append(figure);
       }
       if(gallery.childElementCount)content.append(gallery);
     }
@@ -57,7 +64,8 @@
     const tags=[...new Set(entries.flatMap(entry=>entry.tags||[]))].sort();
     const target=$('#tag-filters');target.replaceChildren();
     if(state.tag!=='all'&&!tags.includes(state.tag))state.tag='all';
-    for(const tag of ['all',...tags]){
+    if(target)target.hidden=!tags.length;
+    for(const tag of tags.length?['all',...tags]:[]){
       const button=node('button','tag-filter',tag==='all'?'すべて':tag);button.type='button';button.setAttribute('aria-pressed',String(state.tag===tag));
       button.addEventListener('click',()=>{state.tag=tag;state.visible=6;renderTags();render();});target.append(button);
     }
@@ -83,11 +91,10 @@
       filtered=rows.sort((a,b)=>b.date.localeCompare(a.date));
     }
     if(id!==state.renderId)return;
-    $('#results-count').textContent=filtered.length+' 件の記録';
+    $('#results-count').textContent=filtered.length?'全'+filtered.length+'件':'';
     target.replaceChildren();
     if(!filtered.length){
-      const empty=node('div','empty');empty.append(node('strong','',mode==='preview'?'プレビューする記事がありません':'該当する日記はありません'));
-      empty.append(node('p','',mode==='preview'?'編集ページで下書きを保存してください．':'日記が公開されると，ここに表示されます．'));
+      const empty=node('div','empty');empty.append(node('strong','',mode==='preview'?'下書きはありません':'記事はありません'));
       if(mode==='preview'){const a=node('a','aside-link','編集画面を開く →');a.href='editor.html';empty.append(a);}
       target.append(empty);
     }else{
@@ -97,7 +104,7 @@
       for(const full of loaded){
         if(full.error){unread++;const error=node('div','error-note',full.date+' の記事を読み込めません：'+full.error.message);target.append(error);continue;}
         const key=full.date.slice(0,7);
-        if(key!==month){month=key;group=node('section','month-group');group.append(node('h3','month-heading',key.slice(0,4)+' / '+key.slice(5)+' MONTH'));target.append(group);}
+        if(key!==month){month=key;group=node('section','month-group');group.append(node('h3','month-heading',key.slice(0,4)+'年'+Number(key.slice(5))+'月'));target.append(group);}
         group.append(renderEntry(full));
       }
     }
@@ -136,7 +143,7 @@
       }catch(e){$('#entries').before(node('div','error-note','下書きを読み込めません：'+e.message));}
     }
     entries=combined.filter(item=>item&&Store.validDate(item.date)).sort((a,b)=>b.date.localeCompare(a.date));
-    $('#total-count').textContent=entries.length+' ENTRIES';
+    $('#total-count').textContent=entries.length?entries.length+'件':'';
     for(const year of [...new Set(entries.map(item=>item.date.slice(0,4)))]){const opt=node('option','',year+'年');opt.value=year;$('#year-select').append(opt);}
     renderTags();render();
   }

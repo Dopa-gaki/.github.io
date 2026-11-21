@@ -75,7 +75,7 @@
     ctx.drawImage(bitmap,0,0,canvas.width,canvas.height);if(bitmap.close)bitmap.close();
     const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/webp',0.84));
     if(!blob)throw new Error('画像を書き出せません．');
-    return {id:newId(),blob,alt:'',caption:'',originalName:file.name,filenameExt:blob.type==='image/webp'?'webp':'png'};
+    return {id:newId(),blob,title:'',alt:'',caption:'',originalName:file.name,filenameExt:blob.type==='image/webp'?'webp':'png'};
   }
   function publishable(entry){
     return {
@@ -83,7 +83,7 @@
       tags:Array.isArray(entry.tags)?entry.tags:[],body:Array.isArray(entry.body)?entry.body:[],
       photos:(entry.photos||[]).map(photo=>({
         src:safeImageSrc(photo.src)||`images/${entry.id.replace(/[^a-zA-Z0-9_-]/g,'')}/${(photo.id||newId()).replace(/[^a-zA-Z0-9_-]/g,'')}.${photo.filenameExt||'webp'}`,
-        alt:photo.alt||'',caption:photo.caption||''
+        title:(photo.title||'').trim(),alt:(photo.alt||photo.title||photo.caption||'日記の写真').trim(),caption:(photo.caption||'').trim()
       }))
     };
   }

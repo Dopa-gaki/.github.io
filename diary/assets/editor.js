@@ -29,15 +29,15 @@
     $('#entry-mood').value=entry.mood||'';
     $('#entry-tags').value=(entry.tags||[]).join('，');
     $('#entry-body').value=(entry.body||[]).join('\n\n');
-    $('#draft-indicator').textContent='編集中の下書き';
+    $('#draft-indicator').textContent='';
     showStatus(dom.status,'');
     renderPhotos();
     renderLists();
   }
   function changePending(){
     dirty=true;
-    $('#draft-indicator').textContent='未保存の変更があります';
-    showStatus(dom.status,'自動保存しています…');
+    $('#draft-indicator').textContent='未保存';
+    showStatus(dom.status,'');
     clearTimeout(saveTimer);
     saveTimer=setTimeout(()=>saveNow(false),850);
   }
@@ -52,9 +52,9 @@
     try{
       await writing;
       drafts=await Store.getDrafts();
-      $('#draft-indicator').textContent='下書きを保存しました';
-      if(report)showStatus(dom.status,'下書きをこのブラウザに保存しました．','success');
-      else showStatus(dom.status,'自動保存しました．','success');
+      $('#draft-indicator').textContent='保存済み';
+      if(report)showStatus(dom.status,'保存しました','success');
+      else showStatus(dom.status,'');
       renderLists();
     }catch(error){
       dirty=true;
@@ -72,14 +72,14 @@
   function shortDate(date){return date || '日付なし';}
   function renderLists(){
     dom.list.replaceChildren();
-    if(!drafts.length)dom.list.append(node('p','muted-small','まだ下書きはありません．'));
+    if(!drafts.length)dom.list.append(node('p','muted-small','記事はありません'));
     for(const draft of drafts){
       const btn=node('button','draft-item'+(draft.id===current.id?' active':''));btn.type='button';
       btn.append(node('strong','',draft.title||'無題の下書き'),node('span','',shortDate(draft.date)+' · 下書き'));
       btn.addEventListener('click',async()=>{try{await switchTo(draft);}catch{}});dom.list.append(btn);
     }
     dom.published.replaceChildren();
-    if(!published.length)dom.published.append(node('p','muted-small','まだ公開記事はありません．'));
+    if(!published.length)dom.published.append(node('p','muted-small','記事はありません'));
     for(const item of [...published].sort((a,b)=>b.date.localeCompare(a.date))){
       const btn=node('button','draft-item');btn.type='button';
       btn.append(node('strong','',item.title||'無題'),node('span','',shortDate(item.date)+' · 公開済み'));
@@ -98,17 +98,25 @@
     const input=node('input','editor-input');input.type='text';input.value=value||'';input.placeholder=placeholder;
     input.addEventListener('input',()=>{change(input.value);changePending();});return input;
   }
+  function photoField(labelText,value,change,placeholder,multiline=false){
+    const field=node('label','photo-input-field');field.append(node('span','',labelText));
+    const input=node(multiline?'textarea':'input','editor-input');
+    if(!multiline)input.type='text';else input.rows=2;
+    input.value=value||'';input.placeholder=placeholder||'';
+    input.addEventListener('input',()=>{change(input.value);changePending();});
+    field.append(input);return field;
+  }
   function renderPhotos(){
     for(const url of photoUrls)URL.revokeObjectURL(url);
     photoUrls.clear();dom.photos.replaceChildren();
-    if(!(current.photos||[]).length){dom.photos.append(node('p','muted-small','まだ写真はありません．必要なければ空欄のままで大丈夫です．'));return;}
+    if(!(current.photos||[]).length)return;
     current.photos.forEach((photo,index)=>{
       const row=node('div','photo-row');
       const img=node('img');img.alt=photo.alt||'追加した写真';
       if(photo.blob instanceof Blob){img.src=URL.createObjectURL(photo.blob);photoUrls.add(img.src);}else img.src=Store.safeImageSrc(photo.src);
       const fields=node('div','photo-fields');
-      fields.append(photoInput('写真の説明（代替テキスト）',photo.alt,value=>photo.alt=value));
-      fields.append(photoInput('写真のキャプション',photo.caption,value=>photo.caption=value));
+      fields.append(photoField('写真のタイトル',photo.title||'',value=>photo.title=value,'例：雪の中島公園'));
+      fields.append(photoField('キャプション',photo.caption||'',value=>photo.caption=value,'撮影場所，写真にまつわる出来事など',true));
       const tools=node('div','photo-tools');
       const del=node('button','small-button','削除');del.type='button';
       del.addEventListener('click',()=>{current.photos.splice(index,1);renderPhotos();changePending();});
@@ -193,8 +201,8 @@
   async function githubPublish(){
     try{
       validateEntry();await saveNow();
-      const cfg=persistedConfig();const token=$('#github-token').value.trim();
-      if(!token)throw new Error('GitHubのトークンを入力してください．トークンはブラウザに保存されません．');
+      const cfg=persistedConfig();const token=(window.JournalAuth?.token?.()||$('#github-token').value.trim());
+      if(!token)throw new Error('GitHubでログインしてください．ログイン設定前は接続設定から認証キーを使えます．');
       if(!window.confirm(`「${current.title}」を ${cfg.owner}/${cfg.repo} の ${cfg.branch} ブランチに公開しますか？\n設置先：${cfg.dir||'(リポジトリ直下)'}`))return;
       $('#publish-github').disabled=true;
       showStatus(dom.publishStatus,'GitHub上の現在の記事を確認しています…');

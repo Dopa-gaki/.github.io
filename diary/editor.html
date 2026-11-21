@@ -1,102 +1,46 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex,nofollow">
-  <meta name="theme-color" content="#f6f5f0">
-  <title>日記を書く｜日々の余白</title>
-  <link rel="stylesheet" href="assets/style.css">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+<title>書く｜日記</title>
+<link rel="stylesheet" href="assets/style.css"><link rel="stylesheet" href="assets/minimal.css">
 </head>
-<body>
-  <header class="topbar">
-    <div class="wrap topbar-inner">
-      <a class="brand" href="editor.html"><span class="brand-symbol" aria-hidden="true">日</span><span>HIBI / JOURNAL</span></a>
-      <div class="topbar-right">
-        <nav class="nav-links" aria-label="ページの移動">
-          <a class="nav-link" href="editor.html" aria-current="page">書く</a>
-          <a class="nav-link" href="preview.html">公開テスト</a>
-          <a class="nav-link" href="index.html" target="_blank" rel="noopener">公開ページ</a>
-        </nav>
-      </div>
-    </div>
-  </header>
-  <section class="wrap editor-hero">
-    <p class="eyebrow">WRITE A NEW DAY</p>
-    <h1>今日を，書き留める．</h1>
-    <p>文章も写真もここから追加．保存した下書きを，公開前にそのまま確認できます．</p>
-    <div class="publish-steps" aria-label="使い方">
-      <div class="publish-step"><b>01</b><strong>編集</strong><span>文章を書き，写真をアップロード</span></div>
-      <div class="publish-step"><b>02</b><strong>公開テスト</strong><span>本番と同じ見た目を確認</span></div>
-      <div class="publish-step"><b>03</b><strong>公開</strong><span>GitHubへ送信，またはファイルを出力</span></div>
-    </div>
-  </section>
-  <div class="wrap editor-shell">
-    <aside class="editor-sidebar">
-      <div class="sidebar-panel">
-        <div class="panel-heading"><h2>下書き</h2><button id="new-entry" type="button" class="small-button primary">＋ 新しく書く</button></div>
-        <div class="draft-list" id="draft-list"><p class="muted-small">読み込み中…</p></div>
-        <hr class="small-divider">
-        <div class="panel-heading"><h2>公開済みの記事</h2></div>
-        <div class="draft-list" id="published-list"><p class="muted-small">読み込み中…</p></div>
-        <p class="muted-small">公開済みの記事を選ぶと，修正用の下書きを作成できます．</p>
-      </div>
-    </aside>
-    <main class="editor-form" id="editor-main">
-      <section class="editor-card" aria-labelledby="compose-title">
-        <div class="card-head"><h2 id="compose-title">日記を編集</h2><p id="draft-indicator" role="status" aria-live="polite">新しい下書き</p></div>
-        <form id="entry-form" autocomplete="off">
-          <div class="editor-grid">
-            <div class="field"><label for="entry-date">日付 *</label><input id="entry-date" class="editor-input" type="date" required></div>
-            <div class="field"><label for="entry-weather">天気</label><input id="entry-weather" class="editor-input" placeholder="晴れ，くもり，雪…"></div>
-            <div class="field editor-full"><label for="entry-title">タイトル *</label><input id="entry-title" class="editor-input" type="text" maxlength="140" placeholder="今日のタイトルを入力" required></div>
-            <div class="field"><label for="entry-mood">ひとこと</label><input id="entry-mood" class="editor-input" placeholder="充実した日，のんびり…"></div>
-            <div class="field"><label for="entry-tags">タグ</label><input id="entry-tags" class="editor-input" placeholder="日常，写真，散歩"><small>カンマ「，」で区切ります</small></div>
-            <div class="field editor-full"><label for="entry-body">本文 *</label><textarea id="entry-body" class="editor-textarea" placeholder="今日はどんな一日だった？&#10;&#10;空行を入れると，段落が分かれます．" required></textarea><small>Enterで改行，空行で段落を分けられます．</small></div>
-          </div>
-          <div class="actions-bar">
-            <button class="action-button primary" type="submit" id="save-entry">下書きを保存</button>
-            <button class="action-button" type="button" id="open-preview">公開時の見え方を確認</button>
-            <button class="action-button" type="button" id="delete-entry">この下書きを削除</button>
-          </div>
-          <p class="status-message" id="save-status" role="status" aria-live="polite"></p>
-        </form>
-      </section>
-      <section class="editor-card" aria-labelledby="photo-title">
-        <div class="card-head"><h2 id="photo-title">写真を追加</h2><p>複数枚の写真を追加できます</p></div>
-        <div id="photo-drop" class="dropzone">
-          <strong>写真をここにドラッグ＆ドロップ</strong>
-          <p>JPEG / PNG / WebPなど．公開用に長辺1800pxまで自動調整します．</p>
-          <button class="small-button" type="button" id="select-photos">＋ 写真を選ぶ</button>
-          <input id="photo-picker" type="file" accept="image/*" multiple hidden>
-        </div>
-        <div class="photo-list" id="photo-list"></div>
-        <p class="status-message" id="photo-status" role="status"></p>
-      </section>
-      <section class="editor-card" id="publish-section" aria-labelledby="publish-title">
-        <div class="card-head"><h2 id="publish-title">公開する</h2><p>日別JSONとして，公開ページへ</p></div>
-        <p class="warning"><strong>「保存」は公開ではありません．</strong>下書きはこのブラウザ内に保存され，同じサイトのプレビューページで確認できます．公開するまで他の人には表示されません．</p>
-        <div class="actions-bar">
-          <button type="button" class="action-button primary" id="publish-github">GitHubに公開する</button>
-          <button type="button" class="action-button" id="export-zip">公開用ZIPを書き出す</button>
-        </div>
-        <p class="status-message" id="publish-status" role="status" aria-live="polite"></p>
-        <div class="settings-area">
-          <div class="panel-heading"><h2>GitHub接続設定</h2></div>
-          <div class="editor-grid">
-            <div class="field"><label for="github-owner">アカウント名</label><input id="github-owner" class="editor-input" value="Dopa-gaki" placeholder="GitHubユーザー名" spellcheck="false" autocomplete="off"></div>
-            <div class="field"><label for="github-repo">リポジトリ名</label><input id="github-repo" class="editor-input" value=".github.io" placeholder="ユーザー名.github.io" spellcheck="false" autocomplete="off"></div>
-            <div class="field"><label for="github-branch">公開ブランチ</label><input id="github-branch" class="editor-input" value="main" spellcheck="false" autocomplete="off"></div>
-            <div class="field"><label for="github-dir">日記の設置フォルダ</label><input id="github-dir" class="editor-input" value="diary" spellcheck="false" autocomplete="off"><small>例：diary．リポジトリ直下なら空欄</small></div>
-            <div class="field editor-full"><label for="github-token">Fine-grained Personal Access Token（公開時だけ入力）</label><input id="github-token" class="editor-input" type="password" placeholder="github_pat_…" autocomplete="off" spellcheck="false"><small>対象リポジトリ限定・Contents: Read and write 権限．トークンは保存されません．</small></div>
-          </div>
-          <p class="help">GitHubへの公開は，選択中の日記1日分を posts/YYYY-MM-DD.json として追加・更新し，記事一覧 data/index.json を更新します．同じ日に公開できる日記は1件です．他の下書きは公開しません．初回はこのフォルダ一式をGitHubに配置してください．GitHubのURLでは編集ページも公開アクセス可能ですが，下書きは端末内のみに保存され，トークンなしで本番更新はできません．</p>
-        </div>
-      </section>
-    </main>
-  </div>
-  <footer class="footer"><div class="wrap footer-inner"><span>日々の余白 / 編集</span><span>PRIVATE DRAFTS · LOCAL BROWSER STORAGE</span></div></footer>
-  <script src="assets/storage.js" defer></script>
-  <script src="assets/editor.js" defer></script>
-</body>
-</html>
+<body class="simple-page editor-page">
+<header class="simple-top"><div class="simple-width simple-top-inner">
+<a href="index.html" class="simple-logo">日記</a>
+<nav class="simple-nav"><a href="editor.html" aria-current="page">書く</a><a href="preview.html">確認</a><a href="index.html" target="_blank" rel="noopener">公開</a></nav>
+</div></header>
+<div class="simple-width simple-editor">
+<aside class="simple-aside"><div class="simple-aside-head"><h2>記事</h2><button type="button" id="new-entry" class="small-button">＋ 新規</button></div>
+<div id="draft-list" class="draft-list"></div><details class="simple-published"><summary>公開済み</summary><div id="published-list" class="draft-list"></div></details></aside>
+<main class="simple-edit-main">
+<form id="entry-form" class="simple-paper" autocomplete="off">
+<div class="simple-date-row"><label class="visually-hidden" for="entry-date">日付</label><input type="date" id="entry-date" required><span id="draft-indicator" class="simple-status"></span></div>
+<label class="visually-hidden" for="entry-title">タイトル</label><input id="entry-title" class="simple-title-input" placeholder="タイトル" maxlength="140" required>
+<label class="visually-hidden" for="entry-body">本文</label><textarea id="entry-body" class="simple-body-input" placeholder="ここに書く…" required></textarea>
+<details class="simple-options"><summary>詳細</summary><div class="simple-extra">
+<div><label for="entry-weather">天気</label><input id="entry-weather" class="editor-input" placeholder="天気"></div>
+<div><label for="entry-mood">ひとこと</label><input id="entry-mood" class="editor-input" placeholder="ひとこと"></div>
+<div class="simple-extra-wide"><label for="entry-tags">タグ</label><input id="entry-tags" class="editor-input" placeholder="写真，散歩"></div>
+</div></details>
+<div class="simple-actions"><button id="save-entry" type="submit" class="action-button primary">保存</button><button id="open-preview" type="button" class="action-button">確認</button><button id="delete-entry" type="button" class="action-button quiet">削除</button></div>
+<p id="save-status" class="status-message" role="status" aria-live="polite"></p>
+</form>
+<section class="simple-paper simple-photo-section"><div class="simple-section-title"><h2>写真</h2><button id="select-photos" type="button" class="small-button">＋ 追加</button></div>
+<div id="photo-drop" class="simple-photo-drop"><span>ここに写真をドロップ</span><input id="photo-picker" type="file" accept="image/*" multiple hidden></div>
+<div id="photo-list" class="photo-list"></div><p id="photo-status" class="status-message" role="status"></p></section>
+<section class="simple-paper simple-publish-section" id="publish-section"><div class="simple-section-title"><h2>公開</h2><span id="login-status" class="simple-status">未接続</span></div>
+<div class="simple-actions simple-publish-actions"><button id="github-login" type="button" class="action-button">GitHubでログイン</button><button id="github-logout" type="button" class="action-button quiet" hidden>ログアウト</button><button id="publish-github" type="button" class="action-button primary">公開する</button><button id="export-zip" type="button" class="action-button">ZIP出力</button></div>
+<p id="login-help" class="simple-status" aria-live="polite"></p><p id="publish-status" class="status-message" role="status" aria-live="polite"></p>
+<details class="simple-options simple-config"><summary>接続設定</summary><div class="simple-extra">
+<div><label for="github-owner">アカウント</label><input id="github-owner" class="editor-input" value="Dopa-gaki"></div>
+<div><label for="github-repo">リポジトリ</label><input id="github-repo" class="editor-input" value=".github.io"></div>
+<div><label for="github-branch">ブランチ</label><input id="github-branch" class="editor-input" value="main"></div>
+<div><label for="github-dir">フォルダ</label><input id="github-dir" class="editor-input" value="diary"></div>
+<div class="simple-extra-wide"><label for="github-token">予備の認証キー（PAT）</label><input id="github-token" class="editor-input" type="password" autocomplete="off" placeholder="必要な場合のみ入力"></div>
+</div></details>
+</section>
+</main></div>
+<script src="assets/storage.js" defer></script><script src="assets/auth-config.js" defer></script><script src="assets/auth.js" defer></script><script src="assets/editor.js" defer></script>
+</body></html>
