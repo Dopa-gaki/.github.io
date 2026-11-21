@@ -231,7 +231,6 @@
   }
   // The public site heading is separate from individual post titles.
   function displaySiteName(title){
-    document.querySelector('.simple-logo').textContent=title;
     document.title='書く｜'+title;
   }
   async function loadSiteName(){
