@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f5f0">
+  <meta name="description" content="日々の小さな出来事を書き留める，静かな日記。">
+  <meta name="robots" content="noindex,nofollow">
+  <title>プレビュー｜日々の余白｜日記</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-mode="preview">
+  
+  <div class="preview-bar"><div class="preview-bar-inner"><span><strong>PREVIEW / 公開前の確認</strong>　下書きを本番と同じデザインで表示しています．このページの内容は公開されません．</span><a href="editor.html">編集に戻る</a></div></div>
+  <a class="skip-link" href="#archive">日記へ移動</a>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="./" aria-label="日記のトップへ">
+        <span class="brand-symbol" aria-hidden="true">日</span><span id="brand-name">HIBI / JOURNAL</span>
+      </a>
+      <div class="topbar-right"><nav class="nav-links" aria-label="編集ナビゲーション"><a class="nav-link" href="editor.html">編集</a><a class="nav-link" href="preview.html" aria-current="page">プレビュー</a><a class="nav-link" href="index.html">公開ページ</a></nav><span class="nav-sep"></span>
+        <span class="top-date" id="header-date">A SMALL RECORD OF DAYS</span>
+        <button class="theme-button" id="theme-button" type="button" aria-label="ダークモードに切り替える" title="表示色を切り替える">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 15.1A9 9 0 0 1 8.9 3.4 9 9 0 1 0 20.6 15.1Z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap layout">
+    <aside class="aside" aria-label="この日記について">
+      <p class="eyebrow" id="site-label">PERSONAL JOURNAL</p>
+      <h1 class="side-title" id="site-title"><span>日々の，</span><span>余白。</span></h1>
+      <p class="side-description" id="site-intro">何気ない一日にも，残しておきたいことがある。\n思いついたときに，少しずつ書いていく場所。</p>
+      <div class="round-stamp" aria-hidden="true"><span>notes.</span></div>
+      <div class="aside-footer">
+        <a class="aside-link" href="#archive">日記を読む <span class="arrow" aria-hidden="true">↗</span></a>
+        <span class="aside-count" id="total-count">— ENTRIES</span>
+      </div>
+    </aside>
+
+    <main class="main" id="archive">
+      <div class="section-heading">
+        <p class="eyebrow">THE ARCHIVE</p>
+        <h2 class="section-title">書き留めた日々</h2>
+        <p class="section-description">新しい日付から，ゆっくりと。</p>
+      </div>
+      <div class="filter-panel" role="search" aria-label="日記の検索と絞り込み">
+        <div class="search-wrap">
+          <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg>
+          <input class="search-input" id="search" type="search" placeholder="ことばを探す…" aria-label="キーワード検索" autocomplete="off">
+        </div>
+        <select class="year-select" id="year-select" aria-label="年で絞り込む"><option value="all">すべての年</option></select>
+      </div>
+      <div class="tags" id="tag-filters" role="group" aria-label="タグで絞り込む"></div>
+      <div class="results"><span id="results-count" role="status" aria-live="polite"></span><span>NEWEST FIRST</span></div>
+      <div id="entries"></div>
+      <button type="button" class="more" id="more-button" hidden>もっと読む ＋</button>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span id="footer-title">日々の余白</span>
+      <span>MADE FOR SLOW DAYS. © <span id="copyright-year"></span></span>
+    </div>
+  </footer>
+
+  <script src="assets/storage.js" defer></script>
+  <script src="assets/site.js" defer></script>
+</body>
+</html>
