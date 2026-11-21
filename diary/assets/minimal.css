@@ -52,7 +52,8 @@ html[data-theme="dark"] .simple-page {--page:#171b18;--paper:#222923;--ink:#e8eb
 .simple-config{margin-top:18px}
 .simple-reader{max-width:730px;padding-top:52px;padding-bottom:100px}
 .simple-reader-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
-.simple-reader-head h1{margin:0;font-size:28px;font-weight:550;font-family:inherit}
+.simple-reader-head h1{margin:0;font-size:28px;font-weight:550;font-family:inherit;white-space:pre-line;overflow-wrap:anywhere;min-width:0;line-height:1.35}
+#site-name-input{display:block;width:100%;min-height:88px;resize:vertical;line-height:1.65;font-family:inherit}
 .simple-filter{display:flex;gap:12px;border-bottom:1px solid var(--line);padding:0 0 14px}
 .simple-filter input{flex:1;min-width:0;background:transparent;border:0;padding:7px 0;outline:none;color:var(--ink)}
 .simple-filter select{width:114px;background:transparent;border:0;color:var(--muted);font-size:12px}
