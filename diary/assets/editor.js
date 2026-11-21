@@ -231,7 +231,7 @@
   }
   // The public site heading is separate from individual post titles.
   function displaySiteName(title){
-    document.title='書く｜'+title.replace(/\n/g,' ');
+    document.title='書く｜'+title;
   }
   async function loadSiteName(){
     try{
@@ -247,10 +247,9 @@
     }
   }
   async function saveSiteName(){
-    const title=$('#site-name-input').value.replace(/\r\n?/g,'\n').trim().normalize('NFC');
-    const lines=title.split('\n');
-    if(!title||title.length>80||lines.length>4||lines.some(line=>!line.trim())||/[\u0000-\u0009\u000b-\u001f\u007f]/.test(title)){
-      showStatus($('#site-name-status'),'サイト名は最大4行・合計80文字で入力してください．空行は使用できません．','error');return;
+    const title=$('#site-name-input').value.trim().normalize('NFC');
+    if(!title||title.length>80||/[\u0000-\u001f\u007f]/.test(title)){
+      showStatus($('#site-name-status'),'1〜80文字の名前を入力してください．改行は使用できません．','error');return;
     }
     if(!window.JournalAuth?.isLoggedIn?.()){
       showStatus($('#site-name-status'),'先にGitHubでログインしてください．','error');return;
