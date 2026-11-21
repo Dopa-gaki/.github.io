@@ -1,5 +1,7 @@
 (() => {
 'use strict';
+const ISOLATED_ORIGIN='https://diary-auth.ueda-photo-11.workers.dev';
+if(location.origin!==ISOLATED_ORIGIN){location.replace(ISOLATED_ORIGIN+'/import.html');return;}
 const $=s=>document.querySelector(s),Store=window.JournalStore;
 const status=s=>{$('#status').textContent=s;};
 function fromBase64(encoded,mime){
