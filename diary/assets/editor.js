@@ -229,6 +229,43 @@
     }catch(e){showStatus(dom.publishStatus,'削除できません：'+e.message,'error');}
     finally{$('#delete-published').disabled=false;updateDeleteButton();}
   }
+  // The public site heading is separate from individual post titles.
+  function displaySiteName(title){
+    document.querySelector('.simple-logo').textContent=title;
+    document.title='書く｜'+title;
+  }
+  async function loadSiteName(){
+    try{
+      const response=await fetch('data/site.json?v='+Date.now(),{cache:'no-store'});
+      if(!response.ok)throw new Error('HTTP '+response.status);
+      const data=await response.json();
+      if(typeof data.title!=='string'||!data.title.trim())throw new Error('サイト名の形式が不正です');
+      $('#site-name-input').value=data.title;
+      displaySiteName(data.title);
+    }catch(error){
+      $('#site-name-input').value='日記';
+      showStatus($('#site-name-status'),'現在のサイト名を取得できません．再読み込みしてください：'+error.message,'error');
+    }
+  }
+  async function saveSiteName(){
+    const title=$('#site-name-input').value.trim().normalize('NFC');
+    if(!title||title.length>80||/[\u0000-\u001f\u007f]/.test(title)){
+      showStatus($('#site-name-status'),'1〜80文字の名前を入力してください．改行は使用できません．','error');return;
+    }
+    if(!window.JournalAuth?.isLoggedIn?.()){
+      showStatus($('#site-name-status'),'先にGitHubでログインしてください．','error');return;
+    }
+    const button=$('#save-site-name');button.disabled=true;
+    try{
+      showStatus($('#site-name-status'),'サイト名を公開しています…');
+      const data=await window.JournalAuth.request('/api/site',{title});
+      if(data.title!==title)throw new Error('サイト名を保存できませんでした');
+      displaySiteName(title);
+      showStatus($('#site-name-status'),'保存しました．公開ページへの反映には少し時間がかかる場合があります．','success');
+    }catch(error){
+      showStatus($('#site-name-status'),'保存できません：'+error.message,'error');
+    }finally{button.disabled=false;}
+  }
   // Simple, dependency-free ZIP writer (uncompressed, UTF-8 file paths).
   const crcTable=(()=>{const result=[];for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=(c&1)?(0xedb88320^(c>>>1)):(c>>>1);result.push(c>>>0);}return result;})();
   function crc32(bytes){let c=0xffffffff;for(const b of bytes)c=crcTable[(c^b)&255]^(c>>>8);return(c^0xffffffff)>>>0;}
@@ -273,6 +310,8 @@
     try{published=await Store.loadPublished();}
     catch(error){showStatus(dom.publishStatus,'公開済み記事の取得に失敗しました：'+error.message,'error');}
     current=createBlank();setForm(current);
+    await loadSiteName();
+    $('#save-site-name').addEventListener('click',saveSiteName);
     dom.form.addEventListener('submit',async event=>{event.preventDefault();try{dirty=true;await saveNow();}catch{}});
     for(const id of ['#entry-date','#entry-title','#entry-weather','#entry-mood','#entry-tags','#entry-body'])$(id).addEventListener('input',changePending);
     $('#new-entry').addEventListener('click',async()=>{try{await switchTo(null);}catch{}});
