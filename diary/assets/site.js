@@ -120,8 +120,8 @@
         if(typeof settings.title==='string'&&settings.title.trim()&&settings.title.length<=80)title=settings.title.trim();
       }
     }catch{}
-    SETTINGS.browserTitle=title;SETTINGS.brandName=title;SETTINGS.titleLines=[title];SETTINGS.footerName=title;
-    document.title=(mode==='preview'?'プレビュー｜':'')+title;
+    SETTINGS.browserTitle=title.replace(/\n/g,' ');SETTINGS.brandName='日記';SETTINGS.titleLines=title.split('\n');SETTINGS.footerName='日記';
+    document.title=(mode==='preview'?'プレビュー｜':'')+SETTINGS.browserTitle;
     const header=document.querySelector('.simple-reader-head h1');
     if(header)header.textContent=title;
   }
