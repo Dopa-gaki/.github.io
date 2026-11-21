@@ -215,13 +215,27 @@ async function deletePost(request,env){
   return {ok:true,commit:sha,index:next};
 }
 
+// A fixed file path and strict validation keep this setting out of other apps.
+async function publishSite(request,env){
+  const length=Number(request.headers.get('Content-Length')||0);
+  if(length>4096)throw new PublicError(413,'設定データが大きすぎます');
+  const body=await request.json();
+  if(!body||typeof body.title!=='string')throw new PublicError(400,'サイト名を入力してください');
+  const title=body.title.trim().normalize('NFC');
+  if(!title||title.length>80||/[\u0000-\u001f\u007f]/.test(title))throw new PublicError(400,'サイト名は改行なしの1〜80文字で入力してください');
+  const token=await installationToken(env);
+  const bytes=enc.encode(JSON.stringify({title},null,2)+'\n');
+  const sha=await commitChanges(token,[{path:DIR+'data/site.json',bytes}],[],'日記サイト名を変更: '+title);
+  return {ok:true,commit:sha,title};
+}
+
 /* Separate the diary editor browser origin from the public GitHub Pages site.
    No arbitrary URL proxy; only known public diary files are served here. */
 const DIARY_PUBLIC='https://dopa-gaki.github.io/.github.io/diary/';
 const EDITOR_ASSETS=new Set(['style.css','minimal.css','storage.js','site.js','auth-config.js','auth.js','editor.js','import-drafts.js','editor-redirect.js']);
 function editorResource(pathname){
   if(pathname==='/editor.html'||pathname==='/preview.html'||pathname==='/import.html')return pathname.slice(1);
-  if(pathname==='/data/index.json')return pathname.slice(1);
+  if(pathname==='/data/index.json'||pathname==='/data/site.json')return pathname.slice(1);
   if(/^\/posts\/\d{4}-\d{2}-\d{2}\.json$/.test(pathname))return pathname.slice(1);
   const asset=/^\/assets\/([A-Za-z0-9_-]+\.(?:js|css))$/.exec(pathname);
   if(asset&&EDITOR_ASSETS.has(asset[1]))return pathname.slice(1);
@@ -266,12 +280,12 @@ export default {
     if(request.method==='OPTIONS')return new Response(null,{status:204,headers:{'Access-Control-Allow-Origin':PAGE_ORIGIN,'Access-Control-Allow-Headers':'Authorization, Content-Type','Access-Control-Allow-Methods':'POST, OPTIONS','Vary':'Origin'}});
     if(request.method!=='POST')return error(405,'利用できない操作です',origin);
     if(!secretReady(env))return error(503,'Cloudflareの認証設定が未完了です',origin);
-    if(!['/api/session','/api/logout','/api/publish','/api/delete'].includes(url.pathname))return error(404,'存在しない操作です',origin);
+    if(!['/api/session','/api/logout','/api/publish','/api/delete','/api/site'].includes(url.pathname))return error(404,'存在しない操作です',origin);
     try{
       const session=await validateSession(request,env);
       if(url.pathname==='/api/session')return json({ok:true,login:session.login},200,origin);
       if(url.pathname==='/api/logout'){await env.DIARY_SESSIONS.delete(session.key);return json({ok:true},200,origin);}
-      const result=url.pathname==='/api/publish'?await publish(request,env):await deletePost(request,env);
+      const result=url.pathname==='/api/publish'?await publish(request,env):url.pathname==='/api/site'?await publishSite(request,env):await deletePost(request,env);
       return json(result,200,origin);
     }catch(e){return error(e instanceof PublicError?e.status:500,cleanError(e),origin);}
   }
