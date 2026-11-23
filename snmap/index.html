@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="ja"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="dark" name="color-scheme"/><meta name="description" content="SNmap｜超新星と未分類突発天体の天球・銀河系・一覧マップ．PNmapに準拠した観測支援ツール．"><link rel="canonical" href="https://dopa-gaki.github.io/.github.io/snmap/"><title>SNmap v21.0｜超新星マップ</title>
+<meta content="dark" name="color-scheme"/><meta name="description" content="SNmap｜超新星と未分類突発天体の天球・銀河系・一覧マップ．PNmapに準拠した観測支援ツール．"><link rel="canonical" href="https://dopa-gaki.github.io/.github.io/snmap/"><title>SNmap v21.1｜超新星マップ</title>
 <style>
 :root{--bg:#070e1c;--panel:#102036;--panel2:#152940;--line:#304c67;--text:#e9f4ff;--sub:#a8c0d7;--cyan:#68c7ff;--gold:#ffcd83;--orange:#f2a25e;--green:#9fe0b5;--red:#f3a7b4}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{font:14px/1.5 system-ui,-apple-system,"Noto Sans JP",sans-serif;color:var(--text);background:radial-gradient(circle at 10% -20%,#172c50 0,#070e1c 42%);margin:0}button,select,input{font:inherit}button{cursor:pointer;color:var(--text);background:#244260;border:1px solid #4d7398;padding:8px 11px;border-radius:8px}button:hover{background:#315a7c}button.active{background:#136da4;border-color:#91d4fc}button:disabled{opacity:.5;cursor:not-allowed}a{color:#91d9ff}h1,h2,h3,p{margin-top:0}header{max-width:1700px;margin:auto;padding:21px 20px 14px}.eyebrow{font-size:11px;font-weight:800;letter-spacing:.2em;color:var(--cyan)}h1{font-size:clamp(24px,2.4vw,32px);margin:2px 0}header p{color:var(--sub);margin:0 0 11px;max-width:900px;font-size:13px}.headerline{display:flex;align-items:center;justify-content:space-between;gap:16px}.headeractions{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.muted{color:var(--sub)}.small{font-size:11px}.status{display:flex;align-items:center;gap:9px;color:#c6d9e9;font-size:12px;flex-wrap:wrap}.status-dot{width:8px;height:8px;border-radius:50%;background:#dda16c;box-shadow:0 0 0 3px #e7a66817}.status-dot.live{background:#7ee0ac;box-shadow:0 0 0 3px #7ee0ac2b}.status-dot.error{background:#f39c8e}main{max-width:1700px;margin:auto;padding:0 14px 22px;display:grid;grid-template-columns:minmax(540px,1fr) minmax(350px,435px);gap:13px}.card{border:1px solid var(--line);border-radius:13px;background:var(--panel);overflow:hidden}.mapcard{position:relative;min-height:560px;background:#07101f;align-self:start}.maptoolbar{position:absolute;left:12px;top:12px;z-index:3;display:flex;gap:5px;padding:5px;background:#102a46e8;border:1px solid #456985;border-radius:10px;max-width:calc(100% - 24px);flex-wrap:wrap}.maptoolbar button{font-size:12px;padding:6px 9px;background:transparent;border:0}.maptoolbar button.active{background:#1b75aa}#sky{width:100%;height:660px;display:block;cursor:crosshair;touch-action:none}.mapfoot{position:absolute;bottom:11px;left:12px;right:12px;pointer-events:none;display:flex;justify-content:space-between;gap:14px;color:#c0d7e7;font-size:11px;text-shadow:0 1px 4px #000}.maptip{position:absolute;z-index:4;display:none;border:1px solid #72a9d1;background:#112a42ee;border-radius:7px;padding:6px 8px;font-size:12px;pointer-events:none;max-width:230px}.side{padding:14px}.side h2{font-size:15px;margin:0 0 12px}.summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-bottom:11px}.metric{background:#172d46;border:1px solid #385876;border-radius:9px;padding:8px 9px}.metric strong{font-size:23px;display:block;line-height:1.1;font-variant-numeric:tabular-nums}.metric span{font-size:10px;color:var(--sub)}.section{border-top:1px solid #2f4a64;margin-top:15px;padding-top:13px}.secthead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}.secthead h3{font-size:13px;margin:0}.field{display:block;min-width:0}.field>span{font-size:11px;color:#afc6dc;display:block;margin:0 0 3px}input,select{background:#091a2b;border:1px solid #3c607c;border-radius:7px;color:var(--text);padding:8px;width:100%;min-width:0}input:focus,select:focus{outline:1px solid #7acbf8}.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.fields.triple{grid-template-columns:repeat(3,minmax(0,1fr))}.checkbox{display:flex;align-items:center;gap:6px;color:#d0e3f4;font-size:12px}.checkbox input{width:auto;accent-color:#58bdf3}.filters{display:flex;gap:5px;flex-wrap:wrap;margin:8px 0}.filters button{font-size:11px;padding:5px 9px}.selected{margin-top:13px;padding:13px;border:1px solid #456481;background:#10273f;border-radius:9px}.selectedtitle{display:flex;justify-content:space-between;align-items:center;gap:10px}.selectedtitle h3{margin:0 0 5px;font-size:17px}.chip{font-size:10px;padding:3px 7px;border:1px solid #527593;border-radius:20px;color:#aee0ff}.objectgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:10px 0}.kv{background:#0c1d31;padding:7px 8px;border:1px solid #2c4964;border-radius:7px;min-width:0}.kv dt{color:#a2bad0;font-size:10px}.kv dd{margin:2px 0 0;font-size:12px;overflow-wrap:anywhere}.links{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px}.links a{font-size:11px;border:1px solid #416d8c;padding:6px 8px;border-radius:7px;text-decoration:none}.links a:hover{background:#214361}.imagebox{margin-top:11px;background:#071626;border:1px solid #355575;border-radius:8px;min-height:172px;position:relative;overflow:hidden}.imagebox img{width:100%;height:210px;object-fit:contain;display:none}.imgmsg{position:absolute;top:44%;left:12px;right:12px;text-align:center;color:#9db5ca;font-size:12px}.tiny{font-size:10px;color:#9db5ca}.equipline{display:grid;grid-template-columns:minmax(0,1.4fr) .8fr .8fr;gap:6px;padding:7px 0;border-bottom:1px solid #2d4560;font-size:11px;align-items:center}.equipline b{font-weight:620}.equipline span{color:#b1d5ee;text-align:right}.asidefoot{font-size:10px;color:#9db3c8}.bottom{max-width:1700px;margin:auto;padding:0 14px 28px}.tablecard{padding:13px 14px}.tablehead{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:10px}.tablehead h2{font-size:15px;margin:0}.tablewrap{max-height:440px;overflow:auto;border:1px solid #2e4a62;border-radius:8px}table{width:100%;border-collapse:collapse;font-size:12px;white-space:nowrap}th{position:sticky;top:0;background:#193049;color:#bee2f8;text-align:left;padding:8px;z-index:1;cursor:pointer}td{padding:7px 8px;border-top:1px solid #293e56}tr[data-id]:hover{background:#1a3854;cursor:pointer}tr.chosen{background:#204965}td.num{text-align:right;font-variant-numeric:tabular-nums}.type-dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}.note{max-width:1700px;margin:auto;padding:0 17px 33px;color:#a6bbce;font-size:11px;line-height:1.65}.note p{margin:5px 0}.badgebox{display:inline-block;border:1px solid #44637e;border-radius:6px;padding:3px 7px;color:#abd9f4;font-size:10px}.pillrow{display:flex;gap:6px;flex-wrap:wrap;align-items:center}.two{display:grid;grid-template-columns:1fr 1fr;gap:7px}.warning{color:#ffc69b}.green{color:#a5dfb5}.loading{opacity:.65}#toast{position:fixed;right:15px;bottom:15px;background:#203c57;border:1px solid #5b87a3;padding:10px 14px;border-radius:10px;z-index:10;display:none;max-width:360px;font-size:12px;box-shadow:0 10px 32px #0008}details summary{cursor:pointer;color:#afd9f4;font-size:12px;font-weight:600;margin:9px 0}.help{font-size:11px;color:#abc1d5;line-height:1.7}
@@ -897,7 +897,7 @@ function translateOptions(){
  $('search').placeholder=lang==='ja'?'例：UGC 242 / 2026afqd / Ia':'e.g. UGC 242 / 2026afqd / Ia';if($('apiInfoLink'))$('apiInfoLink').textContent=lang==='ja'?'API仕様・データ利用':'API documentation & data';
 }
 
-function updateLanguage(){document.documentElement.lang=lang;document.querySelector('#appTitle span').textContent=T[lang].title;$('subtitle').textContent=T[lang].subtitle;snRefreshButtonLabels();$('refreshInterval').textContent=T[lang].interval;for(const k of Object.keys(T.ja)){if(['title','subtitle','refresh','interval'].includes(k))continue;if($(k))$(k).textContent=T[lang][k]}translateOptions();snUpdateFilterSliderLabels();cacheLine();$('exportOffline').textContent=lang==='ja'?'オフライン用JSONを保存':'Export offline JSON';$('language').textContent=lang==='ja'?'English':'日本語';for(const [id,ja,en] of [['skyStatusLabel','星座データ','Constellations'],['snAltToggle','高度曲線','Altitude curves'],['snFovToggle','画角を比較','Field of view'],['snSavedToggle','保存リスト','Saved list'],['snListHead','超新星・突発天体の一覧','Supernova and transient list'],['snAltTitle','保存天体の高度曲線','Altitude curves of saved objects'],['snAltDateLabel','観測日','Observing date'],['snAltClose','×','×'],['snFovClose','×','×'],['snHeadName','天体名','Name'],['snHeadMag','等級','Magnitude'],['snHeadLast','観測日','Observed'],['snHeadType','分類','Type'],['snHeadHost','母銀河','Host galaxy'],['snHeadAlt','高度','Altitude'],['snHeadFav','保存','Save'],['optLines','星座線','Constellation lines'],['optBounds','星座境界','IAU boundaries'],['optNames','星座名','Constellation names'],['skyRetry','再取得','Retry'],['sourceStatusTitle','外部データ照合（状態は個別に表示）','External source checks'],['refreshSources','↻ ネットから最新データを取得','↻ Fetch latest data online']])$(id).textContent=lang==='ja'?ja:en;$('labImageSource').textContent=lang==='ja'?'画像ソース':'Survey image';$('imgRetry').textContent=lang==='ja'?'再取得':'Retry';$('imgSource').options[0].textContent=lang==='ja'?'自動（失敗時に代替ソース）':'Auto (fallback sources)';$('snListSortLabel').textContent=lang==='ja'?'並び順':'Sort by';
+function updateLanguage(){document.documentElement.lang=lang;document.querySelector('#appTitle span').textContent=T[lang].title;$('subtitle').textContent=T[lang].subtitle;snRefreshButtonLabels();$('refreshInterval').textContent=T[lang].interval;for(const k of Object.keys(T.ja)){if(['title','subtitle','refresh','interval'].includes(k))continue;if($(k))$(k).textContent=T[lang][k]}translateOptions();snUpdateFilterSliderLabels();cacheLine();$('exportOffline').textContent=lang==='ja'?'オフライン用JSONを保存':'Export offline JSON';$('language').textContent=lang==='ja'?'English':'日本語';for(const [id,ja,en] of [['skyStatusLabel','星座データ','Constellations'],['snAltToggle','高度曲線','Altitude curves'],['snFovToggle','画角を比較','Field of view'],['snSavedToggle','保存リスト','Saved list'],['snListHead','超新星・突発天体の一覧','Supernova and transient list'],['snAltTitle','保存天体の高度曲線','Altitude curves of saved objects'],['snAltDateLabel','観測日','Observing date'],['snAltClose','×','×'],['snFovClose','×','×'],['snHeadName','天体名','Name'],['snHeadMag','等級','Magnitude'],['snHeadLast','観測日','Observed'],['snHeadType','分類','Type'],['snHeadHost','母銀河','Host galaxy'],['snHeadAlt','高度','Altitude'],['snHeadFav','保存','Save'],['optLines','星座線','Constellation lines'],['optBounds','星座境界','IAU boundaries'],['optNames','星座名','Constellation names'],['skyRetry','再取得','Retry'],['sourceStatusTitle','外部データ照合（状態は個別に表示）','External source checks'],['refreshSources','↻ ネットから最新データを取得','↻ Fetch latest data online']]){const el=$(id);if(el)el.textContent=lang==='ja'?ja:en;}$('labImageSource').textContent=lang==='ja'?'画像ソース':'Survey image';$('imgRetry').textContent=lang==='ja'?'再取得':'Retry';$('imgSource').options[0].textContent=lang==='ja'?'自動（失敗時に代替ソース）':'Auto (fallback sources)';$('snListSortLabel').textContent=lang==='ja'?'並び順':'Sort by';
  $('snListRecommend').textContent=lang==='ja'?'おすすめ':'Recommended';
  $('snListSort').setAttribute('aria-label',lang==='ja'?'超新星の並べ替え':'Sort supernovae');
  const sortSelects=[$('snListSort'),$('sort')];
@@ -1171,6 +1171,14 @@ function drawListMode(){
  $('snListSummary').textContent=lang==='ja'
   ?'表示 '+slice.length.toLocaleString()+' / '+v.length.toLocaleString()+' 件'
   :slice.length.toLocaleString()+' / '+v.length.toLocaleString()+' shown';
+ // Preserve thumbnails and in-flight requests when only the selection changes.
+ const renderKey=lang+'|'+slice.map(x=>[x.id,x.name,x.mag,x.last,x.type,x.host,favs.has(x.id),altitudeNow(x).toFixed(1)].join(':')).join('|');
+ if(area.dataset.renderKey===renderKey){
+  for(const row of area.querySelectorAll('[data-sn-id]'))row.classList.toggle('active',row.dataset.snId===current?.id);
+  $('snListMore').hidden=slice.length>=v.length;
+  return;
+ }
+ area.dataset.renderKey=renderKey;
  area.innerHTML=slice.map(x=>{
   const a=altitudeNow(x),fresh=snPhotometryFresh(x),warn=x.last&&!fresh?' ⚑':'';
   const magnitude=fresh?fmt(x.mag)+(lang==='ja'?' 等':' mag'):'—';
@@ -1437,19 +1445,51 @@ async function skyObtainModern(){
  const names=checkSkyGeoJSON(ns.data,'names').features;
  return {bounds,names,figurePaths:built.figures,stats:built.stats};
 }
+async function loadBundledSkyData(force=false){
+ const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),9000);
+ try{
+  const r=await fetch('./data/sky-constellations.json',{signal:controller.signal,cache:force?'no-store':'default'});
+  if(!r.ok)throw Error('GitHub constellation data HTTP '+r.status);
+  const size=Number(r.headers.get('content-length')||0);
+  if(size>350000)throw Error('Constellation bundle unexpectedly large');
+  const raw=await r.text();
+  if(raw.length>350000)throw Error('Constellation bundle size exceeded');
+  const data=JSON.parse(raw);
+  if(data?.format!=='SNmap-sky-v1')throw Error('Unexpected sky bundle version');
+  applySkyData(data,'GitHub');
+  saveSkyCache(data);
+  return true;
+ }finally{clearTimeout(timer)}
+}
 async function loadSkyData(force=false){
  if(skyLoadStarted&&!force)return;
  skyLoadStarted=true;
  $('skyDataStatus').hidden=false;
- $('skyDataStatus').textContent=lang==='ja'?'Stellarium公式データを照合中…':'Loading official Stellarium lines…';
- if(!force){const cached=readSkyCache();if(cached){try{applySkyData(cached,'cache');return}catch(e){try{localStorage.removeItem(SKY_CACHE_KEY)}catch(_){}}}}
- if(!navigator.onLine){$('skyDataStatus').textContent=lang==='ja'?'オフライン：星座データの保存分なし':'Offline: no saved constellation data';$('skyRetry').hidden=false;drawMap();return}
+ $('skyDataStatus').textContent=lang==='ja'?'星座データを読み込み中…':'Loading constellations…';
+ if(!force){
+  const cached=readSkyCache();
+  if(cached){
+   try{applySkyData(cached,'cache');return}
+   catch(e){try{localStorage.removeItem(SKY_CACHE_KEY)}catch(_){/* ignored */}}
+  }
+ }
+ // The validated IAU + Stellarium dataset is published alongside index.html.
+ // Do not rely on multiple third-party CDNs for the initial sky display.
+ let localFailure='';
+ try{await loadBundledSkyData(force);return}
+ catch(e){localFailure=String(e?.message||e)}
+ if(!navigator.onLine){
+  skyLoadFailure='GitHub: '+localFailure;
+  $('skyDataStatus').textContent=(lang==='ja'?'星座データを読み込めません（オフライン）：':'Constellations unavailable offline: ')+skyLoadFailure;
+  $('skyRetry').hidden=false;drawMap();return;
+ }
+ // Allow the previous cross-origin retrieval as a backup only.
  try{
   const data=await skyObtainModern();
   applySkyData(data,'Stellarium');saveSkyCache(data);
  }catch(e){
-  skyLoadFailure=String(e?.message||e);
-  $('skyDataStatus').textContent=(lang==='ja'?'星座データを取得できません．再取得してください：':'Could not load constellation data: ')+skyLoadFailure;
+  skyLoadFailure='GitHub: '+localFailure+' / '+String(e?.message||e);
+  $('skyDataStatus').textContent=(lang==='ja'?'星座データ取得失敗：':'Constellations could not load: ')+skyLoadFailure;
   $('skyRetry').hidden=false;
  }
  drawMap();
