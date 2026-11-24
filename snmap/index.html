@@ -1658,18 +1658,64 @@ function snImagingScore(o){
  return altitudePenalty*measurementConfidence*
   (.42*brightness+.20*transitPotential+.25*selectedAltitude+.13*freshness);
 }
-function drawMap(){if(mode==='list'){drawListMode();return}if(!CW||!CH)return;const grad=ctx.createLinearGradient(0,0,CW,CH);grad.addColorStop(0,'#0b1c31');grad.addColorStop(.5,'#06101e');grad.addColorStop(1,'#10213b');ctx.fillStyle=grad;ctx.fillRect(0,0,CW,CH);ctx.font='11px system-ui';axes();pts=[];visible=filtered();if(mode==='galactic')visible=visible.filter(x=>snDistanceMpc(x)!==null).sort((a,b)=>snDistanceMpc(b)-snDistanceMpc(a));for(const x of visible){let p=project(x);if(!p.shown)continue;const col=colors[cat(x)];const appearance=snPointAppearance(x),size=appearance.size;
- ctx.beginPath();ctx.arc(p.x,p.y,size,0,PI*2);ctx.fillStyle=col;
- ctx.globalAlpha=appearance.alpha;ctx.fill();ctx.globalAlpha=1;if(current?.id===x.id){ctx.strokeStyle='#fff';ctx.lineWidth=1.6;ctx.beginPath();ctx.arc(p.x,p.y,size+5,0,2*PI);ctx.stroke()}if(favs.has(x.id)){ctx.strokeStyle='#ffe3a0';ctx.lineWidth=1.4;ctx.beginPath();ctx.arc(p.x,p.y,size+2,0,2*PI);ctx.stroke()}pts.push({...p,obj:x,r:size})}if(pts.length<=140&&$('snShowLabels').checked){let filled=[],labelled=0;
- for(const p of [...pts].sort((a,b)=>snRankingMag(a.obj)-snRankingMag(b.obj))){
-  if(labelled>=Math.min(22,Math.max(9,Math.round(CW/55))))break;
-  const text=p.obj.name,w=ctx.measureText(text).width||text.length*6;
-  const box={x:p.x+7,y:p.y-18,w:w+3,h:14};
-  if(box.x+box.w>CW-4||box.y<15||box.x<5||box.y+box.h>CH-5)continue;
-  if(filled.some(q=>!(box.x>q.x+q.w+7||q.x>box.x+box.w+7||box.y>q.y+q.h+5||q.y>box.y+box.h+5)))continue;
-  ctx.fillStyle='#c2d9ec';ctx.font='10px system-ui';if(mode==='equatorial'&&Math.hypot(box.x+box.w/2-CW/2,box.y+7-CH/2)>snSkyRadius()-5)continue;ctx.fillText(text,box.x,box.y+11);filled.push(box);labelled++;
+function drawMap(){
+ if(mode==='list'){drawListMode();return}
+ if(!CW||!CH)return;
+ const grad=ctx.createLinearGradient(0,0,CW,CH);
+ grad.addColorStop(0,'#0b1c31');grad.addColorStop(.5,'#06101e');grad.addColorStop(1,'#10213b');
+ ctx.fillStyle=grad;ctx.fillRect(0,0,CW,CH);ctx.font='11px system-ui';axes();
+ pts=[];visible=filtered();
+ if(mode==='galactic')visible=visible.filter(x=>snDistanceMpc(x)!==null).sort((a,b)=>snDistanceMpc(b)-snDistanceMpc(a));
+ // On the all-sky globe, repeatedly alpha-blending thousands of circles in a
+ // narrow survey footprint creates misleading opaque "fog". Instead show
+ // numbered, bounded-radius screen-space clusters without changing positions
+ // or deleting any source records. Zoom / filters recompute the clusters.
+ const clustered=mode==='equatorial'&&visible.length>600;
+ const grid=new Map();let inFront=0;
+ for(const x of visible){
+  const p=project(x);if(!p.shown)continue;inFront++;
+  if(clustered){
+   const k=Math.floor(p.x/11)+':'+Math.floor(p.y/11);
+   let c=grid.get(k);
+   if(!c){c={sumX:0,sumY:0,n:0,obj:x,type:cat(x),favorite:false,selected:false};grid.set(k,c)}
+   c.sumX+=p.x;c.sumY+=p.y;c.n++;
+   if(favs.has(x.id))c.favorite=true;
+   if(current?.id===x.id){c.selected=true;c.obj=x;c.type=cat(x)}
+   else if(!c.selected&&snPhotometryFresh(x)&&!snPhotometryFresh(c.obj))c.obj=x;
+   continue;
+  }
+  const appearance=snPointAppearance(x),r=appearance.size;
+  ctx.beginPath();ctx.arc(p.x,p.y,r,0,2*PI);ctx.fillStyle=colors[cat(x)]||colors.unknown;ctx.globalAlpha=appearance.alpha;ctx.fill();ctx.globalAlpha=1;
+  if(current?.id===x.id||favs.has(x.id)){ctx.strokeStyle=current?.id===x.id?'#fff':'#ffe3a0';ctx.lineWidth=1.4;ctx.beginPath();ctx.arc(p.x,p.y,r+4,0,2*PI);ctx.stroke()}
+  pts.push({...p,obj:x,r,count:1});
  }
-}$('mapCount').textContent=(lang==='ja'?`描画 ${pts.length} / 抽出 ${visible.length} 天体`:`Plotted ${pts.length} / filtered ${visible.length}`)+(mode==='galactic'?(lang==='ja'?` · 赤方偏移不明 ${Math.max(0,filtered().length-visible.length)}件を除外`:` · ${Math.max(0,filtered().length-visible.length)} without redshift excluded`):(lang==='ja'?` · 球面の裏側 ${visible.length-pts.length}件`:` · ${visible.length-pts.length} on back hemisphere`));$('mapCaption').textContent=mode==='equatorial'?(lang==='ja'?'J2000 · 球面天球図 · ドラッグ：回転／ホイール：拡大':'J2000 · celestial globe · drag to rotate / scroll to zoom'):(lang==='ja'?'3D銀河系外分布（赤方偏移距離，Mpc） · ドラッグ：回転 · ホイール：拡大':'3D extragalactic view (redshift distance, Mpc) · drag / scroll')}
+ if(clustered)for(const c of grid.values()){
+  const x=c.sumX/c.n,y=c.sumY/c.n,r=Math.min(8.5,2.2+Math.log2(c.n+1));
+  ctx.beginPath();ctx.arc(x,y,r,0,2*PI);ctx.fillStyle=colors[c.type]||colors.unknown;ctx.globalAlpha=.85;ctx.fill();ctx.globalAlpha=1;
+  if(c.n>=12){ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='9px system-ui';ctx.fillStyle='#fff';ctx.fillText(c.n>=1000?(c.n/1000).toFixed(1)+'k':String(c.n),x,y);ctx.textBaseline='alphabetic';}
+  if(c.selected||c.favorite){ctx.strokeStyle=c.selected?'#fff':'#ffe3a0';ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(x,y,r+3,0,2*PI);ctx.stroke();}
+  pts.push({x,y,obj:c.obj,r,count:c.n,shown:true});
+ }
+ if(pts.length<=140&&$('snShowLabels').checked){
+  let filled=[],labelled=0;
+  for(const p of [...pts].sort((a,b)=>snRankingMag(a.obj)-snRankingMag(b.obj))){
+   if(labelled>=Math.min(22,Math.max(9,Math.round(CW/55))))break;
+   const name=p.obj.name,w=ctx.measureText(name).width||name.length*6;
+   const box={x:p.x+7,y:p.y-18,w:w+3,h:14};
+   if(box.x+box.w>CW-4||box.y<15||box.x<5||box.y+box.h>CH-5)continue;
+   if(filled.some(q=>!(box.x>q.x+q.w+7||q.x>box.x+box.w+7||box.y>q.y+q.h+5||q.y>box.y+box.h+5)))continue;
+   if(mode==='equatorial'&&Math.hypot(box.x+box.w/2-CW/2,box.y+7-CH/2)>snSkyRadius()-5)continue;
+   ctx.fillStyle='#c2d9ec';ctx.font='10px system-ui';ctx.fillText(name,box.x,box.y+11);filled.push(box);labelled++;
+  }
+ }
+ $('mapCount').textContent=mode==='galactic'
+  ?(lang==='ja'?`描画 ${pts.length} / 抽出 ${visible.length}件 · 赤方偏移不明 ${Math.max(0,filtered().length-visible.length)}件を除外`:`Plotted ${pts.length}/${visible.length} · ${Math.max(0,filtered().length-visible.length)} without redshift`)
+  :clustered?(lang==='ja'?`前面 ${inFront}天体を ${pts.length}個の密集マーカーで表示 · 裏側 ${visible.length-inFront}件`:`${inFront} objects aggregated into ${pts.length} density markers · ${visible.length-inFront} on far side`)
+  :(lang==='ja'?`描画 ${pts.length} / 抽出 ${visible.length}件 · 裏側 ${visible.length-inFront}件`:`Plotted ${pts.length}/${visible.length} · ${visible.length-inFront} on far side`);
+ $('mapCaption').textContent=mode==='equatorial'
+  ?(lang==='ja'?(clustered?'J2000 · 密集表示（丸内の数字＝天体数） · 拡大・絞り込みで再集計':'J2000 · 球面天球図 · ドラッグ：回転／ホイール：拡大'):(clustered?'J2000 · clusters labelled by object counts · zoom / filter to resolve':'J2000 celestial globe · drag / zoom'))
+  :(lang==='ja'?'銀河系外3D分布（赤方偏移距離，Mpc） · ドラッグ：回転 · ホイール：拡大':'3D extragalactic distribution · redshift distances in Mpc');
+}
 function drawTable(){const policy=$('photometryPolicy');if(policy)policy.textContent=lang==='ja'?'観測日が確認できない等級は表示しません．30日超の観測値は ⚑ で示し，N.I.N.A.出力の等級欄から除外します．未分類候補は確定超新星に含めません．':'Undated magnitudes are hidden. Measurements older than 30 days are marked ⚑ and omitted from N.I.N.A. magnitude exports. Unclassified candidates are not confirmed supernovae.';let vv=filtered();$('filterCount').textContent=vv.length+(lang==='ja'?' 件':' objects');$('listMeta').textContent=lang==='ja'?`表示 ${Math.min(tableLimit,vv.length)} / ${vv.length} 件（取込 ${records.length} 件）`:`Showing ${Math.min(tableLimit,vv.length)} / ${vv.length}`;
  // The legacy table is intentionally hidden; preserve counters but skip all redundant rows.
  if(document.querySelector('.bottom')?.hidden){if($('rows').childElementCount)$('rows').replaceChildren();return;}
@@ -2945,7 +2991,7 @@ snWatchUI();snWatchRestore();
 const snWatchPreviousLanguage=updateLanguage;
 updateLanguage=function(){snWatchPreviousLanguage();snWatchUI()};
 
-function pickPoint(e,click=false){const r=cvs.getBoundingClientRect(),mx=e.clientX-r.left,my=e.clientY-r.top;let matches=pts.map(p=>({...p,d:Math.hypot(p.x-mx,p.y-my)})).filter(p=>p.d<Math.max(11,p.r+6)).sort((a,b)=>a.d-b.d);let pt=matches[0];if(pt){$('maptip').style.display='block';$('maptip').style.left=Math.min(CW-200,mx+12)+'px';$('maptip').style.top=Math.max(52,Math.min(CH-75,my-10))+'px';$('maptip').textContent=pt.obj.name+' · '+(snPhotometryFresh(pt.obj)?fmt(pt.obj.mag)+' mag':(lang==='ja'?'最新等級不明':'current mag unknown'))+' · '+pt.obj.type;if(click)select(pt.obj.id)}else $('maptip').style.display='none'}
+function pickPoint(e,click=false){const r=cvs.getBoundingClientRect(),mx=e.clientX-r.left,my=e.clientY-r.top;let matches=pts.map(p=>({...p,d:Math.hypot(p.x-mx,p.y-my)})).filter(p=>p.d<Math.max(11,p.r+6)).sort((a,b)=>a.d-b.d);let pt=matches[0];if(pt){$('maptip').style.display='block';$('maptip').style.left=Math.min(CW-200,mx+12)+'px';$('maptip').style.top=Math.max(52,Math.min(CH-75,my-10))+'px';$('maptip').textContent=(pt.count>1?(lang==='ja'?`密集：${pt.count}天体 · 代表：`:`Cluster of ${pt.count} · representative: `):'')+pt.obj.name+' · '+(snPhotometryFresh(pt.obj)?fmt(pt.obj.mag)+' mag':(lang==='ja'?'最新等級不明':'current mag unknown'))+' · '+pt.obj.type;if(click)select(pt.obj.id)}else $('maptip').style.display='none'}
 // PNmap pointer handling: touch rotation, two-finger pinch, wheel zoom and tap selection.
 const snPointers=new Map();let moving=null,snPinch=null,snPinched=false;
 function snStartPinch(){
