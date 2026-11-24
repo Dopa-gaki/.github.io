@@ -1190,7 +1190,7 @@ function snLoadThumb(job){
  const key=x?snThumbKey(x):'';
  let finished=false,index=0,timer=null;
  if(!x||!image){snThumbActive=Math.max(0,snThumbActive-1);snThumbPump();return;}
- if(!navigator.onLine){state.textContent=lang==='ja'?'オフライン':'Offline';node.classList.remove('queued');node.classList.add('failed');snThumbActive=Math.max(0,snThumbActive-1);snThumbPump();return;}
+ // Do not skip remote imagery based only on navigator.onLine.
  if(job.force)snThumbMemo.delete(key);
  const candidates=snThumbCandidates(x).map(c=>({...c,url:job.force?
   c.url+(c.url.includes('?')?'&':'?')+'_retry='+Date.now():c.url}));
@@ -1206,7 +1206,7 @@ function snLoadThumb(job){
    image.alt=(lang==='ja'?'公開サーベイ画像：':'Survey image: ')+(c.role==='host'?'母銀河 '+snUsableHost(x):x.name);
    image.title=(c.role==='host'?'Host galaxy / ':'Survey field / ')+c.label+' — archival image, transient not confirmed';
    source.textContent=c.role==='host'?(lang==='ja'?'母銀河':'Host'):(c.label||'Survey').replace(' Surveys','');
-   snThumbMemo.delete(key);snThumbMemo.set(key,c);
+   snImageLastSuccessfulSource=c.source;snThumbMemo.delete(key);snThumbMemo.set(key,c);
    if(snThumbMemo.size>120)snThumbMemo.delete(snThumbMemo.keys().next().value);
   }else if(node.isConnected){
    node.classList.remove('loading','queued');node.classList.add('failed');
@@ -1223,7 +1223,7 @@ function snLoadThumb(job){
   if(timer!==null)clearTimeout(timer);
   image.onload=()=>{if(timer!==null)clearTimeout(timer);if(image.naturalWidth>=64&&image.naturalHeight>=64)complete(true,c);else next();};
   image.onerror=()=>{if(timer!==null)clearTimeout(timer);next();};
-  timer=setTimeout(()=>{image.onload=null;image.onerror=null;image.removeAttribute('src');next();},9500);
+  timer=setTimeout(()=>{image.onload=null;image.onerror=null;image.removeAttribute('src');next();},16000);
   image.src=c.url;
  }
  next();
@@ -1683,12 +1683,14 @@ const IMAGE_MAST='https://archive.stsci.edu/cgi-bin/dss_search';
 const SURVEYS={
  'dss-color':['CDS/P/DSS2/color','DSS2 Color','jpg'],
  'dss-red':['CDS/P/DSS2/red','DSS2 Red','jpg'],
+ 'dss-blue':['CDS/P/DSS2/blue','DSS2 Blue','jpg'],
  'panstarrs':['CDS/P/PanSTARRS/DR1/color-i-r-g','Pan-STARRS DR1','jpg'],
  '2mass':['CDS/P/2MASS/color','2MASS','jpg'],
  'allwise':['CDS/P/allWISE/color','AllWISE','jpg']
 };
 let imageKey='',imageToken=0,imageLastGood=null,imageRequests=[],snImageShown=null;
 const snImageMemo=new Map(),SN_IMAGE_MAX_MEMO=48;
+let snImageLastSuccessfulSource='';
 try{const pref=localStorage.getItem('snmap_photo_source_v1');if(pref&&$('imgSource').querySelector('option[value="'+pref+'"]'))$('imgSource').value=pref}catch(_){}
 function makeImageURL(x,mode,mirror=false){
  const v=SURVEYS[mode];return (mirror?IMAGE_MIRROR:IMAGE_SERVICE)+'?'+new URLSearchParams({hips:v[0],ra:x.ra.toFixed(7),dec:x.dec.toFixed(7),fov:'0.16',width:'520',height:'520',projection:'TAN',coordsys:'icrs',format:v[2]}).toString()
@@ -1712,13 +1714,14 @@ function snWideImageURL(x,mode,fov=0.42,mirror=false){
  const v=SURVEYS[mode];
  return (mirror?IMAGE_MIRROR:IMAGE_SERVICE)+'?'+new URLSearchParams({hips:v[0],ra:x.ra.toFixed(7),dec:x.dec.toFixed(7),fov:String(fov),width:'500',height:'500',projection:'TAN',coordsys:'icrs',format:v[2]}).toString();
 }
+function snSDSSImageURL(x){return 'https://skyserver.sdss.org/dr18/SkyServerWS/ImgCutout/getjpeg?'+new URLSearchParams({ra:x.ra.toFixed(7),dec:x.dec.toFixed(7),scale:'0.7',width:'460',height:'460'}).toString();}
 function snLegacyImageURL(x,fov=0.16){
  const size=520;
  return 'https://www.legacysurvey.org/viewer/jpeg-cutout?'+new URLSearchParams({ra:x.ra.toFixed(7),dec:x.dec.toFixed(7),width:String(size),height:String(size),layer:'ls-dr10',pixscale:(fov*3600/size).toFixed(3)}).toString();
 }
 function snPaintImageCaption(c,x){
  if(!c)return;
- const provider=c.source==='mast'?'STScI':c.source==='legacy'?'Legacy Surveys':'CDS';
+ const provider=c.source==='mast'?'STScI':c.source==='legacy'?'Legacy Surveys':c.source==='sdss'?'SDSS':'CDS';
  const host=snUsableHost(x),isHost=c.role==='host';
  const region=lang==='ja'?(isHost?'母銀河 '+host+' の中心':c.role==='wide'?'超新星の周辺広域写野':'超新星座標の周辺写野'):(isHost?'Host galaxy '+host+' (centred)':c.role==='wide'?'Wide field around SN':'Field around SN coordinates');
  const note=lang==='ja'?'過去のサーベイ画像（超新星の写り込みは未確認）':'Archival survey (SN presence unverified)';
@@ -1727,34 +1730,37 @@ function snPaintImageCaption(c,x){
 }
 function imageCandidates(x){
  const choice=$('imgSource').value,items=[],seen=new Set(),host=snUsableHost(x);
- function add(url,source,label,role='field'){
-  if(!seen.has(url)){seen.add(url);items.push({url,source,label,role});}
- }
+ function add(url,source,label,role='field'){if(url&&!seen.has(url)){seen.add(url);items.push({url,source,label,role})}}
  function field(mode,mirror=false){
   if(!SURVEYS[mode]||(mode==='panstarrs'&&x.dec<=-30))return;
-  add(makeImageURL(x,mode,mirror),mode,SURVEYS[mode][1]+(mirror?' · mirror':''));
+  add(makeImageURL(x,mode,mirror),mode,SURVEYS[mode][1]+(mirror?' · backup':''));
  }
  function hostField(mode,mirror=false){
   if(!host||!SURVEYS[mode]||(mode==='panstarrs'&&x.dec<=-30))return;
-  add(snHostImageURL(host,mode,mirror),mode,SURVEYS[mode][1]+(mirror?' · mirror':''),'host');
+  add(snHostImageURL(host,mode,mirror),mode,SURVEYS[mode][1]+' / host','host');
  }
- function wide(mode,fov=0.42,mirror=false){
+ function wide(mode,fov=.42,mirror=false){
   if(SURVEYS[mode])add(snWideImageURL(x,mode,fov,mirror),mode,SURVEYS[mode][1]+' / '+(fov*60).toFixed(0)+' arcmin','wide');
  }
- function legacy(fov=0.16){add(snLegacyImageURL(x,fov),'legacy','Legacy Surveys DR10','wide');}
- // Prefer the requested source, but do not depend on one imaging provider.
- if(choice!=='auto'){field(choice);field(choice,true);}
- else{field('dss-color');field('panstarrs');}
- // Prioritize a named host before trying every survey at the SN coordinates.
- // A host image is archival context, never evidence that the transient is visible.
- hostField('dss-color');hostField('dss-color',true);
- legacy(0.16);
- field('dss-color');field('dss-color',true);field('dss-red');
- hostField('panstarrs');
- // Host ID may not resolve; these use the validated SN coordinates instead.
- wide('dss-color');legacy(0.42);wide('dss-color',0.75,true);
- const mast=makeMastImageURL(x);add(mast,'mast','MAST / DSS2 red');
- field('dss-red',true);field('2mass');field('allwise');field('panstarrs',true);
+ // Prioritize independent providers. Every candidate uses validated J2000
+ // coordinates; a named host is a fallback, not a requirement.
+ if(choice!=='auto')field(choice);else field('dss-color');
+ field('dss-red');add(makeMastImageURL(x),'mast','MAST / DSS2 red');
+ field('2mass',true);add(snLegacyImageURL(x,.16),'legacy','Legacy Surveys DR10','wide');
+ field('dss-color',true);field('allwise');field('dss-blue',true);
+ if(x.dec>-30)field('panstarrs');
+ add(snSDSSImageURL(x),'sdss','SDSS DR18','wide');
+ // Galaxy context remains available even if the transient's own field is blank.
+ hostField('dss-color');hostField('dss-red',true);
+ if(x.dec>-30)hostField('panstarrs');
+ wide('dss-color',.42,true);add(snLegacyImageURL(x,.42),'legacy','Legacy Surveys wide','wide');
+ if(choice!=='auto')field(choice,true);
+ field('dss-red',true);field('2mass');field('allwise',true);wide('dss-red',.75);
+ // Prefer a known-working service from a recently displayed SN/AT image.
+ if(choice==='auto'&&snImageLastSuccessfulSource){
+  const i=items.findIndex(c=>c.source===snImageLastSuccessfulSource);
+  if(i>0)items.unshift(items.splice(i,1)[0]);
+ }
  return items;
 }
 function snStopImageRequests(){
@@ -1775,7 +1781,7 @@ function startImage(x,force=false){
  const el=$('finder'),status=$('imgMessage'),credit=$('imgCredit');snImageShown=null;
  el.onload=null;el.onerror=null;el.style.display='none';el.removeAttribute('src');
  status.style.display='block';status.textContent=lang==='ja'?'画像を取得中…':'Loading survey image…';credit.textContent='';
- const memo=snImageMemo.get(key);
+ const memo=snImageMemo.get(key)||snThumbMemo.get(key);
  if(!force&&memo){
   snImageMemo.delete(key);snImageMemo.set(key,memo);
   // A remembered URL is only a hint: browser caches can evict it and servers can fail later.
@@ -1787,7 +1793,7 @@ function startImage(x,force=false){
   el.src=memo.url;
   return;
  }
- if(!navigator.onLine){imageKey='';status.textContent=lang==='ja'?'オフライン：公開サーベイ画像は取得できません．':'Offline: remote survey imagery unavailable.';return;}
+ // navigator.onLine may be inaccurate with proxies or captive portals; try the image endpoints.
  const items=imageCandidates(x).map(v=>({...v,url:force?v.url+(v.url.includes('?')?'&':'?')+'_retry='+Date.now():v.url}));
  let index=0,active=0,done=false;
  function succeed(candidate){
@@ -1801,7 +1807,7 @@ function startImage(x,force=false){
    el.onload=null;el.onerror=null;el.style.display='block';status.style.display='none';
    snImageShown=candidate;snPaintImageCaption(candidate,x);
    $('finderLink').href=candidate.url;imageLastGood=candidate.source;
-   snMemoImage(key,candidate);
+   snImageLastSuccessfulSource=candidate.source;snMemoImage(key,candidate);
   };
   el.onerror=()=>{
    if(token!==imageToken)return;
@@ -1820,12 +1826,12 @@ function startImage(x,force=false){
    imageKey='';status.textContent=lang==='ja'?'すべての画像取得先に接続できませんでした．再取得を試してください．':'All image sources failed. Try Retry.';
    credit.textContent='';return;
   }
-  while(active<2&&index<items.length){
+  while(active<3&&index<items.length){
    const c=items[index++],im=new Image(),req={img:im,timer:null};let finished=false;
    imageRequests.push(req);active++;
    const end=ok=>{if(finished)return;finished=true;clearTimeout(req.timer);im.onload=null;im.onerror=null;imageRequests=imageRequests.filter(r=>r!==req);active--;
     if(ok)succeed(c);else attempt();};
-   req.timer=setTimeout(()=>end(false),11000);
+   req.timer=setTimeout(()=>end(false),18500);
    im.onload=()=>end(im.naturalWidth>=64&&im.naturalHeight>=64);im.onerror=()=>end(false);
    im.src=c.url;
   }
