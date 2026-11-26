@@ -3533,7 +3533,7 @@ function snExportSavedCSV(){
 }
 function snExportStellarium(){
  const items=snSavedObjects();if(!items.length)return;
- const raString=value=>{const secs=(((value/15)%24)+24)%24*3600,h=Math.floor(secs/3600),m=Math.floor((secs%3600)/60);return String(h).padStart(2,'0')+'h'+String(m).padStart(2,'0')+'m'+(secs-h*3600-m*60).toFixed(2).padStart(5,'0')+'s'};
+ const raString=value=>{const ticks=((Math.round(value/15*360000)%8640000)+8640000)%8640000,h=Math.floor(ticks/360000),m=Math.floor(ticks%360000/6000),sec=(ticks%6000)/100;return String(h).padStart(2,'0')+'h'+String(m).padStart(2,'0')+'m'+sec.toFixed(2).padStart(5,'0')+'s'};
  const decString=value=>{const units=Math.round(Math.abs(value)*36000),d=Math.floor(units/36000),m=Math.floor((units%36000)/600),sec=(units%600)/10;return (value<0?'-':'+')+String(d).padStart(2,'0')+'°'+String(m).padStart(2,'0')+"'"+sec.toFixed(1).padStart(4,'0')+'"'};
  const now=new Date().toISOString().slice(0,19).replace('T',' ');
  const uid='{10ecf29b-251f-48e7-a6cc-00'+Date.now().toString(16).slice(-10).padStart(10,'0')+'}';
