@@ -2410,6 +2410,8 @@ function loadLive(manual=false,skipPublished=false){
 }
 async function loadLiveCore(manual=false,skipPublished=false){
  if(SNMAP_PRIVATE_PREVIEW){await checkPrivateFeed(manual);return;}
+ // Record the refresh attempt even when a fresh published snapshot avoids the direct API.
+ lastAttempt=Date.now();
  const publishedOK=skipPublished?Number.isFinite(snPublishedAgeMs):await loadPublishedFeed();
  // A fresh published feed needs no cross-origin API, but an older snapshot can be
  // supplemented by direct public observations if the source permits browser CORS.
