@@ -630,7 +630,7 @@ function coord(v,isRA){
  const parts=cleaned.replace(/:$/,'').split(/[:\s]+/).map(Number);
  if(parts.length<2||parts.length>3||parts.some(x=>!Number.isFinite(x)))return null;
  const [a,b,c=0]=parts;
- if(b<0||b>=60||c<0||c>=60)return null;
+ if(b<0||b>=60||c<0||c>=60||!Number.isInteger(a)||(parts.length===3&&!Number.isInteger(b)))return null;
  const sign=s.startsWith('-')?-1:1;
  const absolute=Math.abs(a)+b/60+c/3600;
  if(isRA){if(sign<0||absolute>24||(absolute===24&&(b!==0||c!==0)))return null;return absolute*15;}
