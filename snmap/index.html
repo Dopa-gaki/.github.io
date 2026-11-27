@@ -1902,7 +1902,7 @@ function bestDarkWindow(x){
   if(solar.alt<=-18&&pos.alt>=25){count++;if(!best||pos.alt>best.alt)best={date,alt:pos.alt}}
  }
  if(!best)return lang==='ja'?(fromSelectedTime?'指定日時から24時間：天文夜で高度25°以上の時間帯なし':'今後24時間：天文夜で高度25°以上の時間帯なし'):(fromSelectedTime?'No astronomical darkness at altitude ≥25° within 24 h of the selected future time':'Next 24 h: no astronomical darkness with altitude ≥25°');
- const off=Number($('tz').value)||0,local=new Date(best.date.getTime()+off*3600000).toISOString().slice(0,16).replace('T',' ');
+ const rawOffset=Number($('tz').value),off=Number.isFinite(rawOffset)&&rawOffset>=-12&&rawOffset<=14?rawOffset:9,local=new Date(best.date.getTime()+off*3600000).toISOString().slice(0,16).replace('T',' ');
  return lang==='ja'?`${fromSelectedTime?'指定日時から24時間の撮影好機':'今後24時間の撮影好機'}：${local}（現地時刻），高度${best.alt.toFixed(0)}°，暗夜かつ高度25°以上 約${(count*stepMinutes/60).toFixed(1)}時間`:`${fromSelectedTime?'Best within 24 h of selected future time':'Best in next 24 h'}: ${local} (site time), altitude ${best.alt.toFixed(0)}°, dark and ≥25° for ~${(count*stepMinutes/60).toFixed(1)} h`;
 }
 
