@@ -3076,7 +3076,7 @@ function validateSiteInput(id){
  return true;
 }
 for(const id of ['lat','lon','tz'])$(id).addEventListener('change',()=>{validateSiteInput(id);persist();refreshUI()});
-$('moment').addEventListener('change',()=>{if(!Number.isFinite(observationDate().getTime())){$('moment').value=siteDate();toast(lang==='ja'?'無効な日時を現在時刻に戻しました．':'Invalid date reset to current time.')}persist();refreshUI()});$('now').onclick=()=>{$('moment').value=siteDate();refreshUI()};
+$('moment').addEventListener('change',()=>{if(!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test($('moment').value)||!Number.isFinite(safeDate($('moment').value.slice(0,10)))||Number($('moment').value.slice(11,13))>23||Number($('moment').value.slice(14,16))>59){$('moment').value=siteDate();toast(lang==='ja'?'無効な日時を現在時刻に戻しました．':'Invalid date reset to current time.')}persist();refreshUI()});$('now').onclick=()=>{$('moment').value=siteDate();refreshUI()};
 // v10.0: Explicit distinction between online fetching, downloading and importing local files.
 // Preserve all existing source error statuses; completing attempts is not proof of success.
 let snManualFetchPromise=null;
